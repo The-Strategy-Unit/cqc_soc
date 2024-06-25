@@ -1,6 +1,6 @@
 ---
 title: "Mental Health attendances in urgent and emergency care settings"
-author: "Andy Hood"
+author: "Andy Hood et al"
 format:
   html:
     embed-resources: true
