@@ -1,9 +1,40 @@
 ---
 title: "Mental Health attendances in urgent and emergency care settings"
 author: "Andy Hood"
-format: html
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    theme: cosmo
+    fontcolor: black
+    toc: true
+    toc-location: left
+    toc-title: Summary
+    toc-depth: 3
+    grid:
+      sidebar-width: 250px
+      body-width: 1050px
+      margin-width: 0px
+      gutter-width: 1.5rem
 editor: visual
+execute:
+  echo: false
+  message: false
+  warning: false
+  cache: false
+lang: en-GB
+date: last-modified
+date-format: "YYYY-MM-DD"
+title-block-banner: "#f9bf07"
+title-block-banner-color: "#333739"
+css: styles.css
 ---
+
+``` {r setup}
+library(targets)
+library(tidyverse)
+
+```
 
 ## Introduction
 
@@ -15,7 +46,7 @@ One of the key areas of interest is around perceived 'system failure' as measure
 
 We summarised routine data from the Emergency Care Dataset (ECDS), NHS 111 dataset and the Mental Health Services Dataset (MHSDS) via NCDR <https://www.ardengemcsu.nhs.uk/services/business-intelligence/ncdr/> according to specific population sub-groups and activity break-downs at Integrated Care Board (ICB) level. The period covers the 5 financial years from 1st April 2019 to 31st March 2024.
 
-Patients were linked using pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to specialist mental health services (referred and/or treated) or not.
+Patients were linked using common pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to specialist mental health services (referred and/or treated) or not.
 
 The presence of a presenting mental health problem in **A&E data** was determined by all descendant SNOMED codes (n=1580) for 'Mental Health Disorders' in either the Chief Complaint field *OR* the 1st Diagnosis field. The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups.
 
@@ -25,7 +56,7 @@ Blah blah blah
 
 ## Accident and Emergency attendance
 
-These attendances are those specified within the ECDS as 'Type 1' emergency department attendances and typically should be for those patients with life-threatening symptoms requiring immediate triage and treatment.
+These attendances are those specified within the ECDS as 'Type 1' emergency department attendances and typically should be for those patients with life-threatening symptoms or injuries requiring immediate triage and treatment.
 
 The average A&E attendance in England costs £280 with those conveyed by ambulance costing an additional £390 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
@@ -36,7 +67,7 @@ The average A&E attendance in England costs £280 with those conveyed by ambulan
 
 ## Walk-in and Urgent Care attendance
 
-These attendances are those specified within the ECDS as 'Type 3' urgent treatment centre and 'Type 4' walk-in centre attendances should be typically self-conveyed patients requiring urgent assessment and treatment to prevent deterioration.
+These attendances are those specified within the ECDS as 'Type 3' urgent treatment centre and 'Type 4' walk-in centre attendances and should be typically self-conveyed patients requiring urgent assessment and treatment to prevent deterioration.
 
 The average urgent care attendance in England costs £107 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
@@ -49,7 +80,7 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 
 Callers to the NHS 111 service would be typically those unable to reach primary care services or to find out information and the appropriate treatment setting for a non-urgent health complaint.
 
-The average cost of a call to NHS 111 is around £12 with those requiring clinical call-back an extra £15 <https://www.ncbi.nlm.nih.gov/books/NBK575169/>.
+The average cost of a call to NHS 111 is around £12 with those requiring clinical call-back an extra £15 and hear-treat or see-treat ambulance (999 referrals) costing on average another £203 <https://www.ncbi.nlm.nih.gov/books/NBK575169/>.
 
 ### Key metrics
 
