@@ -186,3 +186,50 @@ get_age_totals <- function(population_2018_females,
 
   return(combined)
 }
+
+wrangle_lsoa <- function(url_name) {
+
+  name <- deparse(substitute(url_name))
+
+  year <- name |>
+    stringr::str_sub(10, 13)
+
+  data <- sf::st_read(url_name) |>
+    tibble::tibble() |>
+    janitor::clean_names() |>
+    dplyr::mutate(lsoa_year = year)
+
+}
+
+get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021){
+
+  lsoa_2011 <- wrangle_lsoa(url_lsoa_2011) |>
+    dplyr::mutate(icb = dplyr::case_when(icb22cd == "E54000052" ~ "E54000052",
+                                         icb22cd == "E54000053" ~ "E54000064",
+                                         .default = icb22cd
+    )) |>
+    dplyr::select(lsoa_year,
+                  lsoa_code = lsoa11cd,
+                  icb)
+
+  lsoa_2021 <- wrangle_lsoa(url_lsoa_2021)  |>
+    dplyr::select(lsoa_year,
+                  lsoa_code = lsoa21cd,
+                  icb = icb23cd)
+
+  lsoa_to_icb <- rbind(lsoa_2011,
+                       lsoa_2021)
+
+  return(lsoa_to_icb)
+
+}
+
+summarise_by_icb <- function(data, lsoa_to_icb, group){
+  data |>
+    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
+                                     "2011",
+                                     "2021")) |>
+    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year"))|>
+    dplyr::summarise(count = sum(count),
+                     .by = c(year, icb, !!rlang::sym(group)))
+}
