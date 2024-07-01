@@ -1,7 +1,7 @@
-# To get data from a xls file at a URL. Default is to read sheet 1, but can
-# specify other sheet and to not skip any rows.
+# To get data from a xls file at a URL. Default is to read sheet 1 from row 1,
+# but can specify other sheet number and number of rows to skip.
 scrape_xls <- function(url, sheet = 1, skip = 0) {
-  tmp = tempfile(fileext = "")
+  tmp <- tempfile(fileext = "")
 
   download.file(url = url,
                 destfile = tmp,
@@ -17,7 +17,8 @@ scrape_xls <- function(url, sheet = 1, skip = 0) {
 }
 
 # To get data from the first excel file in a zipped folder at a URL. Default is
-# to read sheet 1 and to not skip any rows.
+# to read sheet 1 from row 1, but can specify other sheet number and number of
+# rows to skip.
 scrape_zipped_xls <- function(url, sheet = 1, skip = 0) {
   download.file(url, "zippeddata.zip")
   unzip("zippeddata.zip")
@@ -36,8 +37,7 @@ scrape_zipped_xls <- function(url, sheet = 1, skip = 0) {
 
 }
 
-
-
+# To wrangle the gender data from the population files for 2018, 2019 and 2020:
 wrangle_gender_totals_18_20 <- function(data) {
   name <- deparse(substitute(data))
 
@@ -54,6 +54,7 @@ wrangle_gender_totals_18_20 <- function(data) {
   return(wrangled_data)
 }
 
+# To wrangle the gender data from the population files for 2021 and 2022:
 wrangle_gender_totals_21_22 <- function(data) {
   name <- deparse(substitute(data))
 
@@ -77,6 +78,7 @@ wrangle_gender_totals_21_22 <- function(data) {
 
 }
 
+# To put all the gender data together for years 2018 to 2022:
 get_gender_totals <- function(population_2018_females,
                               population_2018_males,
                               population_2019_females,
@@ -99,7 +101,7 @@ get_gender_totals <- function(population_2018_females,
   return(combined)
 }
 
-
+# To wrangle the age data from the population files for 2018, 2019 and 2020:
 wrangle_age_totals_18_20 <- function(data) {
   name <- deparse(substitute(data))
 
@@ -133,6 +135,7 @@ wrangle_age_totals_18_20 <- function(data) {
 
 }
 
+# To wrangle the age data from the population files for 2021 and 2022:
 wrangle_age_totals_21_22 <- function(data) {
   name <- deparse(substitute(data))
 
@@ -165,6 +168,7 @@ wrangle_age_totals_21_22 <- function(data) {
   return(wrangled_data)
 }
 
+# To put all the gender data together for years 2018 to 2022:
 get_age_totals <- function(population_2018_females,
                            population_2018_males,
                            population_2019_females,
@@ -187,8 +191,8 @@ get_age_totals <- function(population_2018_females,
   return(combined)
 }
 
+# To wrangle the lsoa to icb data from the files for 2022 and 2023 icbs:
 wrangle_lsoa <- function(url_name) {
-
   name <- deparse(substitute(url_name))
 
   year <- name |>
@@ -201,35 +205,47 @@ wrangle_lsoa <- function(url_name) {
 
 }
 
-get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021){
-
+# To create the map from lsoa to icb.
+  # Two ICB codes changed between 2022 and 2023. So in url_lsoa_2011:
+    # E54000052 = NHS Surrey Heartlands Integrated Care Board
+    # E54000053 = NHS Sussex Integrated Care Board
+  # and hese ICBs were recoded as:
+    # E54000063 = NHS Surrey Heartlands Integrated Care Board
+    # E54000064 = NHS Sussex Integrated Care Board
+  # to match url_lsoa_2021.
+get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
   lsoa_2011 <- wrangle_lsoa(url_lsoa_2011) |>
-    dplyr::mutate(icb = dplyr::case_when(icb22cd == "E54000052" ~ "E54000052",
-                                         icb22cd == "E54000053" ~ "E54000064",
-                                         .default = icb22cd
-    )) |>
-    dplyr::select(lsoa_year,
-                  lsoa_code = lsoa11cd,
-                  icb)
+    dplyr::mutate(
+      icb = dplyr::case_when(
+        icb22cd == "E54000052" ~ "E54000052",
+        icb22cd == "E54000053" ~ "E54000064",
+        .default = icb22cd
+      )
+    ) |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb)
 
   lsoa_2021 <- wrangle_lsoa(url_lsoa_2021)  |>
-    dplyr::select(lsoa_year,
-                  lsoa_code = lsoa21cd,
-                  icb = icb23cd)
+    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb = icb23cd)
 
-  lsoa_to_icb <- rbind(lsoa_2011,
-                       lsoa_2021)
+  lsoa_to_icb <- rbind(lsoa_2011, lsoa_2021)
 
   return(lsoa_to_icb)
 
 }
 
-summarise_by_icb <- function(data, lsoa_to_icb, group){
+# To summarise data across icbs:
+summarise_by_icb <- function(data, lsoa_to_icb, group) {
   data |>
     dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
-                                     "2011",
+                                     "2011", # LSOAs can change with a new
+                                             # census, so this ensures that we
+                                             # use the correct LSOA to ICB map.
+                                             # ICBs can also change over time,
+                                             # but this has already been
+                                             # accounted for and detailed in
+                                             # get_lsoa_to_icb_map() above.
                                      "2021")) |>
-    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year"))|>
+    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
     dplyr::summarise(count = sum(count),
                      .by = c(year, icb, !!rlang::sym(group)))
 }

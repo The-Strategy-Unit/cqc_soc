@@ -8,6 +8,7 @@ library(targets)
 
 # Set target options:
 tar_option_set(packages = c(# Packages that your targets need for their tasks.
+  "janitor",
   "tidyverse"))
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -16,12 +17,18 @@ tar_source()
 # End this file with a list of target objects.
 list(
   # LSOA to ICBs
-  tar_target(url_lsoa_2011,
-             "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA11_SICBL22_ICB22_LAD22_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"),
-  tar_target(url_lsoa_2021,
-             "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA21_SICBL23_ICB23_LAD23_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"),
-  tar_target(lsoa_to_icb,
-             get_lsoa_to_icb_map(url_lsoa_2011, url_lsoa_2021)),
+  tar_target(
+    url_lsoa_2011,
+    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA11_SICBL22_ICB22_LAD22_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
+  ),
+  tar_target(
+    url_lsoa_2021,
+    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA21_SICBL23_ICB23_LAD23_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
+  ),
+  tar_target(
+    lsoa_to_icb,
+    get_lsoa_to_icb_map(url_lsoa_2011, url_lsoa_2021)
+  ),
 
   # URLs for population data
   tar_target(
@@ -40,6 +47,7 @@ list(
     url_population_2018,
     "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2018sape21dt1a/sape21dt1amid2018on2019lalsoasyoaestimatesformatted.zip"
   ),
+
   # Reading in population data
   tarchetypes::tar_map(
     list(sheetnames = c("persons", "females", "males")),
@@ -52,8 +60,7 @@ list(
       ) |>
         dplyr::rename(lsoa_code = area_codes) |>
         dplyr::filter(!is.na(lsoa)) # area_codes contains lsoa and lad codes, so
-                                    # removing the lad codes (that is where the
-                                    # lsoa column has missing data)
+      # removing the lad codes here
     )
   ),
   tarchetypes::tar_map(
@@ -83,6 +90,7 @@ list(
     population_2022,
     scrape_xls(url_population_2021_22, "Mid-2022 LSOA 2021", 3)
   ),
+
   # Population by gender and icb
   tar_target(
     gender_totals,
@@ -97,8 +105,11 @@ list(
       population_2022
     )
   ),
-  tar_target(gender_by_icb,
-             summarise_by_icb(gender_totals, lsoa_to_icb, "gender")),
+  tar_target(
+    gender_by_icb,
+    summarise_by_icb(gender_totals, lsoa_to_icb, "gender")
+  ),
+
   # Population by age and icb
   tar_target(
     age_totals,
@@ -113,9 +124,9 @@ list(
       population_2022
     )
   ),
-  tar_target(age_by_icb,
-             summarise_by_icb(age_totals, lsoa_to_icb, "age_group"))
-
-
+  tar_target(
+    age_by_icb,
+    summarise_by_icb(age_totals, lsoa_to_icb, "age_group")
+  )
 
 )
