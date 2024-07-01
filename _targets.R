@@ -73,27 +73,32 @@ list(
     scrape_xls(url_population_2021_22, "Mid-2022 LSOA 2021", 3)
   ),
   # Population by gender
-  tar_target(gender_totals,
-             get_gender_totals(population_2018_females,
-                               population_2018_males,
-                               population_2019_females,
-                               population_2019_males,
-                               population_2020_females,
-                               population_2020_males,
-                               population_2021,
-                               population_2022)
-             ),
+  tar_target(
+    gender_totals,
+    get_gender_totals(
+      population_2018_females,
+      population_2018_males,
+      population_2019_females,
+      population_2019_males,
+      population_2020_females,
+      population_2020_males,
+      population_2021,
+      population_2022
+    )
+  ),
   # Population by age
-  tar_target(age_totals,
-             get_age_totals(population_2018_females,
-                               population_2018_males,
-                               population_2019_females,
-                               population_2019_males,
-                               population_2020_females,
-                               population_2020_males,
-                               population_2021,
-                               population_2022
-                               )
+  tar_target(
+    age_totals,
+    get_age_totals(
+      population_2018_females,
+      population_2018_males,
+      population_2019_females,
+      population_2019_males,
+      population_2020_females,
+      population_2020_males,
+      population_2021,
+      population_2022
+    )
   )
 
 
