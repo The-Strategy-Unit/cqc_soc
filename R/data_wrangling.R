@@ -239,10 +239,11 @@ get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
 
 }
 
+
 # To summarise data across ICBs:
-summarise_by_icb <- function(data, lsoa_to_icb, group = "none") {
+summarise_by_icb <- function(data, lsoa_to_icb, group) {
   summarised_data <- data |>
-    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021, "2011",
+    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
                                      # LSOAs can change with a new
                                      # census, so this ensures that we
                                      # use the correct LSOA to ICB map.
@@ -250,6 +251,7 @@ summarise_by_icb <- function(data, lsoa_to_icb, group = "none") {
                                      # but this has already been
                                      # accounted for and detailed in
                                      # get_lsoa_to_icb_map() above.
+                                     "2011",
                                      "2021")) |>
     dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
     dplyr::summarise(count = sum(count),
