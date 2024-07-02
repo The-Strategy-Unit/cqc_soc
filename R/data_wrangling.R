@@ -237,39 +237,22 @@ get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
 
 }
 
-# To map from lsoa to icb:
-map_lsoa_to_icb <- function(data, lsoa_to_icb) {
-
-  mapped_data <- data |>
-    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
-                                     "2011", # LSOAs can change with a new
-                                             # census, so this ensures that we
-                                             # use the correct LSOA to ICB map.
-                                             # ICBs can also change over time,
-                                             # but this has already been
-                                             # accounted for and detailed in
-                                             # get_lsoa_to_icb_map() above.
-                                     "2021")) |>
-    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year"))
-
-  return(mapped_data)
-}
-
 # To summarise data across icbs:
 summarise_by_icb <- function(data, lsoa_to_icb, group = "none") {
 
-  if(group == "none"){
-    summarised_data <- data |>
-      map_lsoa_to_icb(lsoa_to_icb) |>
-      dplyr::summarise(count = sum(count),
-                       .by = c(year, icb))
-  } else {
-
   summarised_data <- data |>
-    map_lsoa_to_icb(lsoa_to_icb) |>
+    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
+                                     "2011", # LSOAs can change with a new
+                                     # census, so this ensures that we
+                                     # use the correct LSOA to ICB map.
+                                     # ICBs can also change over time,
+                                     # but this has already been
+                                     # accounted for and detailed in
+                                     # get_lsoa_to_icb_map() above.
+                                     "2021")) |>
+    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
     dplyr::summarise(count = sum(count),
                      .by = c(year, icb, !!rlang::sym(group)))
-  }
 
   return(summarised_data)
 }
@@ -316,16 +299,31 @@ get_population_totals <- function(population_2018_persons,
                                   population_2019_persons,
                                   population_2020_persons,
                                   population_2021,
-                                  population_2022,
-                                  lsoa_to_icb) {
+                                  population_2022) {
   combined <- rbind(
     wrangle_population_totals_18_20(population_2018_persons),
     wrangle_population_totals_18_20(population_2019_persons),
     wrangle_population_totals_18_20(population_2020_persons),
     wrangle_population_totals_21_22(population_2021),
     wrangle_population_totals_21_22(population_2022)
-  ) |>
-    summarise_by_icb(lsoa_to_icb)
+  )
 
   return(combined)
+}
+
+
+
+get_imd_totals <- function(imd_url,
+                           population_by_lsoa,
+                           lsoa_to_icb) {
+  data <- imd_url |>
+    scrape_xls("IMD2019") |>
+    dplyr::left_join(population_by_lsoa, by = c("lsoa_code_2011" = "lsoa_code")) |>
+    dplyr::select(year,
+                  lsoa_code = lsoa_code_2011,
+                  imd_decile = index_of_multiple_deprivation_imd_decile,
+                  count) |>
+    summarise_by_icb(lsoa_to_icb, "imd_decile")
+
+  return(data)
 }

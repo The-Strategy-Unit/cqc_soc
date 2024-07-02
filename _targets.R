@@ -123,18 +123,21 @@ list(
     )
   ),
 
-  # Population by icb
-
+  # Population by lsoa
   tar_target(
-    population_by_icb,
+    population_by_lsoa,
     get_population_totals(
       population_2018_persons,
       population_2019_persons,
       population_2020_persons,
       population_2021,
-      population_2022,
-      lsoa_to_icb
+      population_2022
     )
-  )
+  ),
 
+  # IMD decile by ICB
+  tar_target(imd_url,
+             "https://assets.publishing.service.gov.uk/media/5d8b3abded915d0373d3540f/File_1_-_IMD2019_Index_of_Multiple_Deprivation.xlsx"),
+  tar_target(imd_by_icb,
+             get_imd_totals(imd_url, population_by_lsoa, lsoa_to_icb))
 )
