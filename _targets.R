@@ -93,7 +93,7 @@ list(
 
   # Population by gender and icb
   tar_target(
-    gender_totals,
+    gender_by_icb,
     get_gender_totals(
       population_2018_females,
       population_2018_males,
@@ -102,17 +102,14 @@ list(
       population_2020_females,
       population_2020_males,
       population_2021,
-      population_2022
+      population_2022,
+      lsoa_to_icb
     )
-  ),
-  tar_target(
-    gender_by_icb,
-    summarise_by_icb(gender_totals, lsoa_to_icb, "gender")
   ),
 
   # Population by age and icb
   tar_target(
-    age_totals,
+    age_by_icb,
     get_age_totals(
       population_2018_females,
       population_2018_males,
@@ -121,12 +118,23 @@ list(
       population_2020_females,
       population_2020_males,
       population_2021,
-      population_2022
+      population_2022,
+      lsoa_to_icb
     )
   ),
+
+  # Population by icb
+
   tar_target(
-    age_by_icb,
-    summarise_by_icb(age_totals, lsoa_to_icb, "age_group")
+    population_by_icb,
+    get_population_totals(
+      population_2018_persons,
+      population_2019_persons,
+      population_2020_persons,
+      population_2021,
+      population_2022,
+      lsoa_to_icb
+    )
   )
 
 )

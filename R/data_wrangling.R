@@ -86,7 +86,8 @@ get_gender_totals <- function(population_2018_females,
                               population_2020_females,
                               population_2020_males,
                               population_2021,
-                              population_2022) {
+                              population_2022,
+                              lsoa_to_icb) {
   combined <- rbind(
     wrangle_gender_totals_18_20(population_2018_females),
     wrangle_gender_totals_18_20(population_2018_males),
@@ -96,7 +97,8 @@ get_gender_totals <- function(population_2018_females,
     wrangle_gender_totals_18_20(population_2020_males),
     wrangle_gender_totals_21_22(population_2021),
     wrangle_gender_totals_21_22(population_2022)
-  )
+  ) |>
+    summarise_by_icb(lsoa_to_icb, "gender")
 
   return(combined)
 }
@@ -176,7 +178,8 @@ get_age_totals <- function(population_2018_females,
                            population_2020_females,
                            population_2020_males,
                            population_2021,
-                           population_2022) {
+                           population_2022,
+                           lsoa_to_icb) {
   combined <- rbind(
     wrangle_age_totals_18_20(population_2018_females),
     wrangle_age_totals_18_20(population_2018_males),
@@ -186,7 +189,8 @@ get_age_totals <- function(population_2018_females,
     wrangle_age_totals_18_20(population_2020_males),
     wrangle_age_totals_21_22(population_2021),
     wrangle_age_totals_21_22(population_2022)
-  )
+  ) |>
+    summarise_by_icb(lsoa_to_icb, "age_group")
 
   return(combined)
 }
@@ -233,9 +237,10 @@ get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
 
 }
 
-# To summarise data across icbs:
-summarise_by_icb <- function(data, lsoa_to_icb, group) {
-  data |>
+# To map from lsoa to icb:
+map_lsoa_to_icb <- function(data, lsoa_to_icb) {
+
+  mapped_data <- data |>
     dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
                                      "2011", # LSOAs can change with a new
                                              # census, so this ensures that we
@@ -245,7 +250,82 @@ summarise_by_icb <- function(data, lsoa_to_icb, group) {
                                              # accounted for and detailed in
                                              # get_lsoa_to_icb_map() above.
                                      "2021")) |>
-    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
+    dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year"))
+
+  return(mapped_data)
+}
+
+# To summarise data across icbs:
+summarise_by_icb <- function(data, lsoa_to_icb, group = "none") {
+
+  if(group == "none"){
+    summarised_data <- data |>
+      map_lsoa_to_icb(lsoa_to_icb) |>
+      dplyr::summarise(count = sum(count),
+                       .by = c(year, icb))
+  } else {
+
+  summarised_data <- data |>
+    map_lsoa_to_icb(lsoa_to_icb) |>
     dplyr::summarise(count = sum(count),
                      .by = c(year, icb, !!rlang::sym(group)))
+  }
+
+  return(summarised_data)
+}
+
+
+
+
+
+
+
+
+
+
+
+wrangle_population_totals_18_20 <- function(data) {
+  name <- deparse(substitute(data))
+
+  year <- name |>
+    stringr::str_sub(12, 15)
+
+  wrangled_data <- data |>
+    dplyr::mutate(year = year) |>
+    dplyr::select(year, lsoa_code, count = all_ages)
+
+  return(wrangled_data)
+
+}
+
+wrangle_population_totals_21_22 <- function(data) {
+  name <- deparse(substitute(data))
+
+  year <- name |>
+    stringr::str_sub(12, 15)
+
+  wrangled_data <- data |>
+    dplyr::mutate(year = year) |>
+    dplyr::select(year, lsoa_code = lsoa_2021_code, count = total)
+
+  return(wrangled_data)
+
+}
+
+get_population_totals <- function(population_2018_persons,
+                                  population_2019_persons,
+                                  population_2020_persons,
+                                  population_2021,
+                                  population_2022,
+                                  lsoa_to_icb) {
+  combined <- rbind(
+    wrangle_population_totals_18_20(population_2018_persons),
+    wrangle_population_totals_18_20(population_2019_persons),
+    wrangle_population_totals_18_20(population_2020_persons),
+    wrangle_population_totals_21_22(population_2021),
+    wrangle_population_totals_21_22(population_2022)
+  ) |>
+    summarise_by_icb(lsoa_to_icb)
+
+  return(combined)
 }
