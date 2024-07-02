@@ -239,6 +239,7 @@ get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
 
 }
 
+
 # To summarise data across ICBs:
 summarise_by_icb <- function(data, lsoa_to_icb, group) {
   summarised_data <- data |>
