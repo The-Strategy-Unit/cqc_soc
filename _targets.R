@@ -135,9 +135,15 @@ list(
     )
   ),
 
-  # IMD decile by ICB
+  # IMD decile totals by ICB
   tar_target(imd_url,
              "https://assets.publishing.service.gov.uk/media/5d8b3abded915d0373d3540f/File_1_-_IMD2019_Index_of_Multiple_Deprivation.xlsx"),
   tar_target(imd_by_icb,
-             get_imd_totals(imd_url, population_by_lsoa, lsoa_to_icb))
+             get_imd_totals(imd_url, population_by_lsoa, lsoa_to_icb)),
+
+  # Rural and Urban totals by ICB
+  tar_target(rural_url,
+             "https://assets.publishing.service.gov.uk/media/611bc076e90e0705464fa420/Rural_Urban_Classification_2011_lookup_tables_for_small_area_geographies.ods"),
+  tar_target(rural_by_icb,
+             get_rural_totals(rural_url, population_by_lsoa, lsoa_to_icb))
 )

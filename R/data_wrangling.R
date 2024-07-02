@@ -327,3 +327,26 @@ get_imd_totals <- function(imd_url,
 
   return(data)
 }
+
+get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
+  tmp <- tempfile(fileext = "")
+
+  download.file(url = url,
+                destfile = tmp,
+                mode = "wb")
+
+  rural <- readODS::read_ods(path = tmp,
+                             sheet = "LSOA11",
+                             skip = 2) |>
+    janitor::clean_names() |>
+    dplyr::left_join(population_by_lsoa,
+                     by = c("lower_super_output_area_2011_code" = "lsoa_code")) |>
+    dplyr::select(year,
+                  lsoa_code = lower_super_output_area_2011_code,
+                  rural_urban = rural_urban_classification_2011_2_fold,
+                  count) |>
+    summarise_by_icb(lsoa_to_icb, "rural_urban")
+
+  return(rural)
+
+}
