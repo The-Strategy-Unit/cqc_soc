@@ -78,7 +78,8 @@ wrangle_gender_totals_21_22 <- function(data) {
 
 }
 
-# To put all the gender data together for years 2018 to 2022:
+# To put all the gender data together for years 2018 to 2022 and summarised
+# by ICB:
 get_gender_totals <- function(population_2018_females,
                               population_2018_males,
                               population_2019_females,
@@ -170,7 +171,8 @@ wrangle_age_totals_21_22 <- function(data) {
   return(wrangled_data)
 }
 
-# To put all the gender data together for years 2018 to 2022:
+# To put all the age group data together for years 2018 to 2022 and summarised
+# by ICB:
 get_age_totals <- function(population_2018_females,
                            population_2018_males,
                            population_2019_females,
@@ -210,13 +212,13 @@ wrangle_lsoa <- function(url_name) {
 }
 
 # To create the map from lsoa to icb.
-  # Two ICB codes changed between 2022 and 2023. So in url_lsoa_2011:
-    # E54000052 = NHS Surrey Heartlands Integrated Care Board
-    # E54000053 = NHS Sussex Integrated Care Board
-  # and hese ICBs were recoded as:
-    # E54000063 = NHS Surrey Heartlands Integrated Care Board
-    # E54000064 = NHS Sussex Integrated Care Board
-  # to match url_lsoa_2021.
+# Two ICB codes changed between 2022 and 2023. So in url_lsoa_2011:
+# E54000052 = NHS Surrey Heartlands Integrated Care Board
+# E54000053 = NHS Sussex Integrated Care Board
+# and hese ICBs were recoded as:
+# E54000063 = NHS Surrey Heartlands Integrated Care Board
+# E54000064 = NHS Sussex Integrated Care Board
+# to match url_lsoa_2021.
 get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
   lsoa_2011 <- wrangle_lsoa(url_lsoa_2011) |>
     dplyr::mutate(
@@ -237,18 +239,18 @@ get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
 
 }
 
-# To summarise data across icbs:
-summarise_by_icb <- function(data, lsoa_to_icb, group = "none") {
-
+# To summarise data across ICBs:
+summarise_by_icb <- function(data, lsoa_to_icb, group) {
   summarised_data <- data |>
     dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
-                                     "2011", # LSOAs can change with a new
+                                     # LSOAs can change with a new
                                      # census, so this ensures that we
                                      # use the correct LSOA to ICB map.
                                      # ICBs can also change over time,
                                      # but this has already been
                                      # accounted for and detailed in
                                      # get_lsoa_to_icb_map() above.
+                                     "2011",
                                      "2021")) |>
     dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
     dplyr::summarise(count = sum(count),
@@ -257,16 +259,8 @@ summarise_by_icb <- function(data, lsoa_to_icb, group = "none") {
   return(summarised_data)
 }
 
-
-
-
-
-
-
-
-
-
-
+# To wrangle the population data from the population files for 2018, 2019 and
+# 2020:
 wrangle_population_totals_18_20 <- function(data) {
   name <- deparse(substitute(data))
 
@@ -281,6 +275,7 @@ wrangle_population_totals_18_20 <- function(data) {
 
 }
 
+# To wrangle the population data from the population files for 2021 and 2022:
 wrangle_population_totals_21_22 <- function(data) {
   name <- deparse(substitute(data))
 
@@ -295,6 +290,7 @@ wrangle_population_totals_21_22 <- function(data) {
 
 }
 
+# To put all the population total data together for years 2018 to 2022:
 get_population_totals <- function(population_2018_persons,
                                   population_2019_persons,
                                   population_2020_persons,
@@ -311,14 +307,12 @@ get_population_totals <- function(population_2018_persons,
   return(combined)
 }
 
-
-
-get_imd_totals <- function(imd_url,
-                           population_by_lsoa,
-                           lsoa_to_icb) {
+# To summarise IMD decile by ICB for years 2018 to 2022:
+get_imd_totals <- function(imd_url, population_by_lsoa, lsoa_to_icb) {
   data <- imd_url |>
     scrape_xls("IMD2019") |>
-    dplyr::left_join(population_by_lsoa, by = c("lsoa_code_2011" = "lsoa_code")) |>
+    dplyr::left_join(population_by_lsoa,
+                     by = c("lsoa_code_2011" = "lsoa_code")) |>
     dplyr::select(year,
                   lsoa_code = lsoa_code_2011,
                   imd_decile = index_of_multiple_deprivation_imd_decile,
@@ -328,6 +322,7 @@ get_imd_totals <- function(imd_url,
   return(data)
 }
 
+# To summarise rural vs urban by ICB for years 2018 to 2022:
 get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
   tmp <- tempfile(fileext = "")
 
@@ -340,7 +335,8 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
                              skip = 2) |>
     janitor::clean_names() |>
     dplyr::left_join(population_by_lsoa,
-                     by = c("lower_super_output_area_2011_code" = "lsoa_code")) |>
+                     by = c("lower_super_output_area_2011_code" =
+                              "lsoa_code")) |>
     dplyr::select(year,
                   lsoa_code = lower_super_output_area_2011_code,
                   rural_urban = rural_urban_classification_2011_2_fold,
