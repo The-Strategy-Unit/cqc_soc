@@ -9,7 +9,8 @@ library(targets)
 # Set target options:
 tar_option_set(packages = c(# Packages that your targets need for their tasks.
   "janitor",
-  "tidyverse"))
+  "tidyverse",
+  "readODS"))
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source()
