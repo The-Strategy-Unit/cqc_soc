@@ -78,7 +78,7 @@ wrangle_gender_totals_21_22 <- function(data) {
 
 }
 
-# To put all the gender data together for years 2018 to 2022 and summarised
+# To put all the gender data together for financial years 2018/19 to 2022/13 and summarised
 # by ICB:
 get_gender_totals <- function(population_2018_females,
                               population_2018_males,
@@ -99,7 +99,9 @@ get_gender_totals <- function(population_2018_females,
     wrangle_gender_totals_21_22(population_2021),
     wrangle_gender_totals_21_22(population_2022)
   ) |>
-    summarise_by_icb(lsoa_to_icb, "gender")
+    summarise_by_icb(lsoa_to_icb, "gender") |>
+    add_financial_year() |>
+    select(fin_year, icb, gender, count)
 
   return(combined)
 }
@@ -171,7 +173,7 @@ wrangle_age_totals_21_22 <- function(data) {
   return(wrangled_data)
 }
 
-# To put all the age group data together for years 2018 to 2022 and summarised
+# To put all the age group data together for financial years 2018/19 to 2022/13 and summarised
 # by ICB:
 get_age_totals <- function(population_2018_females,
                            population_2018_males,
@@ -192,7 +194,9 @@ get_age_totals <- function(population_2018_females,
     wrangle_age_totals_21_22(population_2021),
     wrangle_age_totals_21_22(population_2022)
   ) |>
-    summarise_by_icb(lsoa_to_icb, "age_group")
+    summarise_by_icb(lsoa_to_icb, "age_group") |>
+    add_financial_year() |>
+    select(fin_year, icb, age_group, count)
 
   return(combined)
 }
@@ -308,22 +312,23 @@ get_population_totals <- function(population_2018_persons,
   return(combined)
 }
 
-# To summarise IMD decile by ICB for years 2018 to 2022:
+# To summarise IMD decile by ICB for financial years 2018/19 to 2022/13:
 get_imd_totals <- function(imd_url, population_by_lsoa, lsoa_to_icb) {
   data <- imd_url |>
     scrape_xls("IMD2019") |>
-    dplyr::left_join(population_by_lsoa,
-                     by = c("lsoa_code_2011" = "lsoa_code")) |>
-    dplyr::select(year,
-                  lsoa_code = lsoa_code_2011,
+    dplyr::rename(lsoa_code = lsoa_code_2011) |>
+    dplyr::left_join(population_by_lsoa, "lsoa_code") |>
+    summarise_by_icb(lsoa_to_icb, "index_of_multiple_deprivation_imd_decile") |>
+    add_financial_year() |>
+    dplyr::select(fin_year,
+                  icb,
                   imd_decile = index_of_multiple_deprivation_imd_decile,
-                  count) |>
-    summarise_by_icb(lsoa_to_icb, "imd_decile")
+                  count)
 
   return(data)
 }
 
-# To summarise rural vs urban by ICB for years 2018 to 2022:
+# To summarise rural vs urban by ICB for financial years 2018/19 to 2022/13:
 get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
   tmp <- tempfile(fileext = "")
 
@@ -335,15 +340,24 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
                              sheet = "LSOA11",
                              skip = 2) |>
     janitor::clean_names() |>
-    dplyr::left_join(population_by_lsoa,
-                     by = c("lower_super_output_area_2011_code" =
-                              "lsoa_code")) |>
-    dplyr::select(year,
-                  lsoa_code = lower_super_output_area_2011_code,
+    dplyr::rename(lsoa_code = lower_super_output_area_2011_code) |>
+    dplyr::left_join(population_by_lsoa, "lsoa_code") |>
+    summarise_by_icb(lsoa_to_icb, "rural_urban_classification_2011_2_fold") |>
+    add_financial_year() |>
+    dplyr::select(fin_year,
+                  icb,
                   rural_urban = rural_urban_classification_2011_2_fold,
-                  count) |>
-    summarise_by_icb(lsoa_to_icb, "rural_urban")
+                  count)
 
   return(rural)
 
+}
+
+# Add financial year
+add_financial_year <- function(data) {
+  data <- data |>
+    dplyr::mutate(year_plus_one = stringr::str_sub(as.numeric(year) + 1, 3, 4),
+                  fin_year = glue::glue("{year}/{year_plus_one}"))
+
+  return(data)
 }
