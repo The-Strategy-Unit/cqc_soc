@@ -10,7 +10,8 @@ library(targets)
 tar_option_set(packages = c(# Packages that your targets need for their tasks.
   "janitor",
   "tidyverse",
-  "readODS"))
+  "readODS",
+  "patchwork"))
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source()
@@ -146,5 +147,28 @@ list(
   tar_target(rural_url,
              "https://assets.publishing.service.gov.uk/media/611bc076e90e0705464fa420/Rural_Urban_Classification_2011_lookup_tables_for_small_area_geographies.ods"),
   tar_target(rural_by_icb,
-             get_rural_totals(rural_url, population_by_lsoa, lsoa_to_icb))
-)
+             get_rural_totals(rural_url, population_by_lsoa, lsoa_to_icb)),
+
+  # specific query data files
+  tar_target(snomed_mh,
+             load_snomed("data/ref_mh_snomed_ct.csv") |>
+               select(2,3,5,6,8,13,16,19,20,23,49,61)),
+
+  tar_target(ae_times,
+             load_ae_times("data/ae_waits_icb.csv")),
+  tar_target(ae_diag,
+             load_ae_times("data/ae_diag_icb.csv") |>
+               left_join(snomed_mh, by = c("ec_diagnosis_01" = "concept_id"))),
+  tar_target(ae_freq,
+             load_ae_times("data/ae_freqfly_icb.csv")),
+
+
+  #### Plots ####
+
+  tar_target(ae_times_plot,
+             ed_times_plot(ae_times)),
+  tar_target(ae_freq_boxplot,
+             ed_freq_boxplot(ae_freq))
+
+
+  )

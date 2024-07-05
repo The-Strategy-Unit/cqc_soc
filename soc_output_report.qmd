@@ -33,6 +33,7 @@ css: styles.css
 ``` {r setup}
 library(targets)
 library(tidyverse)
+library(scales)
 
 ```
 
@@ -48,7 +49,9 @@ We summarised routine data from the Emergency Care Dataset (ECDS), NHS 111 datas
 
 Patients were linked using common pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to specialist mental health services (referred and/or treated) or not.
 
-The presence of a presenting mental health problem in **A&E data** was determined by all descendant SNOMED codes (n=1580) for 'Mental Health Disorders' in either the Chief Complaint field *OR* the 1st Diagnosis field. The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups.
+The presence of a presenting mental health problem in **A&E data** was determined by all descendant SNOMED codes (n=1580) for 'Mental Health Disorders' in either the Chief Complaint field *OR* the 1st Diagnosis field. Codes relating to dementia, memory & cognition AND substance misuse were excluded.
+
+The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups. Codes relating to dementia, memory & cognition AND substance misuse were excluded.
 
 ## Summary
 
@@ -61,6 +64,41 @@ These attendances are those specified within the ECDS as 'Type 1' emergency depa
 The average A&E attendance in England costs £280 with those conveyed by ambulance costing an additional £390 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
 ### Key metrics
+
+#### Waiting times in ED
+
+The ECDS allows calculation of times from arrival to treatment and from treatment to departure.
+
+``` {r ae_wait_plot}
+
+tar_read(ae_times_plot)
+
+```
+
+#### Mental health 'frequent fliers'
+
+``` {r freq_fly_figs, include = FALSE}
+avg_all_attends <- tar_read(ae_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
+
+avg_mh_attend <- tar_read(ae_freq) |> summarise(total = sum(mh_pats)) |> pull(total)/5
+
+perc_mh <- round(avg_mh_attend/avg_all_attends*100,1)
+
+avg_ff_attend <- tar_read(ae_freq) |> summarise(total = sum(mh_freqfly)) |> pull(total)/5
+
+perc_freq <- round(avg_ff_attend/avg_mh_attend*100,1)
+
+```
+
+Frequent fliers can be defined as those attending 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+
+Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
+
+``` {r ae_freq_icb_plot}
+
+tar_read(ae_freq_boxplot)
+
+```
 
 ### Detailed breakdowns
 
