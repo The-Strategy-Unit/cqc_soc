@@ -374,22 +374,9 @@ add_financial_year <- function(data) {
 }
 
 # load specific reference and query files
-load_snomed <- function(fileloc) {
+load_csv <- function(fileloc) {
   data <- read.csv(fileloc) |>
-    clean_names()
+    janitor::clean_names()
 }
 
-load_ae_times <- function(fileloc) {
-  data <- read.csv(fileloc) |>
-    clean_names()
-}
 
-load_ae_diag <- function(fileloc) {
-  data <- read.csv(fileloc) |>
-    clean_names()
-}
-
-load_ae_freq <- function(fileloc) {
-  data <- read.csv(fileloc) |>
-    clean_names()
-}
