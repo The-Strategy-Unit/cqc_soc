@@ -379,7 +379,7 @@ load_csv <- function(fileloc) {
     janitor::clean_names()
 }
 
-# AE summary table
+# AE summary tables
 ae_summary <- function(tarobj) {
   data <-  tarobj |>
     filter(ec_department_type == '01') |>
@@ -391,6 +391,15 @@ ae_summary <- function(tarobj) {
     mutate(mh_perc = round(mh/all*100,2))
 
 return(data)
+}
+
+ae_summ_transp <- function(tarobj) {
+  tarobj |>
+    filter(der_financial_year == '2023/24', arrival_mode != 'NULL', ec_department_type == '01') |>
+    group_by(mh_snomed, arrival_mode) |>
+    summarise(attends = sum(attends)) |>
+    group_by(mh_snomed) |>
+    mutate(perc = attends/sum(attends)*100)
 }
 
 

@@ -177,6 +177,9 @@ list(
   tar_target(ae_summary,
              ae_summary(data_ae)),
 
+  tar_target(ae_summ_transp,
+             ae_summ_transp(data_ae)),
+
   # UEC activity
   tar_target(data_uec,
              get_uec_activity(data_ae)),
@@ -194,7 +197,9 @@ list(
   tar_target(ae_times_plot,
              ed_times_plot(ae_times)),
   tar_target(ae_freq_boxplot,
-             ed_freq_boxplot(ae_freq))
+             ed_freq_boxplot(ae_freq)),
+  tar_target(ae_trans_barplot,
+             get_ed_transp_colplot(ae_summ_transp))
 
 
   )

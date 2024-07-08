@@ -104,6 +104,16 @@ gt_causes
 
 ### Key metrics
 
+#### Arrival mode to ED
+
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport.
+
+``` {r ae_arrive_mode}
+
+tar_read(ae_trans_barplot)
+
+```
+
 #### Waiting times in ED
 
 The ECDS allows calculation of times from arrival to treatment and from treatment to departure.

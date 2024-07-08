@@ -101,3 +101,17 @@ get_mh_attends_caterpillar <- function(data, order_year){
   return(caterpillar)
 }
 
+get_ed_transp_colplot <- function(tarobj){
+  plot <- tarobj|>
+    ggplot(aes(x=arrival_mode, y=perc, fill = as.factor(mh_snomed))) +
+    geom_bar(position="dodge", stat="identity") +
+    scale_fill_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+    theme_minimal() +
+    labs(x = "Arrivel Mode",
+         y = "Percent",
+         title = "Percentage of attendances by arrival mode",
+         subtitle = "All Type 1 attendances in England 2023/24")
+
+  return(plot)
+}
+
