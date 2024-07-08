@@ -153,17 +153,23 @@ list(
 
   # specific query data files
   tar_target(snomed_mh,
-             load_snomed("data/ref_mh_snomed_ct.csv") |>
+             load_csv("data/ref_mh_snomed_ct.csv") |>
                select(2,3,5,6,8,13,16,19,20,23,49,61)),
 
   tar_target(ae_times,
-             load_ae_times("data/ae_waits_icb.csv")),
+             load_csv("data/ae_waits_icb.csv")),
   tar_target(ae_diag,
-             load_ae_times("data/ae_diag_icb.csv") |>
+             load_csv("data/ae_diag_icb.csv") |>
                left_join(snomed_mh, by = c("ec_diagnosis_01" = "concept_id"))),
   tar_target(ae_freq,
-             load_ae_times("data/ae_freqfly_icb.csv")),
+             load_csv("data/ae_freqfly_icb.csv")),
 
+  # Full extracts
+  tar_target(data_ae,
+             load_csv("data/ae_extract_full.csv")),
+
+  tar_target(data_111,
+             load_csv("data/111_extract_full.csv")),
 
   #### Plots ####
 

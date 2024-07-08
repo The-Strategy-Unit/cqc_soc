@@ -50,3 +50,7 @@ rsconnect/
 
 # targets meta
 _targets/
+
+# files
+data/111_extract_full.csv
+data/ae_extract_full.csv
