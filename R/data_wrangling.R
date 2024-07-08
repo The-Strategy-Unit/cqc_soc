@@ -225,17 +225,17 @@ wrangle_lsoa <- function(url_name) {
 # to match url_lsoa_2021.
 get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
   lsoa_2011 <- wrangle_lsoa(url_lsoa_2011) |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb = icb22cd)
+
+  lsoa_2021 <- wrangle_lsoa(url_lsoa_2021) |>
     dplyr::mutate(
       icb = dplyr::case_when(
-        icb22cd == "E54000052" ~ "E54000052",
-        icb22cd == "E54000053" ~ "E54000064",
-        .default = icb22cd
+        icb23cd == "E54000063" ~ "E54000052",
+        icb23cd == "E54000064" ~ "E54000053",
+        .default = icb23cd
       )
-    ) |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb)
-
-  lsoa_2021 <- wrangle_lsoa(url_lsoa_2021)  |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb = icb23cd)
+    )  |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb)
 
   lsoa_to_icb <- rbind(lsoa_2011, lsoa_2021)
 

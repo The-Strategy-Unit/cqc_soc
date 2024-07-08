@@ -18,6 +18,8 @@ tar_source()
 
 # End this file with a list of target objects.
 list(
+  #### Data loading and initial wrangling ####
+
   # LSOA to ICBs
   tar_target(
     url_lsoa_2011,
