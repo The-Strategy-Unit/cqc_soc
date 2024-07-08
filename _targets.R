@@ -171,6 +171,10 @@ list(
   tar_target(data_111,
              load_csv("data/111_extract_full.csv")),
 
+  # Summary from full extracts
+  tar_target(ae_summary,
+             ae_summary(data_ae)),
+
   #### Plots ####
 
   tar_target(ae_times_plot,

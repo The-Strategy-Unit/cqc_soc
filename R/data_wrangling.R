@@ -379,4 +379,18 @@ load_csv <- function(fileloc) {
     janitor::clean_names()
 }
 
+# AE summary table
+ae_summary <- function(tarobj) {
+  data <-  tarobj |>
+    filter(ec_department_type == '01') |>
+    group_by(der_financial_year) |>
+    summarise(all = sum(attends),
+              mh = sum(if_else(mh_snomed == 1, attends,0)),
+              all_cost = sum(cost),
+              mh_cost = sum(if_else(mh_snomed == 1, cost,0))) |>
+    mutate(mh_perc = round(mh/all*100,2))
+
+return(data)
+}
+
 

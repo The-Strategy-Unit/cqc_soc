@@ -67,14 +67,13 @@ The presence of mental health in **NHS 111 data** were established using a bespo
 
 ``` {r ae_summary_bits, include = FALSE}
 
-ae_mh_prop <- tar_read(data_ae) |>
-  filter(ec_department_type == '01') |> 
-  group_by(der_financial_year) |> 
-  summarise(all = sum(attends),
-            mh = sum(if_else(mh_snomed == 1, attends,0)),
-            all_cost = sum(cost),
-            mh_cost = sum(if_else(mh_snomed == 1, cost,0))) |> 
-  mutate(mh_perc = mh/all*100)
+ae_all <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(all)/1000000
+
+ae_all_cost <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(all_cost)/1000000000
+
+ae_mh <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(mh)/1000
+
+ae_mh_cost <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(mh_cost)/1000000
 
 ```
 
@@ -82,7 +81,7 @@ These attendances are those specified within the ECDS as 'Type 1' emergency depa
 
 The average A&E attendance in England costs £280 with those conveyed by ambulance costing an additional £390 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
-During 2023/24 there were `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(all)/1000000` million Type 1 attendances costing £ `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(all_cost)/1000000000` billion. Of those attendances c`r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(mh)/1000`k had a primary complaint/diagnosis of mental health disorders costing around £ `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(mh_cost)/1000000` million.
+During 2023/24 there were `r round(ae_all,2)` million Type 1 attendances costing £ `r round(ae_all_cost,2)` billion. Of those attendances c`r round(ae_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(ae_mh_cost,2)` million.
 
 ``` {r top_ten_causes}
 
