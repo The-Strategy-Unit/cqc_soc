@@ -11,7 +11,8 @@ tar_option_set(packages = c(# Packages that your targets need for their tasks.
   "janitor",
   "tidyverse",
   "readODS",
-  "patchwork"))
+  "patchwork",
+  "PHEindicatormethods"))
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source()
@@ -170,6 +171,18 @@ list(
 
   tar_target(data_111,
              load_csv("data/111_extract_full.csv")),
+
+  # UEC activity
+  tar_target(data_uec,
+             get_uec_activity(data_ae)),
+
+  # MH attends
+  tar_target(mh_attends,
+             get_mh_attends(data_uec)),
+  tar_target(mh_attends_boxplot,
+             get_perc_mh_attends_boxplot(mh_attends)),
+  tar_target(mh_attends_caterpillar,
+              get_mh_attends_caterpillar(mh_attends, "2023/24")),
 
   #### Plots ####
 
