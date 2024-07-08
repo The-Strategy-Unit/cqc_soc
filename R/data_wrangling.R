@@ -394,3 +394,27 @@ return(data)
 }
 
 
+
+
+
+
+
+
+get_uec_activity <- function(data){
+
+  filtered <- data |>
+    dplyr::filter(ec_department_type %in% c("03", "04"))
+
+  return(filtered)
+
+}
+
+get_mh_attends <- function(data) {
+  mh_attends <- data |>
+    dplyr::summarise(mh_attends = sum(mh_snomed),
+              attends = dplyr::n(),
+              .by = c(icb22cd, der_financial_year)) |>
+    PHEindicatormethods::phe_proportion(mh_attends, attends, multiplier = 100)
+
+  return(mh_attends)
+}
