@@ -34,6 +34,7 @@ css: styles.css
 library(targets)
 library(tidyverse)
 library(scales)
+library(gt)
 
 ```
 
@@ -81,7 +82,26 @@ These attendances are those specified within the ECDS as 'Type 1' emergency depa
 
 The average A&E attendance in England costs £280 with those conveyed by ambulance costing an additional £390 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
-During 2023/24 there were `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(all)/1000000` million Type 1 attendances costing £ `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(all_cost)/1000000000` billion. Of those attendances c`r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(mh)/1000`k had a primary complaint/diagnosis of mental health disorders costing around £ `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(mh_cost)/1000000` million.  
+During 2023/24 there were `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(all)/1000000` million Type 1 attendances costing £ `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(all_cost)/1000000000` billion. Of those attendances c`r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(mh)/1000`k had a primary complaint/diagnosis of mental health disorders costing around £ `r ae_mh_prop |> filter(der_financial_year == '2023/24') |> pull(mh_cost)/1000000` million.
+
+``` {r top_ten_causes}
+
+gt_causes <- gt(tar_read(ae_diag) |> 
+  filter(der_financial_year == '2023/24') |> 
+  group_by(term) |> 
+  summarise(attends = sum(attends)) |>
+  rename(SNOMED_term = term) |> 
+  arrange(desc(attends)) |> 
+  slice_head(n=10)) |> 
+  
+  tab_header(
+    title = "Top 10 SNOMED codes in A&E presentation",
+    subtitle = "All of England, 2023/24"
+  )
+
+gt_causes
+
+```
 
 ### Key metrics
 
