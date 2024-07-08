@@ -98,12 +98,20 @@ get_gender_totals <- function(population_2018_females,
     wrangle_gender_totals_18_20(population_2020_males),
     wrangle_gender_totals_21_22(population_2021),
     wrangle_gender_totals_21_22(population_2022)
-  ) |>
+  )  |>
+    remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "gender") |>
     add_financial_year() |>
     select(fin_year, icb, gender, count)
 
   return(combined)
+}
+
+remove_welsh_lsoas <- function(data) {
+  filtered <- data |>
+    dplyr::filter(!stringr::str_detect(lsoa_code, "W"))
+
+  return(filtered)
 }
 
 # To wrangle the age data from the population files for 2018, 2019 and 2020:
@@ -194,6 +202,7 @@ get_age_totals <- function(population_2018_females,
     wrangle_age_totals_21_22(population_2021),
     wrangle_age_totals_21_22(population_2022)
   ) |>
+    remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "age_group") |>
     add_financial_year() |>
     select(fin_year, icb, age_group, count)
@@ -307,7 +316,8 @@ get_population_totals <- function(population_2018_persons,
     wrangle_population_totals_18_20(population_2020_persons),
     wrangle_population_totals_21_22(population_2021),
     wrangle_population_totals_21_22(population_2022)
-  )
+  ) |>
+    remove_welsh_lsoas()
 
   return(combined)
 }
@@ -342,6 +352,7 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
     janitor::clean_names() |>
     dplyr::rename(lsoa_code = lower_super_output_area_2011_code) |>
     dplyr::left_join(population_by_lsoa, "lsoa_code") |>
+    remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "rural_urban_classification_2011_2_fold") |>
     add_financial_year() |>
     dplyr::select(fin_year,
