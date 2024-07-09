@@ -380,7 +380,7 @@ load_csv <- function(fileloc) {
 }
 
 # AE summary tables
-ae_summary <- function(tarobj) {
+get_ae_summary <- function(tarobj) {
   data <-  tarobj |>
     filter(ec_department_type == '01') |>
     group_by(der_financial_year) |>
@@ -393,7 +393,7 @@ ae_summary <- function(tarobj) {
 return(data)
 }
 
-ae_summ_transp <- function(tarobj) {
+get_ae_summ_transp <- function(tarobj) {
   tarobj |>
     filter(der_financial_year == '2023/24', arrival_mode != 'NULL', ec_department_type == '01') |>
     group_by(mh_snomed, arrival_mode) |>
@@ -426,4 +426,27 @@ get_mh_attends <- function(data) {
     PHEindicatormethods::phe_proportion(mh_attends, attends, multiplier = 100)
 
   return(mh_attends)
+}
+
+get_icb_codes_names <- function(data){
+  key <- data |>
+    select(icb22cd, icb22nm) |>
+    distinct()
+
+  return(key)
+}
+
+get_mh_attends_table <- function(data, key){
+  table <- data |>
+    dplyr::left_join(key, "icb22cd") |>
+    dplyr::select("ICB" = icb22nm, der_financial_year, value) |>
+    dplyr::mutate(value = janitor::round_half_up(value, 2)) |>
+    tidyr::pivot_wider(names_from = der_financial_year,
+                       values_from = value) |>
+    gt::gt() |>
+    gt::data_color(columns = tidyselect::starts_with("20"),
+                   method = "numeric",
+                   palette = "PuBu")
+
+  return(table)
 }

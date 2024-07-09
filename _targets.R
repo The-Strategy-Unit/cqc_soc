@@ -9,6 +9,7 @@ library(targets)
 # Set target options:
 tar_option_set(packages = c(# Packages that your targets need for their tasks.
   "janitor",
+  "gt",
   "tidyverse",
   "readODS",
   "patchwork",
@@ -172,13 +173,12 @@ list(
   tar_target(data_111,
              load_csv("data/111_extract_full.csv")),
 
-
   # Summary from full extracts
   tar_target(ae_summary,
-             ae_summary(data_ae)),
+             get_ae_summary(data_ae)),
 
   tar_target(ae_summ_transp,
-             ae_summ_transp(data_ae)),
+             get_ae_summ_transp(data_ae)),
 
   # UEC activity
   tar_target(data_uec,
@@ -191,6 +191,12 @@ list(
              get_perc_mh_attends_boxplot(mh_attends)),
   tar_target(mh_attends_caterpillar,
               get_mh_attends_caterpillar(mh_attends, "2023/24")),
+  tar_target(mh_attends_table,
+             get_mh_attends_table(mh_attends, icb_codes_names)),
+
+  # ICB codes and names
+  tar_target(icb_codes_names,
+             get_icb_codes_names(data_ae)),
 
   #### Plots ####
 
