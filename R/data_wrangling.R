@@ -380,7 +380,7 @@ load_csv <- function(fileloc) {
 }
 
 # AE summary tables
-ae_summary <- function(tarobj) {
+get_ae_summary <- function(tarobj) {
   data <-  tarobj |>
     filter(ec_department_type == '01') |>
     group_by(der_financial_year) |>
@@ -393,7 +393,7 @@ ae_summary <- function(tarobj) {
 return(data)
 }
 
-ae_summ_transp <- function(tarobj) {
+get_ae_summ_transp <- function(tarobj) {
   tarobj |>
     filter(der_financial_year == '2023/24', arrival_mode != 'NULL', ec_department_type == '01') |>
     group_by(mh_snomed, arrival_mode) |>
@@ -403,12 +403,7 @@ ae_summ_transp <- function(tarobj) {
 }
 
 
-
-
-
-
-
-
+# To get Type 3 and Type 4 attendances:
 get_uec_activity <- function(data){
 
   filtered <- data |>
@@ -418,6 +413,7 @@ get_uec_activity <- function(data){
 
 }
 
+# To get percentage of MH attendances by ICB and finanical year:
 get_mh_attends <- function(data) {
   mh_attends <- data |>
     dplyr::summarise(mh_attends = sum(mh_snomed),
@@ -427,3 +423,13 @@ get_mh_attends <- function(data) {
 
   return(mh_attends)
 }
+
+# To create a key to map from ICB codes to names:
+get_icb_codes_names <- function(data){
+  key <- data |>
+    select(icb22cd, icb22nm) |>
+    distinct()
+
+  return(key)
+}
+

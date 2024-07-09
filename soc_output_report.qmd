@@ -168,10 +168,16 @@ Boxplot suggests greater % of MH attends in 2023/24 over ICBs:
 tar_read(mh_attends_boxplot)
 ```
 
-Looking at ICBs over time seems there are some ICBs that have consistently lower % of MH attends over the financial years. Also, median % of MH attends has increased over time:
+Looking at ICBs over time seems there are some ICBs that have consistently lower % of MH attends over the financial years.
+```{r}
+tar_read(mh_attends_table)
+```
+
+Also, median % of MH attends has increased over time:
 ```{r}
 tar_read(mh_attends_caterpillar)
 ```
+
 
 
 ## NHS 111 calls
