@@ -13,7 +13,8 @@ tar_option_set(packages = c(# Packages that your targets need for their tasks.
   "tidyverse",
   "readODS",
   "patchwork",
-  "PHEindicatormethods"))
+  "PHEindicatormethods",
+  "sf"))
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source()
@@ -180,6 +181,10 @@ list(
   tar_target(ae_summ_transp,
              get_ae_summ_transp(data_ae)),
 
+  # Type 1 ED activity
+  tar_target(data_ed,
+             get_ed_activity(data_ae)),
+
   # UEC activity
   tar_target(data_uec,
              get_uec_activity(data_ae)),
@@ -205,7 +210,22 @@ list(
   tar_target(ae_freq_boxplot,
              ed_freq_boxplot(ae_freq)),
   tar_target(ae_trans_barplot,
-             get_ed_transp_colplot(ae_summ_transp))
+             get_ed_transp_colplot(ae_summ_transp)),
 
+  # ICB total populations
+  tar_target(pop_by_icb,
+             get_icb_pop_total(gender_by_icb)),
+  tar_target(icb_rates_ed,
+             get_icb_att_rates(data_ed,pop_by_icb)),
+
+#### Map layers and map plots ####
+
+  # load icb july 2022 boundaries
+  tar_target(icb_boundary,
+             get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ICB_JUL_2022_EN_BGC_V3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
+
+  # 23/24 mh attendance rate ED by ICB map
+  tar_target(icb_ed_map_2324,
+             map_icb_allmh(icb_boundary,icb_rates_ed))
 
   )

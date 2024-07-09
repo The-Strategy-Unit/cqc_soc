@@ -413,7 +413,7 @@ get_uec_activity <- function(data){
 
 }
 
-# To get percentage of MH attendances by ICB and finanical year:
+# To get percentage of MH attendances by ICB and financial year:
 get_mh_attends <- function(data) {
   mh_attends <- data |>
     dplyr::summarise(mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
@@ -432,4 +432,43 @@ get_icb_codes_names <- function(data){
 
   return(key)
 }
+
+# Total ICB population with 23/24 imputed (from 22/23)
+get_icb_pop_total <- function(tarobj){
+  dat1 <- tarobj |>
+    summarise(pop = sum(count),
+              .by = c(icb, fin_year))
+  dat2 <- tarobj |>
+    summarise(pop = sum(count),
+              .by = c(icb, fin_year)) |>
+    filter(fin_year == '2022/23') |>
+    mutate(fin_year = '2023/24')
+
+  data <- rbind(dat1, dat2)
+
+  return(data)
+
+}
+
+# To get Type 1 attendances:
+get_ed_activity <- function(data){
+
+  filtered <- data |>
+    dplyr::filter(ec_department_type == "01")
+
+  return(filtered)
+
+}
+
+## type 1 MH attendance rates total by ICB
+get_icb_att_rates <- function(tarobj1,tarobj2){
+  tarobj1 |>
+    filter(mh_snomed == 1) |>
+    summarise(attends = sum(attends),
+              .by = c(icb22cd, der_financial_year)) |>
+    left_join(tarobj2, by = c("icb22cd" = "icb", "der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(x=attends, n=pop, confidence = 0.95, multiplier = 100000)
+
+}
+
 

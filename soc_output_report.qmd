@@ -151,6 +151,12 @@ tar_read(ae_freq_boxplot)
 
 ### Detailed breakdowns
 
+#### ICB variation
+
+``` {r icb_map_allmh}
+tar_read(icb_ed_map_2324)
+```
+
 ## Walk-in and Urgent Care attendance
 
 These attendances are those specified within the ECDS as 'Type 3' urgent treatment centre and 'Type 4' walk-in centre attendances and should be typically self-conveyed patients requiring urgent assessment and treatment to prevent deterioration.
