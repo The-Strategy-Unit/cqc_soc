@@ -416,8 +416,8 @@ get_uec_activity <- function(data){
 # To get percentage of MH attendances by ICB and finanical year:
 get_mh_attends <- function(data) {
   mh_attends <- data |>
-    dplyr::summarise(mh_attends = sum(mh_snomed),
-              attends = dplyr::n(),
+    dplyr::summarise(mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
+              attends = sum(attends),
               .by = c(icb22cd, der_financial_year)) |>
     PHEindicatormethods::phe_proportion(mh_attends, attends, multiplier = 100)
 

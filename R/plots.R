@@ -111,7 +111,7 @@ get_ed_transp_colplot <- function(tarobj){
     geom_bar(position="dodge", stat="identity") +
     scale_fill_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
     theme_minimal() +
-    labs(x = "Arrivel Mode",
+    labs(x = "Arrival Mode",
          y = "Percent",
          title = "Percentage of attendances by arrival mode",
          subtitle = "All Type 1 attendances in England 2023/24")
