@@ -61,6 +61,8 @@ ed_freq_boxplot <- function(tarobj){
   return(plot)
 }
 
+# To get a boxplot of percentage of MH attendances by financial year with points
+# for ICB on top:
 get_perc_mh_attends_boxplot <- function(data){
   plot <- data |>
     ggplot(aes(der_financial_year, value)) +
@@ -75,6 +77,8 @@ get_perc_mh_attends_boxplot <- function(data){
   return(plot)
 }
 
+# To get a caterpillar of percentage of MH attendances by financial year and
+# ICB:
 get_mh_attends_caterpillar <- function(data, order_year){
 
   order <- data |>

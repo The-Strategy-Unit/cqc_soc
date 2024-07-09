@@ -403,12 +403,7 @@ get_ae_summ_transp <- function(tarobj) {
 }
 
 
-
-
-
-
-
-
+# To get Type 3 and Type 4 attendances:
 get_uec_activity <- function(data){
 
   filtered <- data |>
@@ -418,6 +413,7 @@ get_uec_activity <- function(data){
 
 }
 
+# To get percentage of MH attendances by ICB and finanical year:
 get_mh_attends <- function(data) {
   mh_attends <- data |>
     dplyr::summarise(mh_attends = sum(mh_snomed),
@@ -428,6 +424,7 @@ get_mh_attends <- function(data) {
   return(mh_attends)
 }
 
+# To create a key to map from ICB codes to names:
 get_icb_codes_names <- function(data){
   key <- data |>
     select(icb22cd, icb22nm) |>
@@ -436,17 +433,3 @@ get_icb_codes_names <- function(data){
   return(key)
 }
 
-get_mh_attends_table <- function(data, key){
-  table <- data |>
-    dplyr::left_join(key, "icb22cd") |>
-    dplyr::select("ICB" = icb22nm, der_financial_year, value) |>
-    dplyr::mutate(value = janitor::round_half_up(value, 2)) |>
-    tidyr::pivot_wider(names_from = der_financial_year,
-                       values_from = value) |>
-    gt::gt() |>
-    gt::data_color(columns = tidyselect::starts_with("20"),
-                   method = "numeric",
-                   palette = "PuBu")
-
-  return(table)
-}
