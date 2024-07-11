@@ -98,12 +98,20 @@ get_gender_totals <- function(population_2018_females,
     wrangle_gender_totals_18_20(population_2020_males),
     wrangle_gender_totals_21_22(population_2021),
     wrangle_gender_totals_21_22(population_2022)
-  ) |>
+  )  |>
+    remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "gender") |>
     add_financial_year() |>
     select(fin_year, icb, gender, count)
 
   return(combined)
+}
+
+remove_welsh_lsoas <- function(data) {
+  filtered <- data |>
+    dplyr::filter(!stringr::str_detect(lsoa_code, "W"))
+
+  return(filtered)
 }
 
 # To wrangle the age data from the population files for 2018, 2019 and 2020:
@@ -194,6 +202,7 @@ get_age_totals <- function(population_2018_females,
     wrangle_age_totals_21_22(population_2021),
     wrangle_age_totals_21_22(population_2022)
   ) |>
+    remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "age_group") |>
     add_financial_year() |>
     select(fin_year, icb, age_group, count)
@@ -225,17 +234,17 @@ wrangle_lsoa <- function(url_name) {
 # to match url_lsoa_2021.
 get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
   lsoa_2011 <- wrangle_lsoa(url_lsoa_2011) |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb = icb22cd)
+
+  lsoa_2021 <- wrangle_lsoa(url_lsoa_2021) |>
     dplyr::mutate(
       icb = dplyr::case_when(
-        icb22cd == "E54000052" ~ "E54000052",
-        icb22cd == "E54000053" ~ "E54000064",
-        .default = icb22cd
+        icb23cd == "E54000063" ~ "E54000052",
+        icb23cd == "E54000064" ~ "E54000053",
+        .default = icb23cd
       )
-    ) |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb)
-
-  lsoa_2021 <- wrangle_lsoa(url_lsoa_2021)  |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb = icb23cd)
+    )  |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb)
 
   lsoa_to_icb <- rbind(lsoa_2011, lsoa_2021)
 
@@ -307,7 +316,8 @@ get_population_totals <- function(population_2018_persons,
     wrangle_population_totals_18_20(population_2020_persons),
     wrangle_population_totals_21_22(population_2021),
     wrangle_population_totals_21_22(population_2022)
-  )
+  ) |>
+    remove_welsh_lsoas()
 
   return(combined)
 }
@@ -342,6 +352,7 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
     janitor::clean_names() |>
     dplyr::rename(lsoa_code = lower_super_output_area_2011_code) |>
     dplyr::left_join(population_by_lsoa, "lsoa_code") |>
+    remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "rural_urban_classification_2011_2_fold") |>
     add_financial_year() |>
     dplyr::select(fin_year,
@@ -361,3 +372,103 @@ add_financial_year <- function(data) {
 
   return(data)
 }
+
+# load specific reference and query files
+load_csv <- function(fileloc) {
+  data <- read.csv(fileloc) |>
+    janitor::clean_names()
+}
+
+# AE summary tables
+get_ae_summary <- function(tarobj) {
+  data <-  tarobj |>
+    filter(ec_department_type == '01') |>
+    group_by(der_financial_year) |>
+    summarise(all = sum(attends),
+              mh = sum(if_else(mh_snomed == 1, attends,0)),
+              all_cost = sum(cost),
+              mh_cost = sum(if_else(mh_snomed == 1, cost,0))) |>
+    mutate(mh_perc = round(mh/all*100,2))
+
+return(data)
+}
+
+get_ae_summ_transp <- function(tarobj) {
+  tarobj |>
+    filter(der_financial_year == '2023/24', arrival_mode != 'NULL', ec_department_type == '01') |>
+    group_by(mh_snomed, arrival_mode) |>
+    summarise(attends = sum(attends)) |>
+    group_by(mh_snomed) |>
+    mutate(perc = attends/sum(attends)*100)
+}
+
+
+# To get Type 3 and Type 4 attendances:
+get_uec_activity <- function(data){
+
+  filtered <- data |>
+    dplyr::filter(ec_department_type %in% c("03", "04"))
+
+  return(filtered)
+
+}
+
+# To get percentage of MH attendances by ICB and financial year:
+get_mh_attends <- function(data) {
+  mh_attends <- data |>
+    dplyr::summarise(mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
+              attends = sum(attends),
+              .by = c(icb22cd, der_financial_year)) |>
+    PHEindicatormethods::phe_proportion(mh_attends, attends, multiplier = 100)
+
+  return(mh_attends)
+}
+
+# To create a key to map from ICB codes to names:
+get_icb_codes_names <- function(data){
+  key <- data |>
+    select(icb22cd, icb22nm) |>
+    distinct()
+
+  return(key)
+}
+
+# Total ICB population with 23/24 imputed (from 22/23)
+get_icb_pop_total <- function(tarobj){
+  dat1 <- tarobj |>
+    summarise(pop = sum(count),
+              .by = c(icb, fin_year))
+  dat2 <- tarobj |>
+    summarise(pop = sum(count),
+              .by = c(icb, fin_year)) |>
+    filter(fin_year == '2022/23') |>
+    mutate(fin_year = '2023/24')
+
+  data <- rbind(dat1, dat2)
+
+  return(data)
+
+}
+
+# To get Type 1 attendances:
+get_ed_activity <- function(data){
+
+  filtered <- data |>
+    dplyr::filter(ec_department_type == "01")
+
+  return(filtered)
+
+}
+
+## type 1 MH attendance rates total by ICB
+get_icb_att_rates <- function(tarobj1,tarobj2){
+  tarobj1 |>
+    filter(mh_snomed == 1) |>
+    summarise(attends = sum(attends),
+              .by = c(icb22cd, der_financial_year)) |>
+    left_join(tarobj2, by = c("icb22cd" = "icb", "der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(x=attends, n=pop, confidence = 0.95, multiplier = 100000)
+
+}
+
+

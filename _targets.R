@@ -9,14 +9,20 @@ library(targets)
 # Set target options:
 tar_option_set(packages = c(# Packages that your targets need for their tasks.
   "janitor",
+  "gt",
   "tidyverse",
-  "readODS"))
+  "readODS",
+  "patchwork",
+  "PHEindicatormethods",
+  "sf"))
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source()
 
 # End this file with a list of target objects.
 list(
+  #### Data loading and initial wrangling ####
+
   # LSOA to ICBs
   tar_target(
     url_lsoa_2011,
@@ -148,7 +154,6 @@ list(
   tar_target(rural_by_icb,
              get_rural_totals(rural_url, population_by_lsoa, lsoa_to_icb)),
 
-
   # Ethnicity By ICB
 
   # import and wrangle 2011 ethnicity data
@@ -163,7 +168,80 @@ list(
                             ethnicity2021_by_icb2024)),
   # impute ethnicity data for every year
   tar_target(ethnicity_by_icb_by_year,
-             impute_annual_ethnicity(ethnicity_by_icb))
-)
+             impute_annual_ethnicity(ethnicity_by_icb)),
 
+  # specific query data files
+  tar_target(snomed_mh,
+             load_csv("data/ref_mh_snomed_ct.csv") |>
+               select(2,3,5,6,8,13,16,19,20,23,49,61)),
 
+  tar_target(ae_times,
+             load_csv("data/ae_waits_icb.csv")),
+  tar_target(ae_diag,
+             load_csv("data/ae_diag_icb.csv") |>
+               left_join(snomed_mh, by = c("ec_diagnosis_01" = "concept_id"))),
+  tar_target(ae_freq,
+             load_csv("data/ae_freqfly_icb.csv")),
+
+  # Full extracts
+  tar_target(data_ae,
+             load_csv("data/ae_extract_full.csv")),
+
+  tar_target(data_111,
+             load_csv("data/111_extract_full.csv")),
+
+  # Summary from full extracts
+  tar_target(ae_summary,
+             get_ae_summary(data_ae)),
+
+  tar_target(ae_summ_transp,
+             get_ae_summ_transp(data_ae)),
+
+  # Type 1 ED activity
+  tar_target(data_ed,
+             get_ed_activity(data_ae)),
+
+  # UEC activity
+  tar_target(data_uec,
+             get_uec_activity(data_ae)),
+
+  # MH attends
+  tar_target(mh_attends,
+             get_mh_attends(data_uec)),
+  tar_target(mh_attends_boxplot,
+             get_perc_mh_attends_boxplot(mh_attends)),
+  tar_target(mh_attends_caterpillar,
+              get_mh_attends_caterpillar(mh_attends, "2023/24")),
+  tar_target(mh_attends_table,
+             get_mh_attends_table(mh_attends, icb_codes_names)),
+
+  # ICB codes and names
+  tar_target(icb_codes_names,
+             get_icb_codes_names(data_ae)),
+
+  #### Plots ####
+
+  tar_target(ae_times_plot,
+             ed_times_plot(ae_times)),
+  tar_target(ae_freq_boxplot,
+             ed_freq_boxplot(ae_freq)),
+  tar_target(ae_trans_barplot,
+             get_ed_transp_colplot(ae_summ_transp)),
+
+  # ICB total populations
+  tar_target(pop_by_icb,
+             get_icb_pop_total(gender_by_icb)),
+  tar_target(icb_rates_ed,
+             get_icb_att_rates(data_ed,pop_by_icb)),
+
+#### Map layers and map plots ####
+
+  # load icb july 2022 boundaries
+  tar_target(icb_boundary,
+             get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ICB_JUL_2022_EN_BGC_V3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
+
+  # 23/24 mh attendance rate ED by ICB map
+  tar_target(icb_ed_map_2324,
+             map_icb_allmh(icb_boundary,icb_rates_ed))
+
+  )

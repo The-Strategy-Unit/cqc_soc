@@ -30,9 +30,11 @@ title-block-banner-color: "#333739"
 css: styles.css
 ---
 
-``` {r setup}
+```{r setup}
 library(targets)
 library(tidyverse)
+library(scales)
+library(gt)
 
 ```
 
@@ -48,22 +50,112 @@ We summarised routine data from the Emergency Care Dataset (ECDS), NHS 111 datas
 
 Patients were linked using common pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to specialist mental health services (referred and/or treated) or not.
 
-The presence of a presenting mental health problem in **A&E data** was determined by all descendant SNOMED codes (n=1580) for 'Mental Health Disorders' in either the Chief Complaint field *OR* the 1st Diagnosis field. The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups.
+The presence of a presenting mental health problem in **A&E data** was determined by all descendant SNOMED codes (n=1580) for 'Mental Health Disorders' in either the Chief Complaint field *OR* the 1st Diagnosis field. Codes relating to dementia, memory & cognition OR substance misuse were excluded.
+
+The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups. Codes relating to dementia, memory & cognition AND substance misuse were excluded.
 
 ## Summary
 
-Blah blah blah
+-   Point1
+-   Point2
+-   Point3
+-   Point4
+-   Point5
+-   Point6
 
 ## Accident and Emergency attendance
+
+``` {r ae_summary_bits, include = FALSE}
+
+ae_all <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(all)/1000000
+
+ae_all_cost <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(all_cost)/1000000000
+
+ae_mh <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(mh)/1000
+
+ae_mh_cost <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(mh_cost)/1000000
+
+```
 
 These attendances are those specified within the ECDS as 'Type 1' emergency department attendances and typically should be for those patients with life-threatening symptoms or injuries requiring immediate triage and treatment.
 
 The average A&E attendance in England costs £280 with those conveyed by ambulance costing an additional £390 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
+During 2023/24 there were `r round(ae_all,2)` million Type 1 attendances costing £ `r round(ae_all_cost,2)` billion. Of those attendances c`r round(ae_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(ae_mh_cost,2)` million.
+
+``` {r top_ten_causes}
+
+gt_causes <- gt(tar_read(ae_diag) |> 
+  filter(der_financial_year == '2023/24') |> 
+  group_by(term) |> 
+  summarise(attends = sum(attends)) |>
+  rename(SNOMED_term = term) |> 
+  arrange(desc(attends)) |> 
+  slice_head(n=10)) |> 
+  
+  tab_header(
+    title = "Top 10 SNOMED codes in A&E presentation",
+    subtitle = "All of England, 2023/24"
+  )
+
+gt_causes
+
+```
+
 ### Key metrics
+
+#### Arrival mode to ED
+
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport.
+
+``` {r ae_arrive_mode}
+
+tar_read(ae_trans_barplot)
+
+```
+
+#### Waiting times in ED
+
+The ECDS allows calculation of times from arrival to treatment and from treatment to departure.
+
+```{r ae_wait_plot}
+
+tar_read(ae_times_plot)
+
+```
+
+#### Mental health 'frequent fliers'
+
+```{r freq_fly_figs, include = FALSE}
+avg_all_attends <- tar_read(ae_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
+
+avg_mh_attend <- tar_read(ae_freq) |> summarise(total = sum(mh_pats)) |> pull(total)/5
+
+perc_mh <- round(avg_mh_attend/avg_all_attends*100,1)
+
+avg_ff_attend <- tar_read(ae_freq) |> summarise(total = sum(mh_freqfly)) |> pull(total)/5
+
+perc_freq <- round(avg_ff_attend/avg_mh_attend*100,1)
+
+```
+
+Frequent fliers can be defined as those attending 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+
+Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
+
+```{r ae_freq_icb_plot}
+
+tar_read(ae_freq_boxplot)
+
+```
 
 ### Detailed breakdowns
 
+#### ICB variation
+
+``` {r icb_map_allmh}
+tar_read(icb_ed_map_2324)
+```
 
 ## Walk-in and Urgent Care attendance
 
@@ -74,6 +166,24 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 ### Key metrics
 
 ### Detailed breakdowns
+
+#### Percentage of all attendance with MH as primary reason/diagnosis
+
+Boxplot suggests greater % of MH attends in 2023/24 over ICBs: 
+```{r}
+tar_read(mh_attends_boxplot)
+```
+
+Looking at ICBs over time seems there are some ICBs that have consistently lower % of MH attends over the financial years.
+```{r}
+tar_read(mh_attends_table)
+```
+
+Also, median % of MH attends has increased over time:
+```{r}
+tar_read(mh_attends_caterpillar)
+```
+
 
 
 ## NHS 111 calls
