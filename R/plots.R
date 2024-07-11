@@ -65,44 +65,16 @@ ed_freq_boxplot <- function(tarobj){
 # for ICB on top:
 get_perc_mh_attends_boxplot <- function(data){
   plot <- data |>
-    ggplot(aes(der_financial_year, value)) +
-    geom_boxplot() +
-    geom_point(colour = "salmon", alpha = 0.6) +
-    theme_minimal() +
-    labs(x = "Financial Year",
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, value)) +
+    ggplot2::geom_boxplot() +
+    ggplot2::geom_point(colour = "salmon", alpha = 0.6) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Financial Year",
          y = "Percent",
          title = "Percentage of attendances with MH as primary reason",
          subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB")
 
   return(plot)
-}
-
-# To get a caterpillar of percentage of MH attendances by financial year and
-# ICB:
-get_mh_attends_caterpillar <- function(data, order_year){
-
-  order <- data |>
-    filter(der_financial_year == order_year) |>
-    arrange(value) |>
-    pull(icb22cd)
-
-  medians <- data |>
-    summarise(median = median(value), .by = der_financial_year)
-
-  caterpillar <- data |>
-    ggplot(aes(value, factor(icb22cd, order))) +
-    geom_point() +
-    geom_vline(aes(xintercept = median), data = medians, col = "red") +
-    geom_segment(aes(x = lowercl, xend = uppercl, y = icb22cd, yend = icb22cd)) +
-    facet_wrap(~der_financial_year) +
-    labs(x = "Percentage",
-         y = "ICB",
-         title = "Percentage of attendances with MH as primary reason",
-         subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB",
-         caption = "Red line for the median percentage in that financial year") +
-    theme_bw()
-
-  return(caterpillar)
 }
 
 get_ed_transp_colplot <- function(tarobj){

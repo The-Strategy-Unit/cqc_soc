@@ -210,10 +210,16 @@ list(
              get_mh_attends(data_uec)),
   tar_target(mh_attends_boxplot,
              get_perc_mh_attends_boxplot(mh_attends)),
-  tar_target(mh_attends_caterpillar,
-              get_mh_attends_caterpillar(mh_attends, "2023/24")),
   tar_target(mh_attends_table,
              get_mh_attends_table(mh_attends, icb_codes_names)),
+
+  # MH known
+  tar_target(mh_known,
+             get_mh_known(data_uec)),
+  tar_target(mh_known_boxplot,
+             get_perc_mh_attends_boxplot(mh_known)),
+  tar_target(mh_known_table,
+             get_mh_attends_table(mh_known, icb_codes_names)),
 
   # ICB codes and names
   tar_target(icb_codes_names,

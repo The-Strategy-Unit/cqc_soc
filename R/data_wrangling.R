@@ -424,6 +424,20 @@ get_mh_attends <- function(data) {
   return(mh_attends)
 }
 
+# To get percentage of MH attendances that were known to specialist services by
+# ICB and financial year:
+get_mh_known <- function(data) {
+  mh_known <- data |>
+    dplyr::filter(mh_snomed == 1) |> # attends due to MH
+    dplyr::summarise(mh_known = sum(dplyr::if_else(mhsds_flag == 1, attends, 0)),
+                     attends = sum(attends),
+                     .by = c(icb22cd, der_financial_year)) |>
+    PHEindicatormethods::phe_proportion(mh_known, attends, multiplier = 100)
+
+  get_perc_mh_attends_boxplot(mh_known)
+
+  return(mh_known)}
+
 # To create a key to map from ICB codes to names:
 get_icb_codes_names <- function(data){
   key <- data |>
