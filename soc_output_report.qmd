@@ -167,23 +167,44 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 
 ### Detailed breakdowns
 
-#### Percentage of all attendance with MH as primary reason/diagnosis
+#### Percentage of all attendances with MH as primary reason/diagnosis
 
-Boxplot suggests greater % of MH attends in 2023/24 over ICBs: 
+Boxplot (@fig-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs: 
+
 ```{r}
+#| label: "fig-perc-mh"
 tar_read(mh_attends_boxplot)
 ```
 
-Looking at ICBs over time seems there are some ICBs that have consistently lower % of MH attends over the financial years.
+Looking at table (@tbl-perc) of ICBs over time:
+
+- there are some ICBs that have consistent % of MH attends over the financial years.
+  - For example Black Country and Herefordshire & Worcestershire have low %.
+- Sussex have high % compared to other ICBs.
+- Birmingham and Solihull is interesting, since it had a higher % in 2019/20, but low % for later fin years.
+
 ```{r}
+#| label: "tbl-perc"
 tar_read(mh_attends_table)
 ```
 
-Also, median % of MH attends has increased over time:
+#### Percentage of MH attendances known to specialist services
+
+Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/24 over ICBs: 
+
 ```{r}
-tar_read(mh_attends_caterpillar)
+#| label: "fig-perc-mh-known"
+tar_read(mh_known_boxplot)
 ```
 
+Looking at table (@tbl-perc-known) of ICBs over time:
+
+- Again Sussex have high % compared to other ICBs.
+
+```{r}
+#| label: "tbl-perc-known"
+tar_read(mh_known_table)
+```
 
 
 ## NHS 111 calls
