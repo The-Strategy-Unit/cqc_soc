@@ -154,6 +154,22 @@ list(
   tar_target(rural_by_icb,
              get_rural_totals(rural_url, population_by_lsoa, lsoa_to_icb)),
 
+  # Ethnicity By ICB
+
+  # import and wrangle 2011 ethnicity data
+  tar_target(ethnicity2011_by_icb2024,
+             create2011ethnicities()),
+  # import and wrangle 2021 ethnicity data
+  tar_target(ethnicity2021_by_icb2024,
+             create2021ethnicities()),
+  # join two data sets
+  tar_target(ethnicity_by_icb,
+             join_ethnicity(ethnicity2011_by_icb2024,
+                            ethnicity2021_by_icb2024)),
+  # impute ethnicity data for every year
+  tar_target(ethnicity_by_icb_by_year,
+             impute_annual_ethnicity(ethnicity_by_icb)),
+
   # specific query data files
   tar_target(snomed_mh,
              load_csv("data/ref_mh_snomed_ct.csv") |>
