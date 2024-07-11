@@ -65,11 +65,11 @@ ed_freq_boxplot <- function(tarobj){
 # for ICB on top:
 get_perc_mh_attends_boxplot <- function(data){
   plot <- data |>
-    ggplot(aes(der_financial_year, value)) +
-    geom_boxplot() +
-    geom_point(colour = "salmon", alpha = 0.6) +
-    theme_minimal() +
-    labs(x = "Financial Year",
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, value)) +
+    ggplot2::geom_boxplot() +
+    ggplot2::geom_point(colour = "salmon", alpha = 0.6) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Financial Year",
          y = "Percent",
          title = "Percentage of attendances with MH as primary reason",
          subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB")
