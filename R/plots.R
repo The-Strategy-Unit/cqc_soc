@@ -44,7 +44,7 @@ ed_times_plot <- function(tarobj){
 ed_freq_boxplot <- function(tarobj){
 
   plot <- tarobj |>
-    group_by(icb22nm, der_financial_year) |>
+    group_by(icb23nm, der_financial_year) |>
     summarise(mh_pats = sum(mh_pats)
               ,mh_freqfly = sum(mh_freqfly)) |>
     mutate(perc_freq = round(mh_freqfly/mh_pats*100,2)) |>

@@ -407,8 +407,8 @@ get_uec_activity <- function(data){
 
   filtered <- data |>
     dplyr::filter(ec_department_type %in% c("03", "04")) |>
-    dplyr::rename(icb_code = icb22cd,
-           icb_name = icb22nm)
+    dplyr::rename(icb_code = icb23cd,
+           icb_name = icb23nm)
 
   return(filtered)
 
@@ -480,8 +480,8 @@ get_icb_att_rates <- function(tarobj1,tarobj2){
   tarobj1 |>
     filter(mh_snomed == 1) |>
     summarise(attends = sum(attends),
-              .by = c(icb22cd, der_financial_year)) |>
-    left_join(tarobj2, by = c("icb22cd" = "icb_code", "der_financial_year" = "fin_year")) |>
+              .by = c(icb23cd, der_financial_year)) |>
+    left_join(tarobj2, by = c("icb23cd" = "icb_code", "der_financial_year" = "fin_year")) |>
     PHEindicatormethods::phe_rate(x=attends, n=pop, confidence = 0.95, multiplier = 100000)
 
 }
