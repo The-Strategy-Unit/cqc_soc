@@ -9,7 +9,7 @@ map_icb_allmh <- function(layer, data){
 
   map <- layer |>
     left_join(data |> filter(der_financial_year == '2023/24'),
-              by = c("ICB22CD" = "icb23cd")) |>
+              by = c("ICB23CD" = "icb23cd")) |>
     ggplot() +
         geom_sf(aes(fill = value), lwd=0.2) +
         scale_fill_distiller(name = waiver(),
