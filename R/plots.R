@@ -112,3 +112,15 @@ get_ed_transp_colplot <- function(tarobj){
   return(plot)
 }
 
+get_standard_line_for_breakdowns <- function(data, group){
+
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(der_financial_year,
+                                 value,
+                                 group = !!sym(group),
+                                 col = !!sym(group))) +
+    ggplot2::geom_line()
+
+return(plot)
+
+}
