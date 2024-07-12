@@ -24,18 +24,18 @@ list(
   #### Data loading and initial wrangling ####
 
   # LSOA to ICBs
-  tar_target(
-    url_lsoa_2011,
-    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA11_SICBL22_ICB22_LAD22_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-  ),
-  tar_target(
-    url_lsoa_2021,
-    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA21_SICBL23_ICB23_LAD23_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-  ),
+  tar_target(lsoa_11_to_icb_23,
+             load_csv("data/LSOA2011_to_ICB2023.csv")),
+  tar_target(lsoa_21_to_icb_23,
+             load_csv("data/LSOA2021_to_ICB2023.csv")),
   tar_target(
     lsoa_to_icb,
-    get_lsoa_to_icb_map(url_lsoa_2011, url_lsoa_2021)
+    get_lsoa_to_icb_key(lsoa_11_to_icb_23, lsoa_21_to_icb_23)
   ),
+
+  # ICB codes and names
+  tar_target(icb_codes_names,
+             get_icb_codes_names(lsoa_to_icb)),
 
   # URLs for population data
   tar_target(
@@ -220,10 +220,6 @@ list(
              get_perc_mh_attends_boxplot(mh_known)),
   tar_target(mh_known_table,
              get_mh_attends_table(mh_known, icb_codes_names)),
-
-  # ICB codes and names
-  tar_target(icb_codes_names,
-             get_icb_codes_names(data_ae)),
 
   #### Plots ####
 
