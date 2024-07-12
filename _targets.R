@@ -168,7 +168,11 @@ list(
                             ethnicity2021_by_icb2024)),
   # impute ethnicity data for every year
   tar_target(ethnicity_by_icb_by_year,
-             impute_annual_ethnicity(ethnicity_by_icb)),
+             impute_annual_ethnicity(ethnicity_by_icb) |>
+              dplyr::rename(ethnic_category = Ethnicity,
+                            fin_year = der_financial_year,
+                            count = Count) |>
+              dplyr::mutate(ethnic_category = tolower(ethnic_category))),
 
   # specific query data files
   tar_target(snomed_mh,
@@ -213,6 +217,8 @@ list(
              get_breakdown(type1_mh_attends, age_by_icb, "age_group")),
   tar_target(type1_mh_attends_rural,
              get_breakdown(type1_mh_attends, rural_by_icb, "rural_urban")),
+  tar_target(type1_mh_attends_ethnic,
+             get_breakdown(type1_mh_attends, ethnicity_by_icb_by_year, "ethnic_category")),
 
   #### UEC activity ####
   tar_target(data_uec,
@@ -237,6 +243,8 @@ list(
              get_breakdown(uec_mh_attends, age_by_icb, "age_group")),
   tar_target(uec_mh_attends_rural,
              get_breakdown(uec_mh_attends, rural_by_icb, "rural_urban")),
+  tar_target(uec_mh_attends_ethnic,
+             get_breakdown(uec_mh_attends, ethnicity_by_icb_by_year, "ethnic_category")),
 
 
   # MH known
@@ -266,7 +274,7 @@ list(
 
 #### Map layers and map plots ####
 
-  # load icb july 2022 boundaries
+  # load icb april 2023 boundaries
   tar_target(icb_boundary,
              get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Integrated_Care_Boards_April_2023_EN_BGC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
 

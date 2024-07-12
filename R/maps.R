@@ -3,7 +3,7 @@ get_icb_map <- function(mapurl){
   icb_map <- st_read(mapurl)
 }
 
-# map of type 1 attendances 23/24
+# maps of attendances 23/24
 
 map_icb_allmh <- function(layer, data){
 
