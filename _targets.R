@@ -240,7 +240,7 @@ list(
 
   # load icb july 2022 boundaries
   tar_target(icb_boundary,
-             get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ICB_JUL_2022_EN_BGC_V3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
+             get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Integrated_Care_Boards_April_2023_EN_BGC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
 
   # 23/24 mh attendance rate ED by ICB map
   tar_target(icb_ed_map_2324,
