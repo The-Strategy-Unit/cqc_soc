@@ -89,6 +89,10 @@ get_gender_totals <- function(population_2018_females,
                               population_2021,
                               population_2022,
                               lsoa_to_icb) {
+  # 2023 data not yet available, so currently use 2022:
+  gender_totals_2023 <- wrangle_gender_totals_21_22(population_2022) |>
+    dplyr::mutate(year = "2023")
+
   combined <- rbind(
     wrangle_gender_totals_18_20(population_2018_females),
     wrangle_gender_totals_18_20(population_2018_males),
@@ -97,7 +101,8 @@ get_gender_totals <- function(population_2018_females,
     wrangle_gender_totals_18_20(population_2020_females),
     wrangle_gender_totals_18_20(population_2020_males),
     wrangle_gender_totals_21_22(population_2021),
-    wrangle_gender_totals_21_22(population_2022)
+    wrangle_gender_totals_21_22(population_2022),
+    gender_totals_2023
   )  |>
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "gender") |>
@@ -193,6 +198,10 @@ get_age_totals <- function(population_2018_females,
                            population_2021,
                            population_2022,
                            lsoa_to_icb) {
+  # 2023 data not yet available, so currently use 2022:
+  age_totals_2023 <- wrangle_age_totals_21_22(population_2022) |>
+    dplyr::mutate(year = "2023")
+
   combined <- rbind(
     wrangle_age_totals_18_20(population_2018_females),
     wrangle_age_totals_18_20(population_2018_males),
@@ -201,7 +210,8 @@ get_age_totals <- function(population_2018_females,
     wrangle_age_totals_18_20(population_2020_females),
     wrangle_age_totals_18_20(population_2020_males),
     wrangle_age_totals_21_22(population_2021),
-    wrangle_age_totals_21_22(population_2022)
+    wrangle_age_totals_21_22(population_2022),
+    age_totals_2023
   ) |>
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "age_group") |>
@@ -310,12 +320,17 @@ get_population_totals <- function(population_2018_persons,
                                   population_2020_persons,
                                   population_2021,
                                   population_2022) {
+  # 2023 data not yet available, so currently use 2022:
+  population_totals_2023 <- wrangle_population_totals_21_22(population_2022) |>
+    dplyr::mutate(year = "2023")
+
   combined <- rbind(
     wrangle_population_totals_18_20(population_2018_persons),
     wrangle_population_totals_18_20(population_2019_persons),
     wrangle_population_totals_18_20(population_2020_persons),
     wrangle_population_totals_21_22(population_2021),
-    wrangle_population_totals_21_22(population_2022)
+    wrangle_population_totals_21_22(population_2022),
+    population_totals_2023
   ) |>
     remove_welsh_lsoas()
 
@@ -497,7 +512,7 @@ get_breakdown <- function(data_filtered, data_population, group){
               .by = c(fin_year, !!sym(group)))
 
   data <- data_filtered |>
-    dplyr::filter(der_financial_year != "2023/24" & !!sym(group) != "NULL") |>
+    dplyr::filter(!!sym(group) != "NULL") |>
     dplyr::summarise(attends = sum(attends),
               .by = c(der_financial_year, !!sym(group))) |>
     dplyr::left_join(data_population_agg,
