@@ -173,7 +173,7 @@ Boxplot (@fig-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs:
 
 ```{r}
 #| label: "fig-perc-mh"
-tar_read(mh_attends_boxplot)
+tar_read(uec_mh_attends_boxplot)
 ```
 
 Looking at table (@tbl-perc) of ICBs over time:
@@ -185,7 +185,7 @@ Looking at table (@tbl-perc) of ICBs over time:
 
 ```{r}
 #| label: "tbl-perc"
-tar_read(mh_attends_table)
+tar_read(uec_mh_attends_table)
 ```
 
 #### Percentage of MH attendances known to specialist services
@@ -194,7 +194,7 @@ Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/2
 
 ```{r}
 #| label: "fig-perc-mh-known"
-tar_read(mh_known_boxplot)
+tar_read(uec_mh_known_boxplot)
 ```
 
 Looking at table (@tbl-perc-known) of ICBs over time:
@@ -203,7 +203,7 @@ Looking at table (@tbl-perc-known) of ICBs over time:
 
 ```{r}
 #| label: "tbl-perc-known"
-tar_read(mh_known_table)
+tar_read(uec_mh_known_table)
 ```
 
 ## NHS 111 calls
