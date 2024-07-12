@@ -488,16 +488,7 @@ get_icb_att_rates <- function(tarobj1,tarobj2){
 
 }
 
-
-
-
-
-
-
-
-
-
-
+# To get a breakdown by a specified group:
 get_breakdown <- function(data_filtered, data_population, group){
   data_population_agg <- data_population |> # currently at ICB level
     dplyr::summarise(count = sum(count),
@@ -520,6 +511,7 @@ get_breakdown <- function(data_filtered, data_population, group){
 
 }
 
+# To filter for MH attendances:
 filter_mh_attends <- function(data){
   data_filtered <- data |>
     dplyr::filter(mh_snomed == 1)

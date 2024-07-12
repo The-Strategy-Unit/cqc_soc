@@ -247,10 +247,6 @@ list(
   tar_target(uec_mh_known_table,
              get_uec_table(uec_perc_mh_known, icb_codes_names)),
 
-  #### Breakdowns ####
-  # tar_target(uec_mh_attends_gender,
-  #            get_breakdown())
-
   #### Plots ####
 
   tar_target(ae_times_plot,
