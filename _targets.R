@@ -185,7 +185,8 @@ list(
 
   # Full extracts
   tar_target(data_ae,
-             load_csv("data/ae_extract_full.csv")),
+             load_csv("data/ae_extract_full.csv") |>
+               dplyr::rename(imd_decile = index_of_multiple_deprivation_decile)),
 
   tar_target(data_111,
              load_csv("data/111_extract_full.csv")),
@@ -201,25 +202,50 @@ list(
   tar_target(data_ed,
              get_ed_activity(data_ae)),
 
-  # UEC activity
+  # MH attends breakdowns
+  tar_target(type1_mh_attends,
+             filter_mh_attends(data_ed)),
+  tar_target(type1_mh_attends_gender,
+             get_breakdown(type1_mh_attends, gender_by_icb, "gender")),
+  tar_target(type1_mh_attends_imd,
+             get_breakdown(type1_mh_attends, imd_by_icb, "imd_decile")),
+  tar_target(type1_mh_attends_age,
+             get_breakdown(type1_mh_attends, age_by_icb, "age_group")),
+  tar_target(type1_mh_attends_rural,
+             get_breakdown(type1_mh_attends, rural_by_icb, "rural_urban")),
+
+  #### UEC activity ####
   tar_target(data_uec,
              get_uec_activity(data_ae)),
 
   # MH attends
-  tar_target(mh_attends,
-             get_mh_attends(data_uec)),
-  tar_target(mh_attends_boxplot,
-             get_perc_mh_attends_boxplot(mh_attends)),
-  tar_target(mh_attends_table,
-             get_mh_attends_table(mh_attends, icb_codes_names)),
+  tar_target(uec_perc_mh_attends,
+             get_perc_mh_attends(data_uec)),
+  tar_target(uec_mh_attends_boxplot,
+             get_perc_mh_attends_boxplot(uec_perc_mh_attends)),
+  tar_target(uec_mh_attends_table,
+             get_uec_table(uec_perc_mh_attends, icb_codes_names)),
+
+  # MH attends breakdowns
+  tar_target(uec_mh_attends,
+             filter_mh_attends(data_uec)),
+  tar_target(uec_mh_attends_gender,
+             get_breakdown(uec_mh_attends, gender_by_icb, "gender")),
+  tar_target(uec_mh_attends_imd,
+             get_breakdown(uec_mh_attends, imd_by_icb, "imd_decile")),
+  tar_target(uec_mh_attends_age,
+             get_breakdown(uec_mh_attends, age_by_icb, "age_group")),
+  tar_target(uec_mh_attends_rural,
+             get_breakdown(uec_mh_attends, rural_by_icb, "rural_urban")),
+
 
   # MH known
-  tar_target(mh_known,
-             get_mh_known(data_uec)),
-  tar_target(mh_known_boxplot,
-             get_perc_mh_attends_boxplot(mh_known)),
-  tar_target(mh_known_table,
-             get_mh_attends_table(mh_known, icb_codes_names)),
+  tar_target(uec_perc_mh_known,
+             get_perc_mh_known(data_uec)),
+  tar_target(uec_mh_known_boxplot,
+             get_perc_mh_known_boxplot(uec_perc_mh_known)),
+  tar_target(uec_mh_known_table,
+             get_uec_table(uec_perc_mh_known, icb_codes_names)),
 
   #### Plots ####
 

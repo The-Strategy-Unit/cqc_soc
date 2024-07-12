@@ -102,7 +102,8 @@ get_gender_totals <- function(population_2018_females,
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "gender") |>
     add_financial_year() |>
-    select(fin_year, icb_code, gender, count)
+    dplyr::select(fin_year, icb_code, gender, count) |>
+    dplyr::mutate(gender = stringr::str_replace(gender, "males", "male"))
 
   return(combined)
 }
@@ -205,7 +206,7 @@ get_age_totals <- function(population_2018_females,
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "age_group") |>
     add_financial_year() |>
-    select(fin_year, icb_code, age_group, count)
+    dplyr::select(fin_year, icb_code, age_group, count)
 
   return(combined)
 }
@@ -332,7 +333,8 @@ get_imd_totals <- function(imd_url, population_by_lsoa, lsoa_to_icb) {
     dplyr::select(fin_year,
                   icb_code,
                   imd_decile = index_of_multiple_deprivation_imd_decile,
-                  count)
+                  count) |>
+    dplyr::mutate(imd_decile = as.character(imd_decile))
 
   return(data)
 }
@@ -415,7 +417,7 @@ get_uec_activity <- function(data){
 }
 
 # To get percentage of MH attendances by ICB and financial year:
-get_mh_attends <- function(data) {
+get_perc_mh_attends <- function(data) {
   mh_attends <- data |>
     dplyr::summarise(mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
               attends = sum(attends),
@@ -427,7 +429,7 @@ get_mh_attends <- function(data) {
 
 # To get percentage of MH attendances that were known to specialist services by
 # ICB and financial year:
-get_mh_known <- function(data) {
+get_perc_mh_known <- function(data) {
   mh_known <- data |>
     dplyr::filter(mh_snomed == 1) |> # attends due to MH
     dplyr::summarise(mh_known = sum(dplyr::if_else(mhsds_flag == 1, attends, 0)),
@@ -488,4 +490,33 @@ get_icb_att_rates <- function(tarobj1,tarobj2){
 
 }
 
+# To get a breakdown by a specified group:
+get_breakdown <- function(data_filtered, data_population, group){
+  data_population_agg <- data_population |> # currently at ICB level
+    dplyr::summarise(count = sum(count),
+              .by = c(fin_year, !!sym(group)))
 
+  data <- data_filtered |>
+    dplyr::filter(der_financial_year != "2023/24" & !!sym(group) != "NULL") |>
+    dplyr::summarise(attends = sum(attends),
+              .by = c(der_financial_year, !!sym(group))) |>
+    dplyr::left_join(data_population_agg,
+              by = c(group, "der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = count,
+      confidence = 0.95,
+      multiplier = 100000
+    )
+
+  return(data)
+
+}
+
+# To filter for MH attendances:
+filter_mh_attends <- function(data){
+  data_filtered <- data |>
+    dplyr::filter(mh_snomed == 1)
+
+  return(data_filtered)
+}
