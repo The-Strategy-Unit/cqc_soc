@@ -224,34 +224,24 @@ wrangle_lsoa <- function(url_name) {
 
 }
 
-# To create the map from lsoa to icb.
-# Two ICB codes changed between 2022 and 2023. So in url_lsoa_2011:
-# E54000052 = NHS Surrey Heartlands Integrated Care Board
-# E54000053 = NHS Sussex Integrated Care Board
-# and hese ICBs were recoded as:
-# E54000063 = NHS Surrey Heartlands Integrated Care Board
-# E54000064 = NHS Sussex Integrated Care Board
-# to match url_lsoa_2021.
-get_lsoa_to_icb_map <- function(url_lsoa_2011, url_lsoa_2021) {
-  lsoa_2011 <- wrangle_lsoa(url_lsoa_2011) |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb = icb22cd)
+# To create the map from lsoa to icb. Both 2011 and 2021 LSOAs are mapped to
+# 2023 ICBs.
+get_lsoa_to_icb_map <- function(lsoa_11_to_icb_23, lsoa_21_to_icb_23){
 
-  lsoa_2021 <- wrangle_lsoa(url_lsoa_2021) |>
-    dplyr::mutate(
-      icb = dplyr::case_when(
-        icb23cd == "E54000063" ~ "E54000052",
-        icb23cd == "E54000064" ~ "E54000053",
-        .default = icb23cd
-      )
-    )  |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb)
+  lsoa_11_to_icb_23_wrangled <- lsoa_11_to_icb_23 |>
+    dplyr::mutate(lsoa_year = "2011") |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb = icb23cd)
 
-  lsoa_to_icb <- rbind(lsoa_2011, lsoa_2021)
+  lsoa_21_to_icb_23_wrangled <- lsoa_21_to_icb_23 |>
+    dplyr::mutate(lsoa_year = "2021") |>
+    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb = icb23cd)
+
+  lsoa_to_icb <- lsoa_11_to_icb_23_wrangled |>
+    rbind(lsoa_21_to_icb_23_wrangled)
 
   return(lsoa_to_icb)
 
 }
-
 
 # To summarise data across ICBs:
 summarise_by_icb <- function(data, lsoa_to_icb, group) {

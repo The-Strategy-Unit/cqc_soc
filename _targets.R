@@ -24,17 +24,14 @@ list(
   #### Data loading and initial wrangling ####
 
   # LSOA to ICBs
-  tar_target(
-    url_lsoa_2011,
-    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA11_SICBL22_ICB22_LAD22_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-  ),
-  tar_target(
-    url_lsoa_2021,
-    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA21_SICBL23_ICB23_LAD23_EN_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-  ),
+  # new
+  tar_target(lsoa_11_to_icb_23,
+             load_csv("data/LSOA2011_to_ICB2023.csv")),
+  tar_target(lsoa_21_to_icb_23,
+             load_csv("data/LSOA2021_to_ICB2023.csv")),
   tar_target(
     lsoa_to_icb,
-    get_lsoa_to_icb_map(url_lsoa_2011, url_lsoa_2021)
+    get_lsoa_to_icb_map(lsoa_11_to_icb_23, lsoa_21_to_icb_23)
   ),
 
   # URLs for population data
