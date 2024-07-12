@@ -201,7 +201,7 @@ list(
   tar_target(data_ed,
              get_ed_activity(data_ae)),
 
-  # UEC activity
+  #### UEC activity ####
   tar_target(data_uec,
              get_uec_activity(data_ae)),
 
@@ -211,15 +211,15 @@ list(
   tar_target(mh_attends_boxplot,
              get_perc_mh_attends_boxplot(mh_attends)),
   tar_target(mh_attends_table,
-             get_mh_attends_table(mh_attends, icb_codes_names)),
+             get_uec_table(mh_attends, icb_codes_names)),
 
   # MH known
   tar_target(mh_known,
              get_mh_known(data_uec)),
   tar_target(mh_known_boxplot,
-             get_perc_mh_attends_boxplot(mh_known)),
+             get_perc_mh_known_boxplot(mh_known)),
   tar_target(mh_known_table,
-             get_mh_attends_table(mh_known, icb_codes_names)),
+             get_uec_table(mh_known, icb_codes_names)),
 
   #### Plots ####
 

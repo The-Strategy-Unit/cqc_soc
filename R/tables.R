@@ -1,6 +1,6 @@
-# To create the % MH attendances table by financial year and ICB, coloured by
-# value:
-get_mh_attends_table <- function(data, key){
+# To create the % MH attendances or % MH known table by financial year and ICB,
+# coloured by value:
+get_uec_table <- function(data, key){
   table <- data |>
     dplyr::left_join(key, "icb_code") |>
     dplyr::select("ICB" = icb_name, der_financial_year, value) |>
