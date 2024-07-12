@@ -220,6 +220,10 @@ tar_read(mh_known_table)
 
 #### Geographical variation
 
+```{r icb_map_allmh_uec}
+tar_read(icb_uec_map_2324)
+```
+
 
 #### Gender variation
 

@@ -235,6 +235,8 @@ list(
              get_icb_pop_total(gender_by_icb)),
   tar_target(icb_rates_ed,
              get_icb_att_rates(data_ed,pop_by_icb)),
+  tar_target(icb_rates_uec,
+             get_icb_att_rates(data_uec,pop_by_icb)),
 
 #### Map layers and map plots ####
 
@@ -244,6 +246,8 @@ list(
 
   # 23/24 mh attendance rate ED by ICB map
   tar_target(icb_ed_map_2324,
-             map_icb_allmh(icb_boundary,icb_rates_ed))
+             map_icb_allmh(icb_boundary,icb_rates_ed)),
+  tar_target(icb_uec_map_2324,
+             map_icb_allmh_uec(icb_boundary,icb_rates_uec))
 
   )
