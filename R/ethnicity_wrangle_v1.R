@@ -1,16 +1,15 @@
 
 
-
-
 # create 2011 ethnicities by ICB ----
 create2011ethnicities <- function(){
 
 # import ethnicity by 2011 lsoa data
-ethn_2011_by_lsoa.data <- read.csv("data/ethnicity_by_LSOA11_data.CSV")
+ethn_2011_by_lsoa.data <- read.csv("data/ethnicity_by_LSOA11_data.csv") |>
+  filter(grepl("E01", GeographyCode))
 
 # import the headings for the ethnicity by 2011 lsoa data
 # only keeping the vars i want from it as a lookup
-ethn_2011_by_lsoa.heads <- read.csv("data/ethnicity_by_LSOA11_headings.CSV")[, c(1,4)]
+ethn_2011_by_lsoa.heads <- read.csv("data/ethnicity_by_LSOA11_headings.csv")[, c(1,4)]
 
 # next task is to rename the column headers in the ethnicity by 2011 lsoa data
 # note that it only has names for the actual ethnicities, ignoring the LSOA name, so I'm adding that in manually to the list so that I can crudely link the two by order - I have manually checked that this works, but it is obviously janky
@@ -28,34 +27,27 @@ ethn_2011_by_lsoa.data2 <- ethn_2011_by_lsoa.data %>%
             Other = `All categories: Age, Other ethnic group: Total`)
 
 # import 2011 to ICB data lookup
-lsoa11_to_ICB22 <- read.csv("data/LSOA2011_to_ICB.csv") %>%
-  # drop some variables to make it neater
-  select(c("LSOA11CD", "LSOA11NM",
-           "ICB22CD", "ICB22NM"))
+lsoa11_to_ICB23 <- read.csv("data/LSOA2011_to_ICB2023.csv") %>%
+  clean_names()
 
 # join lsoa to icb lookup
-ethnicity_by_lsoa_by_icb <- inner_join(x = ethn_2011_by_lsoa.data2, y = lsoa11_to_ICB22,
-                                      by = "LSOA11CD")
+ethnicity_by_lsoa_by_icb <- inner_join(x = ethn_2011_by_lsoa.data2, y = lsoa11_to_ICB23,
+                                      by = c("LSOA11CD" = "lsoa11cd"))
 # n of rows of lsoas is 32844, which is correct for n of lsoas in england during 2011
 
-ethnicity2011_by_icb2024 <- ethnicity_by_lsoa_by_icb %>%
+ethnicity2011_by_icb2023 <- ethnicity_by_lsoa_by_icb %>%
   # pivot longer for ease of wrangling
   pivot_longer(cols = c(3:7),
                names_to = "Ethnicity",
                values_to = "Count11") %>%
   # create aggregate count of each ethnic group
-  group_by(ICB22CD, ICB22NM, Ethnicity) %>%
+  group_by(icb23cd, icb23nm, Ethnicity) %>%
   summarise(Count11 = sum(Count11),
-            All_Ethnicities11 = sum(All_Ethnicities)) %>%
-  # create new variable incl 24 icb cd
-  mutate(ICB24CD = case_when(
-           ICB22CD == "E54000052" ~ "E54000063",
-           ICB22CD == "E54000053" ~ "E54000064",
-           .default = ICB22CD)) %>%
+            All_Ethnicities11 = sum(All_Ethnicities)) |>
   ungroup() %>%
-  select(Ethnicity, Count11, All_Ethnicities11, ICB24CD)
+  select(Ethnicity, Count11, All_Ethnicities11, icb23cd)
 
-return(ethnicity2011_by_icb2024)
+return(ethnicity2011_by_icb2023)
 
 }
 
@@ -74,31 +66,31 @@ ethn_2021_by_lsoa <- read_csv("data/ethnicity_by_LSOA21.csv",
             Other = `Ethnic group: Other ethnic group`)
 
 # import 21 lsoa to icb lookup, only english lsoas
-LSOA2021_to_ICB <- read_csv("data/LSOA2021_to_ICB.csv",
+LSOA2021_to_ICB <- read_csv("data/LSOA2021_to_ICB2023.csv",
                             show_col_types = FALSE) %>%
-  select(c(LSOA21CD, LSOA21NM, ICB24CD, ICB24NM))
+  clean_names()
 
 # join and aggregate
-ethnicity2021_by_icb2024 <- left_join(x = LSOA2021_to_ICB, y = ethn_2021_by_lsoa,
-                                        by = "LSOA21CD") %>%
+ethnicity2021_by_icb2023 <- left_join(x = LSOA2021_to_ICB, y = ethn_2021_by_lsoa,
+                                        by = c("lsoa21cd" = "LSOA21CD")) %>%
   pivot_longer(cols = c(White, Mixed, Asian, Black, Other),
                names_to = "Ethnicity",
                values_to = "Count") %>%
-  group_by(ICB24CD, ICB24NM, Ethnicity) %>%
+  group_by(icb23cd, icb23nm, Ethnicity) %>%
   summarise(Count21 = sum(Count),
             All_Ethnicities21 = sum(All_Ethnicities,
                                   Year = 2021)) %>%
   ungroup() %>%
-  select(Ethnicity, Count21, All_Ethnicities21, ICB24CD, ICB24NM)
+  select(Ethnicity, Count21, All_Ethnicities21, icb23cd, icb23nm)
 
-return(ethnicity2021_by_icb2024)
+return(ethnicity2021_by_icb2023)
 }
 
 # join datasets ----
-join_ethnicity <- function(ethnicity2011_by_icb2024 = ethnicity2011_by_icb2024,
-                           ethnicity2021_by_icb2024 = ethnicity2021_by_icb2024){
+join_ethnicity <- function(ethnicity2011_by_icb2023 = ethnicity2011_by_icb2023,
+                           ethnicity2021_by_icb2023 = ethnicity2021_by_icb2023){
 
-ethnicity_by_icb <- full_join(x = ethnicity2011_by_icb2024, y = ethnicity2021_by_icb2024)
+ethnicity_by_icb <- full_join(x = ethnicity2011_by_icb2023, y = ethnicity2021_by_icb2023)
 
 return(ethnicity_by_icb)
 
@@ -156,7 +148,21 @@ ethnicity_by_icb3 <- ethnicity_by_icb %>%
 
 ethnicity_by_icb4 <- full_join(ethnicity_by_icb2,  ethnicity_by_icb3) %>%
   mutate(Percentage_Of_ICB = Count/All_Ethnicities,
-         Year = as.numeric(Year) + 2000)
+         Year = as.numeric(Year) + 2000,
+         der_financial_year = case_when(Year == 2011 ~ as.factor("2011/12"),
+                                        Year == 2012 ~ as.factor("2012/13"),
+                                        Year == 2013 ~ as.factor("2013/14"),
+                                        Year == 2014 ~ as.factor("2014/15"),
+                                        Year == 2015 ~ as.factor("2015/16"),
+                                        Year == 2016 ~ as.factor("2016/17"),
+                                        Year == 2017 ~ as.factor("2017/18"),
+                                        Year == 2018 ~ as.factor("2018/19"),
+                                        Year == 2019 ~ as.factor("2019/20"),
+                                        Year == 2020 ~ as.factor("2020/21"),
+                                        Year == 2021 ~ as.factor("2021/22"),
+                                        Year == 2022 ~ as.factor("2022/23"),
+                                        Year == 2023 ~ as.factor("2023/24"),
+                                        TRUE ~ as.factor(Year)))
 
 return(ethnicity_by_icb4)
 

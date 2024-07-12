@@ -1,4 +1,4 @@
-﻿ICB22CD,ICB22NM,Der_Financial_Year,EC_Diagnosis_01,pats,attends
+﻿ICB23CD,ICB23NM,Der_Financial_Year,EC_Diagnosis_01,pats,attends
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2019/20,13746004,153,174
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2020/21,13746004,158,166
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2021/22,13746004,115,121
@@ -2354,181 +2354,6 @@ E54000051,NHS Humber and North Yorkshire Integrated Care Board,2020/21,72366004,
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2021/22,72366004,71,79
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2022/23,72366004,85,95
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2023/24,72366004,86,96
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,13746004,53,60
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,13746004,37,42
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,13746004,28,29
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,13746004,47,49
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,13746004,62,70
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,162218007,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,17226007,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,17226007,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,17226007,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,191525009,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,191567000,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,191714002,17,17
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,191714002,17,20
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,191714002,22,31
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,191714002,40,42
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,191714002,64,71
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,191736004,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,191736004,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,191736004,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,197480006,1017,1121
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,197480006,1029,1128
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,197480006,980,1083
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,197480006,807,898
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,197480006,648,700
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,20010003,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,21897009,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,30077003,43,43
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,30077003,111,113
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,30077003,19,19
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,30077003,60,60
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,30077003,84,84
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,33449004,71,80
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,33449004,31,32
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,33449004,59,71
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,33449004,62,73
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,33449004,56,63
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,35489007,783,917
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,35489007,530,632
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,35489007,639,727
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,35489007,745,862
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,35489007,670,790
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,371631005,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,371631005,22,22
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,371631005,27,27
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,397923000,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,397923000,8,8
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,397923000,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,397923000,9,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,397923000,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,427469003,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,44376007,6,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,44376007,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,44376007,4,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,44376007,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,44376007,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,47505003,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,50705009,4,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,50705009,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,50705009,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,52072009,14,14
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,52072009,13,13
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,52072009,13,13
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,52072009,34,35
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,52072009,11,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,56882008,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,58214004,42,45
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,58214004,34,34
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,58214004,28,30
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,58214004,46,57
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,58214004,65,71
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,64905009,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,66551002,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,68890003,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,69322001,192,211
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,69322001,150,160
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,69322001,145,155
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,69322001,205,226
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,69322001,236,260
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,72366004,39,51
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,72366004,85,112
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,72366004,91,116
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,72366004,55,59
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,72366004,53,63
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,78004001,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,13746004,141,150
-E54000053,NHS Sussex Integrated Care Board,2020/21,13746004,161,176
-E54000053,NHS Sussex Integrated Care Board,2021/22,13746004,120,125
-E54000053,NHS Sussex Integrated Care Board,2022/23,13746004,149,174
-E54000053,NHS Sussex Integrated Care Board,2023/24,13746004,176,193
-E54000053,NHS Sussex Integrated Care Board,2023/24,162218007,3,3
-E54000053,NHS Sussex Integrated Care Board,2019/20,17226007,31,32
-E54000053,NHS Sussex Integrated Care Board,2020/21,17226007,35,35
-E54000053,NHS Sussex Integrated Care Board,2021/22,17226007,26,26
-E54000053,NHS Sussex Integrated Care Board,2022/23,17226007,16,16
-E54000053,NHS Sussex Integrated Care Board,2023/24,17226007,15,15
-E54000053,NHS Sussex Integrated Care Board,2023/24,191542003,1,1
-E54000053,NHS Sussex Integrated Care Board,2023/24,191676002,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,191714002,152,195
-E54000053,NHS Sussex Integrated Care Board,2020/21,191714002,161,208
-E54000053,NHS Sussex Integrated Care Board,2021/22,191714002,239,366
-E54000053,NHS Sussex Integrated Care Board,2022/23,191714002,230,318
-E54000053,NHS Sussex Integrated Care Board,2023/24,191714002,256,377
-E54000053,NHS Sussex Integrated Care Board,2021/22,191736004,3,4
-E54000053,NHS Sussex Integrated Care Board,2022/23,191736004,17,24
-E54000053,NHS Sussex Integrated Care Board,2023/24,191736004,21,23
-E54000053,NHS Sussex Integrated Care Board,2023/24,193756007,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,197480006,2858,3283
-E54000053,NHS Sussex Integrated Care Board,2020/21,197480006,2951,3394
-E54000053,NHS Sussex Integrated Care Board,2021/22,197480006,2469,2751
-E54000053,NHS Sussex Integrated Care Board,2022/23,197480006,2081,2392
-E54000053,NHS Sussex Integrated Care Board,2023/24,197480006,2121,2452
-E54000053,NHS Sussex Integrated Care Board,2023/24,225040001,5,5
-E54000053,NHS Sussex Integrated Care Board,2023/24,231504006,9,9
-E54000053,NHS Sussex Integrated Care Board,2023/24,280945000,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,30077003,38,40
-E54000053,NHS Sussex Integrated Care Board,2020/21,30077003,82,82
-E54000053,NHS Sussex Integrated Care Board,2021/22,30077003,15,16
-E54000053,NHS Sussex Integrated Care Board,2022/23,30077003,9,9
-E54000053,NHS Sussex Integrated Care Board,2023/24,30077003,9,9
-E54000053,NHS Sussex Integrated Care Board,2019/20,33449004,403,488
-E54000053,NHS Sussex Integrated Care Board,2020/21,33449004,326,406
-E54000053,NHS Sussex Integrated Care Board,2021/22,33449004,300,355
-E54000053,NHS Sussex Integrated Care Board,2022/23,33449004,231,268
-E54000053,NHS Sussex Integrated Care Board,2023/24,33449004,273,317
-E54000053,NHS Sussex Integrated Care Board,2019/20,35489007,3227,4180
-E54000053,NHS Sussex Integrated Care Board,2020/21,35489007,2813,3623
-E54000053,NHS Sussex Integrated Care Board,2021/22,35489007,2781,3472
-E54000053,NHS Sussex Integrated Care Board,2022/23,35489007,2913,3847
-E54000053,NHS Sussex Integrated Care Board,2023/24,35489007,2870,3785
-E54000053,NHS Sussex Integrated Care Board,2023/24,370143000,2,2
-E54000053,NHS Sussex Integrated Care Board,2021/22,371631005,25,25
-E54000053,NHS Sussex Integrated Care Board,2022/23,371631005,248,252
-E54000053,NHS Sussex Integrated Care Board,2023/24,371631005,259,264
-E54000053,NHS Sussex Integrated Care Board,2023/24,37941009,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,397923000,25,26
-E54000053,NHS Sussex Integrated Care Board,2020/21,397923000,25,26
-E54000053,NHS Sussex Integrated Care Board,2021/22,397923000,31,32
-E54000053,NHS Sussex Integrated Care Board,2022/23,397923000,17,18
-E54000053,NHS Sussex Integrated Care Board,2023/24,397923000,8,8
-E54000053,NHS Sussex Integrated Care Board,2019/20,44376007,25,27
-E54000053,NHS Sussex Integrated Care Board,2020/21,44376007,17,20
-E54000053,NHS Sussex Integrated Care Board,2021/22,44376007,25,25
-E54000053,NHS Sussex Integrated Care Board,2022/23,44376007,20,23
-E54000053,NHS Sussex Integrated Care Board,2023/24,44376007,27,29
-E54000053,NHS Sussex Integrated Care Board,2023/24,44966003,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,50705009,8,8
-E54000053,NHS Sussex Integrated Care Board,2020/21,50705009,10,10
-E54000053,NHS Sussex Integrated Care Board,2021/22,50705009,5,5
-E54000053,NHS Sussex Integrated Care Board,2022/23,50705009,5,5
-E54000053,NHS Sussex Integrated Care Board,2023/24,50705009,6,7
-E54000053,NHS Sussex Integrated Care Board,2023/24,5158005,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,52072009,49,50
-E54000053,NHS Sussex Integrated Care Board,2020/21,52072009,71,73
-E54000053,NHS Sussex Integrated Care Board,2021/22,52072009,30,30
-E54000053,NHS Sussex Integrated Care Board,2022/23,52072009,47,48
-E54000053,NHS Sussex Integrated Care Board,2023/24,52072009,34,34
-E54000053,NHS Sussex Integrated Care Board,2023/24,568005,1,1
-E54000053,NHS Sussex Integrated Care Board,2023/24,56882008,3,4
-E54000053,NHS Sussex Integrated Care Board,2019/20,58214004,106,124
-E54000053,NHS Sussex Integrated Care Board,2020/21,58214004,130,138
-E54000053,NHS Sussex Integrated Care Board,2021/22,58214004,76,87
-E54000053,NHS Sussex Integrated Care Board,2022/23,58214004,128,140
-E54000053,NHS Sussex Integrated Care Board,2023/24,58214004,93,106
-E54000053,NHS Sussex Integrated Care Board,2019/20,69322001,648,738
-E54000053,NHS Sussex Integrated Care Board,2020/21,69322001,439,483
-E54000053,NHS Sussex Integrated Care Board,2021/22,69322001,411,439
-E54000053,NHS Sussex Integrated Care Board,2022/23,69322001,442,489
-E54000053,NHS Sussex Integrated Care Board,2023/24,69322001,465,525
-E54000053,NHS Sussex Integrated Care Board,2023/24,69479009,1,1
-E54000053,NHS Sussex Integrated Care Board,2019/20,72366004,80,100
-E54000053,NHS Sussex Integrated Care Board,2020/21,72366004,121,148
-E54000053,NHS Sussex Integrated Care Board,2021/22,72366004,170,250
-E54000053,NHS Sussex Integrated Care Board,2022/23,72366004,109,140
-E54000053,NHS Sussex Integrated Care Board,2023/24,72366004,96,127
-E54000053,NHS Sussex Integrated Care Board,2023/24,735548000,1,1
 E54000054,NHS West Yorkshire Integrated Care Board,2019/20,13746004,87,92
 E54000054,NHS West Yorkshire Integrated Care Board,2020/21,13746004,101,115
 E54000054,NHS West Yorkshire Integrated Care Board,2021/22,13746004,112,114
@@ -3219,3 +3044,178 @@ E54000062,NHS Black Country Integrated Care Board,2020/21,72366004,32,38
 E54000062,NHS Black Country Integrated Care Board,2021/22,72366004,42,50
 E54000062,NHS Black Country Integrated Care Board,2022/23,72366004,37,43
 E54000062,NHS Black Country Integrated Care Board,2023/24,72366004,39,41
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,13746004,53,60
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,13746004,37,42
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,13746004,28,29
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,13746004,47,49
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,13746004,61,69
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,162218007,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,17226007,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,17226007,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,17226007,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,191525009,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,191567000,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,191714002,17,17
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,191714002,17,20
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,191714002,22,31
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,191714002,40,42
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,191714002,63,70
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,191736004,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,191736004,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,191736004,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,197480006,1012,1116
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,197480006,1026,1125
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,197480006,975,1078
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,197480006,804,895
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,197480006,644,696
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,20010003,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,21897009,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,30077003,43,43
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,30077003,111,113
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,30077003,19,19
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,30077003,60,60
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,30077003,84,84
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,33449004,71,80
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,33449004,31,32
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,33449004,59,71
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,33449004,62,73
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,33449004,56,63
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,35489007,782,916
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,35489007,529,630
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,35489007,635,723
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,35489007,743,860
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,35489007,664,784
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,371631005,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,371631005,22,22
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,371631005,26,26
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,397923000,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,397923000,8,8
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,397923000,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,397923000,9,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,397923000,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,427469003,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,44376007,6,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,44376007,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,44376007,4,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,44376007,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,44376007,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,47505003,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,50705009,4,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,50705009,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,50705009,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,52072009,14,14
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,52072009,13,13
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,52072009,13,13
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,52072009,34,35
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,52072009,11,11
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,56882008,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,58214004,42,45
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,58214004,34,34
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,58214004,28,30
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,58214004,45,56
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,58214004,65,71
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,64905009,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,66551002,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,68890003,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,69322001,192,211
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,69322001,149,159
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,69322001,144,154
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,69322001,205,226
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,69322001,235,259
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,72366004,39,51
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,72366004,85,112
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,72366004,91,116
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,72366004,55,59
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,72366004,53,63
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,78004001,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,13746004,141,150
+E54000064,NHS Sussex Integrated Care Board,2020/21,13746004,161,176
+E54000064,NHS Sussex Integrated Care Board,2021/22,13746004,120,125
+E54000064,NHS Sussex Integrated Care Board,2022/23,13746004,149,174
+E54000064,NHS Sussex Integrated Care Board,2023/24,13746004,177,194
+E54000064,NHS Sussex Integrated Care Board,2023/24,162218007,3,3
+E54000064,NHS Sussex Integrated Care Board,2019/20,17226007,31,32
+E54000064,NHS Sussex Integrated Care Board,2020/21,17226007,35,35
+E54000064,NHS Sussex Integrated Care Board,2021/22,17226007,26,26
+E54000064,NHS Sussex Integrated Care Board,2022/23,17226007,16,16
+E54000064,NHS Sussex Integrated Care Board,2023/24,17226007,15,15
+E54000064,NHS Sussex Integrated Care Board,2023/24,191542003,1,1
+E54000064,NHS Sussex Integrated Care Board,2023/24,191676002,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,191714002,152,195
+E54000064,NHS Sussex Integrated Care Board,2020/21,191714002,161,208
+E54000064,NHS Sussex Integrated Care Board,2021/22,191714002,239,366
+E54000064,NHS Sussex Integrated Care Board,2022/23,191714002,230,318
+E54000064,NHS Sussex Integrated Care Board,2023/24,191714002,257,378
+E54000064,NHS Sussex Integrated Care Board,2021/22,191736004,3,4
+E54000064,NHS Sussex Integrated Care Board,2022/23,191736004,17,24
+E54000064,NHS Sussex Integrated Care Board,2023/24,191736004,21,23
+E54000064,NHS Sussex Integrated Care Board,2023/24,193756007,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,197480006,2863,3288
+E54000064,NHS Sussex Integrated Care Board,2020/21,197480006,2954,3397
+E54000064,NHS Sussex Integrated Care Board,2021/22,197480006,2473,2756
+E54000064,NHS Sussex Integrated Care Board,2022/23,197480006,2084,2395
+E54000064,NHS Sussex Integrated Care Board,2023/24,197480006,2125,2456
+E54000064,NHS Sussex Integrated Care Board,2023/24,225040001,5,5
+E54000064,NHS Sussex Integrated Care Board,2023/24,231504006,9,9
+E54000064,NHS Sussex Integrated Care Board,2023/24,280945000,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,30077003,38,40
+E54000064,NHS Sussex Integrated Care Board,2020/21,30077003,82,82
+E54000064,NHS Sussex Integrated Care Board,2021/22,30077003,15,16
+E54000064,NHS Sussex Integrated Care Board,2022/23,30077003,9,9
+E54000064,NHS Sussex Integrated Care Board,2023/24,30077003,9,9
+E54000064,NHS Sussex Integrated Care Board,2019/20,33449004,403,488
+E54000064,NHS Sussex Integrated Care Board,2020/21,33449004,326,406
+E54000064,NHS Sussex Integrated Care Board,2021/22,33449004,300,355
+E54000064,NHS Sussex Integrated Care Board,2022/23,33449004,231,268
+E54000064,NHS Sussex Integrated Care Board,2023/24,33449004,273,317
+E54000064,NHS Sussex Integrated Care Board,2019/20,35489007,3228,4181
+E54000064,NHS Sussex Integrated Care Board,2020/21,35489007,2814,3625
+E54000064,NHS Sussex Integrated Care Board,2021/22,35489007,2785,3476
+E54000064,NHS Sussex Integrated Care Board,2022/23,35489007,2915,3849
+E54000064,NHS Sussex Integrated Care Board,2023/24,35489007,2874,3791
+E54000064,NHS Sussex Integrated Care Board,2023/24,370143000,2,2
+E54000064,NHS Sussex Integrated Care Board,2021/22,371631005,25,25
+E54000064,NHS Sussex Integrated Care Board,2022/23,371631005,248,252
+E54000064,NHS Sussex Integrated Care Board,2023/24,371631005,260,265
+E54000064,NHS Sussex Integrated Care Board,2023/24,37941009,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,397923000,25,26
+E54000064,NHS Sussex Integrated Care Board,2020/21,397923000,25,26
+E54000064,NHS Sussex Integrated Care Board,2021/22,397923000,31,32
+E54000064,NHS Sussex Integrated Care Board,2022/23,397923000,17,18
+E54000064,NHS Sussex Integrated Care Board,2023/24,397923000,8,8
+E54000064,NHS Sussex Integrated Care Board,2019/20,44376007,25,27
+E54000064,NHS Sussex Integrated Care Board,2020/21,44376007,17,20
+E54000064,NHS Sussex Integrated Care Board,2021/22,44376007,25,25
+E54000064,NHS Sussex Integrated Care Board,2022/23,44376007,20,23
+E54000064,NHS Sussex Integrated Care Board,2023/24,44376007,27,29
+E54000064,NHS Sussex Integrated Care Board,2023/24,44966003,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,50705009,8,8
+E54000064,NHS Sussex Integrated Care Board,2020/21,50705009,10,10
+E54000064,NHS Sussex Integrated Care Board,2021/22,50705009,5,5
+E54000064,NHS Sussex Integrated Care Board,2022/23,50705009,5,5
+E54000064,NHS Sussex Integrated Care Board,2023/24,50705009,6,7
+E54000064,NHS Sussex Integrated Care Board,2023/24,5158005,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,52072009,49,50
+E54000064,NHS Sussex Integrated Care Board,2020/21,52072009,71,73
+E54000064,NHS Sussex Integrated Care Board,2021/22,52072009,30,30
+E54000064,NHS Sussex Integrated Care Board,2022/23,52072009,47,48
+E54000064,NHS Sussex Integrated Care Board,2023/24,52072009,34,34
+E54000064,NHS Sussex Integrated Care Board,2023/24,568005,1,1
+E54000064,NHS Sussex Integrated Care Board,2023/24,56882008,3,4
+E54000064,NHS Sussex Integrated Care Board,2019/20,58214004,106,124
+E54000064,NHS Sussex Integrated Care Board,2020/21,58214004,130,138
+E54000064,NHS Sussex Integrated Care Board,2021/22,58214004,76,87
+E54000064,NHS Sussex Integrated Care Board,2022/23,58214004,129,141
+E54000064,NHS Sussex Integrated Care Board,2023/24,58214004,93,106
+E54000064,NHS Sussex Integrated Care Board,2019/20,69322001,648,738
+E54000064,NHS Sussex Integrated Care Board,2020/21,69322001,440,484
+E54000064,NHS Sussex Integrated Care Board,2021/22,69322001,412,440
+E54000064,NHS Sussex Integrated Care Board,2022/23,69322001,442,489
+E54000064,NHS Sussex Integrated Care Board,2023/24,69322001,466,526
+E54000064,NHS Sussex Integrated Care Board,2023/24,69479009,1,1
+E54000064,NHS Sussex Integrated Care Board,2019/20,72366004,80,100
+E54000064,NHS Sussex Integrated Care Board,2020/21,72366004,121,148
+E54000064,NHS Sussex Integrated Care Board,2021/22,72366004,170,250
+E54000064,NHS Sussex Integrated Care Board,2022/23,72366004,109,140
+E54000064,NHS Sussex Integrated Care Board,2023/24,72366004,96,127
+E54000064,NHS Sussex Integrated Care Board,2023/24,735548000,1,1

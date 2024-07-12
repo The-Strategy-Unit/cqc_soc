@@ -1,9 +1,9 @@
-﻿ICB22CD,ICB22NM,Der_Financial_Year,all_pats,all_attends,mh_pats,mh_attends,mh_freqfly,mh_freqfly_attends
+﻿ICB23CD,ICB23NM,Der_Financial_Year,all_pats,all_attends,mh_pats,mh_attends,mh_freqfly,mh_freqfly_attends
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2019/20,484805,758678,12479,15539,143,1139
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2020/21,420172,651388,11800,14804,145,1154
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2021/22,518794,821299,12578,15405,145,1085
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2022/23,504575,795447,10576,12851,107,823
-E54000008,NHS Cheshire and Merseyside Integrated Care Board,2023/24,503330,804591,11584,14232,121,1003
+E54000008,NHS Cheshire and Merseyside Integrated Care Board,2023/24,503330,804591,11583,14231,121,1003
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2019/20,193982,299014,4346,5233,35,291
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2020/21,152748,229673,4088,4820,28,235
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2021/22,194928,295415,4456,5315,37,294
@@ -73,17 +73,17 @@ E54000029,NHS North East London Integrated Care Board,2019/20,356479,570030,6267
 E54000029,NHS North East London Integrated Care Board,2020/21,251749,396886,5541,6973,60,611
 E54000029,NHS North East London Integrated Care Board,2021/22,339836,532970,5806,7070,50,461
 E54000029,NHS North East London Integrated Care Board,2022/23,344701,538789,5982,7267,51,432
-E54000029,NHS North East London Integrated Care Board,2023/24,339310,538659,5792,7152,52,401
+E54000029,NHS North East London Integrated Care Board,2023/24,339310,538659,5792,7151,52,401
 E54000030,NHS South East London Integrated Care Board,2019/20,327338,535275,7740,9540,45,673
 E54000030,NHS South East London Integrated Care Board,2020/21,252830,399108,7741,9660,68,662
 E54000030,NHS South East London Integrated Care Board,2021/22,326666,516210,8332,10120,57,577
 E54000030,NHS South East London Integrated Care Board,2022/23,324212,510055,8164,10267,76,701
-E54000030,NHS South East London Integrated Care Board,2023/24,255991,382352,6141,7824,74,608
+E54000030,NHS South East London Integrated Care Board,2023/24,255991,382352,6141,7823,74,608
 E54000031,NHS South West London Integrated Care Board,2019/20,269626,426312,3861,4550,20,233
 E54000031,NHS South West London Integrated Care Board,2020/21,223005,348023,3844,4453,19,185
 E54000031,NHS South West London Integrated Care Board,2021/22,268780,415747,3748,4414,24,199
 E54000031,NHS South West London Integrated Care Board,2022/23,300463,473428,4340,5252,40,347
-E54000031,NHS South West London Integrated Care Board,2023/24,300182,476171,3824,4588,34,256
+E54000031,NHS South West London Integrated Care Board,2023/24,300182,476171,3815,4578,34,256
 E54000032,NHS Kent and Medway Integrated Care Board,2019/20,351106,556872,5886,7362,82,718
 E54000032,NHS Kent and Medway Integrated Care Board,2020/21,274008,420694,6759,8846,112,1005
 E54000032,NHS Kent and Medway Integrated Care Board,2021/22,329216,514308,5991,7747,88,850
@@ -118,7 +118,7 @@ E54000040,NHS Bath and North East Somerset Swindon and Wiltshire Integrated Care
 E54000040,NHS Bath and North East Somerset Swindon and Wiltshire Integrated Care Board,2020/21,97345,133844,2619,3146,24,181
 E54000040,NHS Bath and North East Somerset Swindon and Wiltshire Integrated Care Board,2021/22,123535,171403,2938,3449,17,173
 E54000040,NHS Bath and North East Somerset Swindon and Wiltshire Integrated Care Board,2022/23,124433,172302,2598,3031,18,116
-E54000040,NHS Bath and North East Somerset Swindon and Wiltshire Integrated Care Board,2023/24,126916,178980,2792,3321,23,188
+E54000040,NHS Bath and North East Somerset Swindon and Wiltshire Integrated Care Board,2023/24,126916,178980,2789,3318,23,188
 E54000041,NHS Dorset Integrated Care Board,2019/20,136420,201050,2482,3014,24,169
 E54000041,NHS Dorset Integrated Care Board,2020/21,112308,163964,2735,3406,32,241
 E54000041,NHS Dorset Integrated Care Board,2021/22,141817,211216,3129,3774,19,147
@@ -128,7 +128,7 @@ E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2019/20,274046,4
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2020/21,221741,326697,6435,8142,92,776
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2021/22,284711,427477,7701,9585,87,680
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2022/23,296843,449845,7757,9907,120,951
-E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2023/24,308357,475348,8794,11453,140,1180
+E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2023/24,308357,475348,8793,11452,140,1180
 E54000043,NHS Gloucestershire Integrated Care Board,2019/20,103560,155658,211,235,2,11
 E54000043,NHS Gloucestershire Integrated Care Board,2020/21,69481,101047,1079,1294,9,59
 E54000043,NHS Gloucestershire Integrated Care Board,2021/22,96992,140263,1382,1606,14,88
@@ -154,16 +154,6 @@ E54000051,NHS Humber and North Yorkshire Integrated Care Board,2020/21,243463,36
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2021/22,291133,444098,7035,8332,55,382
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2022/23,299255,458000,6171,7350,54,461
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2023/24,307330,481816,6709,8065,57,467
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,154376,234438,2460,2935,19,146
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,127451,190655,2302,2687,16,110
-E54000052,NHS Surrey Heartlands Integrated Care Board,2021/22,190190,289106,2310,2691,15,124
-E54000052,NHS Surrey Heartlands Integrated Care Board,2022/23,205280,313021,2603,3050,22,181
-E54000052,NHS Surrey Heartlands Integrated Care Board,2023/24,205199,313920,2413,2837,16,113
-E54000053,NHS Sussex Integrated Care Board,2019/20,303263,467487,8044,10719,129,1211
-E54000053,NHS Sussex Integrated Care Board,2020/21,244810,370169,7929,10316,125,1021
-E54000053,NHS Sussex Integrated Care Board,2021/22,262460,398511,7423,9570,101,822
-E54000053,NHS Sussex Integrated Care Board,2022/23,271861,411901,7689,10113,126,1035
-E54000053,NHS Sussex Integrated Care Board,2023/24,260413,398024,7713,10311,144,1164
 E54000054,NHS West Yorkshire Integrated Care Board,2019/20,497273,768138,9492,11493,78,685
 E54000054,NHS West Yorkshire Integrated Care Board,2020/21,402178,611651,8997,10959,93,714
 E54000054,NHS West Yorkshire Integrated Care Board,2021/22,518575,804260,10164,11961,67,560
@@ -209,3 +199,13 @@ E54000062,NHS Black Country Integrated Care Board,2020/21,194815,309957,4690,585
 E54000062,NHS Black Country Integrated Care Board,2021/22,255918,402277,6697,8429,86,704
 E54000062,NHS Black Country Integrated Care Board,2022/23,267921,419405,6048,7679,85,733
 E54000062,NHS Black Country Integrated Care Board,2023/24,264515,419917,6123,7756,65,617
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,154124,234134,2453,2928,19,146
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,127248,190407,2296,2680,16,110
+E54000063,NHS Surrey Heartlands Integrated Care Board,2021/22,189589,288298,2300,2680,15,124
+E54000063,NHS Surrey Heartlands Integrated Care Board,2022/23,204280,311577,2594,3041,22,181
+E54000063,NHS Surrey Heartlands Integrated Care Board,2023/24,204179,312508,2399,2820,16,113
+E54000064,NHS Sussex Integrated Care Board,2019/20,303509,467791,8051,10726,129,1211
+E54000064,NHS Sussex Integrated Care Board,2020/21,245008,370417,7935,10323,125,1021
+E54000064,NHS Sussex Integrated Care Board,2021/22,263058,399319,7432,9581,101,822
+E54000064,NHS Sussex Integrated Care Board,2022/23,272862,413345,7698,10122,126,1035
+E54000064,NHS Sussex Integrated Care Board,2023/24,261433,399436,7723,10326,144,1165
