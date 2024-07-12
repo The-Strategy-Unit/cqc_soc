@@ -159,15 +159,11 @@ tar_read(icb_ed_map_2324)
 
 #### Gender variation
 
-
 #### Age-group variation
-
 
 #### Ethnic group variation
 
-
 #### Rural-urban variation
-
 
 ## Walk-in and Urgent Care attendance
 
@@ -224,15 +220,11 @@ tar_read(uec_mh_known_table)
 tar_read(icb_uec_map_2324)
 ```
 
-
 #### Gender variation
-
 
 #### Age-group variation
 
-
 #### Ethnic group variation
-
 
 #### Rural-urban variation
 
@@ -248,14 +240,10 @@ The average cost of a call to NHS 111 is around £12 with those requiring clinic
 
 #### Geographical variation
 
-
 #### Gender variation
-
 
 #### Age-group variation
 
-
 #### Ethnic group variation
-
 
 #### Rural-urban variation
