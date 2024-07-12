@@ -261,15 +261,19 @@ list(
              get_icb_pop_total(gender_by_icb)),
   tar_target(icb_rates_ed,
              get_icb_att_rates(data_ed,pop_by_icb)),
+  tar_target(icb_rates_uec,
+             get_icb_att_rates(data_uec,pop_by_icb)),
 
 #### Map layers and map plots ####
 
   # load icb july 2022 boundaries
   tar_target(icb_boundary,
-             get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ICB_JUL_2022_EN_BGC_V3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
+             get_icb_map("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Integrated_Care_Boards_April_2023_EN_BGC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson")),
 
   # 23/24 mh attendance rate ED by ICB map
   tar_target(icb_ed_map_2324,
-             map_icb_allmh(icb_boundary,icb_rates_ed))
+             map_icb_allmh(icb_boundary,icb_rates_ed)),
+  tar_target(icb_uec_map_2324,
+             map_icb_allmh_uec(icb_boundary,icb_rates_uec))
 
   )

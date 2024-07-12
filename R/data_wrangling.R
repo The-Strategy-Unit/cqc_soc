@@ -471,19 +471,21 @@ get_icb_pop_total <- function(tarobj){
 get_ed_activity <- function(data){
 
   filtered <- data |>
-    dplyr::filter(ec_department_type == "01")
+    dplyr::filter(ec_department_type == "01") |>
+    dplyr::rename(icb_code = icb23cd,
+                  icb_name = icb23nm)
 
   return(filtered)
 
 }
 
-## type 1 MH attendance rates total by ICB
+## MH attendance rates total by ICB
 get_icb_att_rates <- function(tarobj1,tarobj2){
   tarobj1 |>
     filter(mh_snomed == 1) |>
     summarise(attends = sum(attends),
-              .by = c(icb23cd, der_financial_year)) |>
-    left_join(tarobj2, by = c("icb23cd" = "icb_code", "der_financial_year" = "fin_year")) |>
+              .by = c(icb_code, der_financial_year)) |>
+    left_join(tarobj2, by = c("icb_code" = "icb_code", "der_financial_year" = "fin_year")) |>
     PHEindicatormethods::phe_rate(x=attends, n=pop, confidence = 0.95, multiplier = 100000)
 
 }
