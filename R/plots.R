@@ -61,9 +61,8 @@ ed_freq_boxplot <- function(tarobj){
   return(plot)
 }
 
-# To get a boxplot of percentage of MH attendances by financial year with points
-# for ICB on top:
-get_perc_mh_attends_boxplot <- function(data){
+# To get standard boxplot:
+get_standard_boxplot <- function(data){
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, value)) +
     ggplot2::geom_boxplot() +
@@ -75,6 +74,17 @@ get_perc_mh_attends_boxplot <- function(data){
          subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB")
 
   return(plot)
+}
+
+# To get a boxplot of percentage of MH attendances by financial year with points
+# for ICB on top:
+get_perc_mh_attends_boxplot <- function(data){
+  plot <- data |>
+    get_standard_boxplot() +
+    ggplot2::labs(x = "Financial Year",
+                  y = "Percent",
+                  title = "Percentage of attendances with MH as primary reason",
+                  subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB")
 }
 
 get_ed_transp_colplot <- function(tarobj){
