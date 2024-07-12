@@ -65,7 +65,7 @@ The presence of mental health in **NHS 111 data** were established using a bespo
 
 ## Accident and Emergency attendance
 
-``` {r ae_summary_bits, include = FALSE}
+```{r ae_summary_bits, include = FALSE}
 
 ae_all <- tar_read(ae_summary) |> filter(der_financial_year == '2023/24') |> pull(all)/1000000
 
@@ -83,7 +83,7 @@ The average A&E attendance in England costs £280 with those conveyed by ambulan
 
 During 2023/24 there were `r round(ae_all,2)` million Type 1 attendances costing £ `r round(ae_all_cost,2)` billion. Of those attendances c`r round(ae_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(ae_mh_cost,2)` million.
 
-``` {r top_ten_causes}
+```{r top_ten_causes}
 
 gt_causes <- gt(tar_read(ae_diag) |> 
   filter(der_financial_year == '2023/24') |> 
@@ -108,7 +108,7 @@ gt_causes
 
 Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport.
 
-``` {r ae_arrive_mode}
+```{r ae_arrive_mode}
 
 tar_read(ae_trans_barplot)
 
@@ -153,7 +153,7 @@ tar_read(ae_freq_boxplot)
 
 #### ICB variation
 
-``` {r icb_map_allmh}
+```{r icb_map_allmh}
 tar_read(icb_ed_map_2324)
 ```
 
@@ -169,7 +169,7 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 
 #### Percentage of all attendances with MH as primary reason/diagnosis
 
-Boxplot (@fig-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs: 
+Boxplot (@fig-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs:
 
 ```{r}
 #| label: "fig-perc-mh"
@@ -178,10 +178,10 @@ tar_read(mh_attends_boxplot)
 
 Looking at table (@tbl-perc) of ICBs over time:
 
-- there are some ICBs that have consistent % of MH attends over the financial years.
-  - For example Black Country and Herefordshire & Worcestershire have low %.
-- Sussex have high % compared to other ICBs.
-- Birmingham and Solihull is interesting, since it had a higher % in 2019/20, but low % for later fin years.
+-   there are some ICBs that have consistent % of MH attends over the financial years.
+    -   For example Black Country and Herefordshire & Worcestershire have low %.
+-   Sussex have high % compared to other ICBs.
+-   Birmingham and Solihull is interesting, since it had a higher % in 2019/20, but low % for later fin years.
 
 ```{r}
 #| label: "tbl-perc"
@@ -190,7 +190,7 @@ tar_read(mh_attends_table)
 
 #### Percentage of MH attendances known to specialist services
 
-Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/24 over ICBs: 
+Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/24 over ICBs:
 
 ```{r}
 #| label: "fig-perc-mh-known"
@@ -199,13 +199,12 @@ tar_read(mh_known_boxplot)
 
 Looking at table (@tbl-perc-known) of ICBs over time:
 
-- Again Sussex have high % compared to other ICBs.
+-   Again Sussex have high % compared to other ICBs.
 
 ```{r}
 #| label: "tbl-perc-known"
 tar_read(mh_known_table)
 ```
-
 
 ## NHS 111 calls
 

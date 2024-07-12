@@ -2,8 +2,8 @@
 # value:
 get_mh_attends_table <- function(data, key){
   table <- data |>
-    dplyr::left_join(key, "icb22cd") |>
-    dplyr::select("ICB" = icb22nm, der_financial_year, value) |>
+    dplyr::left_join(key, "icb_code") |>
+    dplyr::select("ICB" = icb_name, der_financial_year, value) |>
     dplyr::mutate(value = janitor::round_half_up(value, 2)) |>
     tidyr::pivot_wider(names_from = der_financial_year,
                        values_from = value) |>

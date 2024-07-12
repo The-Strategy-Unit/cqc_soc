@@ -102,7 +102,7 @@ get_gender_totals <- function(population_2018_females,
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "gender") |>
     add_financial_year() |>
-    select(fin_year, icb, gender, count)
+    select(fin_year, icb_code, gender, count)
 
   return(combined)
 }
@@ -205,7 +205,7 @@ get_age_totals <- function(population_2018_females,
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "age_group") |>
     add_financial_year() |>
-    select(fin_year, icb, age_group, count)
+    select(fin_year, icb_code, age_group, count)
 
   return(combined)
 }
@@ -224,17 +224,26 @@ wrangle_lsoa <- function(url_name) {
 
 }
 
-# To create the map from lsoa to icb. Both 2011 and 2021 LSOAs are mapped to
+# To create the key from lsoa to icb. Both 2011 and 2021 LSOAs are mapped to
 # 2023 ICBs.
-get_lsoa_to_icb_map <- function(lsoa_11_to_icb_23, lsoa_21_to_icb_23){
-
+get_lsoa_to_icb_key <- function(lsoa_11_to_icb_23, lsoa_21_to_icb_23) {
   lsoa_11_to_icb_23_wrangled <- lsoa_11_to_icb_23 |>
     dplyr::mutate(lsoa_year = "2011") |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa11cd, icb = icb23cd)
+    dplyr::select(
+      lsoa_year,
+      lsoa_code = lsoa11cd,
+      icb_code = icb23cd,
+      icb_name = icb23nm
+    )
 
   lsoa_21_to_icb_23_wrangled <- lsoa_21_to_icb_23 |>
     dplyr::mutate(lsoa_year = "2021") |>
-    dplyr::select(lsoa_year, lsoa_code = lsoa21cd, icb = icb23cd)
+    dplyr::select(
+      lsoa_year,
+      lsoa_code = lsoa21cd,
+      icb_code = icb23cd,
+      icb_name = icb23nm
+    )
 
   lsoa_to_icb <- lsoa_11_to_icb_23_wrangled |>
     rbind(lsoa_21_to_icb_23_wrangled)
@@ -258,7 +267,7 @@ summarise_by_icb <- function(data, lsoa_to_icb, group) {
                                      "2021")) |>
     dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
     dplyr::summarise(count = sum(count),
-                     .by = c(year, icb, !!rlang::sym(group)))
+                     .by = c(year, icb_code, !!rlang::sym(group)))
 
   return(summarised_data)
 }
@@ -321,7 +330,7 @@ get_imd_totals <- function(imd_url, population_by_lsoa, lsoa_to_icb) {
     summarise_by_icb(lsoa_to_icb, "index_of_multiple_deprivation_imd_decile") |>
     add_financial_year() |>
     dplyr::select(fin_year,
-                  icb,
+                  icb_code,
                   imd_decile = index_of_multiple_deprivation_imd_decile,
                   count)
 
@@ -346,7 +355,7 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
     summarise_by_icb(lsoa_to_icb, "rural_urban_classification_2011_2_fold") |>
     add_financial_year() |>
     dplyr::select(fin_year,
-                  icb,
+                  icb_code,
                   rural_urban = rural_urban_classification_2011_2_fold,
                   count)
 
@@ -397,7 +406,9 @@ get_ae_summ_transp <- function(tarobj) {
 get_uec_activity <- function(data){
 
   filtered <- data |>
-    dplyr::filter(ec_department_type %in% c("03", "04"))
+    dplyr::filter(ec_department_type %in% c("03", "04")) |>
+    dplyr::rename(icb_code = icb22cd,
+           icb_name = icb22nm)
 
   return(filtered)
 
@@ -408,7 +419,7 @@ get_mh_attends <- function(data) {
   mh_attends <- data |>
     dplyr::summarise(mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
               attends = sum(attends),
-              .by = c(icb22cd, der_financial_year)) |>
+              .by = c(icb_code, der_financial_year)) |>
     PHEindicatormethods::phe_proportion(mh_attends, attends, multiplier = 100)
 
   return(mh_attends)
@@ -421,17 +432,17 @@ get_mh_known <- function(data) {
     dplyr::filter(mh_snomed == 1) |> # attends due to MH
     dplyr::summarise(mh_known = sum(dplyr::if_else(mhsds_flag == 1, attends, 0)),
                      attends = sum(attends),
-                     .by = c(icb22cd, der_financial_year)) |>
+                     .by = c(icb_code, der_financial_year)) |>
     PHEindicatormethods::phe_proportion(mh_known, attends, multiplier = 100)
 
   get_perc_mh_attends_boxplot(mh_known)
 
   return(mh_known)}
 
-# To create a key to map from ICB codes to names:
+# To create a key from ICB codes to names:
 get_icb_codes_names <- function(data){
   key <- data |>
-    select(icb22cd, icb22nm) |>
+    select(icb_code, icb_name) |>
     distinct()
 
   return(key)
@@ -441,10 +452,10 @@ get_icb_codes_names <- function(data){
 get_icb_pop_total <- function(tarobj){
   dat1 <- tarobj |>
     summarise(pop = sum(count),
-              .by = c(icb, fin_year))
+              .by = c(icb_code, fin_year))
   dat2 <- tarobj |>
     summarise(pop = sum(count),
-              .by = c(icb, fin_year)) |>
+              .by = c(icb_code, fin_year)) |>
     filter(fin_year == '2022/23') |>
     mutate(fin_year = '2023/24')
 
@@ -470,7 +481,7 @@ get_icb_att_rates <- function(tarobj1,tarobj2){
     filter(mh_snomed == 1) |>
     summarise(attends = sum(attends),
               .by = c(icb22cd, der_financial_year)) |>
-    left_join(tarobj2, by = c("icb22cd" = "icb", "der_financial_year" = "fin_year")) |>
+    left_join(tarobj2, by = c("icb22cd" = "icb_code", "der_financial_year" = "fin_year")) |>
     PHEindicatormethods::phe_rate(x=attends, n=pop, confidence = 0.95, multiplier = 100000)
 
 }

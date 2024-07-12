@@ -24,15 +24,18 @@ list(
   #### Data loading and initial wrangling ####
 
   # LSOA to ICBs
-  # new
   tar_target(lsoa_11_to_icb_23,
              load_csv("data/LSOA2011_to_ICB2023.csv")),
   tar_target(lsoa_21_to_icb_23,
              load_csv("data/LSOA2021_to_ICB2023.csv")),
   tar_target(
     lsoa_to_icb,
-    get_lsoa_to_icb_map(lsoa_11_to_icb_23, lsoa_21_to_icb_23)
+    get_lsoa_to_icb_key(lsoa_11_to_icb_23, lsoa_21_to_icb_23)
   ),
+
+  # ICB codes and names
+  tar_target(icb_codes_names,
+             get_icb_codes_names(lsoa_to_icb)),
 
   # URLs for population data
   tar_target(
@@ -217,10 +220,6 @@ list(
              get_perc_mh_attends_boxplot(mh_known)),
   tar_target(mh_known_table,
              get_mh_attends_table(mh_known, icb_codes_names)),
-
-  # ICB codes and names
-  tar_target(icb_codes_names,
-             get_icb_codes_names(data_ae)),
 
   #### Plots ####
 
