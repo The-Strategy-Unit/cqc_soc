@@ -205,7 +205,9 @@ list(
   tar_target(
     data_ae,
     load_csv("data/ae_extract_full.csv") |>
-      dplyr::rename(imd_decile = index_of_multiple_deprivation_decile)
+      dplyr::rename(imd_decile = index_of_multiple_deprivation_decile) |>
+      dplyr::mutate(imd_decile = factor(imd_decile,
+                                        levels = as.character(1:10)))
   ),
 
   tar_target(data_111, load_csv("data/111_extract_full.csv")),
