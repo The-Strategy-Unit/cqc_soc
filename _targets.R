@@ -218,13 +218,17 @@ list(
   # Type 1 ED activity
   tar_target(data_ed, get_ed_activity(data_ae)),
 
-  # MH attends breakdowns
+  # MH attends
   tar_target(type1_mh_attends, filter_mh_attends(data_ed)),
+
+  # MH known
+  tar_target(type1_mh_known, filter_mh_known(data_ed)),
 
   #### UEC activity ####
   tar_target(data_uec, get_uec_activity(data_ae)),
 
   # MH attends
+  tar_target(uec_mh_attends, filter_mh_attends(data_uec)),
   tar_target(uec_perc_mh_attends, get_perc_mh_attends(data_uec)),
   tar_target(
     uec_mh_attends_boxplot,
@@ -235,13 +239,8 @@ list(
     get_uec_table(uec_perc_mh_attends, icb_codes_names)
   ),
 
-  # MH attends breakdowns
-  tar_target(uec_mh_attends, filter_mh_attends(data_uec)),
-
-  # MH known breakdowns
-  tar_target(uec_mh_known, filter_mh_known(data_uec)),
-
   # MH known
+  tar_target(uec_mh_known, filter_mh_known(data_uec)),
   tar_target(uec_perc_mh_known, get_perc_mh_known(data_uec)),
   tar_target(
     uec_mh_known_boxplot,
@@ -258,7 +257,8 @@ list(
     list(
       uec_mh_attends = uec_mh_attends,
       uec_mh_known = uec_mh_known,
-      type1_mh_attends = type1_mh_attends
+      type1_mh_attends = type1_mh_attends,
+      type1_mh_known = type1_mh_known
     )
   ),
   tar_target(
