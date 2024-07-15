@@ -286,6 +286,21 @@ list(
 
   tar_target(uec_mh_attends_ethnic_plot,
              get_standard_line_for_breakdowns(uec_mh_attends_ethnic, "ethnic_category")),
+
+  tar_target(type1_mh_attends_gender_plot,
+             get_standard_line_for_breakdowns(type1_mh_attends_gender, "gender")),
+  tar_target(type1_mh_attends_age_plot,
+             get_standard_line_for_breakdowns(type1_mh_attends_age, "age_group")),
+
+  tar_target(type1_mh_attends_imd_plot,
+             get_standard_line_for_breakdowns(type1_mh_attends_imd, "imd_decile")),
+
+  tar_target(type1_mh_attends_rural_plot,
+             get_standard_line_for_breakdowns(type1_mh_attends_rural, "rural_urban")),
+
+  tar_target(type1_mh_attends_ethnic_plot,
+             get_standard_line_for_breakdowns(type1_mh_attends_ethnic, "ethnic_category")),
+
 #### Map layers and map plots ####
 
   # load icb april 2023 boundaries

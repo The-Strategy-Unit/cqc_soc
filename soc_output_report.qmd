@@ -159,11 +159,83 @@ tar_read(icb_ed_map_2324)
 
 #### Gender variation
 
+::: panel-tabset
+##### Chart
+``` {r type1_attends_gender_plot}
+tar_read(type1_mh_attends_gender_plot)
+```
+
+##### Table
+``` {r type1_attends_gender_table}
+tar_read(type1_mh_attends_gender) |>
+  select(1:7) |> 
+  arrange(gender, der_financial_year)
+```
+:::
+
 #### Age-group variation
+
+::: panel-tabset
+##### Chart
+``` {r type1_attends_age_plot}
+tar_read(type1_mh_attends_age_plot)
+```
+
+##### Table
+``` {r type1_attends_age_table}
+tar_read(type1_mh_attends_age) |>
+  select(1:7) |> 
+  arrange(age_group, der_financial_year)
+```
+:::
 
 #### Ethnic group variation
 
+::: panel-tabset
+##### Chart
+``` {r type1_attends_ethnic_plot}
+tar_read(type1_mh_attends_ethnic_plot)
+```
+
+##### Table
+``` {r type1_attends_ethnic_table}
+tar_read(type1_mh_attends_ethnic) |>
+  select(1:7) |> 
+  arrange(ethnic_category, der_financial_year)
+```
+:::
+
+#### Socioeconomic variation
+
+::: panel-tabset
+##### Chart
+``` {r type1_attends_imd_plot}
+tar_read(type1_mh_attends_imd_plot)
+```
+
+##### Table
+``` {r type1_attends_imd_table}
+tar_read(type1_mh_attends_imd) |>
+  select(1:7) |> 
+  arrange(imd_decile, der_financial_year)
+```
+:::
+
 #### Rural-urban variation
+
+::: panel-tabset
+##### Chart
+``` {r type1_attends_rural_plot}
+tar_read(type1_mh_attends_rural_plot)
+```
+
+##### Table
+``` {r type1_attends_rural_table}
+tar_read(type1_mh_attends_rural) |>
+  select(1:7) |> 
+  arrange(rural_urban, der_financial_year)
+```
+:::
 
 ## Walk-in and Urgent Care attendance
 
@@ -222,11 +294,83 @@ tar_read(icb_uec_map_2324)
 
 #### Gender variation
 
+::: panel-tabset
+##### Chart
+``` {r uec_attends_gender_plot}
+tar_read(uec_mh_attends_gender_plot)
+```
+
+##### Table
+``` {r uec_attends_gender_table}
+tar_read(uec_mh_attends_gender) |>
+  select(1:7) |> 
+  arrange(gender, der_financial_year)
+```
+:::
+
 #### Age-group variation
+
+::: panel-tabset
+##### Chart
+``` {r uec_attends_age_plot}
+tar_read(uec_mh_attends_age_plot)
+```
+
+##### Table
+``` {r uec_attends_age_table}
+tar_read(uec_mh_attends_age) |>
+  select(1:7) |> 
+  arrange(age_group, der_financial_year)
+```
+:::
 
 #### Ethnic group variation
 
+::: panel-tabset
+##### Chart
+``` {r uec_attends_ethnic_plot}
+tar_read(uec_mh_attends_ethnic_plot)
+```
+
+##### Table
+``` {r uec_attends_ethnic_table}
+tar_read(uec_mh_attends_ethnic) |>
+  select(1:7) |> 
+  arrange(ethnic_category, der_financial_year)
+```
+:::
+
+#### Socioeconomic variation
+
+::: panel-tabset
+##### Chart
+``` {r uec_attends_imd_plot}
+tar_read(uec_mh_attends_imd_plot)
+```
+
+##### Table
+``` {r uec_attends_imd_table}
+tar_read(uec_mh_attends_imd) |>
+  select(1:7) |> 
+  arrange(imd_decile, der_financial_year)
+```
+:::
+
 #### Rural-urban variation
+
+::: panel-tabset
+##### Chart
+``` {r uec_attends_rural_plot}
+tar_read(uec_mh_attends_rural_plot)
+```
+
+##### Table
+``` {r uec_attends_rural_table}
+tar_read(uec_mh_attends_rural) |>
+  select(1:7) |> 
+  arrange(rural_urban, der_financial_year)
+```
+:::
 
 ## NHS 111 calls
 
