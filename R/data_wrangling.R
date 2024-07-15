@@ -335,7 +335,7 @@ get_imd_totals <- function(imd_url, population_by_lsoa, lsoa_to_icb) {
                   icb_code,
                   imd_decile = index_of_multiple_deprivation_imd_decile,
                   count) |>
-    dplyr::mutate(imd_decile = as.character(imd_decile))
+    dplyr::mutate(imd_decile = factor(imd_decile, levels = as.character(1:10)))
 
   return(data)
 }
