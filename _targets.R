@@ -215,7 +215,7 @@ list(
 
   tar_target(ae_summ_transp, get_ae_summ_transp(data_ae)),
 
-  # Type 1 ED activity
+  #### Type 1 ED activity ####
   tar_target(data_ed, get_ed_activity(data_ae)),
 
   # MH attends
