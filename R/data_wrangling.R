@@ -221,20 +221,6 @@ get_age_totals <- function(population_2018_females,
   return(combined)
 }
 
-# To wrangle the lsoa to icb data from the files for 2022 and 2023 icbs:
-wrangle_lsoa <- function(url_name) {
-  name <- deparse(substitute(url_name))
-
-  year <- name |>
-    stringr::str_sub(10, 13)
-
-  data <- sf::st_read(url_name) |>
-    tibble::tibble() |>
-    janitor::clean_names() |>
-    dplyr::mutate(lsoa_year = year)
-
-}
-
 # To create the key from lsoa to icb. Both 2011 and 2021 LSOAs are mapped to
 # 2023 ICBs.
 get_lsoa_to_icb_key <- function(lsoa_11_to_icb_23, lsoa_21_to_icb_23) {
