@@ -117,14 +117,14 @@ get_standard_line_for_breakdowns <- function(data, group){
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year,
                                  value,
-                                 group = !!sym(group),
-                                 col = !!sym(group))) +
+                                 group = !!rlang::sym(group),
+                                 col = !!rlang::sym(group))) +
     ggplot2::geom_line() +
     ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
     ggplot2::theme_minimal() +
-    labs(x = "Financial Year",
-         y = "Rate per 100,000 population")
+    ggplot2::labs(x = "Financial Year",
+                  y = "Rate per 100,000 population")
 
-return(plot)
+  return(plot)
 
 }

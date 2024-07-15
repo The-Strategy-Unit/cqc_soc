@@ -161,13 +161,15 @@ tar_read(icb_ed_map_2324)
 
 ::: panel-tabset
 ##### Chart
-``` {r type1_attends_gender_plot}
-tar_read(type1_mh_attends_gender_plot)
+
+```{r type1_attends_gender_plot}
+tar_read(gender_plot)$type1_mh_attends
 ```
 
 ##### Table
-``` {r type1_attends_gender_table}
-tar_read(type1_mh_attends_gender) |>
+
+```{r type1_attends_gender_table}
+tar_read(gender_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(gender, der_financial_year)
 ```
@@ -177,13 +179,15 @@ tar_read(type1_mh_attends_gender) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r type1_attends_age_plot}
-tar_read(type1_mh_attends_age_plot)
+
+```{r type1_attends_age_plot}
+tar_read(age_plot)$type1_mh_attends
 ```
 
 ##### Table
-``` {r type1_attends_age_table}
-tar_read(type1_mh_attends_age) |>
+
+```{r type1_attends_age_table}
+tar_read(age_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(age_group, der_financial_year)
 ```
@@ -193,13 +197,15 @@ tar_read(type1_mh_attends_age) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r type1_attends_ethnic_plot}
-tar_read(type1_mh_attends_ethnic_plot)
+
+```{r type1_attends_ethnic_plot}
+tar_read(ethnic_plot)$type1_mh_attends
 ```
 
 ##### Table
-``` {r type1_attends_ethnic_table}
-tar_read(type1_mh_attends_ethnic) |>
+
+```{r type1_attends_ethnic_table}
+tar_read(ethnic_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(ethnic_category, der_financial_year)
 ```
@@ -209,13 +215,15 @@ tar_read(type1_mh_attends_ethnic) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r type1_attends_imd_plot}
-tar_read(type1_mh_attends_imd_plot)
+
+```{r type1_attends_imd_plot}
+tar_read(imd_plot)$type1_mh_attends
 ```
 
 ##### Table
-``` {r type1_attends_imd_table}
-tar_read(type1_mh_attends_imd) |>
+
+```{r type1_attends_imd_table}
+tar_read(imd_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(imd_decile, der_financial_year)
 ```
@@ -225,13 +233,15 @@ tar_read(type1_mh_attends_imd) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r type1_attends_rural_plot}
-tar_read(type1_mh_attends_rural_plot)
+
+```{r type1_attends_rural_plot}
+tar_read(rural_plot)$type1_mh_attends
 ```
 
 ##### Table
-``` {r type1_attends_rural_table}
-tar_read(type1_mh_attends_rural) |>
+
+```{r type1_attends_rural_table}
+tar_read(rural_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
 ```
@@ -296,13 +306,15 @@ tar_read(icb_uec_map_2324)
 
 ::: panel-tabset
 ##### Chart
-``` {r uec_attends_gender_plot}
-tar_read(uec_mh_attends_gender_plot)
+
+```{r uec_attends_gender_plot}
+tar_read(gender_plot)$uec_mh_attends
 ```
 
 ##### Table
-``` {r uec_attends_gender_table}
-tar_read(uec_mh_attends_gender) |>
+
+```{r uec_attends_gender_table}
+tar_read(gender_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(gender, der_financial_year)
 ```
@@ -312,13 +324,15 @@ tar_read(uec_mh_attends_gender) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r uec_attends_age_plot}
-tar_read(uec_mh_attends_age_plot)
+
+```{r uec_attends_age_plot}
+tar_read(age_plot)$uec_mh_attends
 ```
 
 ##### Table
-``` {r uec_attends_age_table}
-tar_read(uec_mh_attends_age) |>
+
+```{r uec_attends_age_table}
+tar_read(age_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(age_group, der_financial_year)
 ```
@@ -328,13 +342,15 @@ tar_read(uec_mh_attends_age) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r uec_attends_ethnic_plot}
-tar_read(uec_mh_attends_ethnic_plot)
+
+```{r uec_attends_ethnic_plot}
+tar_read(ethnic_plot)$uec_mh_attends
 ```
 
 ##### Table
-``` {r uec_attends_ethnic_table}
-tar_read(uec_mh_attends_ethnic) |>
+
+```{r uec_attends_ethnic_table}
+tar_read(ethnic_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(ethnic_category, der_financial_year)
 ```
@@ -344,13 +360,15 @@ tar_read(uec_mh_attends_ethnic) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r uec_attends_imd_plot}
-tar_read(uec_mh_attends_imd_plot)
+
+```{r uec_attends_imd_plot}
+tar_read(imd_plot)$uec_mh_attends
 ```
 
 ##### Table
-``` {r uec_attends_imd_table}
-tar_read(uec_mh_attends_imd) |>
+
+```{r uec_attends_imd_table}
+tar_read(imd_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(imd_decile, der_financial_year)
 ```
@@ -360,13 +378,15 @@ tar_read(uec_mh_attends_imd) |>
 
 ::: panel-tabset
 ##### Chart
-``` {r uec_attends_rural_plot}
-tar_read(uec_mh_attends_rural_plot)
+
+```{r uec_attends_rural_plot}
+tar_read(rural_plot)$uec_mh_attends
 ```
 
 ##### Table
-``` {r uec_attends_rural_table}
-tar_read(uec_mh_attends_rural) |>
+
+```{r uec_attends_rural_table}
+tar_read(rural_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
 ```

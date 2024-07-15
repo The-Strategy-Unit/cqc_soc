@@ -509,12 +509,12 @@ get_icb_att_rates <- function(tarobj1,tarobj2){
 get_breakdown <- function(data_filtered, data_population, group){
   data_population_agg <- data_population |> # currently at ICB level
     dplyr::summarise(count = sum(count),
-              .by = c(fin_year, !!sym(group)))
+              .by = c(fin_year, !!rlang::sym(group)))
 
   data <- data_filtered |>
-    dplyr::filter(!!sym(group) != "NULL") |>
+    dplyr::filter(!!rlang::sym(group) != "NULL") |>
     dplyr::summarise(attends = sum(attends),
-              .by = c(der_financial_year, !!sym(group))) |>
+              .by = c(der_financial_year, !!rlang::sym(group))) |>
     dplyr::left_join(data_population_agg,
               by = c(group, "der_financial_year" = "fin_year")) |>
     PHEindicatormethods::phe_rate(
@@ -532,6 +532,14 @@ get_breakdown <- function(data_filtered, data_population, group){
 filter_mh_attends <- function(data){
   data_filtered <- data |>
     dplyr::filter(mh_snomed == 1)
+
+  return(data_filtered)
+}
+
+# To filter for MH known:
+filter_mh_known <- function(data){
+  data_filtered <- data |>
+    dplyr::filter(mhsds_flag == 1 & mh_snomed == 1)
 
   return(data_filtered)
 }
