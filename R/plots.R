@@ -5,16 +5,14 @@ ed_times_plot <- function(tarobj){
   plot1 <- tarobj |>
     group_by(mh_snomed, der_financial_year) |>
     summarise(attends = sum(attends)
-              ,treat_time = sum(treat_time_total)
-              ,depart_time = sum(depart_time_total)) |>
-    mutate(treat_avg = treat_time/attends,
-           depart_avg = (depart_time/attends)-treat_avg) |>
-    ggplot(aes(x=der_financial_year, y=treat_avg, group = mh_snomed)) +
+              ,assess_time = sum(assess_time_total)) |>
+    mutate(assess_avg = assess_time/attends) |>
+    ggplot(aes(x=der_financial_year, y=assess_avg, group = mh_snomed)) +
       geom_line(aes(colour = as.factor(mh_snomed))) +
       scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
       scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
       theme_minimal() +
-      labs(title = "Average wait (mins) between arrival and first treatment",
+      labs(title = "Average wait (mins) between arrival and assessment",
            subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
            x = "Financial Year",
            y = "Wait in Minutes")
@@ -22,23 +20,51 @@ ed_times_plot <- function(tarobj){
   plot2 <- tarobj |>
     group_by(mh_snomed, der_financial_year) |>
     summarise(attends = sum(attends)
-              ,treat_time = sum(treat_time_total)
-              ,depart_time = sum(depart_time_total)) |>
-    mutate(treat_avg = treat_time/attends,
-           depart_avg = (depart_time/attends)-treat_avg) |>
+              ,decadm_time = sum(assess_to_dec)) |>
+    mutate(decadm_avg = decadm_time/attends) |>
+    ggplot(aes(x=der_financial_year, y=decadm_avg, group = mh_snomed)) +
+    geom_line(aes(colour = as.factor(mh_snomed))) +
+    scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+    scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    theme_minimal() +
+    labs(title = "Average wait (mins) between assessment and decision to treat",
+         subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
+         x = "Financial Year",
+         y = "Wait in Minutes")
+
+  plot3 <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(attends)
+              ,treat_time = sum(dec_to_treat)) |>
+    mutate(treat_avg = treat_time/attends) |>
+    ggplot(aes(x=der_financial_year, y=treat_avg, group = mh_snomed)) +
+    geom_line(aes(colour = as.factor(mh_snomed))) +
+    scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+    scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    theme_minimal() +
+    labs(title = "Average wait (mins) between decision to treat and first treatment",
+         subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
+         x = "Financial Year",
+         y = "Wait in Minutes")
+
+  plot4 <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(attends)
+              ,depart_time = sum(treat_to_depart)) |>
+    mutate(depart_avg = depart_time/attends) |>
     ggplot(aes(x=der_financial_year, y=depart_avg, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
     scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
     scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
     theme_minimal() +
-    labs(title = "Average time (mins) from first treatment to conclusion",
+    labs(title = "Average wait (mins) between treatment and departure",
          subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
          x = "Financial Year",
-         y = "Time in Minutes")
+         y = "Wait in Minutes")
 
-  plot3 <- plot1 / plot2 + plot_layout(axis_titles = "collect")
+  plot5 <-(plot1 + plot2) / (plot3 + plot4) + plot_layout(axis_titles = "collect")
 
-  return(plot3)
+  return(plot5)
 }
 
 ed_freq_boxplot <- function(tarobj){
