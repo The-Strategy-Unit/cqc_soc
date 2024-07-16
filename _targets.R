@@ -193,7 +193,10 @@ list(
       select(2, 3, 5, 6, 8, 13, 16, 19, 20, 23, 49, 61)
   ),
 
-  tar_target(ae_times, load_csv("data/ae_waits_icb.csv")),
+  tar_target(ae_times, load_csv("data/ae_waits_icb.csv") |>
+               dplyr::mutate(assess_to_dec = decadm_time_total-assess_time_total,
+                             dec_to_treat = treat_time_total-decadm_time_total,
+                             treat_to_depart = depart_time_total-treat_time_total)),
   tar_target(
     ae_diag,
     load_csv("data/ae_diag_icb.csv") |>

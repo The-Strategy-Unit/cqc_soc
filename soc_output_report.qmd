@@ -54,6 +54,8 @@ The presence of a presenting mental health problem in **A&E data** was determine
 
 The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups. Codes relating to dementia, memory & cognition AND substance misuse were excluded.
 
+Denominator data on population numbers by sub-group (age, gender, imd decile, urban-rural) were sourced from ONS mid-year estimates at LSOA level grouped to 2023 ICB boundaries. As 2023 MYE has not yet been published for LSOA, the 2022 data has been rolled forward as a proxy. For ethnic category populations, the 2011 and 2021 census data has been used to impute linear estimates of the intervening and following years. Calendar year data has been fully attributed to the financial year in which it falls e.g. 2021 = 2021/22.
+
 ## Summary
 
 -   Point1
