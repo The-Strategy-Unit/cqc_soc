@@ -193,10 +193,8 @@ list(
       select(2, 3, 5, 6, 8, 13, 16, 19, 20, 23, 49, 61)
   ),
 
-  tar_target(ae_times, load_csv("data/ae_waits_icb.csv") |>
-               dplyr::mutate(assess_to_dec = decadm_time_total-assess_time_total,
-                             dec_to_treat = treat_time_total-decadm_time_total,
-                             treat_to_depart = depart_time_total-treat_time_total)),
+  tar_target(ae_times
+             , load_csv("data/ae_waits_icb.csv")),
   tar_target(
     ae_diag,
     load_csv("data/ae_diag_icb.csv") |>
@@ -303,7 +301,10 @@ list(
   ),
 
   #### Plots ####
-  tar_target(ae_times_plot, ed_times_plot(ae_times)),
+  tar_target(ae_times_assess_plot, ed_times_assess_plot(ae_times)),
+  tar_target(ae_times_treat_plot, ed_times_treat_plot(ae_times)),
+  tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times)),
+  tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
 

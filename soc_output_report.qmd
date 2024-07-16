@@ -118,13 +118,29 @@ tar_read(ae_trans_barplot)
 
 #### Waiting times in ED
 
-The ECDS allows calculation of times from arrival to treatment and from treatment to departure.
+The ECDS allows calculation of times from arrival to assessment, treatment, conclusion and to departure.
 
-```{r ae_wait_plot}
-
-tar_read(ae_times_plot)
-
+::: panel-tabset
+##### Assessment
+```{r ae_wait_assess_plot}
+tar_read(ae_times_assess_plot)
 ```
+
+##### Treatment
+```{r ae_wait_treat_plot}
+tar_read(ae_times_treat_plot)
+```
+
+##### Conclusion
+```{r ae_wait_conclude_plot}
+tar_read(ae_times_conclude_plot)
+```
+
+##### Departure
+```{r ae_wait_depart_plot}
+tar_read(ae_times_depart_plot)
+```
+:::
 
 #### Mental health 'frequent fliers'
 
