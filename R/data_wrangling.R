@@ -252,16 +252,14 @@ get_lsoa_to_icb_key <- function(lsoa_11_to_icb_23, lsoa_21_to_icb_23) {
 # To summarise data across ICBs:
 summarise_by_icb <- function(data, lsoa_to_icb, group) {
   summarised_data <- data |>
-    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021,
-                                     # LSOAs can change with a new
+    dplyr::mutate(lsoa_year = ifelse(as.numeric(year) < 2021, # LSOAs can change with a new
                                      # census, so this ensures that we
                                      # use the correct LSOA to ICB map.
                                      # ICBs can also change over time,
                                      # but this has already been
                                      # accounted for and detailed in
                                      # get_lsoa_to_icb_map() above.
-                                     "2011",
-                                     "2021")) |>
+                                     "2011", "2021")) |>
     dplyr::left_join(lsoa_to_icb, by = c("lsoa_code", "lsoa_year")) |>
     dplyr::summarise(count = sum(count),
                      .by = c(year, icb_code, !!rlang::sym(group)))
@@ -331,10 +329,7 @@ get_imd_totals <- function(imd_url, population_by_lsoa, lsoa_to_icb) {
     dplyr::left_join(population_by_lsoa, "lsoa_code") |>
     summarise_by_icb(lsoa_to_icb, "index_of_multiple_deprivation_imd_decile") |>
     add_financial_year() |>
-    dplyr::select(fin_year,
-                  icb_code,
-                  imd_decile = index_of_multiple_deprivation_imd_decile,
-                  count) |>
+    dplyr::select(fin_year, icb_code, imd_decile = index_of_multiple_deprivation_imd_decile, count) |>
     dplyr::mutate(imd_decile = factor(imd_decile, levels = as.character(1:10)))
 
   return(data)
@@ -357,10 +352,7 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
     remove_welsh_lsoas() |>
     summarise_by_icb(lsoa_to_icb, "rural_urban_classification_2011_2_fold") |>
     add_financial_year() |>
-    dplyr::select(fin_year,
-                  icb_code,
-                  rural_urban = rural_urban_classification_2011_2_fold,
-                  count)
+    dplyr::select(fin_year, icb_code, rural_urban = rural_urban_classification_2011_2_fold, count)
 
   return(rural)
 
@@ -369,8 +361,10 @@ get_rural_totals <- function(url, population_by_lsoa, lsoa_to_icb) {
 # Add financial year
 add_financial_year <- function(data) {
   data <- data |>
-    dplyr::mutate(year_plus_one = stringr::str_sub(as.numeric(year) + 1, 3, 4),
-                  fin_year = glue::glue("{year}/{year_plus_one}"))
+    dplyr::mutate(
+      year_plus_one = stringr::str_sub(as.numeric(year) + 1, 3, 4),
+      fin_year = glue::glue("{year}/{year_plus_one}")
+    )
 
   return(data)
 }
@@ -386,32 +380,34 @@ get_ae_summary <- function(tarobj) {
   data <-  tarobj |>
     filter(ec_department_type == '01') |>
     group_by(der_financial_year) |>
-    summarise(all = sum(attends),
-              mh = sum(if_else(mh_snomed == 1, attends,0)),
-              all_cost = sum(cost),
-              mh_cost = sum(if_else(mh_snomed == 1, cost,0))) |>
-    mutate(mh_perc = round(mh/all*100,2))
+    summarise(
+      all = sum(attends),
+      mh = sum(if_else(mh_snomed == 1, attends, 0)),
+      all_cost = sum(cost),
+      mh_cost = sum(if_else(mh_snomed == 1, cost, 0))
+    ) |>
+    mutate(mh_perc = round(mh / all * 100, 2))
 
-return(data)
+  return(data)
 }
 
 get_ae_summ_transp <- function(tarobj) {
   tarobj |>
-    filter(der_financial_year == '2023/24', arrival_mode != 'NULL', ec_department_type == '01') |>
+    filter(der_financial_year == '2023/24',
+           arrival_mode != 'NULL',
+           ec_department_type == '01') |>
     group_by(mh_snomed, arrival_mode) |>
     summarise(attends = sum(attends)) |>
     group_by(mh_snomed) |>
-    mutate(perc = attends/sum(attends)*100)
+    mutate(perc = attends / sum(attends) * 100)
 }
 
 
 # To get Type 3 and Type 4 attendances:
-get_uec_activity <- function(data){
-
+get_uec_activity <- function(data) {
   filtered <- data |>
     dplyr::filter(ec_department_type %in% c("03", "04")) |>
-    dplyr::rename(icb_code = icb23cd,
-           icb_name = icb23nm)
+    dplyr::rename(icb_code = icb23cd, icb_name = icb23nm)
 
   return(filtered)
 
@@ -420,9 +416,11 @@ get_uec_activity <- function(data){
 # To get percentage of MH attendances by ICB and financial year:
 get_perc_mh_attends <- function(data) {
   mh_attends <- data |>
-    dplyr::summarise(mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
-              attends = sum(attends),
-              .by = c(icb_code, der_financial_year)) |>
+    dplyr::summarise(
+      mh_attends = sum(if_else(mh_snomed == 1, attends, 0)),
+      attends = sum(attends),
+      .by = c(icb_code, der_financial_year)
+    ) |>
     PHEindicatormethods::phe_proportion(mh_attends, attends, multiplier = 100)
 
   return(mh_attends)
@@ -433,17 +431,20 @@ get_perc_mh_attends <- function(data) {
 get_perc_mh_known <- function(data) {
   mh_known <- data |>
     dplyr::filter(mh_snomed == 1) |> # attends due to MH
-    dplyr::summarise(mh_known = sum(dplyr::if_else(mhsds_flag == 1, attends, 0)),
-                     attends = sum(attends),
-                     .by = c(icb_code, der_financial_year)) |>
+    dplyr::summarise(
+      mh_known = sum(dplyr::if_else(mhsds_flag == 1, attends, 0)),
+      attends = sum(attends),
+      .by = c(icb_code, der_financial_year)
+    ) |>
     PHEindicatormethods::phe_proportion(mh_known, attends, multiplier = 100)
 
   get_perc_mh_attends_boxplot(mh_known)
 
-  return(mh_known)}
+  return(mh_known)
+}
 
 # To create a key from ICB codes to names:
-get_icb_codes_names <- function(data){
+get_icb_codes_names <- function(data) {
   key <- data |>
     select(icb_code, icb_name) |>
     distinct()
@@ -452,13 +453,11 @@ get_icb_codes_names <- function(data){
 }
 
 # Total ICB population with 23/24 imputed (from 22/23)
-get_icb_pop_total <- function(tarobj){
+get_icb_pop_total <- function(tarobj) {
   dat1 <- tarobj |>
-    summarise(pop = sum(count),
-              .by = c(icb_code, fin_year))
+    summarise(pop = sum(count), .by = c(icb_code, fin_year))
   dat2 <- tarobj |>
-    summarise(pop = sum(count),
-              .by = c(icb_code, fin_year)) |>
+    summarise(pop = sum(count), .by = c(icb_code, fin_year)) |>
     filter(fin_year == '2022/23') |>
     mutate(fin_year = '2023/24')
 
@@ -469,40 +468,46 @@ get_icb_pop_total <- function(tarobj){
 }
 
 # To get Type 1 attendances:
-get_ed_activity <- function(data){
-
+get_ed_activity <- function(data) {
   filtered <- data |>
     dplyr::filter(ec_department_type == "01") |>
-    dplyr::rename(icb_code = icb23cd,
-                  icb_name = icb23nm)
+    dplyr::rename(icb_code = icb23cd, icb_name = icb23nm)
 
   return(filtered)
 
 }
 
 ## MH attendance rates total by ICB
-get_icb_att_rates <- function(tarobj1,tarobj2){
+get_icb_att_rates <- function(tarobj1, tarobj2) {
   tarobj1 |>
     filter(mh_snomed == 1) |>
     summarise(attends = sum(attends),
               .by = c(icb_code, der_financial_year)) |>
-    left_join(tarobj2, by = c("icb_code" = "icb_code", "der_financial_year" = "fin_year")) |>
-    PHEindicatormethods::phe_rate(x=attends, n=pop, confidence = 0.95, multiplier = 100000)
+    left_join(tarobj2,
+              by = c("icb_code" = "icb_code", "der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = pop,
+      confidence = 0.95,
+      multiplier = 100000
+    )
 
 }
 
 # To get a breakdown by a specified group:
-get_breakdown <- function(data_filtered, data_population, group){
+get_breakdown_one_group <- function(data_filtered, data_population, group) {
+  name_of_dataset <- deparse(substitute(data_filtered))
+
   data_population_agg <- data_population |> # currently at ICB level
     dplyr::summarise(count = sum(count),
-              .by = c(fin_year, !!rlang::sym(group)))
+                     .by = c(fin_year, !!rlang::sym(group)))
 
   data <- data_filtered |>
     dplyr::filter(!!rlang::sym(group) != "NULL") |>
     dplyr::summarise(attends = sum(attends),
-              .by = c(der_financial_year, !!rlang::sym(group))) |>
+                     .by = c(der_financial_year, !!rlang::sym(group))) |>
     dplyr::left_join(data_population_agg,
-              by = c(group, "der_financial_year" = "fin_year")) |>
+                     by = c(group, "der_financial_year" = "fin_year")) |>
     PHEindicatormethods::phe_rate(
       x = attends,
       n = count,
@@ -514,18 +519,79 @@ get_breakdown <- function(data_filtered, data_population, group){
 
 }
 
+# To get a breakdown by a two groups:
+get_breakdown_two_groups <- function(data_filtered,
+                                     data_population,
+                                     group_population,
+                                     group_other) {
+  name_of_dataset <- deparse(substitute(data_filtered))
+
+  data_population_agg <- data_population |> # currently at ICB level
+    dplyr::summarise(count = sum(count),
+                     .by = c(fin_year, !!rlang::sym(group_population)))
+
+  data <- data_filtered |>
+    dplyr::filter(!!rlang::sym(group_population) != "NULL") |>
+    dplyr::summarise(
+      attends = sum(attends),
+      .by = c(
+        der_financial_year,
+        !!rlang::sym(group_population),
+        !!rlang::sym(group_other)
+      )
+    ) |>
+    dplyr::left_join(data_population_agg,
+                     by = c(group_population, "der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = count,
+      confidence = 0.95,
+      multiplier = 100000
+    )
+
+  return(data)
+
+}
+
+get_breakdowns <- function(data_for_breakdowns,
+                           type1_arrival_mode,
+                           data_population,
+                           group) {
+  most <- purrr::map(
+    data_for_breakdowns,
+    ~ get_breakdown_one_group(., data_population, group)
+  )
+
+  arrival_mode <- get_breakdown_two_groups(type1_arrival_mode,
+                           data_population,
+                           group,
+                           "arrival_mode")
+
+  all <- append(most, list(type1_arrival_mode = arrival_mode))
+
+  return(all)
+}
+
 # To filter for MH attendances:
-filter_mh_attends <- function(data){
+filter_mh_attends <- function(data) {
   data_filtered <- data |>
     dplyr::filter(mh_snomed == 1)
 
   return(data_filtered)
 }
 
-# To filter for MH known:
-filter_mh_known <- function(data){
+# To filter for MH attendances where the patient is known to MH services:
+filter_mh_known <- function(data) {
   data_filtered <- data |>
     dplyr::filter(mhsds_flag == 1 & mh_snomed == 1)
+
+  return(data_filtered)
+}
+
+# To filter for MH attendances:
+filter_arrival_mode <- function(data) {
+  data_filtered <- data |>
+    dplyr::filter(arrival_mode != 'NULL', mh_snomed == 1)
 
   return(data_filtered)
 }

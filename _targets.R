@@ -209,8 +209,7 @@ list(
     data_ae,
     load_csv("data/ae_extract_full.csv") |>
       dplyr::rename(imd_decile = index_of_multiple_deprivation_decile) |>
-      dplyr::mutate(imd_decile = factor(imd_decile,
-                                        levels = as.character(1:10)))
+      dplyr::mutate(imd_decile = factor(imd_decile, levels = as.character(1:10)))
   ),
 
   tar_target(data_111, load_csv("data/111_extract_full.csv")),
@@ -228,6 +227,9 @@ list(
 
   # MH known
   tar_target(type1_mh_known, filter_mh_known(data_ed)),
+
+  # Arrival mode
+  tar_target(type1_arrival_mode, filter_arrival_mode(data_ed)),
 
   #### UEC activity ####
   tar_target(data_uec, get_uec_activity(data_ae)),
@@ -266,41 +268,31 @@ list(
       type1_mh_known = type1_mh_known
     )
   ),
-  tar_target(
-    gender_breakdowns,
-    purrr::map(
-      data_for_breakdowns,
-      ~ get_breakdown(., gender_by_icb, "gender")
-    )
-  ),
-  tar_target(
-    age_breakdowns,
-    purrr::map(
-      data_for_breakdowns,
-      ~ get_breakdown(., age_by_icb, "age_group")
-    )
-  ),
-  tar_target(
-    imd_breakdowns,
-    purrr::map(
-      data_for_breakdowns,
-      ~ get_breakdown(., imd_by_icb, "imd_decile")
-    )
-  ),
-  tar_target(
-    rural_breakdowns,
-    purrr::map(
-      data_for_breakdowns,
-      ~ get_breakdown(., rural_by_icb, "rural_urban")
-    )
-  ),
-  tar_target(
-    ethnic_breakdowns,
-    purrr::map(
-      data_for_breakdowns,
-      ~ get_breakdown(., ethnicity_by_icb_by_year, "ethnic_category")
-    )
-  ),
+  tar_target(gender_breakdowns,
+             get_breakdowns(data_for_breakdowns,
+                            type1_arrival_mode,
+                            gender_by_icb,
+                            "gender")),
+  tar_target(age_breakdowns,
+             get_breakdowns(data_for_breakdowns,
+                            type1_arrival_mode,
+                            age_by_icb,
+                            "age_group")),
+  tar_target(imd_breakdowns,
+             get_breakdowns(data_for_breakdowns,
+                            type1_arrival_mode,
+                            imd_by_icb,
+                            "imd_decile")),
+  tar_target(rural_breakdowns,
+             get_breakdowns(data_for_breakdowns,
+                            type1_arrival_mode,
+                            rural_by_icb,
+                            "rural_urban")),
+  tar_target(ethnic_breakdowns,
+             get_breakdowns(data_for_breakdowns,
+                            type1_arrival_mode,
+                            ethnicity_by_icb_by_year,
+                            "ethnic_category")),
 
   #### Plots ####
   tar_target(ae_times_plot, ed_times_plot(ae_times)),
@@ -363,5 +355,6 @@ list(
     icb_uec_map_2324,
     map_icb_allmh_uec(icb_boundary, icb_rates_uec)
   )
+
 
 )
