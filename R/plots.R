@@ -113,6 +113,7 @@ get_ed_transp_colplot <- function(tarobj){
 }
 
 get_standard_line_for_breakdowns <- function(data, group){
+  name_of_dataset <- deparse(substitute(data))
 
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year,
