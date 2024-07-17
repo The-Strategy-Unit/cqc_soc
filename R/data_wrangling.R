@@ -553,6 +553,7 @@ get_breakdown_two_groups <- function(data_filtered,
 
 }
 
+# To get the breakdowns for each dataset by a group:
 get_breakdowns <- function(data_for_breakdowns,
                            type1_arrival_mode,
                            data_population,
@@ -588,7 +589,7 @@ filter_mh_known <- function(data) {
   return(data_filtered)
 }
 
-# To filter for MH attendances:
+# To filter for MH attendances and arrival modes:
 filter_arrival_mode <- function(data) {
   data_filtered <- data |>
     dplyr::filter(arrival_mode != 'NULL', mh_snomed == 1)
