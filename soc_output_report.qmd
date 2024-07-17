@@ -292,6 +292,124 @@ tar_read(rural_breakdowns)$type1_mh_attends |>
 
 :::
 
+#### Mental Health attendances known to specialist services
+
+This is the number of Type 1 attendances with MH as primary reason/diagnosis where the patient was known to specialist services.
+
+::: panel-tabset
+
+##### Gender variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r type1_known_gender_plot}
+#| label: "fig-type1_known-gender"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by gender."
+tar_read(gender_plot)$type1_mh_known
+```
+
+###### Table
+
+```{r type1_known_gender_table}
+tar_read(gender_breakdowns)$type1_mh_known |>
+  select(1:7) |> 
+  arrange(gender, der_financial_year)
+```
+
+::::
+
+##### Age-group variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r type1_known_age_plot}
+#| label: "fig-type1_known-age"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by age group."
+tar_read(age_plot)$type1_mh_known
+```
+
+###### Table
+
+```{r type1_known_age_table}
+tar_read(age_breakdowns)$type1_mh_known |>
+  select(1:7) |> 
+  arrange(age_group, der_financial_year)
+```
+
+::::
+
+##### Ethnic group variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r type1_known_ethnic_plot}
+#| label: "fig-type1_known-ethnic"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by ethnic category."
+tar_read(ethnic_plot)$type1_mh_known
+```
+
+###### Table
+
+```{r type1_known_ethnic_table}
+tar_read(ethnic_breakdowns)$type1_mh_known |>
+  select(1:7) |> 
+  arrange(ethnic_category, der_financial_year)
+```
+
+::::
+
+##### Socioeconomic variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r type1_known_imd_plot}
+#| label: "fig-type1_known-imd"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by Index of Multiple Deprivation decile."
+tar_read(imd_plot)$type1_mh_known
+```
+
+###### Table
+
+```{r type1_known_imd_table}
+tar_read(imd_breakdowns)$type1_mh_known |>
+  select(1:7) |> 
+  arrange(imd_decile, der_financial_year)
+```
+
+::::
+
+##### Rural-urban variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r type1_known_rural_plot}
+#| label: "fig-type1_known-rural"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by rural and urban populations."
+tar_read(rural_plot)$type1_mh_known
+```
+
+###### Table
+
+```{r type1_known_rural_table}
+tar_read(rural_breakdowns)$type1_mh_known |>
+  select(1:7) |> 
+  arrange(rural_urban, der_financial_year)
+```
+
+::::
+
+:::
+
 #### Arrival mode breakdowns {#sec-arrival-mode-breakdowns}
 
 The breakdowns below are for the number of mental health attendances only.
@@ -455,6 +573,8 @@ Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/2
 tar_read(uec_mh_known_boxplot)
 ```
 
+Breakdowns by population demographics can be seen in @sec-uec-mh-known. 
+
 Looking at table (@tbl-perc-known) of ICBs over time:
 
 -   Again Sussex have high % compared to other ICBs.
@@ -582,6 +702,124 @@ tar_read(rural_plot)$uec_mh_attends
 #| label: "fig-uec-attends-rural"
 #| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by rural and urban populations."
 tar_read(rural_breakdowns)$uec_mh_attends |>
+  select(1:7) |> 
+  arrange(rural_urban, der_financial_year)
+```
+
+::::
+
+:::
+
+#### Mental Health attendances known to specialist services  {#sec-uec-mh-known}
+
+This is the number of UEC attendances with MH as primary reason/diagnosis where the patient was known to specialist services.
+
+::: panel-tabset
+
+##### Gender variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r uec_known_gender_plot}
+#| label: "fig-uec_known-gender"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by gender."
+tar_read(gender_plot)$uec_mh_known
+```
+
+###### Table
+
+```{r uec_known_gender_table}
+tar_read(gender_breakdowns)$uec_mh_known |>
+  select(1:7) |> 
+  arrange(gender, der_financial_year)
+```
+
+::::
+
+##### Age-group variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r uec_known_age_plot}
+#| label: "fig-uec_known-age"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by age group."
+tar_read(age_plot)$uec_mh_known
+```
+
+###### Table
+
+```{r uec_known_age_table}
+tar_read(age_breakdowns)$uec_mh_known |>
+  select(1:7) |> 
+  arrange(age_group, der_financial_year)
+```
+
+::::
+
+##### Ethnic group variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r uec_known_ethnic_plot}
+#| label: "fig-uec_known-ethnic"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by ethnic category."
+tar_read(ethnic_plot)$uec_mh_known
+```
+
+###### Table
+
+```{r uec_known_ethnic_table}
+tar_read(ethnic_breakdowns)$uec_mh_known |>
+  select(1:7) |> 
+  arrange(ethnic_category, der_financial_year)
+```
+
+::::
+
+##### Socioeconomic variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r uec_known_imd_plot}
+#| label: "fig-uec_known-imd"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by Index of Multiple Deprivation decile."
+tar_read(imd_plot)$uec_mh_known
+```
+
+###### Table
+
+```{r uec_known_imd_table}
+tar_read(imd_breakdowns)$uec_mh_known |>
+  select(1:7) |> 
+  arrange(imd_decile, der_financial_year)
+```
+
+::::
+
+##### Rural-urban variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r uec_known_rural_plot}
+#| label: "fig-uec_known-rural"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by rural and urban populations."
+tar_read(rural_plot)$uec_mh_known
+```
+
+###### Table
+
+```{r uec_known_rural_table}
+tar_read(rural_breakdowns)$uec_mh_known |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
 ```
