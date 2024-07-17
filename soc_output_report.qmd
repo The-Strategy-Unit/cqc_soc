@@ -174,9 +174,12 @@ tar_read(ae_freq_boxplot)
 tar_read(icb_ed_map_2324)
 ```
 
+::: panel-tabset
+
 #### Gender variation
 
-::: panel-tabset
+:::: panel-tabset
+
 ##### Chart
 
 ```{r type1_attends_gender_plot}
@@ -190,11 +193,13 @@ tar_read(gender_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(gender, der_financial_year)
 ```
-:::
+
+::::
 
 #### Age-group variation
 
-::: panel-tabset
+:::: panel-tabset
+
 ##### Chart
 
 ```{r type1_attends_age_plot}
@@ -208,11 +213,13 @@ tar_read(age_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(age_group, der_financial_year)
 ```
-:::
+
+::::
 
 #### Ethnic group variation
 
-::: panel-tabset
+:::: panel-tabset
+
 ##### Chart
 
 ```{r type1_attends_ethnic_plot}
@@ -226,11 +233,13 @@ tar_read(ethnic_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(ethnic_category, der_financial_year)
 ```
-:::
+
+::::
 
 #### Socioeconomic variation
 
-::: panel-tabset
+:::: panel-tabset
+
 ##### Chart
 
 ```{r type1_attends_imd_plot}
@@ -244,11 +253,13 @@ tar_read(imd_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(imd_decile, der_financial_year)
 ```
-:::
+
+::::
 
 #### Rural-urban variation
 
-::: panel-tabset
+:::: panel-tabset
+
 ##### Chart
 
 ```{r type1_attends_rural_plot}
@@ -262,6 +273,9 @@ tar_read(rural_breakdowns)$type1_mh_attends |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
 ```
+
+::::
+
 :::
 
 #### Arrival mode breakdowns {#sec-arrival-mode-breakdowns}
@@ -273,6 +287,7 @@ The breakdowns below are for the number of mental health attendances only.
 ##### Gender variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r type1_arrival_mode_gender_plot}
@@ -289,11 +304,13 @@ tar_read(gender_breakdowns)$type1_arrival_mode |>
   select(1:7) |> 
   arrange(gender, der_financial_year)
 ```
+
 :::
 
 ##### Age-group variation
 
 :::: panel-tabset
+
 ###### Chart
 
 ```{r type1_arrival_mode_age_plot}
@@ -310,11 +327,13 @@ tar_read(age_breakdowns)$type1_arrival_mode |>
   select(1:7) |> 
   arrange(age_group, der_financial_year)
 ```
+
 ::::
 
 ##### Ethnic group variation
 
 :::: panel-tabset
+
 ###### Chart
 
 ```{r type1_arrival_mode_ethnic_plot}
@@ -331,11 +350,13 @@ tar_read(ethnic_breakdowns)$type1_arrival_mode |>
   select(1:7) |> 
   arrange(ethnic_category, der_financial_year)
 ```
+
 ::::
 
 ##### Socioeconomic variation
 
 :::: panel-tabset
+
 ###### Chart
 
 ```{r type1_arrival_mode_imd_plot}
@@ -352,11 +373,13 @@ tar_read(imd_breakdowns)$type1_arrival_mode |>
   select(1:7) |> 
   arrange(imd_decile, der_financial_year)
 ```
+
 ::::
 
 ##### Rural-urban variation
 
 :::: panel-tabset
+
 ###### Chart
 
 ```{r type1_arrival_mode_rural_plot}
@@ -436,6 +459,7 @@ tar_read(icb_uec_map_2324)
 #### Gender variation
 
 ::: panel-tabset
+
 ##### Chart
 
 ```{r uec_attends_gender_plot}
@@ -449,11 +473,13 @@ tar_read(gender_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(gender, der_financial_year)
 ```
+
 :::
 
 #### Age-group variation
 
 ::: panel-tabset
+
 ##### Chart
 
 ```{r uec_attends_age_plot}
@@ -467,11 +493,13 @@ tar_read(age_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(age_group, der_financial_year)
 ```
+
 :::
 
 #### Ethnic group variation
 
 ::: panel-tabset
+
 ##### Chart
 
 ```{r uec_attends_ethnic_plot}
@@ -485,11 +513,13 @@ tar_read(ethnic_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(ethnic_category, der_financial_year)
 ```
+
 :::
 
 #### Socioeconomic variation
 
 ::: panel-tabset
+
 ##### Chart
 
 ```{r uec_attends_imd_plot}
@@ -503,11 +533,13 @@ tar_read(imd_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(imd_decile, der_financial_year)
 ```
+
 :::
 
 #### Rural-urban variation
 
 ::: panel-tabset
+
 ##### Chart
 
 ```{r uec_attends_rural_plot}
@@ -521,6 +553,7 @@ tar_read(rural_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
 ```
+
 :::
 
 ## NHS 111 calls
