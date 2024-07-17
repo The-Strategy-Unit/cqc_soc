@@ -178,3 +178,18 @@ plot <- tarobj |>
 
 return(plot)
 }
+
+ed_left_plot <- function(tarobj){
+
+  plot <- tarobj |>
+    ggplot(aes(x=der_financial_year, y=value, group = mh_snomed)) +
+    geom_line(aes(colour = as.factor(mh_snomed))) +
+    scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+    scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    theme_minimal() +
+    labs(title = "Percentage of patients leaving before assessment or treatment",
+         subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
+         x = "Financial Year",
+         y = "% of all attendances")
+  return(plot)
+}

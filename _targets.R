@@ -226,6 +226,8 @@ list(
 
   tar_target(ae_toa_summary, ae_toa_grouped(ae_toa)),
 
+  tar_target(ae_left_summary, ae_left_grouped(ae_left)),
+
   #### Type 1 ED activity ####
   tar_target(data_ed, get_ed_activity(data_ae)),
 
@@ -308,6 +310,9 @@ list(
   tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
+  tar_target(ed_left_plot, ed_left_plot(ae_left_summary)),
+  # Overlayed bar chart for time of arrival to AE
+  tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
 
   # ICB total populations
   tar_target(pop_by_icb, get_icb_pop_total(gender_by_icb)),
@@ -364,11 +369,7 @@ list(
   tar_target(
     icb_uec_map_2324,
     map_icb_allmh_uec(icb_boundary, icb_rates_uec)
-  ),
-
-  # Overlayed bar chart for time of arrival to AE
-  tar_target(ae_toa_plot,
-             get_overlay_barchart_toa(ae_toa_summary))
+  )
 
 
 )

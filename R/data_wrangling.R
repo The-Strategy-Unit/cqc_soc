@@ -600,11 +600,23 @@ filter_arrival_mode <- function(data) {
 # create df of AE attendances by hour
 ae_toa_grouped <- function(tarobj) {
   data <- tarobj |>
-    filter(der_financial_year == '2023/24') |>
-    group_by(mh_snomed, toa) |>
-    summarise(attends = sum(attends)) |>
-    group_by(mh_snomed) |>
-    mutate(perc = attends/sum(attends)*100)
+    dplyr::filter(der_financial_year == '2023/24') |>
+    dplyr::group_by(mh_snomed, toa) |>
+    dplyr::summarise(attends = sum(attends)) |>
+    dplyr::group_by(mh_snomed) |>
+    dplyr::mutate(perc = attends/sum(attends)*100)
+
+  return(data)
+}
+
+# create df % of AE attendances left before completion
+ae_left_grouped <- function(tarobj) {
+  data <- tarobj |>
+    dplyr::group_by(mh_snomed, der_financial_year) |>
+    dplyr::summarise(attends = sum(attends),
+              left = sum(left_b4_completion)) |>
+    dplyr::ungroup() |>
+    PHEindicatormethods::phe_proportion(x=left, n=attends, multiplier = 100)
 
   return(data)
 }
