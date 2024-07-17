@@ -456,9 +456,11 @@ tar_read(uec_mh_known_table)
 tar_read(icb_uec_map_2324)
 ```
 
+::: panel-tabset
+
 #### Gender variation
 
-::: panel-tabset
+:::: panel-tabset
 
 ##### Chart
 
@@ -474,11 +476,11 @@ tar_read(gender_breakdowns)$uec_mh_attends |>
   arrange(gender, der_financial_year)
 ```
 
-:::
+::::
 
 #### Age-group variation
 
-::: panel-tabset
+:::: panel-tabset
 
 ##### Chart
 
@@ -494,11 +496,11 @@ tar_read(age_breakdowns)$uec_mh_attends |>
   arrange(age_group, der_financial_year)
 ```
 
-:::
+::::
 
 #### Ethnic group variation
 
-::: panel-tabset
+:::: panel-tabset
 
 ##### Chart
 
@@ -514,11 +516,11 @@ tar_read(ethnic_breakdowns)$uec_mh_attends |>
   arrange(ethnic_category, der_financial_year)
 ```
 
-:::
+::::
 
 #### Socioeconomic variation
 
-::: panel-tabset
+:::: panel-tabset
 
 ##### Chart
 
@@ -534,11 +536,11 @@ tar_read(imd_breakdowns)$uec_mh_attends |>
   arrange(imd_decile, der_financial_year)
 ```
 
-:::
+::::
 
 #### Rural-urban variation
 
-::: panel-tabset
+:::: panel-tabset
 
 ##### Chart
 
@@ -553,6 +555,8 @@ tar_read(rural_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
 ```
+
+::::
 
 :::
 
