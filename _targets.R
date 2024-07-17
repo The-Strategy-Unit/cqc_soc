@@ -195,12 +195,19 @@ list(
 
   tar_target(ae_times
              , load_csv("data/ae_waits_icb.csv")),
-  tar_target(
-    ae_diag,
+  tar_target(ae_diag,
     load_csv("data/ae_diag_icb.csv") |>
       left_join(snomed_mh, by = c("ec_diagnosis_01" = "concept_id"))
   ),
-  tar_target(ae_freq, load_csv("data/ae_freqfly_icb.csv")),
+  tar_target(ae_freq,
+             load_csv("data/ae_freqfly_icb.csv")
+  ),
+  tar_target(ae_left,
+             load_csv("data/ae_left_icb.csv")
+  ),
+  tar_target(ae_toa,
+             load_csv("data/ae_toa_icb.csv")
+  ),
 
   # Full extracts
   tar_target(
@@ -212,10 +219,12 @@ list(
 
   tar_target(data_111, load_csv("data/111_extract_full.csv")),
 
-  # Summary from full extracts
+  # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
 
   tar_target(ae_summ_transp, get_ae_summ_transp(data_ae)),
+
+  tar_target(ae_toa_summary, ae_toa_grouped(ae_toa)),
 
   #### Type 1 ED activity ####
   tar_target(data_ed, get_ed_activity(data_ae)),
@@ -355,7 +364,11 @@ list(
   tar_target(
     icb_uec_map_2324,
     map_icb_allmh_uec(icb_boundary, icb_rates_uec)
-  )
+  ),
+
+  # Overlayed bar chart for time of arrival to AE
+  tar_target(ae_toa_plot,
+             get_overlay_barchart_toa(ae_toa_summary))
 
 
 )

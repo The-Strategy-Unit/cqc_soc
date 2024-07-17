@@ -164,3 +164,17 @@ get_standard_line_for_breakdowns <- function(data, group){
   return(plot)
 
 }
+
+get_overlay_barchart_toa <- function(tarobj){
+plot <- tarobj |>
+  ggplot(aes(x=toa, y=perc, fill =as.factor(mh_snomed))) +
+           geom_bar(stat="identity",position = "identity", alpha=.6) +
+  scale_fill_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+  theme_minimal() +
+  labs(x = "Time of arrival (24hr)",
+       y = "Percent of attendances",
+       title = "Percentage of attendances to A&E by hour of arrival",
+       subtitle = "All Type 1 attendances in England, 2023/24")
+
+return(plot)
+}

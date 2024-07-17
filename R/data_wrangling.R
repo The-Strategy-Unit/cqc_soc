@@ -596,3 +596,15 @@ filter_arrival_mode <- function(data) {
 
   return(data_filtered)
 }
+
+# create df of AE attendances by hour
+ae_toa_grouped <- function(tarobj) {
+  data <- tarobj |>
+    filter(der_financial_year == '2023/24') |>
+    group_by(mh_snomed, toa) |>
+    summarise(attends = sum(attends)) |>
+    group_by(mh_snomed) |>
+    mutate(perc = attends/sum(attends)*100)
+
+  return(data)
+}

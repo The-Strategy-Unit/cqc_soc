@@ -115,6 +115,14 @@ Data is captured in ECDS for the mode of transport used to get the patient to th
 tar_read(ae_trans_barplot)
 ```
 
+#### Time of arrival
+
+Patients presenting with mental health complaints are more likely to attend after 8pm and before 6am than their contemporaries with physical health complaints - suggestive of lesser access to out-of-hours psychiatric and crisis support.
+
+```{r ae_arrive_time}
+tar_read(ae_toa_plot)
+```
+
 #### Waiting times in ED
 
 The ECDS allows calculation of times from arrival to assessment, treatment, conclusion and to departure.
