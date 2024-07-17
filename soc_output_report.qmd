@@ -432,7 +432,7 @@ Boxplot (@fig-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs:
 tar_read(uec_mh_attends_boxplot)
 ```
 
-Looking at table (@tbl-perc) of ICBs over time:
+Breakdowns by population can be seen in @sec-uec-mh-attends. Looking at table (@tbl-perc) of ICBs over time:
 
 -   there are some ICBs that have consistent % of MH attends over the financial years.
     -   For example Black Country and Herefordshire & Worcestershire have low %.
@@ -464,7 +464,7 @@ tar_read(uec_mh_known_table)
 
 ### Detailed breakdowns
 
-#### Mental Health attendances
+#### Mental Health attendances {#sec-uec-mh-attends}
 
 This is the number of attendances to UEC with MH as primary reason/diagnosis.
 
