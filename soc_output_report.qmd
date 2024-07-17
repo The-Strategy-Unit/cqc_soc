@@ -168,7 +168,11 @@ tar_read(ae_freq_boxplot)
 
 ### Detailed breakdowns
 
-#### Geographical variation
+#### Mental Health attendances
+
+This is the number of attendances to UEC with MH as primary reason/diagnosis.
+
+##### Geographical variation
 
 ```{r icb_map_allmh}
 tar_read(icb_ed_map_2324)
@@ -176,17 +180,17 @@ tar_read(icb_ed_map_2324)
 
 ::: panel-tabset
 
-#### Gender variation
+##### Gender variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r type1_attends_gender_plot}
 tar_read(gender_plot)$type1_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r type1_attends_gender_table}
 tar_read(gender_breakdowns)$type1_mh_attends |>
@@ -196,17 +200,17 @@ tar_read(gender_breakdowns)$type1_mh_attends |>
 
 ::::
 
-#### Age-group variation
+##### Age-group variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r type1_attends_age_plot}
 tar_read(age_plot)$type1_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r type1_attends_age_table}
 tar_read(age_breakdowns)$type1_mh_attends |>
@@ -216,17 +220,17 @@ tar_read(age_breakdowns)$type1_mh_attends |>
 
 ::::
 
-#### Ethnic group variation
+##### Ethnic group variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r type1_attends_ethnic_plot}
 tar_read(ethnic_plot)$type1_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r type1_attends_ethnic_table}
 tar_read(ethnic_breakdowns)$type1_mh_attends |>
@@ -236,17 +240,17 @@ tar_read(ethnic_breakdowns)$type1_mh_attends |>
 
 ::::
 
-#### Socioeconomic variation
+##### Socioeconomic variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r type1_attends_imd_plot}
 tar_read(imd_plot)$type1_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r type1_attends_imd_table}
 tar_read(imd_breakdowns)$type1_mh_attends |>
@@ -256,17 +260,17 @@ tar_read(imd_breakdowns)$type1_mh_attends |>
 
 ::::
 
-#### Rural-urban variation
+##### Rural-urban variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r type1_attends_rural_plot}
 tar_read(rural_plot)$type1_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r type1_attends_rural_table}
 tar_read(rural_breakdowns)$type1_mh_attends |>
@@ -450,7 +454,11 @@ tar_read(uec_mh_known_table)
 
 ### Detailed breakdowns
 
-#### Geographical variation
+#### Mental Health attendances
+
+This is the number of attendances to UEC with MH as primary reason/diagnosis.
+
+##### Geographical variation
 
 ```{r icb_map_allmh_uec}
 tar_read(icb_uec_map_2324)
@@ -458,17 +466,17 @@ tar_read(icb_uec_map_2324)
 
 ::: panel-tabset
 
-#### Gender variation
+##### Gender variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r uec_attends_gender_plot}
 tar_read(gender_plot)$uec_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r uec_attends_gender_table}
 tar_read(gender_breakdowns)$uec_mh_attends |>
@@ -478,17 +486,17 @@ tar_read(gender_breakdowns)$uec_mh_attends |>
 
 ::::
 
-#### Age-group variation
+##### Age-group variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r uec_attends_age_plot}
 tar_read(age_plot)$uec_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r uec_attends_age_table}
 tar_read(age_breakdowns)$uec_mh_attends |>
@@ -498,17 +506,17 @@ tar_read(age_breakdowns)$uec_mh_attends |>
 
 ::::
 
-#### Ethnic group variation
+##### Ethnic group variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r uec_attends_ethnic_plot}
 tar_read(ethnic_plot)$uec_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r uec_attends_ethnic_table}
 tar_read(ethnic_breakdowns)$uec_mh_attends |>
@@ -518,17 +526,17 @@ tar_read(ethnic_breakdowns)$uec_mh_attends |>
 
 ::::
 
-#### Socioeconomic variation
+##### Socioeconomic variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r uec_attends_imd_plot}
 tar_read(imd_plot)$uec_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r uec_attends_imd_table}
 tar_read(imd_breakdowns)$uec_mh_attends |>
@@ -538,17 +546,17 @@ tar_read(imd_breakdowns)$uec_mh_attends |>
 
 ::::
 
-#### Rural-urban variation
+##### Rural-urban variation
 
 :::: panel-tabset
 
-##### Chart
+###### Chart
 
 ```{r uec_attends_rural_plot}
 tar_read(rural_plot)$uec_mh_attends
 ```
 
-##### Table
+###### Table
 
 ```{r uec_attends_rural_table}
 tar_read(rural_breakdowns)$uec_mh_attends |>
