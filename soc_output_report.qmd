@@ -187,6 +187,8 @@ tar_read(icb_ed_map_2324)
 ###### Chart
 
 ```{r type1_attends_gender_plot}
+#| label: "fig-type1_attends-gender"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by gender."
 tar_read(gender_plot)$type1_mh_attends
 ```
 
@@ -207,6 +209,8 @@ tar_read(gender_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_age_plot}
+#| label: "fig-type1_attends-age"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by age group."
 tar_read(age_plot)$type1_mh_attends
 ```
 
@@ -227,6 +231,8 @@ tar_read(age_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_ethnic_plot}
+#| label: "fig-type1_attends-ethnic"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by ethnic category."
 tar_read(ethnic_plot)$type1_mh_attends
 ```
 
@@ -247,6 +253,8 @@ tar_read(ethnic_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_imd_plot}
+#| label: "fig-type1_attends-imd"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by Index of Multiple Deprivation decile."
 tar_read(imd_plot)$type1_mh_attends
 ```
 
@@ -267,6 +275,8 @@ tar_read(imd_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_rural_plot}
+#| label: "fig-type1_attends-rural"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by rural and urban populations."
 tar_read(rural_plot)$type1_mh_attends
 ```
 
@@ -296,7 +306,7 @@ The breakdowns below are for the number of mental health attendances only.
 
 ```{r type1_arrival_mode_gender_plot}
 #| label: "fig-arrival-mode-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health attendances by arrival mode by gender."
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by gender."
 tar_read(gender_plot)$type1_arrival_mode |> 
   modify_arrival_mode_plots()
 ```
@@ -319,7 +329,7 @@ tar_read(gender_breakdowns)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_age_plot}
 #| label: "fig-arrival-mode-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health attendances by arrival mode by age group."
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by age group."
 tar_read(age_plot)$type1_arrival_mode |> 
   modify_arrival_mode_plots()
 ```
@@ -342,7 +352,7 @@ tar_read(age_breakdowns)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_ethnic_plot}
 #| label: "fig-arrival-mode-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health attendances by arrival mode by ethnic category."
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by ethnic category."
 tar_read(ethnic_plot)$type1_arrival_mode |> 
   modify_arrival_mode_plots()
 ```
@@ -365,7 +375,7 @@ tar_read(ethnic_breakdowns)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_imd_plot}
 #| label: "fig-arrival-mode-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health attendances by arrival mode by Index of Multiple Deprivation decile."
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by Index of Multiple Deprivation decile."
 tar_read(imd_plot)$type1_arrival_mode |> 
   modify_arrival_mode_plots()
 ```
@@ -388,7 +398,7 @@ tar_read(imd_breakdowns)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_rural_plot}
 #| label: "fig-arrival-mode-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health attendances by arrival mode by rural or urban populations."
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by rural or urban populations."
 tar_read(rural_plot)$type1_arrival_mode |> 
   modify_arrival_mode_plots()
 ```
@@ -473,6 +483,8 @@ tar_read(icb_uec_map_2324)
 ###### Chart
 
 ```{r uec_attends_gender_plot}
+#| label: "fig-uec-attends-gender"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by gender."
 tar_read(gender_plot)$uec_mh_attends
 ```
 
@@ -493,6 +505,8 @@ tar_read(gender_breakdowns)$uec_mh_attends |>
 ###### Chart
 
 ```{r uec_attends_age_plot}
+#| label: "fig-uec-attends-age"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by age group."
 tar_read(age_plot)$uec_mh_attends
 ```
 
@@ -513,6 +527,8 @@ tar_read(age_breakdowns)$uec_mh_attends |>
 ###### Chart
 
 ```{r uec_attends_ethnic_plot}
+#| label: "fig-uec-attends-ethnic"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by ethnic category."
 tar_read(ethnic_plot)$uec_mh_attends
 ```
 
@@ -533,6 +549,8 @@ tar_read(ethnic_breakdowns)$uec_mh_attends |>
 ###### Chart
 
 ```{r uec_attends_imd_plot}
+#| label: "fig-uec-attends-imd"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by Index of Multiple Deprivation decile."
 tar_read(imd_plot)$uec_mh_attends
 ```
 
@@ -559,6 +577,8 @@ tar_read(rural_plot)$uec_mh_attends
 ###### Table
 
 ```{r uec_attends_rural_table}
+#| label: "fig-uec-attends-rural"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by rural and urban populations."
 tar_read(rural_breakdowns)$uec_mh_attends |>
   select(1:7) |> 
   arrange(rural_urban, der_financial_year)
