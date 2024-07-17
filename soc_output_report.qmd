@@ -170,7 +170,7 @@ tar_read(ae_freq_boxplot)
 
 #### Mental Health attendances
 
-This is the number of attendances to UEC with MH as primary reason/diagnosis.
+This is the number of Type 1 attendances with MH as primary reason/diagnosis.
 
 ##### Geographical variation
 
