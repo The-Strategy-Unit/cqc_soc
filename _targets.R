@@ -321,6 +321,10 @@ list(
   tar_target(icb_rates_ed, get_icb_att_rates(data_ed, pop_by_icb)),
   tar_target(icb_rates_uec, get_icb_att_rates(data_uec, pop_by_icb)),
 
+  # New IMD plots
+  tar_target(ae_attends_imd, imd_plot2(imd_breakdowns$type1_mh_attends)),
+  tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
+
   # Breakdowns
   tar_target(
     gender_plot,

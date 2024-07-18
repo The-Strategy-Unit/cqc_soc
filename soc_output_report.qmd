@@ -296,12 +296,18 @@ tar_read(ethnic_breakdowns)$type1_mh_attends |>
 
 :::: panel-tabset
 
-###### Chart
+###### Chart1
 
 ```{r type1_attends_imd_plot}
 #| label: "fig-type1_attends-imd"
 #| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by Index of Multiple Deprivation decile."
 tar_read(imd_plot)$type1_mh_attends
+```
+
+###### Chart2
+
+```{r type1_attends_imd_plot2}
+tar_read(ae_attends_imd)
 ```
 
 ###### Table
@@ -714,13 +720,20 @@ tar_read(ethnic_breakdowns)$uec_mh_attends |>
 
 :::: panel-tabset
 
-###### Chart
+###### Chart1
 
 ```{r uec_attends_imd_plot}
 #| label: "fig-uec-attends-imd"
 #| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by Index of Multiple Deprivation decile."
 tar_read(imd_plot)$uec_mh_attends
 ```
+
+###### Chart2
+
+```{r uec_attends_imd_plot2}
+tar_read(uec_attends_imd)
+```
+
 
 ###### Table
 

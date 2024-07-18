@@ -252,3 +252,17 @@ ed_left_plot <- function(tarobj) {
     )
   return(plot)
 }
+
+imd_plot2 <- function(tarobj){
+  plot <- tarobj |>
+    ggplot(aes(x=as.numeric(imd_decile), y=value)) +
+    geom_smooth(method = "lm", level = 0.9, alpha = 0.5, linewidth = 0.5, linetype = "dashed",colour = "#686f73") +
+    geom_point(shape = 21, size = 2, fill = "#F9BF07") +
+    scale_x_discrete(name = 'IMD decile (1=most deprived)', limits = c(1:10)) +
+    facet_wrap(~ der_financial_year) +
+    theme_minimal() +
+    labs(subtitle = "all of England, rate per 100,000"
+         ,x = 'IMD decile (1=most deprived)'
+         ,y = "Crude rate per 100,000")
+
+}
