@@ -229,8 +229,8 @@ tar_read(gender_plot)$type1_mh_attends
 
 ```{r type1_attends_gender_table}
 tar_read(gender_breakdowns)$type1_mh_attends |>
-  select(1:7) |> 
-  arrange(gender, der_financial_year)
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
 ```
 
 ::::
@@ -251,8 +251,8 @@ tar_read(age_plot)$type1_mh_attends
 
 ```{r type1_attends_age_table}
 tar_read(age_breakdowns)$type1_mh_attends |>
-  select(1:7) |> 
-  arrange(age_group, der_financial_year)
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
 ```
 
 ::::
@@ -273,8 +273,8 @@ tar_read(ethnic_plot)$type1_mh_attends
 
 ```{r type1_attends_ethnic_table}
 tar_read(ethnic_breakdowns)$type1_mh_attends |>
-  select(1:7) |> 
-  arrange(ethnic_category, der_financial_year)
+  get_standard_table_for_breakdowns("ethnic_category") |>
+  create_dt()
 ```
 
 ::::
@@ -295,8 +295,8 @@ tar_read(imd_plot)$type1_mh_attends
 
 ```{r type1_attends_imd_table}
 tar_read(imd_breakdowns)$type1_mh_attends |>
-  select(1:7) |> 
-  arrange(imd_decile, der_financial_year)
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
 ```
 
 ::::
@@ -317,8 +317,8 @@ tar_read(rural_plot)$type1_mh_attends
 
 ```{r type1_attends_rural_table}
 tar_read(rural_breakdowns)$type1_mh_attends |>
-  select(1:7) |> 
-  arrange(rural_urban, der_financial_year)
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
 ```
 
 ::::
@@ -347,8 +347,8 @@ tar_read(gender_plot)$type1_mh_known
 
 ```{r type1_known_gender_table}
 tar_read(gender_breakdowns)$type1_mh_known |>
-  select(1:7) |> 
-  arrange(gender, der_financial_year)
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
 ```
 
 ::::
@@ -369,8 +369,8 @@ tar_read(age_plot)$type1_mh_known
 
 ```{r type1_known_age_table}
 tar_read(age_breakdowns)$type1_mh_known |>
-  select(1:7) |> 
-  arrange(age_group, der_financial_year)
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
 ```
 
 ::::
@@ -391,8 +391,8 @@ tar_read(ethnic_plot)$type1_mh_known
 
 ```{r type1_known_ethnic_table}
 tar_read(ethnic_breakdowns)$type1_mh_known |>
-  select(1:7) |> 
-  arrange(ethnic_category, der_financial_year)
+  get_standard_table_for_breakdowns("ethnic_category") |>
+  create_dt()
 ```
 
 ::::
@@ -413,8 +413,8 @@ tar_read(imd_plot)$type1_mh_known
 
 ```{r type1_known_imd_table}
 tar_read(imd_breakdowns)$type1_mh_known |>
-  select(1:7) |> 
-  arrange(imd_decile, der_financial_year)
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
 ```
 
 ::::
@@ -435,8 +435,8 @@ tar_read(rural_plot)$type1_mh_known
 
 ```{r type1_known_rural_table}
 tar_read(rural_breakdowns)$type1_mh_known |>
-  select(1:7) |> 
-  arrange(rural_urban, der_financial_year)
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
 ```
 
 ::::
@@ -466,8 +466,8 @@ tar_read(gender_plot)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_gender_table}
 tar_read(gender_breakdowns)$type1_arrival_mode |>
-  select(1:7) |> 
-  arrange(gender, der_financial_year)
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
 ```
 
 :::
@@ -489,8 +489,8 @@ tar_read(age_plot)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_age_table}
 tar_read(age_breakdowns)$type1_arrival_mode |>
-  select(1:7) |> 
-  arrange(age_group, der_financial_year)
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
 ```
 
 ::::
@@ -512,8 +512,8 @@ tar_read(ethnic_plot)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_ethnic_table}
 tar_read(ethnic_breakdowns)$type1_arrival_mode |>
-  select(1:7) |> 
-  arrange(ethnic_category, der_financial_year)
+  get_standard_table_for_breakdowns("ethnic_category") |>
+  create_dt()
 ```
 
 ::::
@@ -535,8 +535,8 @@ tar_read(imd_plot)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_imd_table}
 tar_read(imd_breakdowns)$type1_arrival_mode |>
-  select(1:7) |> 
-  arrange(imd_decile, der_financial_year)
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
 ```
 
 ::::
@@ -558,8 +558,8 @@ tar_read(rural_plot)$type1_arrival_mode |>
 
 ```{r type1_arrival_mode_rural_table}
 tar_read(rural_breakdowns)$type1_arrival_mode |>
-  select(1:7) |> 
-  arrange(rural_urban, der_financial_year)
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
 ```
 
 ::::
@@ -647,8 +647,8 @@ tar_read(gender_plot)$uec_mh_attends
 
 ```{r uec_attends_gender_table}
 tar_read(gender_breakdowns)$uec_mh_attends |>
-  select(1:7) |> 
-  arrange(gender, der_financial_year)
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
 ```
 
 ::::
@@ -669,8 +669,8 @@ tar_read(age_plot)$uec_mh_attends
 
 ```{r uec_attends_age_table}
 tar_read(age_breakdowns)$uec_mh_attends |>
-  select(1:7) |> 
-  arrange(age_group, der_financial_year)
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
 ```
 
 ::::
@@ -691,8 +691,8 @@ tar_read(ethnic_plot)$uec_mh_attends
 
 ```{r uec_attends_ethnic_table}
 tar_read(ethnic_breakdowns)$uec_mh_attends |>
-  select(1:7) |> 
-  arrange(ethnic_category, der_financial_year)
+  get_standard_table_for_breakdowns("ethnic_category") |>
+  create_dt()
 ```
 
 ::::
@@ -713,8 +713,8 @@ tar_read(imd_plot)$uec_mh_attends
 
 ```{r uec_attends_imd_table}
 tar_read(imd_breakdowns)$uec_mh_attends |>
-  select(1:7) |> 
-  arrange(imd_decile, der_financial_year)
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
 ```
 
 ::::
@@ -735,8 +735,8 @@ tar_read(rural_plot)$uec_mh_attends
 #| label: "fig-uec-attends-rural"
 #| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by rural and urban populations."
 tar_read(rural_breakdowns)$uec_mh_attends |>
-  select(1:7) |> 
-  arrange(rural_urban, der_financial_year)
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
 ```
 
 ::::
@@ -765,8 +765,8 @@ tar_read(gender_plot)$uec_mh_known
 
 ```{r uec_known_gender_table}
 tar_read(gender_breakdowns)$uec_mh_known |>
-  select(1:7) |> 
-  arrange(gender, der_financial_year)
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
 ```
 
 ::::
@@ -787,8 +787,8 @@ tar_read(age_plot)$uec_mh_known
 
 ```{r uec_known_age_table}
 tar_read(age_breakdowns)$uec_mh_known |>
-  select(1:7) |> 
-  arrange(age_group, der_financial_year)
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
 ```
 
 ::::
@@ -809,8 +809,8 @@ tar_read(ethnic_plot)$uec_mh_known
 
 ```{r uec_known_ethnic_table}
 tar_read(ethnic_breakdowns)$uec_mh_known |>
-  select(1:7) |> 
-  arrange(ethnic_category, der_financial_year)
+  get_standard_table_for_breakdowns("ethnic_category") |>
+  create_dt()
 ```
 
 ::::
@@ -831,8 +831,8 @@ tar_read(imd_plot)$uec_mh_known
 
 ```{r uec_known_imd_table}
 tar_read(imd_breakdowns)$uec_mh_known |>
-  select(1:7) |> 
-  arrange(imd_decile, der_financial_year)
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
 ```
 
 ::::
@@ -853,8 +853,8 @@ tar_read(rural_plot)$uec_mh_known
 
 ```{r uec_known_rural_table}
 tar_read(rural_breakdowns)$uec_mh_known |>
-  select(1:7) |> 
-  arrange(rural_urban, der_financial_year)
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
 ```
 
 ::::
