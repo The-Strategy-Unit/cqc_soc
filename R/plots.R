@@ -147,6 +147,23 @@ get_ed_transp_colplot <- function(tarobj){
   return(plot)
 }
 
+get_ed_transp_trends <- function(tarobj){
+  plot <- tarobj|>
+    filter(arrival_mode != 'pub_tran') |>
+    ggplot(aes(x=der_financial_year, y=perc, group = mh_snomed)) +
+    geom_line(aes(colour = as.factor(mh_snomed))) +
+    scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+    scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    facet_wrap(~ arrival_mode, ncol = 1) +
+    theme_minimal() +
+    labs(title = "Arrival mode to Type 1 A&E attendances",
+         subtitle = "All attendances in England 2019/20 to 2023/24",
+         x = "Financial Year",
+         y = "Percentage of all")
+
+  return(plot)
+}
+
 get_standard_line_for_breakdowns <- function(data, group){
   name_of_dataset <- deparse(substitute(data))
 

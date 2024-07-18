@@ -223,6 +223,7 @@ list(
   tar_target(ae_summary, get_ae_summary(data_ae)),
 
   tar_target(ae_summ_transp, get_ae_summ_transp(data_ae)),
+  tar_target(ae_transp_trends, get_ae_amb_trends(data_ae)),
 
   tar_target(ae_toa_summary, ae_toa_grouped(ae_toa)),
 
@@ -310,7 +311,8 @@ list(
   tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
-  tar_target(ed_left_plot, ed_left_plot(ae_left_summary)),
+  tar_target(ae_trans_trends, get_ed_transp_trends(ae_transp_trends)),
+  tar_target(ed_left_chart, ed_left_plot(ae_left_summary)),
   # Overlayed bar chart for time of arrival to AE
   tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
 

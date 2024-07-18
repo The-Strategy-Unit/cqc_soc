@@ -402,6 +402,16 @@ get_ae_summ_transp <- function(tarobj) {
     mutate(perc = attends / sum(attends) * 100)
 }
 
+get_ae_amb_trends <- function(tarobj) {
+  tarobj |>
+    filter(arrival_mode != 'NULL',
+           ec_department_type == '01') |>
+    group_by(mh_snomed, arrival_mode, der_financial_year) |>
+    summarise(attends = sum(attends)) |>
+    group_by(mh_snomed, der_financial_year) |>
+    mutate(perc = attends / sum(attends) * 100)
+}
+
 
 # To get Type 3 and Type 4 attendances:
 get_uec_activity <- function(data) {

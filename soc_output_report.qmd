@@ -111,13 +111,26 @@ gt_causes
 
 Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. Breakdowns by population demographics can be seen in @sec-arrival-mode-breakdowns.
 
+::: panel-tabset
+##### All modes
 ```{r ae_arrive_mode}
 tar_read(ae_trans_barplot)
 ```
 
+##### Trend
+```{r ae_arrive_mode_trend}
+tar_read(ae_trans_trends)
+```
+
+##### Table
+```{r ae_arrive_mode_table}
+tar_read(ae_transp_trends)
+```
+:::
+
 #### Time of arrival
 
-Patients presenting with mental health complaints are more likely to attend after 8pm and before 6am than their contemporaries with physical health complaints - suggestive of lesser access to out-of-hours psychiatric and crisis support.
+Patients presenting with mental health complaints are more likely to attend after 8pm and before 6am than their contemporaries with physical health complaints - this could be suggestive of lesser access to out-of-hours psychiatric and crisis support or the increased likelihood of crisis occurring when people are alone.
 
 ::: panel-tabset
 ##### Chart
@@ -138,7 +151,7 @@ SNOMED departure status codes allow us to identify patients that left the depart
 ::: panel-tabset
 ##### Chart
 ```{r ae_left_plot}
-tar_read(ed_left_plot)
+tar_read(ed_left_chart)
 ```
 
 ##### Table
