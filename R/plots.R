@@ -135,6 +135,8 @@ get_perc_mh_attends_boxplot <- function(data, type) {
       title = "Percentage of attendances with MH as primary reason",
       subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24 by ICB")
     )
+
+  return(plot)
 }
 
 # To get a boxplot of percentage of MH attendances by financial year with points
@@ -148,6 +150,8 @@ get_perc_mh_known_boxplot <- function(data, type) {
       title = "Percentage of attendances with MH known to specialist services",
       subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24 by ICB")
     )
+
+  return(plot)
 }
 
 get_ed_transp_colplot <- function(tarobj) {
@@ -267,4 +271,24 @@ imd_plot2 <- function(tarobj){
          ,x = 'IMD decile (1=most deprived)'
          ,y = "Crude rate per 100,000")
 
+}
+
+
+
+
+
+
+
+
+get_perc_mh_calls_boxplot <- function(data) {
+  plot <- data |>
+    get_standard_boxplot() +
+    ggplot2::labs(
+      x = "Financial Year",
+      y = "Percent",
+      title = "Percentage of calls being MH-related",
+      subtitle = "All NHS 111 calls in England 2019/20 to 2023/24 by ICB"
+    )
+
+  return(plot)
 }

@@ -628,3 +628,20 @@ ae_left_grouped <- function(tarobj) {
 
   return(data)
 }
+
+
+
+
+
+# % of calls being mh-related
+get_perc_mh_calls <- function(data) {
+  mh_calls <- data |>
+    dplyr::summarise(
+      mh_calls = sum(dplyr::if_else(mh_symptom == 1, calls, 0)),
+      calls = sum(calls),
+      .by = c(icb_code, der_financial_year)
+    ) |>
+    PHEindicatormethods::phe_proportion(mh_calls, calls, multiplier = 100)
+
+  return(mh_calls)
+}
