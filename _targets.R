@@ -217,7 +217,9 @@ list(
       dplyr::mutate(imd_decile = factor(imd_decile, levels = as.character(1:10)))
   ),
 
-  tar_target(data_111, load_csv("data/111_extract_full.csv")),
+  tar_target(data_111,
+             load_csv("data/111_extract_full.csv")|>
+               dplyr::rename(icb_code = icb22cd)),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -393,7 +395,18 @@ list(
   tar_target(
     icb_uec_map_2324,
     map_icb_allmh_uec(icb_boundary, icb_rates_uec)
-  )
+  ),
 
+  #### NHS 111 ####
+  #tar_target(type1_mh_calls, filter_mh_calls(data_111)),
+  tar_target(nhs111_perc_mh_calls, get_perc_mh_calls(data_111)),
+  tar_target(
+    nhs111_mh_calls_boxplot,
+    get_perc_mh_calls_boxplot(nhs111_perc_mh_calls)
+  ),
+  tar_target(
+    nhs111_mh_calls_table,
+    get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
+  )
 
 )

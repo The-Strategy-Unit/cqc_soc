@@ -216,7 +216,7 @@ tar_read(ae_freq_boxplot)
 
 #### Percentage of all Type 1 attendances with Mental Health as primary reason/diagnosis {#sec-type1-mh-attends}
 
-@fig-type1-perc-mh suggests the median percentage of Type 1 attendances with Mental Health as the primary reason/diagnosis is comparable with pre-pandemic levels. Breakdowns by ICB are in @tbl-type1-perc and breakdowns by population demographics can be seen in @sec-type1-mh-attends. 
+@fig-type1-perc-mh suggests the median percentage of Type 1 attendances with Mental Health as the primary reason/diagnosis is comparable with pre-pandemic levels. Breakdowns by ICB are in @tbl-type1-perc and breakdowns by population demographics below. 
 
 ::: panel-tabset
 
@@ -370,7 +370,7 @@ tar_read(rural_breakdowns)$type1_mh_attends |>
 
 #### Percentage of MH Type 1 attendances known to specialist services {#sec-type1-mh-known}
 
-The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known). Further breakdowns by population demographics can be seen in @sec-type1-mh-known.
+The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known). 
 
 ::: panel-tabset
 
@@ -650,7 +650,7 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 #### Percentage of all UEC attendances with MH as primary reason/diagnosis {#sec-uec-mh-attends}
 
 @fig-uec-perc-mh suggests greater percentage of Mental Health UEC attendances in 2023/24. This varies by ICB (@tbl-uec-perc) where
-some ICBs have consistently low or high percentages over time. Breakdowns by population demographics can be seen in @sec-uec-mh-attends.
+some ICBs have consistently low or high percentages over time. 
 
 ::: panel-tabset
 
@@ -805,7 +805,7 @@ tar_read(rural_breakdowns)$uec_mh_attends |>
 
 #### Percentage of MH UEC attendances known to specialist services {#sec-uec-mh-known}
 
-@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known). Breakdowns by population demographics can be seen in @sec-uec-mh-known. 
+@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known).
 
 ::: panel-tabset
 
@@ -954,6 +954,32 @@ The average cost of a call to NHS 111 is around £12 with those requiring clinic
 ### Key metrics
 
 ### Detailed breakdowns
+
+#### % of all calls being MH-related
+
+@fig-nhs111-perc-mh suggests ... Breakdowns by ICB are in @tbl-nhs111-perc and breakdowns by population demographics can be seen below. 
+
+::: panel-tabset
+
+###### Overview
+
+```{r}
+#| label: "fig-nhs111-perc-mh"
+#| fig-cap: "Percentage of Mental Health calls over time."
+tar_read(nhs111_mh_calls_boxplot)
+```
+
+###### ICB Variation
+
+```{r}
+#| label: "tbl-nhs111-perc"
+#| tbl-cap: "Percentage of Mental Health Type 1 calls by ICB."
+tar_read(nhs111_mh_calls_table) |>
+  color_gradient(c("2017/18", "2018/19", "2019/20", "2020/21", "2021/22"), 
+                 seq(0, 1.8, 0.25))
+```
+
+:::
 
 #### Geographical variation
 

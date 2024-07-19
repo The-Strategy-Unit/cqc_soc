@@ -272,3 +272,23 @@ imd_plot2 <- function(tarobj){
          ,y = "Crude rate per 100,000")
 
 }
+
+
+
+
+
+
+
+
+get_perc_mh_calls_boxplot <- function(data) {
+  plot <- data |>
+    get_standard_boxplot() +
+    ggplot2::labs(
+      x = "Financial Year",
+      y = "Percent",
+      title = "Percentage of calls being MH-related",
+      subtitle = "All NHS 111 calls in England 2019/20 to 2023/24 by ICB"
+    )
+
+  return(plot)
+}
