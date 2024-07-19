@@ -133,7 +133,8 @@ get_perc_mh_attends_boxplot <- function(data) {
       x = "Financial Year",
       y = "Percent",
       title = "Percentage of attendances with MH as primary reason",
-      subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB"
+      subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB",
+      caption = "Values for ICBs plotted with dots."
     )
 }
 
@@ -146,7 +147,8 @@ get_perc_mh_known_boxplot <- function(data) {
       x = "Financial Year",
       y = "Percent",
       title = "Percentage of attendances with MH known to specialist services",
-      subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB"
+      subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB",
+      caption = "Values for ICBs plotted with dots."
     )
 }
 
