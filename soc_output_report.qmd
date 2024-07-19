@@ -620,21 +620,21 @@ tar_read(uec_mh_attends_table) |>
 
 #### Percentage of MH attendances known to specialist services
 
-Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/24 over ICBs:
+Boxplot (@fig-uec-mh-known-boxplot) suggests lower % of MH attends were known in 2023/24 over ICBs:
 
 ```{r}
-#| label: "fig-perc-mh-known"
+#| label: "fig-uec-mh-known-boxplot"
 tar_read(uec_mh_known_boxplot)
 ```
 
 Breakdowns by population demographics can be seen in @sec-uec-mh-known. 
 
-Looking at table (@tbl-perc-known) of ICBs over time:
+Looking at table (@tbl-uec-mh-known) of ICBs over time:
 
 -   Again Sussex have high % compared to other ICBs.
 
 ```{r}
-#| label: "tbl-perc-known"
+#| label: "tbl-uec-mh-known"
 tar_read(uec_mh_known_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(30, 90, 8)) 
