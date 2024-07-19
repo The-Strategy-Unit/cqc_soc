@@ -36,3 +36,18 @@ get_standard_table_for_breakdowns <- function(data, group){
 
   return(table)
 }
+
+color_gradient <- function(dt, column_names, breaks) {
+
+  for(i in column_names){
+    dt <- dt |>
+      DT::formatStyle(i,
+                      backgroundColor = DT::styleInterval(
+                        breaks,
+                        RColorBrewer::brewer.pal(9, name = "Blues")
+                      )
+      )
+  }
+
+  return(dt)
+}
