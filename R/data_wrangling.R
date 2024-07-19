@@ -448,8 +448,6 @@ get_perc_mh_known <- function(data) {
     ) |>
     PHEindicatormethods::phe_proportion(mh_known, attends, multiplier = 100)
 
-  get_perc_mh_attends_boxplot(mh_known)
-
   return(mh_known)
 }
 

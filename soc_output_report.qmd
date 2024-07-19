@@ -212,6 +212,58 @@ tar_read(ae_freq_boxplot)
 
 ```
 
+#### Percentage of all attendances with MH as primary reason/diagnosis
+
+Boxplot (@fig-type1-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs:
+
+```{r}
+#| label: "fig-type1-perc-mh"
+#| fig-cap: "Percentage of Mental Health Type 1 attendances over time."
+tar_read(type1_mh_attends_boxplot)
+```
+
+Breakdowns by population demographics can be seen in @sec-type1-mh-attends. 
+
+Looking at table (@tbl-type1-perc) of ICBs over time:
+
+-   there are some ICBs that have consistent % of MH attends over the financial years.
+    -   For example Black Country and Herefordshire & Worcestershire have low %.
+-   Sussex have high % compared to other ICBs.
+-   Birmingham and Solihull is interesting, since it had a higher % in 2019/20, but low % for later fin years.
+
+```{r}
+#| label: "tbl-type1-perc"
+#| tbl-cap: "Percentage of Mental Health Type 1 attendances by ICB."
+tar_read(type1_mh_attends_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(0, 2.5, 0.35))
+```
+
+#### Percentage of MH attendances known to specialist services
+
+Boxplot (@fig-type1-mh-known-boxplot) suggests lower % of MH attends were known in 2023/24 over ICBs:
+
+```{r}
+#| label: "fig-type1-mh-known-boxplot"
+#| fig-cap: "Percentage of Mental Health Type 1 attendances known to specialist services over time."
+tar_read(type1_mh_known_boxplot)
+```
+
+Breakdowns by population demographics can be seen in @sec-type1-mh-known. 
+
+Looking at table (@tbl-type1-mh-known) of ICBs over time:
+
+-   Again Sussex have high % compared to other ICBs.
+
+```{r}
+#| label: "tbl-type1-mh-known"
+#| tbl-cap: "Percentage of Mental Health Type 1 attendances known to specialist services by ICB."
+tar_read(type1_mh_known_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(60, 90, 4)) 
+```
+
+
 ### Detailed breakdowns
 
 #### Mental Health attendances
@@ -595,16 +647,17 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 
 #### Percentage of all attendances with MH as primary reason/diagnosis
 
-Boxplot (@fig-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs:
+Boxplot (@fig-uec-perc-mh) suggests greater % of MH attends in 2023/24 over ICBs:
 
 ```{r}
-#| label: "fig-perc-mh"
+#| label: "fig-uec-perc-mh"
+#| fig-cap: "Percentage of Mental Health UEC attendances over time."
 tar_read(uec_mh_attends_boxplot)
 ```
 
 Breakdowns by population demographics can be seen in @sec-uec-mh-attends. 
 
-Looking at table (@tbl-perc) of ICBs over time:
+Looking at table (@tbl-uec-perc) of ICBs over time:
 
 -   there are some ICBs that have consistent % of MH attends over the financial years.
     -   For example Black Country and Herefordshire & Worcestershire have low %.
@@ -612,28 +665,35 @@ Looking at table (@tbl-perc) of ICBs over time:
 -   Birmingham and Solihull is interesting, since it had a higher % in 2019/20, but low % for later fin years.
 
 ```{r}
-#| label: "tbl-perc"
-tar_read(uec_mh_attends_table)
+#| label: "tbl-uec-perc"
+#| tbl-cap: "Percentage of Mental Health UEC attendances by ICB."
+tar_read(uec_mh_attends_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(0, 1.8, 0.25))
 ```
 
 #### Percentage of MH attendances known to specialist services
 
-Boxplot (@fig-perc-mh-known) suggests lower % of MH attends were known in 2023/24 over ICBs:
+Boxplot (@fig-uec-mh-known-boxplot) suggests lower % of MH attends were known in 2023/24 over ICBs:
 
 ```{r}
-#| label: "fig-perc-mh-known"
+#| label: "fig-uec-mh-known-boxplot"
+#| fig-cap: "Percentage of Mental Health UEC attendances known to specialist services over time."
 tar_read(uec_mh_known_boxplot)
 ```
 
 Breakdowns by population demographics can be seen in @sec-uec-mh-known. 
 
-Looking at table (@tbl-perc-known) of ICBs over time:
+Looking at table (@tbl-uec-mh-known) of ICBs over time:
 
 -   Again Sussex have high % compared to other ICBs.
 
 ```{r}
-#| label: "tbl-perc-known"
-tar_read(uec_mh_known_table)
+#| label: "tbl-uec-mh-known"
+#| tbl-cap: "Percentage of Mental Health UEC attendances known to specialist services by ICB."
+tar_read(uec_mh_known_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(30, 90, 8)) 
 ```
 
 ### Detailed breakdowns
