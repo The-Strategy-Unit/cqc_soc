@@ -135,6 +135,8 @@ get_perc_mh_attends_boxplot <- function(data, type) {
       title = "Percentage of attendances with MH as primary reason",
       subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24 by ICB")
     )
+
+  return(plot)
 }
 
 # To get a boxplot of percentage of MH attendances by financial year with points
@@ -148,6 +150,8 @@ get_perc_mh_known_boxplot <- function(data, type) {
       title = "Percentage of attendances with MH known to specialist services",
       subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24 by ICB")
     )
+
+  return(plot)
 }
 
 get_ed_transp_colplot <- function(tarobj) {
