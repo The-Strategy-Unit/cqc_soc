@@ -11,7 +11,7 @@ tar_option_set(
   packages = c(
     # Packages that your targets need for their tasks.
     "janitor",
-    "gt",
+    "DT",
     "tidyverse",
     "readODS",
     "patchwork",
@@ -234,9 +234,27 @@ list(
 
   # MH attends
   tar_target(type1_mh_attends, filter_mh_attends(data_ed)),
+  tar_target(type1_perc_mh_attends, get_perc_mh_attends(data_ed)),
+  tar_target(
+    type1_mh_attends_boxplot,
+    get_perc_mh_attends_boxplot(type1_perc_mh_attends, "Type 1")
+  ),
+  tar_target(
+    type1_mh_attends_table,
+    get_uec_table(type1_perc_mh_attends, icb_codes_names)
+  ),
 
   # MH known
   tar_target(type1_mh_known, filter_mh_known(data_ed)),
+  tar_target(type1_perc_mh_known, get_perc_mh_known(data_ed)),
+  tar_target(
+    type1_mh_known_boxplot,
+    get_perc_mh_known_boxplot(type1_perc_mh_known, "Type 1")
+  ),
+  tar_target(
+    type1_mh_known_table,
+    get_uec_table(type1_perc_mh_known, icb_codes_names)
+  ),
 
   # Arrival mode
   tar_target(type1_arrival_mode, filter_arrival_mode(data_ed)),
@@ -249,7 +267,7 @@ list(
   tar_target(uec_perc_mh_attends, get_perc_mh_attends(data_uec)),
   tar_target(
     uec_mh_attends_boxplot,
-    get_perc_mh_attends_boxplot(uec_perc_mh_attends)
+    get_perc_mh_attends_boxplot(uec_perc_mh_attends, "Type 3 and 4")
   ),
   tar_target(
     uec_mh_attends_table,
@@ -261,7 +279,7 @@ list(
   tar_target(uec_perc_mh_known, get_perc_mh_known(data_uec)),
   tar_target(
     uec_mh_known_boxplot,
-    get_perc_mh_known_boxplot(uec_perc_mh_known)
+    get_perc_mh_known_boxplot(uec_perc_mh_known, "Type 3 and 4")
   ),
   tar_target(
     uec_mh_known_table,
