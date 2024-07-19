@@ -212,15 +212,23 @@ tar_read(ae_freq_boxplot)
 
 ```
 
-#### Percentage of all Type 1 attendances with Mental Health as primary reason/diagnosis
+### Detailed breakdowns
+
+#### Percentage of all Type 1 attendances with Mental Health as primary reason/diagnosis {#sec-type1-mh-attends}
 
 @fig-type1-perc-mh suggests the median percentage of Type 1 attendances with Mental Health as the primary reason/diagnosis is comparable with pre-pandemic levels. Breakdowns by ICB are in @tbl-type1-perc and breakdowns by population demographics can be seen in @sec-type1-mh-attends. 
+
+::: panel-tabset
+
+###### Overview
 
 ```{r}
 #| label: "fig-type1-perc-mh"
 #| fig-cap: "Percentage of Mental Health Type 1 attendances over time."
 tar_read(type1_mh_attends_boxplot)
 ```
+
+###### ICB Variation
 
 ```{r}
 #| label: "tbl-type1-perc"
@@ -230,30 +238,9 @@ tar_read(type1_mh_attends_table) |>
                  seq(0, 2.5, 0.35))
 ```
 
-#### Percentage of MH Type 1 attendances known to specialist services
+:::
 
-The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known). Further breakdowns by population demographics can be seen in @sec-type1-mh-known.
-
-```{r}
-#| label: "fig-type1-mh-known-boxplot"
-#| fig-cap: "Percentage of Mental Health Type 1 attendances known to specialist services over time."
-tar_read(type1_mh_known_boxplot)
-```
-
-```{r}
-#| label: "tbl-type1-mh-known"
-#| tbl-cap: "Percentage of Mental Health Type 1 attendances known to specialist services by ICB."
-tar_read(type1_mh_known_table) |>
-  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
-                 seq(60, 90, 4)) 
-```
-
-
-### Detailed breakdowns
-
-#### Mental Health attendances {#sec-type1-mh-attends}
-
-This is the number of Type 1 attendances with MH as primary reason/diagnosis.
+Breakdowns for the number of Type 1 attendances with MH as primary reason/diagnosis are below.
 
 ##### Geographical variation
 
@@ -381,9 +368,33 @@ tar_read(rural_breakdowns)$type1_mh_attends |>
 
 :::
 
-#### Mental Health attendances known to specialist services {#sec-type1-mh-known}
+#### Percentage of MH Type 1 attendances known to specialist services {#sec-type1-mh-known}
 
-This is the number of Type 1 attendances with MH as primary reason/diagnosis where the patient was known to specialist services.
+The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known). Further breakdowns by population demographics can be seen in @sec-type1-mh-known.
+
+::: panel-tabset
+
+###### Overview
+
+```{r}
+#| label: "fig-type1-mh-known-boxplot"
+#| fig-cap: "Percentage of Mental Health Type 1 attendances known to specialist services over time."
+tar_read(type1_mh_known_boxplot)
+```
+
+###### ICB Variation
+
+```{r}
+#| label: "tbl-type1-mh-known"
+#| tbl-cap: "Percentage of Mental Health Type 1 attendances known to specialist services by ICB."
+tar_read(type1_mh_known_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(60, 90, 4)) 
+```
+
+:::
+
+Breakdowns for the number of Type 1 attendances with MH as primary reason/diagnosis where the patient was known to specialist services are below.
 
 ::: panel-tabset
 
@@ -630,16 +641,28 @@ The average urgent care attendance in England costs £107 <https://www.england.n
 
 ### Key metrics
 
-#### Percentage of all UEC attendances with MH as primary reason/diagnosis
+?
 
-@fig-uec-perc-mh suggests greater percentage of Mental Health UEC attendances in 2023/24. This caries by ICB (@tbl-uec-perc) where
+
+
+### Detailed breakdowns
+
+#### Percentage of all UEC attendances with MH as primary reason/diagnosis {#sec-uec-mh-attends}
+
+@fig-uec-perc-mh suggests greater percentage of Mental Health UEC attendances in 2023/24. This varies by ICB (@tbl-uec-perc) where
 some ICBs have consistently low or high percentages over time. Breakdowns by population demographics can be seen in @sec-uec-mh-attends.
+
+::: panel-tabset
+
+###### Overview
 
 ```{r}
 #| label: "fig-uec-perc-mh"
 #| fig-cap: "Percentage of Mental Health UEC attendances over time."
 tar_read(uec_mh_attends_boxplot)
 ```
+
+###### ICB Variation
 
 ```{r}
 #| label: "tbl-uec-perc"
@@ -649,29 +672,9 @@ tar_read(uec_mh_attends_table) |>
                  seq(0, 1.8, 0.25))
 ```
 
-#### Percentage of MH UEC attendances known to specialist services
+:::
 
-@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known). Breakdowns by population demographics can be seen in @sec-uec-mh-known. 
-
-```{r}
-#| label: "fig-uec-mh-known-boxplot"
-#| fig-cap: "Percentage of Mental Health UEC attendances known to specialist services over time."
-tar_read(uec_mh_known_boxplot)
-```
-
-```{r}
-#| label: "tbl-uec-mh-known"
-#| tbl-cap: "Percentage of Mental Health UEC attendances known to specialist services by ICB."
-tar_read(uec_mh_known_table) |>
-  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
-                 seq(30, 90, 8)) 
-```
-
-### Detailed breakdowns
-
-#### Mental Health attendances {#sec-uec-mh-attends}
-
-This is the number of attendances to UEC with MH as primary reason/diagnosis.
+Breakdowns for the number of attendances to UEC with MH as primary reason/diagnosis are below.
 
 ##### Geographical variation
 
@@ -800,9 +803,33 @@ tar_read(rural_breakdowns)$uec_mh_attends |>
 
 :::
 
-#### Mental Health attendances known to specialist services  {#sec-uec-mh-known}
+#### Percentage of MH UEC attendances known to specialist services {#sec-uec-mh-known}
 
-This is the number of UEC attendances with MH as primary reason/diagnosis where the patient was known to specialist services.
+@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known). Breakdowns by population demographics can be seen in @sec-uec-mh-known. 
+
+::: panel-tabset
+
+###### Overview
+
+```{r}
+#| label: "fig-uec-mh-known-boxplot"
+#| fig-cap: "Percentage of Mental Health UEC attendances known to specialist services over time."
+tar_read(uec_mh_known_boxplot)
+```
+
+###### ICB Variation
+
+```{r}
+#| label: "tbl-uec-mh-known"
+#| tbl-cap: "Percentage of Mental Health UEC attendances known to specialist services by ICB."
+tar_read(uec_mh_known_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(30, 90, 8)) 
+```
+
+:::
+
+Breakdowns for the number of UEC attendances with MH as primary reason/diagnosis where the patient was known to specialist services are below.
 
 ::: panel-tabset
 
