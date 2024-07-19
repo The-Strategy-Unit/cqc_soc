@@ -241,7 +241,7 @@ list(
   ),
   tar_target(
     type1_mh_attends_table,
-    get_uec_table(type1_perc_mh_attends, icb_codes_names)
+    get_icb_breakdown_table(type1_perc_mh_attends, icb_codes_names)
   ),
 
   # MH known
@@ -253,7 +253,7 @@ list(
   ),
   tar_target(
     type1_mh_known_table,
-    get_uec_table(type1_perc_mh_known, icb_codes_names)
+    get_icb_breakdown_table(type1_perc_mh_known, icb_codes_names)
   ),
 
   # Arrival mode
@@ -271,7 +271,7 @@ list(
   ),
   tar_target(
     uec_mh_attends_table,
-    get_uec_table(uec_perc_mh_attends, icb_codes_names)
+    get_icb_breakdown_table(uec_perc_mh_attends, icb_codes_names)
   ),
 
   # MH known
@@ -283,7 +283,7 @@ list(
   ),
   tar_target(
     uec_mh_known_table,
-    get_uec_table(uec_perc_mh_known, icb_codes_names)
+    get_icb_breakdown_table(uec_perc_mh_known, icb_codes_names)
   ),
 
   #### Breakdowns ####
