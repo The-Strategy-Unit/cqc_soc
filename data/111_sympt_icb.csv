@@ -1,4 +1,4 @@
-﻿ICB22CD,ICB22NM,Der_Financial_Year,SG_SD_description,pats,calls
+﻿ICB23CD,ICB23NM,Der_Financial_Year,SG_SD_description,pats,calls
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2018/19,Behaviour Change - AMB suicidal means and plan,3,3
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2019/20,Behaviour Change - AMB suicidal means and plan,1,1
 E54000008,NHS Cheshire and Merseyside Integrated Care Board,2020/21,Behaviour Change - AMB suicidal means and plan,3,3
@@ -111,7 +111,7 @@ E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2017/18,Del
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,3,3
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,1,1
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,8,9
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,10,11
 E54000010,NHS Staffordshire and Stoke-on-Trent Integrated Care Board,2017/18,Mental Health Problem - ED suicidal no means nor plan,4,4
@@ -340,8 +340,8 @@ E54000013,NHS Lincolnshire Integrated Care Board,2017/18,Deliberate Self-Harm - 
 E54000013,NHS Lincolnshire Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,3,3
 E54000013,NHS Lincolnshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
 E54000013,NHS Lincolnshire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000013,NHS Lincolnshire Integrated Care Board,2019/20,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,2
-E54000013,NHS Lincolnshire Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000013,NHS Lincolnshire Integrated Care Board,2019/20,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,2
+E54000013,NHS Lincolnshire Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000013,NHS Lincolnshire Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,16,18
 E54000013,NHS Lincolnshire Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,19,19
 E54000013,NHS Lincolnshire Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,2,2
@@ -460,7 +460,7 @@ E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2017/18
 E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,1,2
 E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,2,2
 E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,1,1
-E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,3,3
+E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,3
 E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,12,16
 E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,22,27
 E54000015,NHS Leicester Leicestershire and Rutland Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,26,26
@@ -592,8 +592,8 @@ E54000018,NHS Coventry and Warwickshire Integrated Care Board,2017/18,Deliberate
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,3,3
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,4,4
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000018,NHS Coventry and Warwickshire Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,3,3
-E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,2
+E54000018,NHS Coventry and Warwickshire Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,3
+E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,2
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,6,6
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,31,35
@@ -660,7 +660,7 @@ E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,Tiredness 
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,8,8
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,2,2
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,27,27
-E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
+E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,2
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,8,8
 E54000018,NHS Coventry and Warwickshire Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,1,2
@@ -728,8 +728,8 @@ E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,Del
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,4,4
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,6,6
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,3,3
-E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
-E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
+E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,1,1
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,6,6
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,27,27
@@ -790,7 +790,7 @@ E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2020/21,Tir
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,1,1
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,2,2
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,11,11
-E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,2,2
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,5,5
 E54000019,NHS Herefordshire and Worcestershire Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,1,2
@@ -868,7 +868,7 @@ E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Deliberate Self-
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,1,1
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,21,24
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,23,27
-E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,3
+E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,3
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,13,16
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,14,16
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,15,15
@@ -946,8 +946,8 @@ E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Tiredness (Fatig
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,4,5
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,4,4
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,17,19
-E54000022,NHS Norfolk and Waveney Integrated Care Board,2018/19,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000022,NHS Norfolk and Waveney Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000022,NHS Norfolk and Waveney Integrated Care Board,2018/19,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000022,NHS Norfolk and Waveney Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,47,71
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,35,47
 E54000022,NHS Norfolk and Waveney Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,33,43
@@ -1030,7 +1030,7 @@ E54000023,NHS Suffolk and North East Essex Integrated Care Board,2017/18,Deliber
 E54000023,NHS Suffolk and North East Essex Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,1,1
 E54000023,NHS Suffolk and North East Essex Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,13,15
 E54000023,NHS Suffolk and North East Essex Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,4,4
-E54000023,NHS Suffolk and North East Essex Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000023,NHS Suffolk and North East Essex Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000023,NHS Suffolk and North East Essex Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,4,4
 E54000023,NHS Suffolk and North East Essex Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000023,NHS Suffolk and North East Essex Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,5,6
@@ -1226,7 +1226,7 @@ E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2020/21
 E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2020/21,Tiredness (Fatigue) - PC anxiety/panic,5,5
 E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,2,2
 E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,10,10
-E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,15,25
 E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,22,26
 E54000024,NHS Bedfordshire Luton and Milton Keynes Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,3,3
@@ -1436,8 +1436,8 @@ E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Deliberate Self-
 E54000026,NHS Mid and South Essex Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,1,1
 E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,9,10
 E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,18,20
-E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Drug solvent alcohol misuse - AMB suicidal means and plan,1,1
-E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - AMB suicidal means and plan",1,1
+E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,6,10
 E54000026,NHS Mid and South Essex Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,8,10
 E54000026,NHS Mid and South Essex Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,3,3
@@ -1514,8 +1514,8 @@ E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Tiredness (Fatig
 E54000026,NHS Mid and South Essex Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,11,13
 E54000026,NHS Mid and South Essex Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,7,7
 E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,20,22
-E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000026,NHS Mid and South Essex Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000026,NHS Mid and South Essex Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,35,41
 E54000026,NHS Mid and South Essex Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,20,23
 E54000026,NHS Mid and South Essex Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,20,21
@@ -1603,8 +1603,8 @@ E54000027,NHS North West London Integrated Care Board,2017/18,Deliberate Self-Ha
 E54000027,NHS North West London Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,2,4
 E54000027,NHS North West London Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,6,10
 E54000027,NHS North West London Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,4,6
-E54000027,NHS North West London Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,3,4
-E54000027,NHS North West London Integrated Care Board,2019/20,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,2
+E54000027,NHS North West London Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,4
+E54000027,NHS North West London Integrated Care Board,2019/20,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,2
 E54000027,NHS North West London Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,3,3
 E54000027,NHS North West London Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,7,7
 E54000027,NHS North West London Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,15,16
@@ -1685,8 +1685,8 @@ E54000027,NHS North West London Integrated Care Board,2017/18,Tiredness (Fatigue
 E54000027,NHS North West London Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,14,20
 E54000027,NHS North West London Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,9,17
 E54000027,NHS North West London Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,40,61
-E54000027,NHS North West London Integrated Care Board,2019/20,Tiredness (Fatigue) Pregnant - PC depressed mood,1,2
-E54000027,NHS North West London Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,2,2
+E54000027,NHS North West London Integrated Care Board,2019/20,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,2
+E54000027,NHS North West London Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",2,2
 E54000027,NHS North West London Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,11,13
 E54000027,NHS North West London Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,14,15
 E54000027,NHS North West London Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,14,14
@@ -1760,7 +1760,7 @@ E54000028,NHS North Central London Integrated Care Board,2020/21,Behaviour Chang
 E54000028,NHS North Central London Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,5,5
 E54000028,NHS North Central London Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,4,4
 E54000028,NHS North Central London Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000028,NHS North Central London Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,2
+E54000028,NHS North Central London Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,2
 E54000028,NHS North Central London Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,2,2
 E54000028,NHS North Central London Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000028,NHS North Central London Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,2,4
@@ -1923,7 +1923,7 @@ E54000029,NHS North East London Integrated Care Board,2020/21,Tiredness (Fatigue
 E54000029,NHS North East London Integrated Care Board,2017/18,Tiredness (Fatigue) - PC depressed mood,2,2
 E54000029,NHS North East London Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,1,2
 E54000029,NHS North East London Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,3,4
-E54000029,NHS North East London Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000029,NHS North East London Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000029,NHS North East London Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,1
 E54000029,NHS North East London Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,4,4
 E54000029,NHS North East London Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,2,2
@@ -2222,7 +2222,7 @@ E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Deliberate Self-Harm
 E54000032,NHS Kent and Medway Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,4,4
 E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,31,35
 E54000032,NHS Kent and Medway Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,4,4
-E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000032,NHS Kent and Medway Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,14,16
 E54000032,NHS Kent and Medway Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,10,13
 E54000032,NHS Kent and Medway Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,1,1
@@ -2287,8 +2287,8 @@ E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Tiredness (Fatigue) 
 E54000032,NHS Kent and Medway Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,20,23
 E54000032,NHS Kent and Medway Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,1,3
 E54000032,NHS Kent and Medway Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,3,3
-E54000032,NHS Kent and Medway Integrated Care Board,2018/19,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000032,NHS Kent and Medway Integrated Care Board,2018/19,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000032,NHS Kent and Medway Integrated Care Board,2017/18,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000032,NHS Kent and Medway Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,47,52
 E54000032,NHS Kent and Medway Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,32,32
 E54000032,NHS Kent and Medway Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,3,3
@@ -2372,7 +2372,7 @@ E54000034,NHS Frimley Integrated Care Board,2017/18,Deliberate Self-Harm - ED su
 E54000034,NHS Frimley Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,1,1
 E54000034,NHS Frimley Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,10,17
 E54000034,NHS Frimley Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,5,5
-E54000034,NHS Frimley Integrated Care Board,2017/18,Drug solvent alcohol misuse - AMB suicidal means and plan,0,1
+E54000034,NHS Frimley Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - AMB suicidal means and plan",0,1
 E54000034,NHS Frimley Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,5,5
 E54000034,NHS Frimley Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000034,NHS Frimley Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,1,1
@@ -2745,7 +2745,7 @@ E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care B
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,5,5
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,5,5
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,2,2
-E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,4,4
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,7,8
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,5,5
@@ -2809,7 +2809,7 @@ E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care B
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,4,4
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,11,12
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,24,24
-E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,2,2
+E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",2,2
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,1
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,1
 E54000039,NHS Bristol North Somerset and South Gloucestershire Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,2,2
@@ -2996,7 +2996,7 @@ E54000041,NHS Dorset Integrated Care Board,2018/19,Deliberate Self-Harm - AMB to
 E54000041,NHS Dorset Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,23,23
 E54000041,NHS Dorset Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,9,10
 E54000041,NHS Dorset Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,20,21
-E54000041,NHS Dorset Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,2
+E54000041,NHS Dorset Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,2
 E54000041,NHS Dorset Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,5,6
 E54000041,NHS Dorset Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,4,4
 E54000041,NHS Dorset Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,8,8
@@ -3234,7 +3234,7 @@ E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2017/18,Tirednes
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,15,15
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,17,18
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,38,41
-E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,2,2
+E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",2,2
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,76,95
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,70,80
 E54000042,NHS Hampshire and Isle of Wight Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,89,97
@@ -3313,7 +3313,7 @@ E54000043,NHS Gloucestershire Integrated Care Board,2018/19,Deliberate Self-Harm
 E54000043,NHS Gloucestershire Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,6,6
 E54000043,NHS Gloucestershire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,1,1
 E54000043,NHS Gloucestershire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,2,2
-E54000043,NHS Gloucestershire Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000043,NHS Gloucestershire Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000043,NHS Gloucestershire Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,4,4
 E54000043,NHS Gloucestershire Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,6,6
 E54000043,NHS Gloucestershire Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,5,5
@@ -3379,9 +3379,9 @@ E54000043,NHS Gloucestershire Integrated Care Board,2017/18,Tiredness (Fatigue) 
 E54000043,NHS Gloucestershire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,3,3
 E54000043,NHS Gloucestershire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,1,1
 E54000043,NHS Gloucestershire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,19,19
-E54000043,NHS Gloucestershire Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000043,NHS Gloucestershire Integrated Care Board,2017/18,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
-E54000043,NHS Gloucestershire Integrated Care Board,2019/20,Tiredness (Fatigue) Pregnant - PC depressed mood,0,1
+E54000043,NHS Gloucestershire Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000043,NHS Gloucestershire Integrated Care Board,2017/18,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
+E54000043,NHS Gloucestershire Integrated Care Board,2019/20,"Tiredness (Fatigue), Pregnant - PC depressed mood",0,1
 E54000043,NHS Gloucestershire Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,1
 E54000043,NHS Gloucestershire Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,1,1
 E54000043,NHS Gloucestershire Integrated Care Board,2018/19,Worsening known Mental health problem - AMB suicidal means and plan,3,3
@@ -3463,7 +3463,7 @@ E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Boa
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,11,11
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,33,40
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,17,17
-E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,6,6
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,2,2
@@ -3535,9 +3535,9 @@ E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Boa
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,15,16
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,15,16
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,46,49
-E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
-E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
+E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,41,57
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,38,38
 E54000044,NHS Buckinghamshire Oxfordshire and Berkshire West Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,42,44
@@ -3607,7 +3607,7 @@ E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2017/18,Deliber
 E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,2,2
 E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2018/19,Deliberate Self-Harm - AMB toxic ingestion,2,2
 E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,1,1
-E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,1,2
 E54000048,NHS Lancashire and South Cumbria Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,1,1
@@ -3819,8 +3819,8 @@ E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,Deliberat
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,6,6
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,20,21
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,13,13
-E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,3
-E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,3,3
+E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,3
+E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,3
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,19,21
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,13,14
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,23,24
@@ -3901,7 +3901,7 @@ E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,Tiredness
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,8,8
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,13,13
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,41,44
-E54000051,NHS Humber and North Yorkshire Integrated Care Board,2019/20,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000051,NHS Humber and North Yorkshire Integrated Care Board,2019/20,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,53,54
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,51,54
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,57,62
@@ -3953,323 +3953,6 @@ E54000051,NHS Humber and North Yorkshire Integrated Care Board,2020/21,Worsening
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2018/19,Worsening known Mental health problem - PC self-harm,2,2
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2019/20,Worsening known Mental health problem - PC self-harm,1,1
 E54000051,NHS Humber and North Yorkshire Integrated Care Board,2020/21,Worsening known Mental health problem - PC self-harm,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - AMB suicidal means and plan,9,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - AMB suicidal means and plan,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - AMB suicidal means and plan,6,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - AMB suicidal means and plan,6,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - ED suicidal no means nor plan,90,103
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - ED suicidal no means nor plan,72,76
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC agitation,17,19
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC agitation,8,8
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC agitation,13,20
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC agitation,21,31
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC anxiety/panic,7,8
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC anxiety/panic,6,7
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC anxiety/panic,3,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC anxiety/panic,5,7
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC depressed mood,15,16
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC depressed mood,8,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC depressed mood,14,26
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC depressed mood,16,26
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC hallucinations,46,50
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC hallucinations,46,47
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC hallucinations,41,70
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC hallucinations,51,85
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC postnatal mental health problem,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC postnatal mental health problem,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC postnatal mental health problem,3,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC post-traumatic stress,16,18
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC post-traumatic stress,8,8
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC post-traumatic stress,9,16
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC post-traumatic stress,15,25
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,12,12
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - AMB suicidal means and plan,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - AMB suicidal means and plan,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,49,54
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - AMB toxic ingestion,11,13
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,20,21
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,7,7
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,9,10
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,13,14
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,6,7
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,4,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,7,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,6,13
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,17,29
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - ED suicidal no means nor plan,57,64
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - ED suicidal no means nor plan,51,54
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - ED suicidal no means nor plan,51,103
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - ED suicidal no means nor plan,89,160
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC anxiety/panic,15,15
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC anxiety/panic,14,15
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC anxiety/panic,22,40
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC anxiety/panic,23,42
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC bereavement,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC bereavement,6,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC bereavement,3,7
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC bereavement,7,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC depressed mood,21,21
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC depressed mood,30,33
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC depressed mood,25,49
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC depressed mood,42,69
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC full mental health assessment and prescribing capability,13,14
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC full Primary Care assessment and prescribing capability,50,61
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC full Primary Care assessment and prescribing capability,83,88
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC full Primary Care assessment and prescribing capability,75,148
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC full Primary Care assessment and prescribing capability,96,175
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC postnatal mental health problem,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC postnatal mental health problem,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC postnatal mental health problem,1,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC postnatal mental health problem,3,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC post-traumatic stress,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC post-traumatic stress,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC post-traumatic stress,8,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC post-traumatic stress,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC relationship breakdown,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC relationship breakdown,6,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC relationship breakdown,6,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC relationship breakdown,6,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Non-trauma Emergency - AMB suicide attempt,95,104
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Non-trauma Emergency - AMB suicide attempt,97,118
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Non-trauma Emergency - AMB suicide attempt,124,135
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Non-trauma Emergency - AMB suicide attempt,92,99
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Predetermined Management Plan - ED suicidal no means nor plan,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Predetermined Management Plan - ED suicidal no means nor plan,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Predetermined Management Plan - PC full mental health assessment and prescribing capability,18,26
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Sleep Difficulties - ED suicidal no means nor plan,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Sleep Difficulties - ED suicidal no means nor plan,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Sleep Difficulties - ED suicidal no means nor plan,3,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Sleep Difficulties - ED suicidal no means nor plan,6,12
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Sleep Difficulties - PC anxiety/panic,10,10
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Sleep Difficulties - PC anxiety/panic,8,8
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Sleep Difficulties - PC anxiety/panic,14,25
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Sleep Difficulties - PC anxiety/panic,29,49
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Sleep Difficulties - PC depressed mood,15,16
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Sleep Difficulties - PC depressed mood,12,12
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Sleep Difficulties - PC depressed mood,15,36
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Sleep Difficulties - PC depressed mood,20,40
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Social or Domestic Emergency - AMB suicidal means and plan,5,5
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Social or Domestic Emergency - AMB suicidal means and plan,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Social or Domestic Emergency - AMB suicidal means and plan,2,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Social or Domestic Emergency - AMB suicidal means and plan,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Social or Domestic Emergency - ED suicidal no means nor plan,12,13
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Social or Domestic Emergency - ED suicidal no means nor plan,8,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Social or Domestic Emergency - ED suicidal no means nor plan,11,21
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Social or Domestic Emergency - ED suicidal no means nor plan,11,14
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Tiredness (Fatigue) - ED suicidal no means nor plan,1,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Tiredness (Fatigue) - PC anxiety/panic,4,4
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Tiredness (Fatigue) - PC anxiety/panic,3,3
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Tiredness (Fatigue) - PC anxiety/panic,6,10
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Tiredness (Fatigue) - PC anxiety/panic,14,26
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Tiredness (Fatigue) - PC depressed mood,10,10
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,8,9
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,4,7
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,27,46
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,24,27
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,16,19
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,14,16
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,17,21
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,96,123
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - AMB suicidal means and plan,80,125
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - AMB suicidal means and plan,93,128
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - AMB suicidal means and plan,82,111
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED full ED assessment and management capability,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - ED mania/hypomania,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - ED mania/hypomania,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED mania/hypomania,3,6
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - ED schizophrenia,28,35
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - ED schizophrenia,30,43
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED schizophrenia,35,103
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - ED schizophrenia,34,141
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - ED suicidal no means nor plan,342,527
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - ED suicidal no means nor plan,400,590
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED suicidal no means nor plan,499,1434
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - ED suicidal no means nor plan,554,1523
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC bipolar disorder,36,50
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC bipolar disorder,24,33
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC bipolar disorder,35,68
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC bipolar disorder,43,91
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC chronic depression,187,240
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC chronic depression,189,221
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC chronic depression,204,449
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC chronic depression,208,392
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC Dementia/alzheimer's,10,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC Dementia/alzheimer's,11,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC Dementia/alzheimer's,16,26
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC Dementia/alzheimer's,6,8
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,261,324
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,315,421
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,285,580
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,305,602
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC generalised anxiety disorder,150,201
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC generalised anxiety disorder,144,182
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC generalised anxiety disorder,174,363
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC generalised anxiety disorder,193,330
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC schizophrenia,8,13
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC schizophrenia,9,15
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC schizophrenia,9,15
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC schizophrenia,5,11
-E54000052,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC self-harm,1,1
-E54000052,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC self-harm,2,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC self-harm,1,2
-E54000052,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC self-harm,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - AMB suicidal means and plan,27,35
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - AMB suicidal means and plan,41,43
-E54000053,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - AMB suicidal means and plan,1,1
-E54000053,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - AMB suicidal means and plan,4,4
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - ED suicidal no means nor plan,231,263
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - ED suicidal no means nor plan,143,155
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC agitation,35,37
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC agitation,32,39
-E54000053,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC agitation,4,4
-E54000053,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC agitation,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC anxiety/panic,12,13
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC anxiety/panic,18,18
-E54000053,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC anxiety/panic,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC depressed mood,35,38
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC depressed mood,24,26
-E54000053,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC depressed mood,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC hallucinations,102,111
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC hallucinations,98,103
-E54000053,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC hallucinations,1,1
-E54000053,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC hallucinations,6,6
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC postnatal mental health problem,1,1
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC postnatal mental health problem,2,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC post-traumatic stress,28,28
-E54000053,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC post-traumatic stress,20,21
-E54000053,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC post-traumatic stress,1,2
-E54000053,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC post-traumatic stress,2,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,18,20
-E54000053,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,8,8
-E54000053,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - AMB suicidal means and plan,12,12
-E54000053,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - AMB suicidal means and plan,4,5
-E54000053,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,143,166
-E54000053,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - AMB toxic ingestion,31,33
-E54000053,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,65,69
-E54000053,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,14,15
-E54000053,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,27,29
-E54000053,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,10,10
-E54000053,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,55,57
-E54000053,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,10,10
-E54000053,NHS Sussex Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,20,20
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,15,17
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,9,9
-E54000053,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,2,2
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,1,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - ED suicidal no means nor plan,131,157
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - ED suicidal no means nor plan,112,123
-E54000053,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - ED suicidal no means nor plan,7,8
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - ED suicidal no means nor plan,9,12
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC anxiety/panic,27,27
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC anxiety/panic,26,26
-E54000053,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC anxiety/panic,3,5
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC anxiety/panic,3,5
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC bereavement,10,10
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC bereavement,7,7
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC depressed mood,34,36
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC depressed mood,59,64
-E54000053,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC depressed mood,2,2
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC depressed mood,6,7
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC full mental health assessment and prescribing capability,13,13
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC full Primary Care assessment and prescribing capability,132,136
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC full Primary Care assessment and prescribing capability,177,198
-E54000053,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC full Primary Care assessment and prescribing capability,6,9
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC full Primary Care assessment and prescribing capability,14,16
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC postnatal mental health problem,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC post-traumatic stress,6,8
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC post-traumatic stress,5,5
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC post-traumatic stress,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC relationship breakdown,9,9
-E54000053,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC relationship breakdown,6,6
-E54000053,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC relationship breakdown,2,2
-E54000053,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC relationship breakdown,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Non-trauma Emergency - AMB suicide attempt,318,437
-E54000053,NHS Sussex Integrated Care Board,2018/19,Non-trauma Emergency - AMB suicide attempt,320,442
-E54000053,NHS Sussex Integrated Care Board,2019/20,Non-trauma Emergency - AMB suicide attempt,6,6
-E54000053,NHS Sussex Integrated Care Board,2020/21,Non-trauma Emergency - AMB suicide attempt,13,13
-E54000053,NHS Sussex Integrated Care Board,2017/18,Predetermined Management Plan - AMB suicidal means and plan,1,1
-E54000053,NHS Sussex Integrated Care Board,2018/19,Predetermined Management Plan - AMB suicidal means and plan,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Predetermined Management Plan - ED suicidal no means nor plan,4,4
-E54000053,NHS Sussex Integrated Care Board,2018/19,Predetermined Management Plan - ED suicidal no means nor plan,2,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Predetermined Management Plan - PC full mental health assessment and prescribing capability,48,159
-E54000053,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - AMB suicidal means and plan,2,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - ED suicidal no means nor plan,10,11
-E54000053,NHS Sussex Integrated Care Board,2018/19,Sleep Difficulties - ED suicidal no means nor plan,8,8
-E54000053,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - PC anxiety/panic,28,28
-E54000053,NHS Sussex Integrated Care Board,2018/19,Sleep Difficulties - PC anxiety/panic,21,23
-E54000053,NHS Sussex Integrated Care Board,2020/21,Sleep Difficulties - PC anxiety/panic,3,3
-E54000053,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - PC depressed mood,25,26
-E54000053,NHS Sussex Integrated Care Board,2018/19,Sleep Difficulties - PC depressed mood,27,29
-E54000053,NHS Sussex Integrated Care Board,2019/20,Sleep Difficulties - PC depressed mood,1,1
-E54000053,NHS Sussex Integrated Care Board,2020/21,Sleep Difficulties - PC depressed mood,3,3
-E54000053,NHS Sussex Integrated Care Board,2017/18,Social or Domestic Emergency - AMB suicidal means and plan,6,7
-E54000053,NHS Sussex Integrated Care Board,2018/19,Social or Domestic Emergency - AMB suicidal means and plan,2,3
-E54000053,NHS Sussex Integrated Care Board,2019/20,Social or Domestic Emergency - AMB suicidal means and plan,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Social or Domestic Emergency - ED suicidal no means nor plan,24,31
-E54000053,NHS Sussex Integrated Care Board,2018/19,Social or Domestic Emergency - ED suicidal no means nor plan,26,31
-E54000053,NHS Sussex Integrated Care Board,2019/20,Social or Domestic Emergency - ED suicidal no means nor plan,1,1
-E54000053,NHS Sussex Integrated Care Board,2020/21,Social or Domestic Emergency - ED suicidal no means nor plan,2,4
-E54000053,NHS Sussex Integrated Care Board,2017/18,Social or Domestic Emergency - PC full mental health assessment and prescribing capability,8,8
-E54000053,NHS Sussex Integrated Care Board,2018/19,Tiredness (Fatigue) - ED suicidal no means nor plan,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Tiredness (Fatigue) - PC anxiety/panic,11,11
-E54000053,NHS Sussex Integrated Care Board,2018/19,Tiredness (Fatigue) - PC anxiety/panic,6,6
-E54000053,NHS Sussex Integrated Care Board,2020/21,Tiredness (Fatigue) - PC anxiety/panic,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Tiredness (Fatigue) - PC depressed mood,21,22
-E54000053,NHS Sussex Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,15,16
-E54000053,NHS Sussex Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,1,1
-E54000053,NHS Sussex Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,2,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,65,71
-E54000053,NHS Sussex Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,48,53
-E54000053,NHS Sussex Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,1
-E54000053,NHS Sussex Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,3,3
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,281,467
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - AMB suicidal means and plan,312,471
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - AMB suicidal means and plan,10,15
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - AMB suicidal means and plan,18,22
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - ED mania/hypomania,6,7
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - ED mania/hypomania,2,2
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - ED mania/hypomania,1,1
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - ED schizophrenia,72,107
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - ED schizophrenia,53,87
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - ED schizophrenia,5,7
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - ED schizophrenia,5,5
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - ED suicidal no means nor plan,923,1287
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - ED suicidal no means nor plan,1060,1477
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - ED suicidal no means nor plan,49,65
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - ED suicidal no means nor plan,105,127
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC bipolar disorder,109,156
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC bipolar disorder,89,109
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC bipolar disorder,4,5
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC bipolar disorder,5,7
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC chronic depression,457,562
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC chronic depression,455,588
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC chronic depression,22,29
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC chronic depression,25,30
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC Dementia/alzheimer's,27,28
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC Dementia/alzheimer's,29,31
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,622,768
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,662,870
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,30,40
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,39,44
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC generalised anxiety disorder,385,505
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC generalised anxiety disorder,344,427
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC generalised anxiety disorder,11,15
-E54000053,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC generalised anxiety disorder,26,30
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC schizophrenia,19,22
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC schizophrenia,17,21
-E54000053,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC schizophrenia,1,2
-E54000053,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC self-harm,2,2
-E54000053,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC self-harm,1,1
 E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Behaviour Change - AMB suicidal means and plan,33,36
 E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Behaviour Change - AMB suicidal means and plan,37,40
 E54000054,NHS West Yorkshire Integrated Care Board,2019/20,Behaviour Change - AMB suicidal means and plan,41,47
@@ -4313,10 +3996,10 @@ E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Deliberate Self-Harm 
 E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,17,17
 E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,52,52
 E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,15,15
-E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,6,6
-E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,5,6
-E54000054,NHS West Yorkshire Integrated Care Board,2019/20,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
-E54000054,NHS West Yorkshire Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,4,4
+E54000054,NHS West Yorkshire Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",6,6
+E54000054,NHS West Yorkshire Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",5,6
+E54000054,NHS West Yorkshire Integrated Care Board,2019/20,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
+E54000054,NHS West Yorkshire Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",4,4
 E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,21,23
 E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,20,21
 E54000054,NHS West Yorkshire Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,18,18
@@ -4402,8 +4085,8 @@ E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Tiredness (Fatigue) -
 E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,13,14
 E54000054,NHS West Yorkshire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,15,15
 E54000054,NHS West Yorkshire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,52,52
-E54000054,NHS West Yorkshire Integrated Care Board,2019/20,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000054,NHS West Yorkshire Integrated Care Board,2020/21,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000054,NHS West Yorkshire Integrated Care Board,2019/20,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000054,NHS West Yorkshire Integrated Care Board,2020/21,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000054,NHS West Yorkshire Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,67,69
 E54000054,NHS West Yorkshire Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,76,81
 E54000054,NHS West Yorkshire Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,79,88
@@ -4490,8 +4173,8 @@ E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,Deliberate S
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,4,4
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,4,4
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,2,2
-E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,2
-E54000055,NHS Birmingham and Solihull Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,3,3
+E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,2
+E54000055,NHS Birmingham and Solihull Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,3
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,2,2
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,48,49
@@ -4562,8 +4245,8 @@ E54000055,NHS Birmingham and Solihull Integrated Care Board,2020/21,Tiredness (F
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,Tiredness (Fatigue) - PC depressed mood,5,5
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,8,8
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,32,34
-E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,Tiredness (Fatigue) Pregnant - PC depressed mood,0,1
-E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,"Tiredness (Fatigue), Pregnant - PC depressed mood",0,1
+E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,12,12
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,2,2
 E54000055,NHS Birmingham and Solihull Integrated Care Board,2018/19,Worsening known Mental health problem - AMB suicidal means and plan,6,6
@@ -4849,7 +4532,7 @@ E54000058,NHS Derby and Derbyshire Integrated Care Board,2017/18,Deliberate Self
 E54000058,NHS Derby and Derbyshire Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,2,2
 E54000058,NHS Derby and Derbyshire Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,1,1
 E54000058,NHS Derby and Derbyshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000058,NHS Derby and Derbyshire Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000058,NHS Derby and Derbyshire Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000058,NHS Derby and Derbyshire Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000058,NHS Derby and Derbyshire Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,16,19
 E54000058,NHS Derby and Derbyshire Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,19,21
@@ -5105,7 +4788,7 @@ E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2017/18,Delib
 E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,1,1
 E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
 E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2019/20,Drug solvent alcohol misuse - ED suicidal no means nor plan,3,3
+E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2019/20,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,3
 E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,2,2
 E54000060,NHS Nottingham and Nottinghamshire Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,13,13
@@ -5260,10 +4943,10 @@ E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Deliberate Self-Harm
 E54000061,NHS South Yorkshire Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,3,3
 E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,25,26
 E54000061,NHS South Yorkshire Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,10,10
-E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Drug solvent alcohol misuse - ED suicidal no means nor plan,4,4
-E54000061,NHS South Yorkshire Integrated Care Board,2018/19,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,2
-E54000061,NHS South Yorkshire Integrated Care Board,2019/20,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
-E54000061,NHS South Yorkshire Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,1,1
+E54000061,NHS South Yorkshire Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",4,4
+E54000061,NHS South Yorkshire Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,2
+E54000061,NHS South Yorkshire Integrated Care Board,2019/20,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
+E54000061,NHS South Yorkshire Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
 E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,14,14
 E54000061,NHS South Yorkshire Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,15,27
 E54000061,NHS South Yorkshire Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,14,16
@@ -5344,7 +5027,7 @@ E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Tiredness (Fatigue) 
 E54000061,NHS South Yorkshire Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,8,8
 E54000061,NHS South Yorkshire Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,6,7
 E54000061,NHS South Yorkshire Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,30,31
-E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
+E54000061,NHS South Yorkshire Integrated Care Board,2017/18,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
 E54000061,NHS South Yorkshire Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,50,52
 E54000061,NHS South Yorkshire Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,52,53
 E54000061,NHS South Yorkshire Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,41,45
@@ -5427,7 +5110,7 @@ E54000062,NHS Black Country Integrated Care Board,2017/18,Deliberate Self-Harm -
 E54000062,NHS Black Country Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,4,4
 E54000062,NHS Black Country Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,8,8
 E54000062,NHS Black Country Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,1,1
-E54000062,NHS Black Country Integrated Care Board,2020/21,Drug solvent alcohol misuse - ED suicidal no means nor plan,2,3
+E54000062,NHS Black Country Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",2,3
 E54000062,NHS Black Country Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,1,1
 E54000062,NHS Black Country Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,2,3
 E54000062,NHS Black Country Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,6,6
@@ -5495,8 +5178,8 @@ E54000062,NHS Black Country Integrated Care Board,2017/18,Tiredness (Fatigue) - 
 E54000062,NHS Black Country Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,6,6
 E54000062,NHS Black Country Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,5,5
 E54000062,NHS Black Country Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,28,28
-E54000062,NHS Black Country Integrated Care Board,2018/19,Tiredness (Fatigue) Pregnant - PC anxiety/panic,1,1
-E54000062,NHS Black Country Integrated Care Board,2018/19,Tiredness (Fatigue) Pregnant - PC depressed mood,1,1
+E54000062,NHS Black Country Integrated Care Board,2018/19,"Tiredness (Fatigue), Pregnant - PC anxiety/panic",1,1
+E54000062,NHS Black Country Integrated Care Board,2018/19,"Tiredness (Fatigue), Pregnant - PC depressed mood",1,1
 E54000062,NHS Black Country Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,2,2
 E54000062,NHS Black Country Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,6,7
 E54000062,NHS Black Country Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,4,5
@@ -5538,3 +5221,321 @@ E54000062,NHS Black Country Integrated Care Board,2019/20,Worsening known Mental
 E54000062,NHS Black Country Integrated Care Board,2020/21,Worsening known Mental health problem - PC schizophrenia,5,5
 E54000062,NHS Black Country Integrated Care Board,2018/19,Worsening known Mental health problem - PC self-harm,1,2
 E54000062,NHS Black Country Integrated Care Board,2020/21,Worsening known Mental health problem - PC self-harm,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - AMB suicidal means and plan,9,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - AMB suicidal means and plan,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - AMB suicidal means and plan,6,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - AMB suicidal means and plan,6,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - ED suicidal no means nor plan,89,102
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - ED suicidal no means nor plan,71,75
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC agitation,17,19
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC agitation,8,8
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC agitation,13,20
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC agitation,21,31
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC anxiety/panic,7,8
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC anxiety/panic,6,7
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC anxiety/panic,2,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC anxiety/panic,5,7
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC depressed mood,15,16
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC depressed mood,8,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC depressed mood,14,26
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC depressed mood,16,26
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC hallucinations,46,50
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC hallucinations,46,47
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC hallucinations,41,70
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC hallucinations,51,85
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC postnatal mental health problem,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC postnatal mental health problem,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC postnatal mental health problem,3,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Behaviour Change - PC post-traumatic stress,16,18
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Behaviour Change - PC post-traumatic stress,8,8
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Behaviour Change - PC post-traumatic stress,9,16
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Behaviour Change - PC post-traumatic stress,15,25
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,12,12
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - AMB suicidal means and plan,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - AMB suicidal means and plan,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,48,53
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - AMB toxic ingestion,11,13
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,20,21
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,7,7
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,9,10
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,13,14
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,6,7
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",1,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,3,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - AMB suicidal means and plan,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - AMB suicidal means and plan,7,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,6,13
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,17,29
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - ED suicidal no means nor plan,56,60
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - ED suicidal no means nor plan,50,53
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - ED suicidal no means nor plan,51,103
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - ED suicidal no means nor plan,89,160
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC anxiety/panic,15,15
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC anxiety/panic,14,15
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC anxiety/panic,22,40
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC anxiety/panic,23,42
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC bereavement,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC bereavement,6,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC bereavement,3,7
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC bereavement,7,11
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC depressed mood,21,21
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC depressed mood,30,33
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC depressed mood,25,49
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC depressed mood,41,67
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC full mental health assessment and prescribing capability,13,14
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC full Primary Care assessment and prescribing capability,50,61
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC full Primary Care assessment and prescribing capability,82,87
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC full Primary Care assessment and prescribing capability,75,148
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC full Primary Care assessment and prescribing capability,96,175
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC postnatal mental health problem,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC postnatal mental health problem,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC postnatal mental health problem,1,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC postnatal mental health problem,3,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC post-traumatic stress,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC post-traumatic stress,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC post-traumatic stress,7,10
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC post-traumatic stress,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Mental Health Problem - PC relationship breakdown,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Mental Health Problem - PC relationship breakdown,6,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Mental Health Problem - PC relationship breakdown,6,11
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Mental Health Problem - PC relationship breakdown,6,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Non-trauma Emergency - AMB suicide attempt,95,104
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Non-trauma Emergency - AMB suicide attempt,97,118
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Non-trauma Emergency - AMB suicide attempt,123,134
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Non-trauma Emergency - AMB suicide attempt,92,99
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Predetermined Management Plan - ED suicidal no means nor plan,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Predetermined Management Plan - ED suicidal no means nor plan,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Predetermined Management Plan - PC full mental health assessment and prescribing capability,17,20
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Sleep Difficulties - ED suicidal no means nor plan,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Sleep Difficulties - ED suicidal no means nor plan,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Sleep Difficulties - ED suicidal no means nor plan,3,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Sleep Difficulties - ED suicidal no means nor plan,6,12
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Sleep Difficulties - PC anxiety/panic,10,10
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Sleep Difficulties - PC anxiety/panic,8,8
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Sleep Difficulties - PC anxiety/panic,14,25
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Sleep Difficulties - PC anxiety/panic,29,49
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Sleep Difficulties - PC depressed mood,15,15
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Sleep Difficulties - PC depressed mood,12,12
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Sleep Difficulties - PC depressed mood,15,36
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Sleep Difficulties - PC depressed mood,20,40
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Social or Domestic Emergency - AMB suicidal means and plan,5,5
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Social or Domestic Emergency - AMB suicidal means and plan,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Social or Domestic Emergency - AMB suicidal means and plan,2,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Social or Domestic Emergency - AMB suicidal means and plan,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Social or Domestic Emergency - ED suicidal no means nor plan,12,13
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Social or Domestic Emergency - ED suicidal no means nor plan,8,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Social or Domestic Emergency - ED suicidal no means nor plan,11,21
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Social or Domestic Emergency - ED suicidal no means nor plan,11,14
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Tiredness (Fatigue) - ED suicidal no means nor plan,1,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Tiredness (Fatigue) - PC anxiety/panic,4,4
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Tiredness (Fatigue) - PC anxiety/panic,3,3
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Tiredness (Fatigue) - PC anxiety/panic,6,10
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Tiredness (Fatigue) - PC anxiety/panic,14,26
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Tiredness (Fatigue) - PC depressed mood,10,10
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,8,9
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,4,7
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,26,44
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,24,27
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,16,19
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,14,16
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,17,21
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,95,116
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - AMB suicidal means and plan,77,118
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - AMB suicidal means and plan,93,128
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - AMB suicidal means and plan,82,111
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED full ED assessment and management capability,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - ED mania/hypomania,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - ED mania/hypomania,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED mania/hypomania,3,6
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - ED schizophrenia,28,35
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - ED schizophrenia,30,43
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED schizophrenia,35,103
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - ED schizophrenia,34,141
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - ED suicidal no means nor plan,340,458
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - ED suicidal no means nor plan,396,564
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - ED suicidal no means nor plan,498,1419
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - ED suicidal no means nor plan,551,1495
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC bipolar disorder,35,49
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC bipolar disorder,23,32
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC bipolar disorder,35,68
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC bipolar disorder,43,91
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC chronic depression,184,235
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC chronic depression,187,219
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC chronic depression,203,448
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC chronic depression,208,392
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC Dementia/alzheimer's,10,11
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC Dementia/alzheimer's,11,11
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC Dementia/alzheimer's,16,26
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC Dementia/alzheimer's,6,8
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,260,304
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,314,413
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,284,578
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,304,595
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC generalised anxiety disorder,149,186
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC generalised anxiety disorder,143,177
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC generalised anxiety disorder,173,358
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC generalised anxiety disorder,193,330
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC schizophrenia,8,13
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC schizophrenia,9,15
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC schizophrenia,9,15
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC schizophrenia,5,11
+E54000063,NHS Surrey Heartlands Integrated Care Board,2017/18,Worsening known Mental health problem - PC self-harm,1,1
+E54000063,NHS Surrey Heartlands Integrated Care Board,2018/19,Worsening known Mental health problem - PC self-harm,2,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2019/20,Worsening known Mental health problem - PC self-harm,1,2
+E54000063,NHS Surrey Heartlands Integrated Care Board,2020/21,Worsening known Mental health problem - PC self-harm,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - AMB suicidal means and plan,27,35
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - AMB suicidal means and plan,41,43
+E54000064,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - AMB suicidal means and plan,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - AMB suicidal means and plan,4,4
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - ED suicidal no means nor plan,232,264
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - ED suicidal no means nor plan,144,156
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC agitation,35,37
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC agitation,32,39
+E54000064,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC agitation,4,4
+E54000064,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC agitation,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC anxiety/panic,12,13
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC anxiety/panic,18,18
+E54000064,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC anxiety/panic,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC anxiety/panic,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC depressed mood,35,38
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC depressed mood,24,26
+E54000064,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC depressed mood,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC hallucinations,102,111
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC hallucinations,98,103
+E54000064,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC hallucinations,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC hallucinations,6,6
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC postnatal mental health problem,1,1
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC postnatal mental health problem,2,2
+E54000064,NHS Sussex Integrated Care Board,2017/18,Behaviour Change - PC post-traumatic stress,28,28
+E54000064,NHS Sussex Integrated Care Board,2018/19,Behaviour Change - PC post-traumatic stress,20,21
+E54000064,NHS Sussex Integrated Care Board,2019/20,Behaviour Change - PC post-traumatic stress,1,2
+E54000064,NHS Sussex Integrated Care Board,2020/21,Behaviour Change - PC post-traumatic stress,2,2
+E54000064,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,18,20
+E54000064,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - AMB medication/toxic substance overdose high risk,8,8
+E54000064,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - AMB suicidal means and plan,12,12
+E54000064,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - AMB suicidal means and plan,4,5
+E54000064,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - AMB toxic ingestion,144,167
+E54000064,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - AMB toxic ingestion,31,33
+E54000064,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - ED full ED assessment and management capability,65,69
+E54000064,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - ED full ED assessment and management capability,14,15
+E54000064,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - ED suicidal no means nor plan,27,29
+E54000064,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - ED suicidal no means nor plan,10,10
+E54000064,NHS Sussex Integrated Care Board,2017/18,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,55,57
+E54000064,NHS Sussex Integrated Care Board,2018/19,Deliberate Self-Harm - PC full Primary Care assessment and prescribing capability,10,10
+E54000064,NHS Sussex Integrated Care Board,2018/19,"Drug, solvent, alcohol misuse - ED suicidal no means nor plan",3,3
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - AMB suicidal means and plan,20,20
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - AMB suicidal means and plan,16,18
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - ED full ED assessment and management capability,9,9
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - ED full ED assessment and management capability,2,2
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - ED full ED assessment and management capability,1,2
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - ED suicidal no means nor plan,132,161
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - ED suicidal no means nor plan,113,124
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - ED suicidal no means nor plan,7,8
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - ED suicidal no means nor plan,9,12
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC anxiety/panic,27,27
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC anxiety/panic,26,26
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC anxiety/panic,3,5
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC anxiety/panic,3,5
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC bereavement,10,10
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC bereavement,7,7
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC depressed mood,34,36
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC depressed mood,59,64
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC depressed mood,2,2
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC depressed mood,7,9
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC full mental health assessment and prescribing capability,13,13
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC full Primary Care assessment and prescribing capability,132,136
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC full Primary Care assessment and prescribing capability,178,199
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC full Primary Care assessment and prescribing capability,6,9
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC full Primary Care assessment and prescribing capability,14,16
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC postnatal mental health problem,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC post-traumatic stress,6,8
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC post-traumatic stress,5,5
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC post-traumatic stress,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC post-traumatic stress,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Mental Health Problem - PC relationship breakdown,9,9
+E54000064,NHS Sussex Integrated Care Board,2018/19,Mental Health Problem - PC relationship breakdown,6,6
+E54000064,NHS Sussex Integrated Care Board,2019/20,Mental Health Problem - PC relationship breakdown,2,2
+E54000064,NHS Sussex Integrated Care Board,2020/21,Mental Health Problem - PC relationship breakdown,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Non-trauma Emergency - AMB suicide attempt,318,437
+E54000064,NHS Sussex Integrated Care Board,2018/19,Non-trauma Emergency - AMB suicide attempt,320,442
+E54000064,NHS Sussex Integrated Care Board,2019/20,Non-trauma Emergency - AMB suicide attempt,7,7
+E54000064,NHS Sussex Integrated Care Board,2020/21,Non-trauma Emergency - AMB suicide attempt,13,13
+E54000064,NHS Sussex Integrated Care Board,2017/18,Predetermined Management Plan - AMB suicidal means and plan,1,1
+E54000064,NHS Sussex Integrated Care Board,2018/19,Predetermined Management Plan - AMB suicidal means and plan,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Predetermined Management Plan - ED suicidal no means nor plan,4,4
+E54000064,NHS Sussex Integrated Care Board,2018/19,Predetermined Management Plan - ED suicidal no means nor plan,2,2
+E54000064,NHS Sussex Integrated Care Board,2017/18,Predetermined Management Plan - PC full mental health assessment and prescribing capability,49,165
+E54000064,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - AMB suicidal means and plan,2,2
+E54000064,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - ED suicidal no means nor plan,10,11
+E54000064,NHS Sussex Integrated Care Board,2018/19,Sleep Difficulties - ED suicidal no means nor plan,8,8
+E54000064,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - PC anxiety/panic,28,28
+E54000064,NHS Sussex Integrated Care Board,2018/19,Sleep Difficulties - PC anxiety/panic,21,23
+E54000064,NHS Sussex Integrated Care Board,2020/21,Sleep Difficulties - PC anxiety/panic,3,3
+E54000064,NHS Sussex Integrated Care Board,2017/18,Sleep Difficulties - PC depressed mood,25,27
+E54000064,NHS Sussex Integrated Care Board,2018/19,Sleep Difficulties - PC depressed mood,27,29
+E54000064,NHS Sussex Integrated Care Board,2019/20,Sleep Difficulties - PC depressed mood,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Sleep Difficulties - PC depressed mood,3,3
+E54000064,NHS Sussex Integrated Care Board,2017/18,Social or Domestic Emergency - AMB suicidal means and plan,6,7
+E54000064,NHS Sussex Integrated Care Board,2018/19,Social or Domestic Emergency - AMB suicidal means and plan,2,3
+E54000064,NHS Sussex Integrated Care Board,2019/20,Social or Domestic Emergency - AMB suicidal means and plan,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Social or Domestic Emergency - ED suicidal no means nor plan,24,31
+E54000064,NHS Sussex Integrated Care Board,2018/19,Social or Domestic Emergency - ED suicidal no means nor plan,26,31
+E54000064,NHS Sussex Integrated Care Board,2019/20,Social or Domestic Emergency - ED suicidal no means nor plan,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Social or Domestic Emergency - ED suicidal no means nor plan,2,4
+E54000064,NHS Sussex Integrated Care Board,2017/18,Social or Domestic Emergency - PC full mental health assessment and prescribing capability,8,8
+E54000064,NHS Sussex Integrated Care Board,2018/19,Tiredness (Fatigue) - ED suicidal no means nor plan,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Tiredness (Fatigue) - PC anxiety/panic,11,11
+E54000064,NHS Sussex Integrated Care Board,2018/19,Tiredness (Fatigue) - PC anxiety/panic,6,6
+E54000064,NHS Sussex Integrated Care Board,2020/21,Tiredness (Fatigue) - PC anxiety/panic,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Tiredness (Fatigue) - PC depressed mood,21,22
+E54000064,NHS Sussex Integrated Care Board,2018/19,Tiredness (Fatigue) - PC depressed mood,15,16
+E54000064,NHS Sussex Integrated Care Board,2019/20,Tiredness (Fatigue) - PC depressed mood,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Tiredness (Fatigue) - PC depressed mood,3,4
+E54000064,NHS Sussex Integrated Care Board,2017/18,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,65,71
+E54000064,NHS Sussex Integrated Care Board,2018/19,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,48,53
+E54000064,NHS Sussex Integrated Care Board,2019/20,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,1,1
+E54000064,NHS Sussex Integrated Care Board,2020/21,Trauma Emergency - AMB self-harm episode AND toxic ingestion/inhalation/overdose,3,3
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - AMB suicidal means and plan,282,474
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - AMB suicidal means and plan,315,478
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - AMB suicidal means and plan,10,15
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - AMB suicidal means and plan,18,22
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - ED mania/hypomania,6,7
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - ED mania/hypomania,2,2
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - ED mania/hypomania,1,1
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - ED schizophrenia,72,107
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - ED schizophrenia,53,87
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - ED schizophrenia,5,7
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - ED schizophrenia,5,5
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - ED suicidal no means nor plan,925,1356
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - ED suicidal no means nor plan,1064,1503
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - ED suicidal no means nor plan,50,80
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - ED suicidal no means nor plan,108,155
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC bipolar disorder,110,157
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC bipolar disorder,90,110
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC bipolar disorder,4,5
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC bipolar disorder,5,7
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC chronic depression,460,567
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC chronic depression,457,590
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC chronic depression,23,30
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC chronic depression,25,30
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC Dementia/alzheimer's,27,28
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC Dementia/alzheimer's,29,31
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,623,788
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,663,878
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,31,42
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC full Primary Care assessment and prescribing capability,40,51
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC generalised anxiety disorder,386,520
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC generalised anxiety disorder,345,432
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC generalised anxiety disorder,12,20
+E54000064,NHS Sussex Integrated Care Board,2020/21,Worsening known Mental health problem - PC generalised anxiety disorder,26,30
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC schizophrenia,19,22
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC schizophrenia,17,21
+E54000064,NHS Sussex Integrated Care Board,2019/20,Worsening known Mental health problem - PC schizophrenia,1,2
+E54000064,NHS Sussex Integrated Care Board,2017/18,Worsening known Mental health problem - PC self-harm,2,2
+E54000064,NHS Sussex Integrated Care Board,2018/19,Worsening known Mental health problem - PC self-harm,1,1
