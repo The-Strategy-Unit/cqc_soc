@@ -80,7 +80,9 @@ wrangle_gender_totals_21_22 <- function(data) {
 
 # To put all the gender data together for financial years 2018/19 to 2022/13 and summarised
 # by ICB:
-get_gender_totals <- function(population_2018_females,
+get_gender_totals <- function(population_2017_females,
+                              population_2017_males,
+                              population_2018_females,
                               population_2018_males,
                               population_2019_females,
                               population_2019_males,
@@ -94,6 +96,8 @@ get_gender_totals <- function(population_2018_females,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
+    wrangle_gender_totals_18_20(population_2017_females),
+    wrangle_gender_totals_18_20(population_2017_males),
     wrangle_gender_totals_18_20(population_2018_females),
     wrangle_gender_totals_18_20(population_2018_males),
     wrangle_gender_totals_18_20(population_2019_females),
@@ -189,7 +193,9 @@ wrangle_age_totals_21_22 <- function(data) {
 
 # To put all the age group data together for financial years 2018/19 to 2022/13 and summarised
 # by ICB:
-get_age_totals <- function(population_2018_females,
+get_age_totals <- function(population_2017_females,
+                           population_2017_males,
+                           population_2018_females,
                            population_2018_males,
                            population_2019_females,
                            population_2019_males,
@@ -203,6 +209,8 @@ get_age_totals <- function(population_2018_females,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
+    wrangle_age_totals_18_20(population_2017_females),
+    wrangle_age_totals_18_20(population_2017_males),
     wrangle_age_totals_18_20(population_2018_females),
     wrangle_age_totals_18_20(population_2018_males),
     wrangle_age_totals_18_20(population_2019_females),
@@ -299,7 +307,8 @@ wrangle_population_totals_21_22 <- function(data) {
 }
 
 # To put all the population total data together for years 2018 to 2022:
-get_population_totals <- function(population_2018_persons,
+get_population_totals <- function(population_2017_persons,
+                                  population_2018_persons,
                                   population_2019_persons,
                                   population_2020_persons,
                                   population_2021,
@@ -309,6 +318,7 @@ get_population_totals <- function(population_2018_persons,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
+    wrangle_population_totals_18_20(population_2017_persons),
     wrangle_population_totals_18_20(population_2018_persons),
     wrangle_population_totals_18_20(population_2019_persons),
     wrangle_population_totals_18_20(population_2020_persons),

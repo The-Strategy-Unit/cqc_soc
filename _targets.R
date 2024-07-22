@@ -55,8 +55,28 @@ list(
     url_population_2018,
     "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2018sape21dt1a/sape21dt1amid2018on2019lalsoasyoaestimatesformatted.zip"
   ),
+  tar_target(
+    url_population_2017,
+    "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2017/sape20dt1mid2017lsoasyoaestimatesformatted.zip"
+    )
+  ,
 
   # Reading in population data
+  tarchetypes::tar_map(
+    list(sheetnames = c("persons", "females", "males")),
+    tar_target(
+      population_2017,
+      scrape_zipped_xls(
+        url_population_2017,
+        paste0("Mid-2017 ", stringr::str_to_title(sheetnames)),
+        4
+      ) |>
+        dplyr::rename(lsoa_code = area_codes,
+                      lsoa = x3) |>
+        dplyr::filter(!is.na(lsoa)) # area_codes contains lsoa and lad codes, so
+      # removing the lad codes here
+    )
+  ),
   tarchetypes::tar_map(
     list(sheetnames = c("persons", "females", "males")),
     tar_target(
@@ -103,6 +123,8 @@ list(
   tar_target(
     gender_by_icb,
     get_gender_totals(
+      population_2017_females,
+      population_2017_males,
       population_2018_females,
       population_2018_males,
       population_2019_females,
@@ -119,6 +141,8 @@ list(
   tar_target(
     age_by_icb,
     get_age_totals(
+      population_2017_females,
+      population_2017_males,
       population_2018_females,
       population_2018_males,
       population_2019_females,
@@ -135,6 +159,7 @@ list(
   tar_target(
     population_by_lsoa,
     get_population_totals(
+      population_2017_persons,
       population_2018_persons,
       population_2019_persons,
       population_2020_persons,
@@ -214,12 +239,18 @@ list(
     data_ae,
     load_csv("data/ae_extract_full.csv") |>
       dplyr::rename(imd_decile = index_of_multiple_deprivation_decile) |>
-      dplyr::mutate(imd_decile = factor(imd_decile, levels = as.character(1:10)))
+      dplyr::mutate(imd_decile = factor(imd_decile,
+                                        levels = as.character(1:10)))
   ),
 
-  tar_target(data_111,
-             load_csv("data/111_extract_full.csv")|>
-               dplyr::rename(icb_code = icb22cd)),
+  tar_target(
+    data_111,
+    load_csv("data/111_extract_full.csv") |>
+      dplyr::rename(icb_code = icb22cd) |>
+      dplyr::mutate(imd_decile = factor(imd_decile,
+                                        levels = as.character(1:10)))
+  )
+  ,
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -300,37 +331,29 @@ list(
         dplyr::rename(attends = calls)
     )
   ),
-  # tar_target(nhs111_data_for_breakdowns,
-  #            list(nhs111_mh_calls = nhs111_mh_calls |>
-  #                   dplyr::rename(attends = calls))),
   tar_target(gender_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
-                            #nhs111_data_for_breakdowns,
                             gender_by_icb,
                             "gender")),
   tar_target(age_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
-                            #nhs111_data_for_breakdowns,
                             age_by_icb,
                             "age_group")),
   tar_target(imd_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
-                            #nhs111_data_for_breakdowns,
                             imd_by_icb,
                             "imd_decile")),
   tar_target(rural_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
-                            #nhs111_data_for_breakdowns,
                             rural_by_icb,
                             "rural_urban")),
   tar_target(ethnic_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
-                            #nhs111_data_for_breakdowns,
                             ethnicity_by_icb_by_year,
                             "ethnic_category")),
 
