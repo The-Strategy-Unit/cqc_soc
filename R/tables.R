@@ -14,9 +14,8 @@ get_icb_breakdown_table <- function(data, key){
   return(table)
 }
 
-
-
-
+# To create the % MH NHS 111 calls table by financial year and ICB, coloured by
+# value:
 get_icb_breakdown_table_111 <- function(data, key){
   table <- data |>
     dplyr::left_join(key, "icb_code") |>

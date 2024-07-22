@@ -7,7 +7,7 @@ modify_arrival_mode_plots <- function(plot){
 
 }
 
-
+# To format table and add a Copy button:
 create_dt <- function(x) {
   DT::datatable(
     x
@@ -27,6 +27,7 @@ create_dt <- function(x) {
         , c(10, 25, 50, "All"))))
 }
 
+# To get a standard table for the breakdowns:
 get_standard_table_for_breakdowns <- function(data, group){
 
   table <- data |>
@@ -37,6 +38,7 @@ get_standard_table_for_breakdowns <- function(data, group){
   return(table)
 }
 
+# To colour cells according to their value:
 color_gradient <- function(dt, column_names, breaks) {
 
   for(i in column_names){

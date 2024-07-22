@@ -38,7 +38,7 @@ scrape_zipped_xls <- function(url, sheet = 1, skip = 0) {
 }
 
 # To wrangle the gender data from the population files for 2018, 2019 and 2020:
-wrangle_gender_totals_18_20 <- function(data) {
+wrangle_gender_totals_17_20 <- function(data) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -96,14 +96,14 @@ get_gender_totals <- function(population_2017_females,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_gender_totals_18_20(population_2017_females),
-    wrangle_gender_totals_18_20(population_2017_males),
-    wrangle_gender_totals_18_20(population_2018_females),
-    wrangle_gender_totals_18_20(population_2018_males),
-    wrangle_gender_totals_18_20(population_2019_females),
-    wrangle_gender_totals_18_20(population_2019_males),
-    wrangle_gender_totals_18_20(population_2020_females),
-    wrangle_gender_totals_18_20(population_2020_males),
+    wrangle_gender_totals_17_20(population_2017_females),
+    wrangle_gender_totals_17_20(population_2017_males),
+    wrangle_gender_totals_17_20(population_2018_females),
+    wrangle_gender_totals_17_20(population_2018_males),
+    wrangle_gender_totals_17_20(population_2019_females),
+    wrangle_gender_totals_17_20(population_2019_males),
+    wrangle_gender_totals_17_20(population_2020_females),
+    wrangle_gender_totals_17_20(population_2020_males),
     wrangle_gender_totals_21_22(population_2021),
     wrangle_gender_totals_21_22(population_2022),
     gender_totals_2023
@@ -125,7 +125,7 @@ remove_welsh_lsoas <- function(data) {
 }
 
 # To wrangle the age data from the population files for 2018, 2019 and 2020:
-wrangle_age_totals_18_20 <- function(data) {
+wrangle_age_totals_17_20 <- function(data) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -209,14 +209,14 @@ get_age_totals <- function(population_2017_females,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_age_totals_18_20(population_2017_females),
-    wrangle_age_totals_18_20(population_2017_males),
-    wrangle_age_totals_18_20(population_2018_females),
-    wrangle_age_totals_18_20(population_2018_males),
-    wrangle_age_totals_18_20(population_2019_females),
-    wrangle_age_totals_18_20(population_2019_males),
-    wrangle_age_totals_18_20(population_2020_females),
-    wrangle_age_totals_18_20(population_2020_males),
+    wrangle_age_totals_17_20(population_2017_females),
+    wrangle_age_totals_17_20(population_2017_males),
+    wrangle_age_totals_17_20(population_2018_females),
+    wrangle_age_totals_17_20(population_2018_males),
+    wrangle_age_totals_17_20(population_2019_females),
+    wrangle_age_totals_17_20(population_2019_males),
+    wrangle_age_totals_17_20(population_2020_females),
+    wrangle_age_totals_17_20(population_2020_males),
     wrangle_age_totals_21_22(population_2021),
     wrangle_age_totals_21_22(population_2022),
     age_totals_2023
@@ -277,7 +277,7 @@ summarise_by_icb <- function(data, lsoa_to_icb, group) {
 
 # To wrangle the population data from the population files for 2018, 2019 and
 # 2020:
-wrangle_population_totals_18_20 <- function(data) {
+wrangle_population_totals_17_20 <- function(data) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -306,7 +306,7 @@ wrangle_population_totals_21_22 <- function(data) {
 
 }
 
-# To put all the population total data together for years 2018 to 2022:
+# To put all the population total data together for years 2017 to 2023:
 get_population_totals <- function(population_2017_persons,
                                   population_2018_persons,
                                   population_2019_persons,
@@ -318,10 +318,10 @@ get_population_totals <- function(population_2017_persons,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_population_totals_18_20(population_2017_persons),
-    wrangle_population_totals_18_20(population_2018_persons),
-    wrangle_population_totals_18_20(population_2019_persons),
-    wrangle_population_totals_18_20(population_2020_persons),
+    wrangle_population_totals_17_20(population_2017_persons),
+    wrangle_population_totals_17_20(population_2018_persons),
+    wrangle_population_totals_17_20(population_2019_persons),
+    wrangle_population_totals_17_20(population_2020_persons),
     wrangle_population_totals_21_22(population_2021),
     wrangle_population_totals_21_22(population_2022),
     population_totals_2023
@@ -653,11 +653,7 @@ ae_left_grouped <- function(tarobj) {
   return(data)
 }
 
-
-
-
-
-# % of calls being mh-related
+# To get % of calls being mh-related:
 get_perc_mh_calls <- function(data) {
   mh_calls <- data |>
     dplyr::summarise(
