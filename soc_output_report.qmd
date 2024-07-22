@@ -983,10 +983,100 @@ tar_read(nhs111_mh_calls_table) |>
 
 #### Geographical variation
 
-#### Gender variation
+::: panel-tabset
 
-#### Age-group variation
+##### Gender variation
 
-#### Ethnic group variation
+:::: panel-tabset
 
-#### Rural-urban variation
+###### Chart
+
+```{r nhs111_calls_gender_plot}
+#| label: "fig-nhs111_calls-gender"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by gender."
+tar_read(gender_plot)$nhs111_mh_calls
+```
+
+###### Table
+
+```{r nhs111_calls_gender_table}
+tar_read(gender_breakdowns)$nhs111_mh_calls |>
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
+```
+
+::::
+
+##### Age-group variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r nhs111_calls_age_plot}
+#| label: "fig-nhs111_calls-age"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by age group."
+tar_read(age_plot)$nhs111_mh_calls
+```
+
+###### Table
+
+```{r nhs111_calls_age_table}
+tar_read(age_breakdowns)$nhs111_mh_calls |>
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
+```
+
+::::
+
+##### Socioeconomic variation
+
+:::: panel-tabset
+
+###### Chart1
+
+```{r nhs111_calls_imd_plot}
+#| label: "fig-nhs111_calls-imd"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by Index of Multiple Deprivation decile."
+tar_read(imd_plot)$nhs111_mh_calls
+```
+
+###### Chart2
+
+```{r nhs111_calls_imd_plot2}
+#tar_read(ae_calls_imd) #################
+```
+
+###### Table
+
+```{r nhs111_calls_imd_table}
+tar_read(imd_breakdowns)$nhs111_mh_calls |>
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
+```
+
+::::
+
+##### Rural-urban variation
+
+:::: panel-tabset
+
+###### Chart
+
+```{r nhs111_calls_rural_plot}
+#| label: "fig-nhs111_calls-rural"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by rural and urban populations."
+tar_read(rural_plot)$nhs111_mh_calls
+```
+
+###### Table
+
+```{r nhs111_calls_rural_table}
+tar_read(rural_breakdowns)$nhs111_mh_calls |>
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
+```
+
+::::
+
+:::

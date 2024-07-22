@@ -295,32 +295,42 @@ list(
       uec_mh_attends = uec_mh_attends,
       uec_mh_known = uec_mh_known,
       type1_mh_attends = type1_mh_attends,
-      type1_mh_known = type1_mh_known
+      type1_mh_known = type1_mh_known,
+      nhs111_mh_calls = nhs111_mh_calls |>
+        dplyr::rename(attends = calls)
     )
   ),
+  # tar_target(nhs111_data_for_breakdowns,
+  #            list(nhs111_mh_calls = nhs111_mh_calls |>
+  #                   dplyr::rename(attends = calls))),
   tar_target(gender_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            #nhs111_data_for_breakdowns,
                             gender_by_icb,
                             "gender")),
   tar_target(age_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            #nhs111_data_for_breakdowns,
                             age_by_icb,
                             "age_group")),
   tar_target(imd_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            #nhs111_data_for_breakdowns,
                             imd_by_icb,
                             "imd_decile")),
   tar_target(rural_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            #nhs111_data_for_breakdowns,
                             rural_by_icb,
                             "rural_urban")),
   tar_target(ethnic_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            #nhs111_data_for_breakdowns,
                             ethnicity_by_icb_by_year,
                             "ethnic_category")),
 
@@ -398,7 +408,7 @@ list(
   ),
 
   #### NHS 111 ####
-  #tar_target(type1_mh_calls, filter_mh_calls(data_111)),
+  tar_target(nhs111_mh_calls, filter_mh_calls(data_111)),
   tar_target(nhs111_perc_mh_calls, get_perc_mh_calls(data_111)),
   tar_target(
     nhs111_mh_calls_boxplot,

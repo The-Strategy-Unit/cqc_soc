@@ -503,7 +503,10 @@ get_icb_att_rates <- function(tarobj1, tarobj2) {
 }
 
 # To get a breakdown by a specified group:
-get_breakdown_one_group <- function(data_filtered, data_population, group) {
+get_breakdown_one_group <- function(data_filtered,
+                                    data_population,
+                                    group,
+                                    multiplier = 100000) {
   name_of_dataset <- deparse(substitute(data_filtered))
 
   data_population_agg <- data_population |> # currently at ICB level
@@ -520,7 +523,7 @@ get_breakdown_one_group <- function(data_filtered, data_population, group) {
       x = attends,
       n = count,
       confidence = 0.95,
-      multiplier = 100000
+      multiplier = multiplier
     )
 
   return(data)
@@ -562,19 +565,22 @@ get_breakdown_two_groups <- function(data_filtered,
 }
 
 # To get the breakdowns for each dataset by a group:
-get_breakdowns <- function(data_for_breakdowns,
+get_breakdowns <- function(data,
                            type1_arrival_mode,
                            data_population,
                            group) {
-  most <- purrr::map(
-    data_for_breakdowns,
-    ~ get_breakdown_one_group(., data_population, group)
-  )
+  if (group == "ethnic_category") {
+    # NHS 111 data does not have ethnic category
+    data <- data[!grepl("nhs111", names(data))]
+  }
+
+  most <- purrr::map(data,
+                     ~ get_breakdown_one_group(., data_population, group))
 
   arrival_mode <- get_breakdown_two_groups(type1_arrival_mode,
-                           data_population,
-                           group,
-                           "arrival_mode")
+                                           data_population,
+                                           group,
+                                           "arrival_mode")
 
   all <- append(most, list(type1_arrival_mode = arrival_mode))
 
@@ -601,6 +607,14 @@ filter_mh_known <- function(data) {
 filter_arrival_mode <- function(data) {
   data_filtered <- data |>
     dplyr::filter(arrival_mode != 'NULL', mh_snomed == 1)
+
+  return(data_filtered)
+}
+
+# To filter for MH calls from NHS 111 data:
+filter_mh_calls <- function(data) {
+  data_filtered <- data |>
+    dplyr::filter(mh_symptom == 1)
 
   return(data_filtered)
 }
