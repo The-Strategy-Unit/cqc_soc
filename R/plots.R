@@ -191,6 +191,7 @@ get_ed_transp_trends <- function(tarobj){
   return(plot)
 }
 
+# To get a standard line plot for the breakdowns:
 get_standard_line_for_breakdowns <- function(data, group) {
   name_of_dataset <- deparse(substitute(data))
 
@@ -274,12 +275,8 @@ imd_plot2 <- function(tarobj){
 }
 
 
-
-
-
-
-
-
+# To get a boxplot of percentage of MH NHS 111 calls by financial year with
+# points for ICB on top:
 get_perc_mh_calls_boxplot <- function(data) {
   plot <- data |>
     get_standard_boxplot() +

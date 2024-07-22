@@ -38,7 +38,7 @@ scrape_zipped_xls <- function(url, sheet = 1, skip = 0) {
 }
 
 # To wrangle the gender data from the population files for 2018, 2019 and 2020:
-wrangle_gender_totals_18_20 <- function(data) {
+wrangle_gender_totals_17_20 <- function(data) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -80,7 +80,9 @@ wrangle_gender_totals_21_22 <- function(data) {
 
 # To put all the gender data together for financial years 2018/19 to 2022/13 and summarised
 # by ICB:
-get_gender_totals <- function(population_2018_females,
+get_gender_totals <- function(population_2017_females,
+                              population_2017_males,
+                              population_2018_females,
                               population_2018_males,
                               population_2019_females,
                               population_2019_males,
@@ -94,12 +96,14 @@ get_gender_totals <- function(population_2018_females,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_gender_totals_18_20(population_2018_females),
-    wrangle_gender_totals_18_20(population_2018_males),
-    wrangle_gender_totals_18_20(population_2019_females),
-    wrangle_gender_totals_18_20(population_2019_males),
-    wrangle_gender_totals_18_20(population_2020_females),
-    wrangle_gender_totals_18_20(population_2020_males),
+    wrangle_gender_totals_17_20(population_2017_females),
+    wrangle_gender_totals_17_20(population_2017_males),
+    wrangle_gender_totals_17_20(population_2018_females),
+    wrangle_gender_totals_17_20(population_2018_males),
+    wrangle_gender_totals_17_20(population_2019_females),
+    wrangle_gender_totals_17_20(population_2019_males),
+    wrangle_gender_totals_17_20(population_2020_females),
+    wrangle_gender_totals_17_20(population_2020_males),
     wrangle_gender_totals_21_22(population_2021),
     wrangle_gender_totals_21_22(population_2022),
     gender_totals_2023
@@ -121,7 +125,7 @@ remove_welsh_lsoas <- function(data) {
 }
 
 # To wrangle the age data from the population files for 2018, 2019 and 2020:
-wrangle_age_totals_18_20 <- function(data) {
+wrangle_age_totals_17_20 <- function(data) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -189,7 +193,9 @@ wrangle_age_totals_21_22 <- function(data) {
 
 # To put all the age group data together for financial years 2018/19 to 2022/13 and summarised
 # by ICB:
-get_age_totals <- function(population_2018_females,
+get_age_totals <- function(population_2017_females,
+                           population_2017_males,
+                           population_2018_females,
                            population_2018_males,
                            population_2019_females,
                            population_2019_males,
@@ -203,12 +209,14 @@ get_age_totals <- function(population_2018_females,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_age_totals_18_20(population_2018_females),
-    wrangle_age_totals_18_20(population_2018_males),
-    wrangle_age_totals_18_20(population_2019_females),
-    wrangle_age_totals_18_20(population_2019_males),
-    wrangle_age_totals_18_20(population_2020_females),
-    wrangle_age_totals_18_20(population_2020_males),
+    wrangle_age_totals_17_20(population_2017_females),
+    wrangle_age_totals_17_20(population_2017_males),
+    wrangle_age_totals_17_20(population_2018_females),
+    wrangle_age_totals_17_20(population_2018_males),
+    wrangle_age_totals_17_20(population_2019_females),
+    wrangle_age_totals_17_20(population_2019_males),
+    wrangle_age_totals_17_20(population_2020_females),
+    wrangle_age_totals_17_20(population_2020_males),
     wrangle_age_totals_21_22(population_2021),
     wrangle_age_totals_21_22(population_2022),
     age_totals_2023
@@ -269,7 +277,7 @@ summarise_by_icb <- function(data, lsoa_to_icb, group) {
 
 # To wrangle the population data from the population files for 2018, 2019 and
 # 2020:
-wrangle_population_totals_18_20 <- function(data) {
+wrangle_population_totals_17_20 <- function(data) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -298,8 +306,9 @@ wrangle_population_totals_21_22 <- function(data) {
 
 }
 
-# To put all the population total data together for years 2018 to 2022:
-get_population_totals <- function(population_2018_persons,
+# To put all the population total data together for years 2017 to 2023:
+get_population_totals <- function(population_2017_persons,
+                                  population_2018_persons,
                                   population_2019_persons,
                                   population_2020_persons,
                                   population_2021,
@@ -309,9 +318,10 @@ get_population_totals <- function(population_2018_persons,
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_population_totals_18_20(population_2018_persons),
-    wrangle_population_totals_18_20(population_2019_persons),
-    wrangle_population_totals_18_20(population_2020_persons),
+    wrangle_population_totals_17_20(population_2017_persons),
+    wrangle_population_totals_17_20(population_2018_persons),
+    wrangle_population_totals_17_20(population_2019_persons),
+    wrangle_population_totals_17_20(population_2020_persons),
     wrangle_population_totals_21_22(population_2021),
     wrangle_population_totals_21_22(population_2022),
     population_totals_2023
@@ -503,7 +513,10 @@ get_icb_att_rates <- function(tarobj1, tarobj2) {
 }
 
 # To get a breakdown by a specified group:
-get_breakdown_one_group <- function(data_filtered, data_population, group) {
+get_breakdown_one_group <- function(data_filtered,
+                                    data_population,
+                                    group,
+                                    multiplier = 100000) {
   name_of_dataset <- deparse(substitute(data_filtered))
 
   data_population_agg <- data_population |> # currently at ICB level
@@ -520,7 +533,7 @@ get_breakdown_one_group <- function(data_filtered, data_population, group) {
       x = attends,
       n = count,
       confidence = 0.95,
-      multiplier = 100000
+      multiplier = multiplier
     )
 
   return(data)
@@ -562,19 +575,22 @@ get_breakdown_two_groups <- function(data_filtered,
 }
 
 # To get the breakdowns for each dataset by a group:
-get_breakdowns <- function(data_for_breakdowns,
+get_breakdowns <- function(data,
                            type1_arrival_mode,
                            data_population,
                            group) {
-  most <- purrr::map(
-    data_for_breakdowns,
-    ~ get_breakdown_one_group(., data_population, group)
-  )
+  if (group == "ethnic_category") {
+    # NHS 111 data does not have ethnic category
+    data <- data[!grepl("nhs111", names(data))]
+  }
+
+  most <- purrr::map(data,
+                     ~ get_breakdown_one_group(., data_population, group))
 
   arrival_mode <- get_breakdown_two_groups(type1_arrival_mode,
-                           data_population,
-                           group,
-                           "arrival_mode")
+                                           data_population,
+                                           group,
+                                           "arrival_mode")
 
   all <- append(most, list(type1_arrival_mode = arrival_mode))
 
@@ -605,6 +621,14 @@ filter_arrival_mode <- function(data) {
   return(data_filtered)
 }
 
+# To filter for MH calls from NHS 111 data:
+filter_mh_calls <- function(data) {
+  data_filtered <- data |>
+    dplyr::filter(mh_symptom == 1)
+
+  return(data_filtered)
+}
+
 # create df of AE attendances by hour
 ae_toa_grouped <- function(tarobj) {
   data <- tarobj |>
@@ -629,11 +653,7 @@ ae_left_grouped <- function(tarobj) {
   return(data)
 }
 
-
-
-
-
-# % of calls being mh-related
+# To get % of calls being mh-related:
 get_perc_mh_calls <- function(data) {
   mh_calls <- data |>
     dplyr::summarise(

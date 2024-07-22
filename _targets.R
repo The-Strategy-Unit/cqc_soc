@@ -55,8 +55,28 @@ list(
     url_population_2018,
     "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2018sape21dt1a/sape21dt1amid2018on2019lalsoasyoaestimatesformatted.zip"
   ),
+  tar_target(
+    url_population_2017,
+    "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2017/sape20dt1mid2017lsoasyoaestimatesformatted.zip"
+    )
+  ,
 
   # Reading in population data
+  tarchetypes::tar_map(
+    list(sheetnames = c("persons", "females", "males")),
+    tar_target(
+      population_2017,
+      scrape_zipped_xls(
+        url_population_2017,
+        paste0("Mid-2017 ", stringr::str_to_title(sheetnames)),
+        4
+      ) |>
+        dplyr::rename(lsoa_code = area_codes,
+                      lsoa = x3) |>
+        dplyr::filter(!is.na(lsoa)) # area_codes contains lsoa and lad codes, so
+      # removing the lad codes here
+    )
+  ),
   tarchetypes::tar_map(
     list(sheetnames = c("persons", "females", "males")),
     tar_target(
@@ -103,6 +123,8 @@ list(
   tar_target(
     gender_by_icb,
     get_gender_totals(
+      population_2017_females,
+      population_2017_males,
       population_2018_females,
       population_2018_males,
       population_2019_females,
@@ -119,6 +141,8 @@ list(
   tar_target(
     age_by_icb,
     get_age_totals(
+      population_2017_females,
+      population_2017_males,
       population_2018_females,
       population_2018_males,
       population_2019_females,
@@ -135,6 +159,7 @@ list(
   tar_target(
     population_by_lsoa,
     get_population_totals(
+      population_2017_persons,
       population_2018_persons,
       population_2019_persons,
       population_2020_persons,
@@ -214,12 +239,18 @@ list(
     data_ae,
     load_csv("data/ae_extract_full.csv") |>
       dplyr::rename(imd_decile = index_of_multiple_deprivation_decile) |>
-      dplyr::mutate(imd_decile = factor(imd_decile, levels = as.character(1:10)))
+      dplyr::mutate(imd_decile = factor(imd_decile,
+                                        levels = as.character(1:10)))
   ),
 
-  tar_target(data_111,
-             load_csv("data/111_extract_full.csv")|>
-               dplyr::rename(icb_code = icb22cd)),
+  tar_target(
+    data_111,
+    load_csv("data/111_extract_full.csv") |>
+      dplyr::rename(icb_code = icb22cd) |>
+      dplyr::mutate(imd_decile = factor(imd_decile,
+                                        levels = as.character(1:10)))
+  )
+  ,
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -295,7 +326,9 @@ list(
       uec_mh_attends = uec_mh_attends,
       uec_mh_known = uec_mh_known,
       type1_mh_attends = type1_mh_attends,
-      type1_mh_known = type1_mh_known
+      type1_mh_known = type1_mh_known,
+      nhs111_mh_calls = nhs111_mh_calls |>
+        dplyr::rename(attends = calls)
     )
   ),
   tar_target(gender_breakdowns,
@@ -398,7 +431,7 @@ list(
   ),
 
   #### NHS 111 ####
-  #tar_target(type1_mh_calls, filter_mh_calls(data_111)),
+  tar_target(nhs111_mh_calls, filter_mh_calls(data_111)),
   tar_target(nhs111_perc_mh_calls, get_perc_mh_calls(data_111)),
   tar_target(
     nhs111_mh_calls_boxplot,
