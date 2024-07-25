@@ -512,6 +512,23 @@ get_icb_att_rates <- function(tarobj1, tarobj2) {
 
 }
 
+## MH call rates to 111, total by ICB
+get_icb_111_rates <- function(tarobj1, tarobj2) {
+  tarobj1 |>
+    filter(mh_symptom == 1) |>
+    summarise(attends = sum(calls),
+              .by = c(icb_code, der_financial_year)) |>
+    left_join(tarobj2,
+              by = c("icb_code" = "icb_code", "der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = pop,
+      confidence = 0.95,
+      multiplier = 100000
+    )
+
+}
+
 # To get a breakdown by a specified group:
 get_breakdown_one_group <- function(data_filtered,
                                     data_population,

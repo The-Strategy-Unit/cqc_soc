@@ -424,14 +424,16 @@ list(
     )
   ),
   # 23/24 mh attendance rate ED by ICB map
-  tar_target(icb_ed_map_2324, map_icb_allmh(icb_boundary, icb_rates_ed)),
-  tar_target(
-    icb_uec_map_2324,
-    map_icb_allmh_uec(icb_boundary, icb_rates_uec)
-  ),
+  tar_target(icb_ed_map_2324,
+             map_icb_allmh(icb_boundary, icb_rates_ed)),
+  tar_target(icb_uec_map_2324,
+             map_icb_allmh_uec(icb_boundary, icb_rates_uec)),
+  tar_target(icb_111_map_2122,
+             map_icb_allmh_111(icb_boundary, nhs111_mh_calls_rate, "2020/21")),
 
   #### NHS 111 ####
   tar_target(nhs111_mh_calls, filter_mh_calls(data_111)),
+  tar_target(nhs111_mh_calls_rate, get_icb_111_rates(data_111, pop_by_icb)),
   tar_target(nhs111_perc_mh_calls, get_perc_mh_calls(data_111)),
   tar_target(
     nhs111_mh_calls_boxplot,

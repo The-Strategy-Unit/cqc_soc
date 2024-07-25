@@ -1066,6 +1066,12 @@ tar_read(nhs111_mh_calls_table) |>
 
 #### Geographical variation
 
+```{r}
+#| label: "fig-nhs111-icb-map"
+#| fig-cap: "Mental Health calls rate to NHS 111 by ICB of residence, 21/22"
+tar_read(icb_111_map_2122)
+```
+
 ::: panel-tabset
 
 ##### Gender variation
