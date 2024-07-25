@@ -6,6 +6,8 @@ format:
     embed-resources: true
     smooth-scroll: true
     theme: cosmo
+    fig-format: svg
+    mainfont: arial
     fontcolor: black
     toc: true
     toc-location: left
