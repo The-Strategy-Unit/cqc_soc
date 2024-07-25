@@ -193,9 +193,10 @@ get_ed_transp_trends <- function(tarobj){
 
 # To get a standard line plot for the breakdowns:
 get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
-  name_of_dataset <- deparse(substitute(data))
-
-  pop_data <- get_pop_average(pop_by_icb, data)
+  if(sum(grepl("arrival", colnames(data))) > 0){
+    pop_data <- get_pop_average_arrival_mode(pop_by_icb, data)
+  } else {
+    pop_data <- get_pop_average(pop_by_icb, data)}
 
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(

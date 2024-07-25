@@ -666,10 +666,12 @@ get_perc_mh_calls <- function(data) {
 
 
 
-get_pop_average <- function(data_population, data_filtered, multiplier = 100000){
+
+get_pop_average <- function(data_population,
+                            data_filtered,
+                            multiplier = 100000) {
   data_population_agg <- data_population |> # currently at ICB level
-    dplyr::summarise(count = sum(pop),
-                     .by = c(fin_year))
+    dplyr::summarise(count = sum(pop), .by = c(fin_year))
 
   data <- data_filtered |>
     dplyr::summarise(attends = sum(attends),
@@ -682,4 +684,25 @@ get_pop_average <- function(data_population, data_filtered, multiplier = 100000)
       confidence = 0.95,
       multiplier = multiplier
     )
+}
+
+get_pop_average_arrival_mode <- function(data_population,
+                                         data_filtered,
+                                         multiplier = 100000) {
+  data_population_agg <- data_population |> # currently at ICB level
+    dplyr::summarise(count = sum(pop), .by = c(fin_year))
+
+  pop_data <- data_filtered |>
+    dplyr::summarise(attends = sum(attends),
+                     .by = c(der_financial_year, arrival_mode)) |>
+    dplyr::left_join(data_population_agg,
+                     by = c("der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = count,
+      confidence = 0.95,
+      multiplier = multiplier
+    )
+
+  return(pop_data)
 }
