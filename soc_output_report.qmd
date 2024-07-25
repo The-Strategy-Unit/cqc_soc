@@ -89,22 +89,18 @@ The average A&E attendance in England costs £280 with those conveyed by ambulan
 During 2023/24 there were `r round(ae_all,2)` million Type 1 attendances costing £ `r round(ae_all_cost,2)` billion. Of those attendances c`r round(ae_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(ae_mh_cost,2)` million.
 
 ```{r top_ten_causes}
+#| label: tbl-type1-snomed
+#| tbl-cap: "Top 10 SNOMED codes in A&E presentation. All of England, 2023/24."
 
-gt_causes <- gt(tar_read(ae_diag) |> 
+gt_causes <- tar_read(ae_diag) |> 
   filter(der_financial_year == '2023/24') |> 
   group_by(term) |> 
   summarise(attends = sum(attends)) |>
   rename(SNOMED_term = term) |> 
   arrange(desc(attends)) |> 
-  slice_head(n=10)) |> 
-  
-  tab_header(
-    title = "Top 10 SNOMED codes in A&E presentation",
-    subtitle = "All of England, 2023/24"
-  )
+  slice_head(n = 10) 
 
-gt_causes
-
+create_dt(gt_causes) 
 ```
 
 ### Key metrics
@@ -126,7 +122,8 @@ tar_read(ae_trans_trends)
 
 ##### Table
 ```{r ae_arrive_mode_table}
-tar_read(ae_transp_trends)
+tar_read(ae_transp_trends) |>
+  create_dt()
 ```
 :::
 
@@ -142,7 +139,8 @@ tar_read(ae_toa_plot)
 
 ##### Table
 ```{r ae_arrive_time_table}
-tar_read(ae_toa_summary)
+tar_read(ae_toa_summary) |>
+  create_dt()
 ```
 :::
 
@@ -158,7 +156,8 @@ tar_read(ed_left_chart)
 
 ##### Table
 ```{r ae_left_summary}
-tar_read(ae_left_summary)
+tar_read(ae_left_summary) |>
+  create_dt()
 ```
 :::
 
