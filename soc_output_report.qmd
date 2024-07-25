@@ -122,6 +122,8 @@ tar_read(ae_trans_trends)
 
 ##### Table
 ```{r ae_arrive_mode_table}
+#| label: tbl-type1-arrival
+#| tbl-cap: "Number and percentage of attendances by arrival mode and financial year."
 tar_read(ae_transp_trends) |>
   create_dt()
 ```
@@ -139,6 +141,8 @@ tar_read(ae_toa_plot)
 
 ##### Table
 ```{r ae_arrive_time_table}
+#| label: tbl-type1-toa
+#| tbl-cap: "Number and percentage of attendances by time of arrival and financial year."
 tar_read(ae_toa_summary) |>
   create_dt()
 ```
@@ -156,6 +160,8 @@ tar_read(ed_left_chart)
 
 ##### Table
 ```{r ae_left_summary}
+#| label: tbl-type1-leave
+#| tbl-cap: "Number of attendances and patients leaving the departments before assessment or treatment by financial year."
 tar_read(ae_left_summary) |>
   create_dt()
 ```
