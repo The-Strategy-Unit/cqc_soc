@@ -1,5 +1,4 @@
 
-
 # create 2011 ethnicities by ICB ----
 create2011ethnicities <- function(){
 
@@ -14,17 +13,20 @@ ethn_2011_by_lsoa.heads <- read.csv("data/ethnicity_by_LSOA11_headings.csv")[, c
 # next task is to rename the column headers in the ethnicity by 2011 lsoa data
 # note that it only has names for the actual ethnicities, ignoring the LSOA name, so I'm adding that in manually to the list so that I can crudely link the two by order - I have manually checked that this works, but it is obviously janky
 colnames(ethn_2011_by_lsoa.data) = c("LSOA11CD", ethn_2011_by_lsoa.heads$ColumnVariableDescription)
+ethn_2011_by_lsoa.data <- ethn_2011_by_lsoa.data |>
+  select(1:25) # only the all age fields
 # this should be improved, so that this happens via lookup rather than just relying on the order of the variables (see https://stackoverflow.com/questions/43742369/rename-variables-via-lookup-table-in-r/43742442#43742442)
 
 # drop some columns from the ethnicity by lsoa data so that everything is more manageable
 ethn_2011_by_lsoa.data2 <- ethn_2011_by_lsoa.data %>%
-  transmute(LSOA11CD = LSOA11CD,
-            All_Ethnicities = `All categories: Age, All categories: Ethnic group`,
-            White = `All categories: Age, White: Total`,
-            Mixed = `All categories: Age, Mixed/multiple ethnic group: Total`,
-            Asian = `All categories: Age, Asian/Asian British: Total`,
-            Black = `All categories: Age, Black/African/Caribbean/Black British: Total`,
-            Other = `All categories: Age, Other ethnic group: Total`)
+  mutate(lsoa11cd = LSOA11CD,
+            All_Ethnicities = rowSums(across(c(2))),
+            White = rowSums(across(c(3))),
+            Mixed = rowSums(across(c(8))),
+            Asian = rowSums(across(c(14:18))) - rowSums(across(c(17))),
+            Black = rowSums(across(c(19))),
+            Other = rowSums(across(c(24:25))) + rowSums(across(c(17)))) |>
+  select(26:32)
 
 # import 2011 to ICB data lookup
 lsoa11_to_ICB23 <- read.csv("data/LSOA2011_to_ICB2023.csv") %>%
@@ -32,7 +34,7 @@ lsoa11_to_ICB23 <- read.csv("data/LSOA2011_to_ICB2023.csv") %>%
 
 # join lsoa to icb lookup
 ethnicity_by_lsoa_by_icb <- inner_join(x = ethn_2011_by_lsoa.data2, y = lsoa11_to_ICB23,
-                                      by = c("LSOA11CD" = "lsoa11cd"))
+                                      by = "lsoa11cd")
 # n of rows of lsoas is 32844, which is correct for n of lsoas in england during 2011
 
 ethnicity2011_by_icb2023 <- ethnicity_by_lsoa_by_icb %>%
@@ -51,19 +53,19 @@ return(ethnicity2011_by_icb2023)
 
 }
 
-
 # create 2021 ethnicities by ICB ----
 create2021ethnicities <- function(){
 # import ethnicity by lsoa,  this includes welsh lsoa
 ethn_2021_by_lsoa <- read_csv("data/ethnicity_by_LSOA21.csv",
                               show_col_types = FALSE) %>%
-  transmute(LSOA21CD = `geography code`,
-            All_Ethnicities = `Ethnic group: Total: All usual residents`,
-            White = `Ethnic group: White`,
-            Mixed = `Ethnic group: Mixed or Multiple ethnic groups`,
-            Asian = `Ethnic group: Asian, Asian British or Asian Welsh`,
-            Black = `Ethnic group: Black, Black British, Black Welsh, Caribbean or African`,
-            Other = `Ethnic group: Other ethnic group`)
+  select(3:28) |> # remove year and geography name
+  transmute(lsoa21cd = `geography code`,
+            All_Ethnicities = rowSums(across(c(2))),
+            White = rowSums(across(c(18))),
+            Mixed = rowSums(across(c(13))),
+            Asian = rowSums(across(c(4:8))) - rowSums(across(c(5))),
+            Black = rowSums(across(c(9))),
+            Other = rowSums(across(c(25:26))) + rowSums(across(c(5))))
 
 # import 21 lsoa to icb lookup, only english lsoas
 LSOA2021_to_ICB <- read_csv("data/LSOA2021_to_ICB2023.csv",
@@ -72,7 +74,7 @@ LSOA2021_to_ICB <- read_csv("data/LSOA2021_to_ICB2023.csv",
 
 # join and aggregate
 ethnicity2021_by_icb2023 <- left_join(x = LSOA2021_to_ICB, y = ethn_2021_by_lsoa,
-                                        by = c("lsoa21cd" = "LSOA21CD")) %>%
+                                        by = "lsoa21cd") %>%
   pivot_longer(cols = c(White, Mixed, Asian, Black, Other),
                names_to = "Ethnicity",
                values_to = "Count") %>%

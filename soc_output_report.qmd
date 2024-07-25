@@ -57,7 +57,15 @@ The presence of a presenting mental health problem in **A&E data** was determine
 
 The presence of mental health in **NHS 111 data** were established using a bespoke reference set for the symptom group comprising the specific mental health groups *AND* additional mentions of anxiety, depression, stress, suicidal thoughts or mental health in other symptom groups. Codes relating to dementia, memory & cognition AND substance misuse were excluded.
 
-Denominator data on population numbers by sub-group (age, gender, imd decile, urban-rural) were sourced from ONS mid-year estimates at LSOA level grouped to 2023 ICB boundaries. As 2023 MYE has not yet been published for LSOA, the 2022 data has been rolled forward as a proxy. For ethnic category populations, the 2011 and 2021 census data has been used to impute linear estimates of the intervening and following years. Calendar year data has been fully attributed to the financial year in which it falls e.g. 2021 = 2021/22.
+Denominator data on population numbers by sub-group (age, gender, imd decile, urban-rural) were sourced from ONS mid-year estimates at LSOA level grouped to 2023 ICB boundaries. As 2023 MYE has not yet been published for LSOA, the 2022 data has been rolled forward as a proxy. For ethnic category populations, the 2011 and 2021 census data has been used to impute linear estimates of the intervening and following years. In order to match 2001 categories used in SUS data <https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html>, the Chinese category has been moved from 'Asian' to 'Other' in the 2011 and 2021 census population data <https://www.ons.gov.uk/census/census2021dictionary/variablesbytopic/ethnicgroupnationalidentitylanguageandreligionvariablescensus2021/ethnicgroup/classifications>.
+
+Calendar year data has been fully attributed to the financial year in which it falls e.g. 2021 = 2021/22.
+
+### Data quality notes for A&E attendances:
+
+Chief complaint code (SNOMED): The current completion rate is 83% with 81% valid (correct/usable format) for 2024/25 which has improved from 78% complete and 75% valid in 2019/2020. The missing data in this field is more likely to represent more acute or complex conditions that are not self-reported or determinable prior to assessment.
+
+Ethnic category codes: The current field completion is 98.2% overall with a validity rate (correct/usable format) of 91.5% for 2024/25; however there is significant variation in subgroups - for example range is 57% - 95% for some categories. Missing data is more likely to be from minority ethnic groups or where English is not first language therefore some of our rate calculations may understate the utilisation in these population groups.
 
 ## Summary
 
