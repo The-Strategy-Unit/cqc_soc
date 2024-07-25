@@ -1,6 +1,6 @@
 ---
 title: "Mental Health attendances in urgent and emergency care settings"
-author: "Andy Hood et al"
+author: "Andy Hood, Anya Ferguson, Andre Bilbrough, Heather Humphreys"
 format:
   html:
     embed-resources: true
@@ -88,10 +88,10 @@ The average A&E attendance in England costs £280 with those conveyed by ambulan
 
 During 2023/24 there were `r round(ae_all,2)` million Type 1 attendances costing £ `r round(ae_all_cost,2)` billion. Of those attendances c`r round(ae_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(ae_mh_cost,2)` million.
 
-```{r top_ten_causes}
+```{r ae_top_ten_causes}
 
 gt_causes <- gt(tar_read(ae_diag) |> 
-  filter(der_financial_year == '2023/24') |> 
+  filter(der_financial_year == '2023/24', ec_department_type == 1) |> 
   group_by(term) |> 
   summarise(attends = sum(attends)) |>
   rename(SNOMED_term = term) |> 
@@ -641,10 +641,78 @@ These attendances are those specified within the ECDS as 'Type 3' urgent treatme
 
 The average urgent care attendance in England costs £107 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
+```{r uec_top_ten_causes}
+
+gt_causes <- gt(tar_read(ae_diag) |> 
+  filter(der_financial_year == '2023/24', ec_department_type %in% c(3,4)) |> 
+  group_by(term) |> 
+  summarise(attends = sum(attends)) |>
+  rename(SNOMED_term = term) |> 
+  arrange(desc(attends)) |> 
+  slice_head(n=10)) |> 
+  
+  tab_header(
+    title = "Top 10 SNOMED codes in UCC and WIC presentation",
+    subtitle = "All of England, 2023/24"
+  )
+
+gt_causes
+
+```
+
 ### Key metrics
 
-?
+#### Arrival mode to ED
 
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. Breakdowns by population demographics can be seen in @sec-arrival-mode-breakdowns.
+
+::: panel-tabset
+##### All modes
+```{r uec_arrive_mode}
+tar_read()
+```
+
+##### Trend
+```{r uec_arrive_mode_trend}
+tar_read()
+```
+
+##### Table
+```{r uec_arrive_mode_table}
+tar_read()
+```
+:::
+
+#### Time of arrival
+
+
+::: panel-tabset
+##### Chart
+```{r uec_arrive_time_plot}
+tar_read()
+```
+
+##### Table
+```{r uec_arrive_time_table}
+tar_read()
+```
+:::
+
+#### Leaving the department
+
+SNOMED departure status codes allow us to identify patients that left the department before either assessment or treatment was completed.
+
+::: panel-tabset
+##### Chart
+```{r uec_left_plot}
+tar_read()
+```
+
+##### Table
+```{r uec_left_summary}
+tar_read()
+```
+:::
 
 
 ### Detailed breakdowns
