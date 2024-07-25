@@ -192,8 +192,10 @@ get_ed_transp_trends <- function(tarobj){
 }
 
 # To get a standard line plot for the breakdowns:
-get_standard_line_for_breakdowns <- function(data, group) {
+get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
   name_of_dataset <- deparse(substitute(data))
+
+  pop_data <- get_pop_average(pop_by_icb, data)
 
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(
@@ -216,7 +218,12 @@ get_standard_line_for_breakdowns <- function(data, group) {
       alpha = 0.05,
       linetype = 2
     ) +
-    StrategyUnitTheme::su_theme()
+    StrategyUnitTheme::su_theme() +
+    ggplot2::geom_line(ggplot2::aes(der_financial_year,
+                                    value,
+                                    group = 1),
+                       colour = "black",
+                       data = pop_data)
 
   return(plot)
 
@@ -289,3 +296,4 @@ get_perc_mh_calls_boxplot <- function(data) {
 
   return(plot)
 }
+

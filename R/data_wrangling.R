@@ -659,3 +659,27 @@ get_perc_mh_calls <- function(data) {
 
   return(mh_calls)
 }
+
+
+
+
+
+
+
+get_pop_average <- function(data_population, data_filtered, multiplier = 100000){
+  data_population_agg <- data_population |> # currently at ICB level
+    dplyr::summarise(count = sum(pop),
+                     .by = c(fin_year))
+
+  data <- data_filtered |>
+    dplyr::summarise(attends = sum(attends),
+                     .by = c(der_financial_year)) |>
+    dplyr::left_join(data_population_agg,
+                     by = c("der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = count,
+      confidence = 0.95,
+      multiplier = multiplier
+    )
+}
