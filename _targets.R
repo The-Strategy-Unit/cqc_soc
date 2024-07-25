@@ -246,7 +246,7 @@ list(
   tar_target(
     data_111,
     load_csv("data/111_extract_full.csv") |>
-      dplyr::rename(icb_code = icb22cd) |>
+      dplyr::rename(icb_code = icb23cd) |>
       dplyr::mutate(imd_decile = factor(imd_decile,
                                         levels = as.character(1:10)))
   )
