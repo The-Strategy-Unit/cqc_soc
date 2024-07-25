@@ -472,14 +472,8 @@ get_icb_codes_names <- function(data) {
 
 # Total ICB population with 23/24 imputed (from 22/23)
 get_icb_pop_total <- function(tarobj) {
-  dat1 <- tarobj |>
+  data <- tarobj |>
     summarise(pop = sum(count), .by = c(icb_code, fin_year))
-  dat2 <- tarobj |>
-    summarise(pop = sum(count), .by = c(icb_code, fin_year)) |>
-    filter(fin_year == '2022/23') |>
-    mutate(fin_year = '2023/24')
-
-  data <- rbind(dat1, dat2)
 
   return(data)
 
