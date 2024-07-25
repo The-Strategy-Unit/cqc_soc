@@ -472,14 +472,8 @@ get_icb_codes_names <- function(data) {
 
 # Total ICB population with 23/24 imputed (from 22/23)
 get_icb_pop_total <- function(tarobj) {
-  dat1 <- tarobj |>
+  data <- tarobj |>
     summarise(pop = sum(count), .by = c(icb_code, fin_year))
-  dat2 <- tarobj |>
-    summarise(pop = sum(count), .by = c(icb_code, fin_year)) |>
-    filter(fin_year == '2022/23') |>
-    mutate(fin_year = '2023/24')
-
-  data <- rbind(dat1, dat2)
 
   return(data)
 
@@ -681,4 +675,51 @@ get_perc_mh_calls <- function(data) {
     PHEindicatormethods::phe_proportion(mh_calls, calls, multiplier = 100)
 
   return(mh_calls)
+}
+
+
+
+
+
+
+
+
+get_pop_average <- function(data_population,
+                            data_filtered,
+                            multiplier = 100000) {
+  data_population_agg <- data_population |> # currently at ICB level
+    dplyr::summarise(count = sum(pop), .by = c(fin_year))
+
+  data <- data_filtered |>
+    dplyr::summarise(attends = sum(attends),
+                     .by = c(der_financial_year)) |>
+    dplyr::left_join(data_population_agg,
+                     by = c("der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = count,
+      confidence = 0.95,
+      multiplier = multiplier
+    )
+}
+
+get_pop_average_arrival_mode <- function(data_population,
+                                         data_filtered,
+                                         multiplier = 100000) {
+  data_population_agg <- data_population |> # currently at ICB level
+    dplyr::summarise(count = sum(pop), .by = c(fin_year))
+
+  pop_data <- data_filtered |>
+    dplyr::summarise(attends = sum(attends),
+                     .by = c(der_financial_year, arrival_mode)) |>
+    dplyr::left_join(data_population_agg,
+                     by = c("der_financial_year" = "fin_year")) |>
+    PHEindicatormethods::phe_rate(
+      x = attends,
+      n = count,
+      confidence = 0.95,
+      multiplier = multiplier
+    )
+
+  return(pop_data)
 }

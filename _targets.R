@@ -383,35 +383,35 @@ list(
     gender_plot,
     purrr::map(
       gender_breakdowns,
-      ~ get_standard_line_for_breakdowns(., group = "gender")
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "gender")
     )
   ),
   tar_target(
     age_plot,
     purrr::map(
       age_breakdowns,
-      ~ get_standard_line_for_breakdowns(., group = "age_group")
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
     )
   ),
   tar_target(
     imd_plot,
     purrr::map(
       imd_breakdowns,
-      ~ get_standard_line_for_breakdowns(., group = "imd_decile")
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "imd_decile")
     )
   ),
   tar_target(
     rural_plot,
     purrr::map(
       rural_breakdowns,
-      ~ get_standard_line_for_breakdowns(., group = "rural_urban")
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "rural_urban")
     )
   ),
   tar_target(
     ethnic_plot,
     purrr::map(
       ethnic_breakdowns,
-      ~ get_standard_line_for_breakdowns(., group = "ethnic_category")
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "ethnic_category")
     )
   ),
   #### Map layers and map plots ####
