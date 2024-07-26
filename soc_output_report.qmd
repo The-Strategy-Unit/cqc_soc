@@ -1063,6 +1063,12 @@ tar_read(age_breakdowns)$nhs111_mh_calls |>
 tar_read(imd_plot)$nhs111_mh_calls
 ```
 
+###### Chart2
+
+```{r nhs111_calls_imd_plot2}
+tar_read(nhs111_calls_imd)
+```
+
 ###### Table
 
 ```{r nhs111_calls_imd_table}

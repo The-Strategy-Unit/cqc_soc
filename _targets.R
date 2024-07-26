@@ -377,6 +377,7 @@ list(
   # New IMD plots
   tar_target(ae_attends_imd, imd_plot2(imd_breakdowns$type1_mh_attends)),
   tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
+  tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
 
   # Breakdowns
   tar_target(
