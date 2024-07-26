@@ -242,6 +242,9 @@ list(
   tar_target(nhs111_disposition,
              load_csv("data/111_symptoms_mhflag.csv")
   ),
+  tar_target(nhs111_diagnosis,
+               load_csv("data/111_sympt_icb.csv")
+  ),
 
   # Full extracts
   tar_target(
@@ -264,6 +267,7 @@ list(
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
   tar_target(uec_summary, get_uec_summary(data_uec)),
+  tar_target(nhs111_summary, get_111_summary(data_111)),
 
   tar_target(ae_summ_transp, get_ae_summ_transp(data_ae)),
   tar_target(ae_transp_trends, get_ae_amb_trends(data_ae)),
@@ -276,6 +280,8 @@ list(
 
   tar_target(ae_left_summary, ae_left_grouped(ae_left)),
   tar_target(uec_left_summary, ae_left_grouped(ae_left, c("3", "4"))),
+
+  tar_target(nhs111_sympt_summary, get_111_symptom_summary(nhs111_diagnosis)),
 
   #### Type 1 ED activity ####
   tar_target(data_ed, get_ed_activity(data_ae)),

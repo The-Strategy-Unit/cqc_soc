@@ -416,6 +416,28 @@ get_uec_summary <- function(tarobj) {
   return(data)
 }
 
+get_111_summary <- function(tarobj) {
+  data <-  tarobj |>
+    group_by(der_financial_year) |>
+    summarise(
+      all = sum(calls),
+      mh = sum(if_else(mh_symptom == 1, calls, 0)),
+      all_cost = sum(cost),
+      mh_cost = sum(if_else(mh_symptom == 1, cost, 0))
+    ) |>
+    mutate(mh_perc = round(mh / all * 100, 2))
+
+  return(data)
+}
+
+get_111_symptom_summary <- function(tarobj) {
+  data <-  tarobj |>
+    group_by(der_financial_year, sg_sd_description) |>
+    summarise(all = sum(calls))
+
+  return(data)
+}
+
 get_ae_summ_transp <- function(tarobj, type = "01") {
 
   tarobj |>
