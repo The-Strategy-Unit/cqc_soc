@@ -118,8 +118,7 @@ get_standard_boxplot <- function(data) {
       y = "Percent",
       title = "Percentage of attendances with MH as primary reason",
       subtitle = "All Type 3 and 4 attendances in England 2019/20 to 2023/24 by ICB"
-    ) +
-    StrategyUnitTheme::su_theme()
+    )
 
   return(plot)
 }
@@ -221,7 +220,6 @@ get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
       alpha = 0.05,
       linetype = "dotted"
     ) +
-    StrategyUnitTheme::su_theme() +
     ggplot2::geom_line(
       ggplot2::aes(der_financial_year,
                    value,
