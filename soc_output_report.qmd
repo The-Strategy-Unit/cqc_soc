@@ -1091,6 +1091,12 @@ The average cost of a call to NHS 111 is around £12 with those requiring clinic
 
 #### Time of call
 
+There is very little difference in the times of day that patients with mental health issues call NHS111 compared to those with physical complaints.
+
+``` {r 111_time_of_day_calls}
+tar_read(nhs111_perc_mh_calls_toa)
+```
+
 #### Call disposition
 
 #### Frequent Fliers

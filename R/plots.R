@@ -255,6 +255,34 @@ get_overlay_barchart_toa <- function(tarobj) {
   return(plot)
 }
 
+get_overlay_barchart_toa_111 <- function(tarobj) {
+  plot <- tarobj |>
+    filter(der_financial_year == '2021/22') |>
+    group_by(mh_snomed, toa) |>
+    summarise(total = sum(attends)) |>
+    group_by(mh_snomed) |>
+    mutate(perc = total/sum(total)*100) |>
+    ungroup() |>
+    ggplot(aes(
+      x = toa,
+      y = perc,
+      fill = as.factor(mh_snomed)
+    )) +
+    geom_bar(stat = "identity",
+             position = "identity",
+             alpha = .6) +
+    scale_fill_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
+    theme_minimal() +
+    labs(
+      x = "Time of arrival (24hr)",
+      y = "Percent of calls",
+      title = "Percentage of calls to NHS 111 by hour of call",
+      subtitle = "All NHS111 calls in England, 2021/22"
+    )
+
+  return(plot)
+}
+
 ed_left_plot <- function(tarobj) {
   plot <- tarobj |>
     ggplot(aes(x = der_financial_year, y = value, group = mh_snomed)) +

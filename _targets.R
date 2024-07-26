@@ -233,6 +233,9 @@ list(
   tar_target(ae_toa,
              load_csv("data/ae_toa_icb.csv")
   ),
+  tar_target(nhs111_toa,
+             load_csv("data/111_toa_icb.csv")
+  ),
 
   # Full extracts
   tar_target(
@@ -457,6 +460,7 @@ list(
   tar_target(
     nhs111_mh_calls_table,
     get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
-  )
+  ),
+  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_toa))
 
 )
