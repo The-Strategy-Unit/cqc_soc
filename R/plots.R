@@ -274,7 +274,7 @@ get_overlay_barchart_toa_111 <- function(tarobj) {
     scale_fill_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
     theme_minimal() +
     labs(
-      x = "Time of arrival (24hr)",
+      x = "Time of call (24hr)",
       y = "Percent of calls",
       title = "Percentage of calls to NHS 111 by hour of call",
       subtitle = "All NHS111 calls in England, 2021/22"
