@@ -662,8 +662,9 @@ ae_toa_grouped <- function(tarobj, type = "1") {
 }
 
 # create df % of AE attendances left before completion
-ae_left_grouped <- function(tarobj) {
+ae_left_grouped <- function(tarobj, type = "1") {
   data <- tarobj |>
+    dplyr::filter(ec_department_type %in% type) |>
     dplyr::group_by(mh_snomed, der_financial_year) |>
     dplyr::summarise(attends = sum(attends),
               left = sum(left_b4_completion)) |>
