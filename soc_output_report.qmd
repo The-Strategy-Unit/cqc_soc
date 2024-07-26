@@ -693,13 +693,16 @@ SNOMED departure status codes allow us to identify patients that left the depart
 ##### Chart
 
 ```{r uec_left_plot}
-#tar_read()
+tar_read(uec_left_chart)
 ```
 
 ##### Table
 
 ```{r uec_left_summary}
-#tar_read()
+#| label: tbl-uec-leave
+#| tbl-cap: "Number of attendances and patients leaving the departments before assessment or treatment by financial year."
+tar_read(uec_left_summary) |>
+  create_dt()
 ```
 :::
 

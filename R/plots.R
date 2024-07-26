@@ -255,7 +255,7 @@ get_overlay_barchart_toa <- function(tarobj, type = "Type 1") {
   return(plot)
 }
 
-ed_left_plot <- function(tarobj) {
+ed_left_plot <- function(tarobj, type = "Type 1") {
   plot <- tarobj |>
     ggplot(aes(x = der_financial_year, y = value, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
@@ -264,7 +264,7 @@ ed_left_plot <- function(tarobj) {
     theme_minimal() +
     labs(
       title = "Percentage of patients leaving before assessment or treatment",
-      subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
+      subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24"),
       x = "Financial Year",
       y = "% of all attendances"
     )

@@ -265,6 +265,7 @@ list(
   tar_target(uec_toa_summary, ae_toa_grouped(ae_toa, c("3", "4"))),
 
   tar_target(ae_left_summary, ae_left_grouped(ae_left)),
+  tar_target(uec_left_summary, ae_left_grouped(ae_left, c("3", "4"))),
 
   #### Type 1 ED activity ####
   tar_target(data_ed, get_ed_activity(data_ae)),
@@ -381,6 +382,7 @@ list(
   tar_target(uec_trans_trends, get_ed_transp_trends(uec_transp_trends, "UEC")),
 
   tar_target(ed_left_chart, ed_left_plot(ae_left_summary)),
+  tar_target(uec_left_chart, ed_left_plot(uec_left_summary, "UEC")),
   # Overlayed bar chart for time of arrival to AE
   tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
   tar_target(uec_toa_plot, get_overlay_barchart_toa(uec_toa_summary, "UEC")),
