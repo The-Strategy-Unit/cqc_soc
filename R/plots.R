@@ -153,7 +153,7 @@ get_perc_mh_known_boxplot <- function(data, type) {
   return(plot)
 }
 
-get_ed_transp_colplot <- function(tarobj) {
+get_ed_transp_colplot <- function(tarobj, type = "Type 1") {
   plot <- tarobj |>
     ggplot(aes(
       x = arrival_mode,
@@ -167,13 +167,13 @@ get_ed_transp_colplot <- function(tarobj) {
       x = "Arrival Mode",
       y = "Percent",
       title = "Percentage of attendances by arrival mode",
-      subtitle = "All Type 1 attendances in England 2023/24"
+      subtitle = glue::glue("All {type} attendances in England 2023/24")
     )
 
   return(plot)
 }
 
-get_ed_transp_trends <- function(tarobj){
+get_ed_transp_trends <- function(tarobj, type = "Type 1"){
   plot <- tarobj|>
     filter(arrival_mode != 'pub_tran') |>
     ggplot(aes(x=der_financial_year, y=perc, group = mh_snomed)) +
@@ -182,7 +182,7 @@ get_ed_transp_trends <- function(tarobj){
     scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
     facet_wrap(~ arrival_mode, ncol = 1) +
     theme_minimal() +
-    labs(title = "Arrival mode to Type 1 A&E attendances",
+    labs(title = glue::glue("Arrival mode to {type} A&E attendances"),
          subtitle = "All attendances in England 2019/20 to 2023/24",
          x = "Financial Year",
          y = "Percentage of all")
@@ -233,7 +233,7 @@ get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
 
 }
 
-get_overlay_barchart_toa <- function(tarobj) {
+get_overlay_barchart_toa <- function(tarobj, type = "Type 1") {
   plot <- tarobj |>
     ggplot(aes(
       x = toa,
@@ -249,7 +249,7 @@ get_overlay_barchart_toa <- function(tarobj) {
       x = "Time of arrival (24hr)",
       y = "Percent of attendances",
       title = "Percentage of attendances to A&E by hour of arrival",
-      subtitle = "All Type 1 attendances in England, 2023/24"
+      subtitle = glue::glue("All {type} attendances in England, 2023/24")
     )
 
   return(plot)
@@ -283,7 +283,7 @@ get_overlay_barchart_toa_111 <- function(tarobj) {
   return(plot)
 }
 
-ed_left_plot <- function(tarobj) {
+ed_left_plot <- function(tarobj, type = "Type 1") {
   plot <- tarobj |>
     ggplot(aes(x = der_financial_year, y = value, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
@@ -292,7 +292,7 @@ ed_left_plot <- function(tarobj) {
     theme_minimal() +
     labs(
       title = "Percentage of patients leaving before assessment or treatment",
-      subtitle = "All Type 1 attendances in England 2019/20 to 2023/24",
+      subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24"),
       x = "Financial Year",
       y = "% of all attendances"
     )

@@ -649,9 +649,10 @@ filter_mh_calls <- function(data) {
 }
 
 # create df of AE attendances by hour
-ae_toa_grouped <- function(tarobj) {
+ae_toa_grouped <- function(tarobj, type = "1") {
   data <- tarobj |>
-    dplyr::filter(der_financial_year == '2023/24') |>
+    dplyr::filter(der_financial_year == '2023/24',
+                  ec_department_type %in% type) |>
     dplyr::group_by(mh_snomed, toa) |>
     dplyr::summarise(attends = sum(attends)) |>
     dplyr::group_by(mh_snomed) |>
@@ -661,8 +662,9 @@ ae_toa_grouped <- function(tarobj) {
 }
 
 # create df % of AE attendances left before completion
-ae_left_grouped <- function(tarobj) {
+ae_left_grouped <- function(tarobj, type = "1") {
   data <- tarobj |>
+    dplyr::filter(ec_department_type %in% type) |>
     dplyr::group_by(mh_snomed, der_financial_year) |>
     dplyr::summarise(attends = sum(attends),
               left = sum(left_b4_completion)) |>

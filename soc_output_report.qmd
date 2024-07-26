@@ -672,13 +672,16 @@ tar_read(uec_transp_trends) |>
 ##### Chart
 
 ```{r uec_arrive_time_plot}
-#tar_read()
+tar_read(uec_toa_plot)
 ```
 
 ##### Table
 
 ```{r uec_arrive_time_table}
-#tar_read()
+#| label: tbl-uec-toa
+#| tbl-cap: "Number and percentage of attendances by time of arrival and financial year."
+tar_read(uec_toa_summary) |>
+  create_dt()
 ```
 :::
 
@@ -690,13 +693,16 @@ SNOMED departure status codes allow us to identify patients that left the depart
 ##### Chart
 
 ```{r uec_left_plot}
-#tar_read()
+tar_read(uec_left_chart)
 ```
 
 ##### Table
 
 ```{r uec_left_summary}
-#tar_read()
+#| label: tbl-uec-leave
+#| tbl-cap: "Number of attendances and patients leaving the departments before assessment or treatment by financial year."
+tar_read(uec_left_summary) |>
+  create_dt()
 ```
 :::
 
