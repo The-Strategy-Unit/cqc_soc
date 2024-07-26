@@ -641,25 +641,28 @@ create_dt(gt_causes)
 
 #### Arrival mode to ED
 
-Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. Breakdowns by population demographics can be seen in @sec-arrival-mode-breakdowns.
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. Breakdowns by population demographics can be seen in @sec-uec-arrival-mode-breakdowns.
 
 ::: panel-tabset
 ##### All modes
 
 ```{r uec_arrive_mode}
-#tar_read()
+tar_read(uec_trans_barplot)
 ```
 
 ##### Trend
 
 ```{r uec_arrive_mode_trend}
-#tar_read()
+tar_read(uec_trans_trends)
 ```
 
 ##### Table
 
 ```{r uec_arrive_mode_table}
-#tar_read()
+#| label: tbl-uec-arrival
+#| tbl-cap: "Number and percentage of attendances by arrival mode and financial year."
+tar_read(uec_transp_trends) |>
+  create_dt()
 ```
 :::
 
@@ -961,6 +964,117 @@ tar_read(rural_plot)$uec_mh_known
 
 ```{r uec_known_rural_table}
 tar_read(rural_breakdowns)$uec_mh_known |>
+  get_standard_table_for_breakdowns("rural_urban") |>
+  create_dt()
+```
+:::
+:::
+
+#### Arrival mode breakdowns {#sec-uec-arrival-mode-breakdowns}
+
+The breakdowns below are for the number of mental health attendances only.
+
+::: panel-tabset
+##### Gender variation
+
+::: panel-tabset
+###### Chart
+
+```{r uec_arrival_mode_gender_plot}
+#| label: "fig-uec-arrival-mode-gender"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by gender."
+tar_read(gender_plot)$uec_arrival_mode |> 
+  modify_arrival_mode_plots()
+```
+
+###### Table
+
+```{r uec_arrival_mode_gender_table}
+tar_read(gender_breakdowns)$uec_arrival_mode |>
+  get_standard_table_for_breakdowns("gender") |>
+  create_dt()
+```
+:::
+
+##### Age-group variation
+
+::: panel-tabset
+###### Chart
+
+```{r uec_arrival_mode_age_plot}
+#| label: "fig-uec-arrival-mode-age"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by age group."
+tar_read(age_plot)$uec_arrival_mode |> 
+  modify_arrival_mode_plots()
+```
+
+###### Table
+
+```{r uec_arrival_mode_age_table}
+tar_read(age_breakdowns)$uec_arrival_mode |>
+  get_standard_table_for_breakdowns("age_group") |>
+  create_dt()
+```
+:::
+
+##### Ethnic group variation
+
+::: panel-tabset
+###### Chart
+
+```{r uec_arrival_mode_ethnic_plot}
+#| label: "fig-uec-arrival-mode-ethnic"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by ethnic category."
+tar_read(ethnic_plot)$uec_arrival_mode |> 
+  modify_arrival_mode_plots()
+```
+
+###### Table
+
+```{r uec_arrival_mode_ethnic_table}
+tar_read(ethnic_breakdowns)$uec_arrival_mode |>
+  get_standard_table_for_breakdowns("ethnic_category") |>
+  create_dt()
+```
+:::
+
+##### Socioeconomic variation
+
+::: panel-tabset
+###### Chart
+
+```{r uec_arrival_mode_imd_plot}
+#| label: "fig-uec-arrival-mode-imd"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by Index of Multiple Deprivation decile."
+tar_read(imd_plot)$uec_arrival_mode |> 
+  modify_arrival_mode_plots()
+```
+
+###### Table
+
+```{r uec_arrival_mode_imd_table}
+tar_read(imd_breakdowns)$uec_arrival_mode |>
+  get_standard_table_for_breakdowns("imd_decile") |>
+  create_dt()
+```
+:::
+
+##### Rural-urban variation
+
+::: panel-tabset
+###### Chart
+
+```{r uec_arrival_mode_rural_plot}
+#| label: "fig-uec-arrival-mode-rural"
+#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by rural or urban populations."
+tar_read(rural_plot)$uec_arrival_mode |> 
+  modify_arrival_mode_plots()
+```
+
+###### Table
+
+```{r uec_arrival_mode_rural_table}
+tar_read(rural_breakdowns)$uec_arrival_mode |>
   get_standard_table_for_breakdowns("rural_urban") |>
   create_dt()
 ```
