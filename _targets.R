@@ -495,5 +495,7 @@ list(
   tar_target(nhs111_disposition_trends,
              get_disposition_trends(data_111)),
   tar_target(nhs111_disposition_trends_chart,
-             get_nhs111_disposition_trends_chart(nhs111_disposition_trends))
+             get_nhs111_disposition_trends_chart(nhs111_disposition_trends)),
+  tar_target(nhs111_mh_known_summary,
+             get_111_mh_known(data_111))
 )

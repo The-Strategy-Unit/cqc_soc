@@ -812,3 +812,18 @@ get_disposition_trends <- function(data) {
 
   return(trends)
 }
+
+# get 111 callers known to services
+
+get_111_mh_known <- function(tarobj){
+
+  data <- tarobj |>
+    filter(mh_symptom == 1) |>
+    group_by(der_financial_year, mhsds_flag) |>
+    summarise(calls = sum(calls)) |>
+    group_by(der_financial_year) |>
+    mutate(perc = calls/sum(calls)*100) |>
+    ungroup()
+
+  return(data)
+}
