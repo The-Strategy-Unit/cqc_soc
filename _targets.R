@@ -263,6 +263,7 @@ list(
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
+  tar_target(uec_summary, get_uec_summary(data_uec)),
 
   tar_target(ae_summ_transp, get_ae_summ_transp(data_ae)),
   tar_target(ae_transp_trends, get_ae_amb_trends(data_ae)),

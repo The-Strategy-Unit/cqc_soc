@@ -401,6 +401,21 @@ get_ae_summary <- function(tarobj) {
   return(data)
 }
 
+get_uec_summary <- function(tarobj) {
+  data <-  tarobj |>
+    filter(ec_department_type %in% c('03','04')) |>
+    group_by(der_financial_year) |>
+    summarise(
+      all = sum(attends),
+      mh = sum(if_else(mh_snomed == 1, attends, 0)),
+      all_cost = sum(cost),
+      mh_cost = sum(if_else(mh_snomed == 1, cost, 0))
+    ) |>
+    mutate(mh_perc = round(mh / all * 100, 2))
+
+  return(data)
+}
+
 get_ae_summ_transp <- function(tarobj, type = "01") {
 
   tarobj |>
