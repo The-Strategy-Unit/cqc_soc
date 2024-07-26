@@ -1105,11 +1105,48 @@ tar_read(nhs111_perc_mh_calls_toa)
 
 #### Call disposition
 
+```{r nhs111_top_ten_causes}
+#| label: tbl-nhs111-dispositions
+#| tbl-cap: "Top 10 dispositions in NHS 111 calls. All of England, 2023/24."
+
+# gt_causes <- tar_read(nhs111_disposition) |> 
+#   filter(der_financial_year == '2023/24') |> 
+#   summarise(attends = sum(attends), .by = term) |>
+#   rename(SNOMED_term = term) |> 
+#   arrange(desc(attends)) |> 
+#   slice_head(n = 10) 
+# 
+# create_dt(gt_causes) 
+```
+
 #### Frequent Fliers
+
+```{r nhs111_freq_fly_figs, include = FALSE}
+avg_all_attends_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
+
+avg_mh_attend_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(mh_pats)) |> pull(total)/5
+
+perc_mh_nhs111 <- round(avg_mh_attend_nhs111/avg_all_attends_nhs111*100,1)
+
+avg_ff_attend_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(mh_freqfly)) |> pull(total)/5
+
+perc_freq_nhs111 <- round(avg_ff_attend_nhs111/avg_mh_attend_nhs111*100,1)
+
+```
+
+Frequent fliers can be defined as those calling 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+
+Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who attend frequently. This varies by ICB area.
+
+```{r nhs111_freq_icb_plot}
+
+tar_read(nhs111_freq_boxplot)
+
+```
 
 ### Detailed breakdowns
 
-#### % of all calls being MH-related
+#### Percentage of all calls being MH-related
 
 @fig-nhs111-perc-mh suggests ... Breakdowns by ICB are in @tbl-nhs111-perc and breakdowns by population demographics can be seen below.
 

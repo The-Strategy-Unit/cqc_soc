@@ -84,7 +84,7 @@ ed_times_depart_plot <- function(tarobj) {
   return(plot)
 }
 
-ed_freq_boxplot <- function(tarobj) {
+ed_freq_boxplot <- function(tarobj, type = "Type 1 attendances", title = "MH ED patients attending") {
   plot <- tarobj |>
     group_by(icb23nm, der_financial_year) |>
     summarise(mh_pats = sum(mh_pats)
@@ -96,8 +96,8 @@ ed_freq_boxplot <- function(tarobj) {
     geom_point(colour = "salmon", alpha = 0.6) +
     theme_minimal() +
     labs(
-      title = "Percentage of MH ED patients attending 5+ times / year",
-      subtitle = "All Type 1 attendances in England 2019/20 to 2023/24 by ICB",
+      title = glue::glue("Percentage of {title} 5+ times / year"),
+      subtitle = glue::glue("All {type} in England 2019/20 to 2023/24 by ICB"),
       colour = NULL,
       x = "Financial Year",
       y = "Percent"

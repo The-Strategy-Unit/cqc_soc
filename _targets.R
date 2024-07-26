@@ -236,6 +236,12 @@ list(
   tar_target(nhs111_toa,
              load_csv("data/111_toa_icb.csv")
   ),
+  tar_target(nhs111_freq,
+             load_csv("data/111_freqfly_icb.csv")
+  ),
+  tar_target(nhs111_disposition,
+             load_csv("data/111_symptoms_mhflag.csv")
+  ),
 
   # Full extracts
   tar_target(
@@ -376,7 +382,13 @@ list(
   tar_target(ae_times_treat_plot, ed_times_treat_plot(ae_times)),
   tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times)),
   tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
+
+  # frequent fliers
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
+  tar_target(nhs111_freq_boxplot,
+             ed_freq_boxplot(nhs111_freq,
+                             "NHS 111 calls",
+                             "patients calling for MH related reasons")),
 
   # arrival mode
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
