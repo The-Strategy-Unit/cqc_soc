@@ -1107,6 +1107,29 @@ tar_read(nhs111_perc_mh_calls_toa)
 
 #### Frequent Fliers
 
+```{r nhs111_freq_fly_figs, include = FALSE}
+avg_all_attends_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
+
+avg_mh_attend_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(mh_pats)) |> pull(total)/5
+
+perc_mh_nhs111 <- round(avg_mh_attend_nhs111/avg_all_attends_nhs111*100,1)
+
+avg_ff_attend_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(mh_freqfly)) |> pull(total)/5
+
+perc_freq_nhs111 <- round(avg_ff_attend_nhs111/avg_mh_attend_nhs111*100,1)
+
+```
+
+Frequent fliers can be defined as those calling 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+
+Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who attend frequently. This varies by ICB area.
+
+```{r nhs111_freq_icb_plot}
+
+tar_read(nhs111_freq_boxplot)
+
+```
+
 ### Detailed breakdowns
 
 #### % of all calls being MH-related
