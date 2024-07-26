@@ -258,6 +258,9 @@ list(
   tar_target(ae_summ_transp, get_ae_summ_transp(data_ae)),
   tar_target(ae_transp_trends, get_ae_amb_trends(data_ae)),
 
+  tar_target(uec_summ_transp, get_ae_summ_transp(data_uec, c("03", "04"))),
+  tar_target(uec_transp_trends, get_ae_amb_trends(data_uec, c("03", "04"))),
+
   tar_target(ae_toa_summary, ae_toa_grouped(ae_toa)),
 
   tar_target(ae_left_summary, ae_left_grouped(ae_left)),
@@ -291,6 +294,7 @@ list(
 
   # Arrival mode
   tar_target(type1_arrival_mode, filter_arrival_mode(data_ed)),
+  tar_target(uec_arrival_mode, filter_arrival_mode(data_uec)),
 
   #### UEC activity ####
   tar_target(data_uec, get_uec_activity(data_ae)),
@@ -334,26 +338,31 @@ list(
   tar_target(gender_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            uec_arrival_mode,
                             gender_by_icb,
                             "gender")),
   tar_target(age_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            uec_arrival_mode,
                             age_by_icb,
                             "age_group")),
   tar_target(imd_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            uec_arrival_mode,
                             imd_by_icb,
                             "imd_decile")),
   tar_target(rural_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            uec_arrival_mode,
                             rural_by_icb,
                             "rural_urban")),
   tar_target(ethnic_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
+                            uec_arrival_mode,
                             ethnicity_by_icb_by_year,
                             "ethnic_category")),
 
@@ -363,8 +372,13 @@ list(
   tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times)),
   tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
+
+  # arrival mode
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
   tar_target(ae_trans_trends, get_ed_transp_trends(ae_transp_trends)),
+  tar_target(uec_trans_barplot, get_ed_transp_colplot(uec_summ_transp)),
+  tar_target(uec_trans_trends, get_ed_transp_trends(uec_transp_trends)),
+
   tar_target(ed_left_chart, ed_left_plot(ae_left_summary)),
   # Overlayed bar chart for time of arrival to AE
   tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
