@@ -262,8 +262,10 @@ list(
   tar_target(uec_transp_trends, get_ae_amb_trends(data_uec, c("03", "04"))),
 
   tar_target(ae_toa_summary, ae_toa_grouped(ae_toa)),
+  tar_target(uec_toa_summary, ae_toa_grouped(ae_toa, c("3", "4"))),
 
   tar_target(ae_left_summary, ae_left_grouped(ae_left)),
+  tar_target(uec_left_summary, ae_left_grouped(ae_left, c("3", "4"))),
 
   #### Type 1 ED activity ####
   tar_target(data_ed, get_ed_activity(data_ae)),
@@ -376,12 +378,14 @@ list(
   # arrival mode
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
   tar_target(ae_trans_trends, get_ed_transp_trends(ae_transp_trends)),
-  tar_target(uec_trans_barplot, get_ed_transp_colplot(uec_summ_transp)),
-  tar_target(uec_trans_trends, get_ed_transp_trends(uec_transp_trends)),
+  tar_target(uec_trans_barplot, get_ed_transp_colplot(uec_summ_transp, "UEC")),
+  tar_target(uec_trans_trends, get_ed_transp_trends(uec_transp_trends, "UEC")),
 
   tar_target(ed_left_chart, ed_left_plot(ae_left_summary)),
+  tar_target(uec_left_chart, ed_left_plot(uec_left_summary, "UEC")),
   # Overlayed bar chart for time of arrival to AE
   tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
+  tar_target(uec_toa_plot, get_overlay_barchart_toa(uec_toa_summary, "UEC")),
 
   # ICB total populations
   tar_target(pop_by_icb, get_icb_pop_total(gender_by_icb)),
