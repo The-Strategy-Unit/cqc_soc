@@ -975,6 +975,12 @@ The average cost of a call to NHS 111 is around £12 with those requiring clinic
 
 ### Key metrics
 
+#### Time of call
+
+#### Call disposition
+
+#### Frequent Fliers
+
 ### Detailed breakdowns
 
 #### % of all calls being MH-related
