@@ -193,10 +193,11 @@ get_ed_transp_trends <- function(tarobj){
 
 # To get a standard line plot for the breakdowns:
 get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
-  if(sum(grepl("arrival", colnames(data))) > 0){
+  if (sum(grepl("arrival", colnames(data))) > 0) {
     pop_data <- get_pop_average_arrival_mode(pop_by_icb, data)
   } else {
-    pop_data <- get_pop_average(pop_by_icb, data)}
+    pop_data <- get_pop_average(pop_by_icb, data)
+  }
 
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(
@@ -208,8 +209,9 @@ get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
     ggplot2::geom_line() +
     ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
     ggplot2::theme_minimal() +
-    ggplot2::labs(x = "Financial Year", y = "Rate per 100,000 population",
-                  caption = "95% confidence intervals are shown in dashed lines") +
+    ggplot2::labs(x = "Financial Year",
+                  y = "Rate per 100,000 population",
+                  caption = "Dotted lines are 95% confidence intervals. \n Black dashed line is the population average.") +
     ggplot2::geom_ribbon(
       ggplot2::aes(
         ymin = lowercl,
@@ -217,14 +219,17 @@ get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
         fill = !!rlang::sym(group)
       ),
       alpha = 0.05,
-      linetype = 2
+      linetype = "dotted"
     ) +
     StrategyUnitTheme::su_theme() +
-    ggplot2::geom_line(ggplot2::aes(der_financial_year,
-                                    value,
-                                    group = 1),
-                       colour = "black",
-                       data = pop_data)
+    ggplot2::geom_line(
+      ggplot2::aes(der_financial_year,
+                   value,
+                   group = 1),
+      colour = "black",
+      linetype = "longdash",
+      data = pop_data
+    )
 
   return(plot)
 
