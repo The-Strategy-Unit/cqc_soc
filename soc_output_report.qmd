@@ -624,22 +624,17 @@ These attendances are those specified within the ECDS as 'Type 3' urgent treatme
 The average urgent care attendance in England costs £107 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
 
 ```{r uec_top_ten_causes}
+#| label: tbl-uec-snomed
+#| tbl-cap: "Top 10 SNOMED codes in UCC and WIC presentation. All of England, 2023/24."
 
-gt_causes <- gt(tar_read(ae_diag) |> 
+gt_causes <- tar_read(ae_diag) |> 
   filter(der_financial_year == '2023/24', ec_department_type %in% c(3,4)) |> 
-  group_by(term) |> 
-  summarise(attends = sum(attends)) |>
+  summarise(attends = sum(attends), .by = term) |>
   rename(SNOMED_term = term) |> 
   arrange(desc(attends)) |> 
-  slice_head(n=10)) |> 
-  
-  tab_header(
-    title = "Top 10 SNOMED codes in UCC and WIC presentation",
-    subtitle = "All of England, 2023/24"
-  )
+  slice_head(n = 10) 
 
-create_dt(gt_causes)
-
+create_dt(gt_causes) 
 ```
 
 ### Key metrics
