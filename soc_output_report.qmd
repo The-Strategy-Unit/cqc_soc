@@ -672,13 +672,16 @@ tar_read(uec_transp_trends) |>
 ##### Chart
 
 ```{r uec_arrive_time_plot}
-#tar_read()
+tar_read(uec_toa_plot)
 ```
 
 ##### Table
 
 ```{r uec_arrive_time_table}
-#tar_read()
+#| label: tbl-uec-toa
+#| tbl-cap: "Number and percentage of attendances by time of arrival and financial year."
+tar_read(uec_toa_summary) |>
+  create_dt()
 ```
 :::
 
