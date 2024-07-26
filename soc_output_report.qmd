@@ -1118,19 +1118,21 @@ Callers to the NHS 111 service would be typically those unable to reach primary 
 
 The average cost of a call to NHS 111 is around £12 with those requiring clinical call-back an extra £15 and hear-treat or see-treat ambulance (999 referrals) costing on average another £203 <https://www.ncbi.nlm.nih.gov/books/NBK575169/>.
 
-During 2021/22 there were `r round(nhs111_all,2)` million Type 3/4 attendances costing £ `r round(nhs111_all_cost,2)` billion. Of those attendances c`r round(nhs111_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(nhs111_mh_cost,2)` million.
+During 2021/22 there were `r round(nhs111_all,2)` million NHS111 calls costing £ `r round(nhs111_all_cost,2)` billion. Of those attendances c`r round(nhs111_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(nhs111_mh_cost,2)` million.
 
-```{r 111_top_ten_causes}
+```{r 111_top_ten_symptoms}
 #| label: tbl-111-symptoms
 #| tbl-cap: "Top 10 symptom codes in NHS111 calls. All of England, 2021/22."
 
 gt_causes <- tar_read(nhs111_sympt_summary) |> 
-  filter(der_financial_year == '2020/21') |> 
-  mutate(calls = all) |> 
+  filter(der_financial_year == '2020/21') |>
+  ungroup() |> 
+  mutate(calls = all) |>
+  select(sg_sd_description, calls) |> 
   arrange(desc(calls)) |> 
   slice_head(n = 10) 
 
-create_dt(gt_causes) 
+create_dt(gt_causes)
 ```
 
 ### Key metrics
