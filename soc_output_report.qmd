@@ -44,11 +44,11 @@ source("R/quarto_formatting.R")
 
 The care quality commission (CQC) are looking to supplement their State of Care (SOC) report with relevant additional data and analysis. The latest state of care report can be found here <https://www.cqc.org.uk/publications/major-report/state-care/2022-2023>.
 
-One of the key areas of interest is around perceived 'system failure' as measured by (inappropriate/avoidable?) attendance to urgent and emergency care settings for people with mental health problems.
+One of the key areas of interest is around perceived 'system failure' as measured by inappropriate or avoidable attendance to urgent and emergency care settings for people with mental health problems.
 
 ## Data and methods
 
-We summarised routine data from the Emergency Care Dataset (ECDS), NHS 111 dataset and the Mental Health Services Dataset (MHSDS) via NCDR <https://www.ardengemcsu.nhs.uk/services/business-intelligence/ncdr/> according to specific population sub-groups and activity break-downs at Integrated Care Board (ICB) level. The period covers the 5 financial years from 1st April 2019 to 31st March 2024.
+We summarised routine data from the Emergency Care Dataset (ECDS), NHS 111 dataset and the Mental Health Services Dataset (MHSDS) via NCDR <https://www.ardengemcsu.nhs.uk/services/business-intelligence/ncdr/> according to specific population sub-groups and activity break-downs at Integrated Care Board (ICB) level. The period covers the 5 financial years from 1st April 2019 to 31st March 2024 unless otherwise stated.
 
 Patients were linked using common pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to specialist mental health services (referred and/or treated) or not.
 
@@ -68,14 +68,56 @@ Ethnic category codes: The current field completion is 98.2% overall with a vali
 
 ## Summary
 
--   Point1
--   Point2
--   Point3
--   Point4
--   Point5
--   Point6
+The likelihood of someone with a mental health problem contacting urgent and emergency care services varies greatly according to who they are and where they live. Females, those in adolescence, those in 'other' minority ethnic groups and those in deprived areas all access services at higher rates.
 
-## Accident and Emergency attendance
+Attendance rates to Type 1 units (emergency departments) are falling gradually over timne but those to urgent treatment centres are increasing. Patients with mental health difficulties also access services differently -- use ambulances more, arrive out of hours -- and are also more likely to wait longer in A&E departments for assessment and treatment than those with physical health complaints.
+
+While the majority of these patients are known to specialist mental health providers, a substantial minority are not. Typically, the most common presenting conditions are depression and anxiety though material numbers do have more severe disorders.
+
+### Type 1 A&E attendances:
+
+-   In 2023/24 there were around 16 million attendances to ED, of which 200,000 had a primary diagnosis of mental health condition. There is a 4-fold difference in % of attendances being MH specific across the 42 ICB areas.
+-   These MH attendances cost \> £31m (not including ambulatory costs).
+-   Depression and anxiety account for around 70% of MH attendances. Psychosis, Personality Disorder, Schizophrenia and Bipolar disorder attendances make up around 17% of MH presentations and eating disorders around 2%.
+-   Typically, over 80% of these patients presenting in A&E are known to specialist mental health services. This also means that nearly 20% are not.
+-   Significantly more patients with MH disorders are conveyed to A&E by ambulance than those with physical ailments -- 40% vs 30%.
+-   Patients presenting with MH issues are much more likely to attend between the hours of 8pm and 6am than those with physical issues.
+-   Fewer patients with MH complaints (4.3%) leave the department before their assessment or treatment is concluded than those with physical complaints (5.7%).
+-   In 2023/24, those presenting with MH issues waited longer in the department for assessment, treatment and to discharge from A&E. The average ED 'pathway' was almost an hour longer for MH patients.
+-   There were almost 2,500 patients in England attending Emergency OR Urgent care departments 5 or more times during the latest 12 month period with a primary mental health complaint.
+-   The rate of attendance in females (383/100,000 population) is significantly higher than males (309).
+-   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation for MH. The 0-17 age group is the only one where the rates have increased since 2019/20.
+-   Patients with MH issues from 'Other' ethnic categories (Chinese, Arab and other) present more frequently than other groups. Rates in the Mixed ethnic groups are increasing over time.
+-   There is a very clear socio-economic gradient in MH presentation rates. IMD1 (most deprived) have rates over 3 times higher than IMD10 the least deprived. Similarly, patients from urban areas are around twice as likely to present in A&E with MH problems.
+
+### Walk-in and UTC attendances:
+
+-   In 2023/24 there were around 6.5 million attendances to Type 3 or 4 departments, of which 20,000 had a primary diagnosis of mental health condition.
+-   These MH attendances cost £1.9m (not including ambulatory costs).
+-   Depression and anxiety account for over 85% of MH attendances in this setting.
+-   Typically, around 50% of these patients presenting in urgent care are known to specialist mental health services, suggesting their mental health needs are less acute.
+-   The overwhelming majority (90%+) of both MH and non-MH patients convey themselves to the urgent care departments.
+-   Patients presenting with MH issues are slightly more likely to attend through the afternoon, evening and night than those with physical issues.
+-   Fewer patients with MH complaints (2.3%) leave the department before their assessment or treatment is concluded than those with physical complaints (3.6%).
+-   Generally speaking rates of MH presentation to Urgent Care or Walk-in Centres are increasing over time.
+-   The rate of attendance in females (40/100,000 population) is significantly higher than males (32).
+-   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation for MH.
+-   Patients with MH issues from 'Other' ethnic categories (Chinese, Arab and other) present more frequently than other groups.
+-   There is a very clear socio-economic gradient in MH presentation rates. IMD1 (most deprived) have rates over 3 times higher than IMD10 the least deprived. Similarly, patients from urban areas are nearly twice as likely to present in A&E with MH problems.
+
+### Calls to NHS 111:
+
+-   In 2023/24 there were around 33 million calls to NHS 111 services across England, of which 220,000 had a primary reason of mental health condition.
+-   These MH specific calls cost £2.7m (not including ambulatory costs).
+-   The 5 most common calls are related to worsening of known mental health issues. Suicide-related symptoms account for around 30% of all calls.
+-   Around 85% of these patients calling NHS 111 with mental health issues are known to specialist mental health services.
+-   Patients presenting with MH issues are slightly more likely to call in the early morning and early evening.
+-   More than 1 in 3 patients (34%) with primary mental health complaint are referred on to A&E department compared with only 11% with a physical complaint and this disparity is growing.
+-   The rate of attendance in females (430/100,000 population) is significantly higher than males (350).
+-   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation for MH.
+-   There is a clear but reasonably shallow socio-economic gradient in MH presentation rates. IMD1 (most deprived) have rates just under 2 times higher than IMD10 the least deprived. Similarly, patients from urban areas are much more likely to call NHS 111 with MH problems.
+
+## Detailed analysis - Accident and Emergency attendance {#sec-type1-overview}
 
 ```{r ae_summary_bits, include = FALSE}
 
@@ -95,9 +137,9 @@ The average A&E attendance in England costs £280 with those conveyed by ambulan
 
 During 2023/24 there were `r round(ae_all,2)` million Type 1 attendances costing £ `r round(ae_all_cost,2)` billion. Of those attendances c`r round(ae_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(ae_mh_cost,2)` million.
 
-```{r ae_top_ten_causes}
+```{r}
 #| label: tbl-type1-snomed
-#| tbl-cap: "Top 10 SNOMED codes in A&E presentation. All of England, 2023/24."
+#| tbl-cap: Top 10 SNOMED codes in A&E presentation. All of England, 2023/24.
 
 gt_causes <- tar_read(ae_diag) |> 
   filter(der_financial_year == '2023/24', ec_department_type == 1) |> 
@@ -109,7 +151,7 @@ gt_causes <- tar_read(ae_diag) |>
 create_dt(gt_causes) 
 ```
 
-### Key metrics
+### Access and patient pathway {#sec-type1-pathway}
 
 #### Arrival mode to ED
 
@@ -118,21 +160,25 @@ Data is captured in ECDS for the mode of transport used to get the patient to th
 ::: panel-tabset
 ##### All modes
 
-```{r ae_arrive_mode}
+```{r}
+#| label: fig-plot-type1-arrival
+#| fig-cap: Arrival mode to Type 1 A&E. All of England, 2023/24.
 tar_read(ae_trans_barplot)
 ```
 
 ##### Trend
 
-```{r ae_arrive_mode_trend}
+```{r}
+#| label: fig-plot-type1-arrival-trend
+#| fig-cap: Arrival mode to Type 1 A&E. All of England, 2019/20 to 2023/24.
 tar_read(ae_trans_trends)
 ```
 
 ##### Table
 
-```{r ae_arrive_mode_table}
-#| label: tbl-type1-arrival
-#| tbl-cap: "Number and percentage of attendances by arrival mode and financial year."
+```{r}
+#| label: tbl-type1-arrival-trend
+#| tbl-cap: Arrival mode to Type 1 A&E. All of England, 2019/20 to 2023/24.
 tar_read(ae_transp_trends) |>
   create_dt()
 ```
@@ -146,6 +192,8 @@ Patients presenting with mental health complaints are more likely to attend afte
 ##### Chart
 
 ```{r ae_arrive_time_plot}
+#| label: fig-plot-type1-toa
+#| fig-cap: Hour of arrival to Type 1 A&E. All of England, 2023/24.
 tar_read(ae_toa_plot)
 ```
 
@@ -153,7 +201,7 @@ tar_read(ae_toa_plot)
 
 ```{r ae_arrive_time_table}
 #| label: tbl-type1-toa
-#| tbl-cap: "Number and percentage of attendances by time of arrival and financial year."
+#| tbl-cap: Number and percentage of attendances by time of arrival and financial year.
 tar_read(ae_toa_summary) |>
   create_dt()
 ```
@@ -167,6 +215,8 @@ SNOMED departure status codes allow us to identify patients that left the depart
 ##### Chart
 
 ```{r ae_left_plot}
+#| label: fig-plot-type1-left
+#| fig-cap: Left department before assessment or treatment complete. All of England, 2023/24.
 tar_read(ed_left_chart)
 ```
 
@@ -174,7 +224,7 @@ tar_read(ed_left_chart)
 
 ```{r ae_left_summary}
 #| label: tbl-type1-leave
-#| tbl-cap: "Number of attendances and patients leaving the departments before assessment or treatment by financial year."
+#| tbl-cap: Number of attendances and patients leaving the departments before assessment or treatment by financial year.
 tar_read(ae_left_summary) |>
   create_dt()
 ```
@@ -188,24 +238,32 @@ The ECDS allows calculation of times from arrival to assessment, treatment, conc
 ##### Assessment
 
 ```{r ae_wait_assess_plot}
+#| label: fig-plot-type1-waiting-ass
+#| fig-cap: Waiting time for assessment, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_assess_plot)
 ```
 
 ##### Treatment
 
 ```{r ae_wait_treat_plot}
+#| label: fig-plot-type1-waiting-treat
+#| fig-cap: Waiting time for treatment, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_treat_plot)
 ```
 
 ##### Conclusion
 
 ```{r ae_wait_conclude_plot}
+#| label: fig-plot-type1-waiting-concl
+#| fig-cap: Waiting time for conclusion, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_conclude_plot)
 ```
 
 ##### Departure
 
 ```{r ae_wait_depart_plot}
+#| label: fig-plot-type1-waiting-depart
+#| fig-cap: Waiting time to leave department, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_depart_plot)
 ```
 :::
@@ -230,42 +288,72 @@ Frequent fliers can be defined as those attending 5 or more times in a 12 month 
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
 
 ```{r ae_freq_icb_plot}
+#| label: fig-plot-type1-freq
+#| fig-cap: Percentage of with 5+ attendances in year, Type 1 A&E. All of England, 2023/24.
 
 tar_read(ae_freq_boxplot)
 
 ```
 
-### Detailed breakdowns
+### Detailed breakdowns {#sec-type1-breakdowns}
 
 #### Percentage of all Type 1 attendances with Mental Health as primary reason/diagnosis {#sec-type1-mh-attends}
 
 @fig-type1-perc-mh suggests the median percentage of Type 1 attendances with Mental Health as the primary reason/diagnosis is comparable with pre-pandemic levels. Breakdowns by ICB are in @tbl-type1-perc and breakdowns by population demographics below.
 
 ::: panel-tabset
-###### Overview
+##### Overview
 
 ```{r}
-#| label: "fig-type1-perc-mh"
-#| fig-cap: "Percentage of Mental Health Type 1 attendances over time."
+#| label: fig-type1-perc-mh
+#| fig-cap: Percentage of Mental Health Type 1 attendances over time.
 tar_read(type1_mh_attends_boxplot)
 ```
 
-###### ICB Variation
+##### ICB Variation
 
 ```{r}
-#| label: "tbl-type1-perc"
-#| tbl-cap: "Percentage of Mental Health Type 1 attendances by ICB."
+#| label: tbl-type1-perc
+#| tbl-cap: Percentage of Mental Health Type 1 attendances by ICB.
 tar_read(type1_mh_attends_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(0, 2.5, 0.35))
 ```
 :::
 
-Breakdowns for the number of Type 1 attendances with MH as primary reason/diagnosis are below.
+#### Percentage of MH Type 1 attendances known to specialist services {#sec-type1-mh-known}
+
+The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known).
+
+::: panel-tabset
+##### Overview
+
+```{r}
+#| label: fig-type1-mh-known-boxplot
+#| fig-cap: Percentage of Mental Health Type 1 attendances known to specialist services over time.
+tar_read(type1_mh_known_boxplot)
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-type1-mh-known
+#| tbl-cap: Percentage of Mental Health Type 1 attendances known to specialist services by ICB.
+tar_read(type1_mh_known_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(60, 90, 4)) 
+```
+:::
+
+#### Utilisation rates, population sub-groups {#sec-type1-utilisation}
+
+Breakdowns for the number of Type 1 attendances with MH as a primary reason/diagnosis are below.
 
 ##### Geographical variation
 
 ```{r icb_map_allmh}
+#| label: fig-plot-type1-map
+#| fig-cap: Attendance rate by ICB per 100,000 population, Type 1 A&E. All of England, 2023/24.
 tar_read(icb_ed_map_2324)
 ```
 
@@ -276,8 +364,8 @@ tar_read(icb_ed_map_2324)
 ###### Chart
 
 ```{r type1_attends_gender_plot}
-#| label: "fig-type1_attends-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by gender."
+#| label: fig-type1_attends-gender
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by gender.
 tar_read(gender_plot)$type1_mh_attends
 ```
 
@@ -296,8 +384,8 @@ tar_read(gender_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_age_plot}
-#| label: "fig-type1_attends-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by age group."
+#| label: fig-type1_attends-age
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by age group.
 tar_read(age_plot)$type1_mh_attends
 ```
 
@@ -316,8 +404,8 @@ tar_read(age_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_ethnic_plot}
-#| label: "fig-type1_attends-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by ethnic category."
+#| label: fig-type1_attends-ethnic
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by ethnic category.
 tar_read(ethnic_plot)$type1_mh_attends
 ```
 
@@ -336,14 +424,16 @@ tar_read(ethnic_breakdowns)$type1_mh_attends |>
 ###### Chart1
 
 ```{r type1_attends_imd_plot}
-#| label: "fig-type1_attends-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by Index of Multiple Deprivation decile."
+#| label: fig-type1_attends-imd
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by Index of Multiple Deprivation decile.
 tar_read(imd_plot)$type1_mh_attends
 ```
 
 ###### Chart2
 
 ```{r type1_attends_imd_plot2}
+#| label: fig-type1_attends-imd2
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by Index of Multiple Deprivation decile and year.
 tar_read(ae_attends_imd)
 ```
 
@@ -362,8 +452,8 @@ tar_read(imd_breakdowns)$type1_mh_attends |>
 ###### Chart
 
 ```{r type1_attends_rural_plot}
-#| label: "fig-type1_attends-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by rural and urban populations."
+#| label: fig-type1_attends-rural
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by rural and urban populations.
 tar_read(rural_plot)$type1_mh_attends
 ```
 
@@ -377,246 +467,7 @@ tar_read(rural_breakdowns)$type1_mh_attends |>
 :::
 :::
 
-#### Percentage of MH Type 1 attendances known to specialist services {#sec-type1-mh-known}
-
-The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known).
-
-::: panel-tabset
-###### Overview
-
-```{r}
-#| label: "fig-type1-mh-known-boxplot"
-#| fig-cap: "Percentage of Mental Health Type 1 attendances known to specialist services over time."
-tar_read(type1_mh_known_boxplot)
-```
-
-###### ICB Variation
-
-```{r}
-#| label: "tbl-type1-mh-known"
-#| tbl-cap: "Percentage of Mental Health Type 1 attendances known to specialist services by ICB."
-tar_read(type1_mh_known_table) |>
-  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
-                 seq(60, 90, 4)) 
-```
-:::
-
-Breakdowns for the number of Type 1 attendances with MH as primary reason/diagnosis where the patient was known to specialist services are below.
-
-::: panel-tabset
-##### Gender variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_known_gender_plot}
-#| label: "fig-type1_known-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by gender."
-tar_read(gender_plot)$type1_mh_known
-```
-
-###### Table
-
-```{r type1_known_gender_table}
-tar_read(gender_breakdowns)$type1_mh_known |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
-```
-:::
-
-##### Age-group variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_known_age_plot}
-#| label: "fig-type1_known-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by age group."
-tar_read(age_plot)$type1_mh_known
-```
-
-###### Table
-
-```{r type1_known_age_table}
-tar_read(age_breakdowns)$type1_mh_known |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
-```
-:::
-
-##### Ethnic group variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_known_ethnic_plot}
-#| label: "fig-type1_known-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by ethnic category."
-tar_read(ethnic_plot)$type1_mh_known
-```
-
-###### Table
-
-```{r type1_known_ethnic_table}
-tar_read(ethnic_breakdowns)$type1_mh_known |>
-  get_standard_table_for_breakdowns("ethnic_category") |>
-  create_dt()
-```
-:::
-
-##### Socioeconomic variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_known_imd_plot}
-#| label: "fig-type1_known-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by Index of Multiple Deprivation decile."
-tar_read(imd_plot)$type1_mh_known
-```
-
-###### Table
-
-```{r type1_known_imd_table}
-tar_read(imd_breakdowns)$type1_mh_known |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
-```
-:::
-
-##### Rural-urban variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_known_rural_plot}
-#| label: "fig-type1_known-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances where the patient was known to specialist services by rural and urban populations."
-tar_read(rural_plot)$type1_mh_known
-```
-
-###### Table
-
-```{r type1_known_rural_table}
-tar_read(rural_breakdowns)$type1_mh_known |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
-```
-:::
-:::
-
-#### Arrival mode breakdowns {#sec-arrival-mode-breakdowns}
-
-The breakdowns below are for the number of mental health attendances only.
-
-::: panel-tabset
-##### Gender variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_arrival_mode_gender_plot}
-#| label: "fig-arrival-mode-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by gender."
-tar_read(gender_plot)$type1_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r type1_arrival_mode_gender_table}
-tar_read(gender_breakdowns)$type1_arrival_mode |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
-```
-:::
-
-##### Age-group variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_arrival_mode_age_plot}
-#| label: "fig-arrival-mode-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by age group."
-tar_read(age_plot)$type1_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r type1_arrival_mode_age_table}
-tar_read(age_breakdowns)$type1_arrival_mode |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
-```
-:::
-
-##### Ethnic group variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_arrival_mode_ethnic_plot}
-#| label: "fig-arrival-mode-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by ethnic category."
-tar_read(ethnic_plot)$type1_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r type1_arrival_mode_ethnic_table}
-tar_read(ethnic_breakdowns)$type1_arrival_mode |>
-  get_standard_table_for_breakdowns("ethnic_category") |>
-  create_dt()
-```
-:::
-
-##### Socioeconomic variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_arrival_mode_imd_plot}
-#| label: "fig-arrival-mode-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by Index of Multiple Deprivation decile."
-tar_read(imd_plot)$type1_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r type1_arrival_mode_imd_table}
-tar_read(imd_breakdowns)$type1_arrival_mode |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
-```
-:::
-
-##### Rural-urban variation
-
-::: panel-tabset
-###### Chart
-
-```{r type1_arrival_mode_rural_plot}
-#| label: "fig-arrival-mode-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health Type 1 attendances by arrival mode by rural or urban populations."
-tar_read(rural_plot)$type1_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r type1_arrival_mode_rural_table}
-tar_read(rural_breakdowns)$type1_arrival_mode |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
-```
-:::
-:::
-
-## Walk-in and Urgent Care attendance
+## Detailed analysis - Walk-in and Urgent Care attendance {#sec-type34-overview}
 
 ```{r uec_summary_bits, include = FALSE}
 
@@ -638,7 +489,7 @@ During 2023/24 there were `r round(uec_all,2)` million Type 3/4 attendances cost
 
 ```{r uec_top_ten_causes}
 #| label: tbl-uec-snomed
-#| tbl-cap: "Top 10 SNOMED codes in UCC and WIC presentation. All of England, 2023/24."
+#| tbl-cap: Top 10 SNOMED codes in UCC and WIC presentation. All of England, 2023/24.
 
 gt_causes <- tar_read(ae_diag) |> 
   filter(der_financial_year == '2023/24', ec_department_type %in% c(3,4)) |> 
@@ -650,7 +501,7 @@ gt_causes <- tar_read(ae_diag) |>
 create_dt(gt_causes) 
 ```
 
-### Key metrics
+### Access and patient pathway {#sec-type34-pathway}
 
 #### Arrival mode to ED
 
@@ -660,12 +511,16 @@ Data is captured in ECDS for the mode of transport used to get the patient to th
 ##### All modes
 
 ```{r uec_arrive_mode}
+#| label: fig-uec_attends-mode
+#| fig-cap: Percentage of attendances by arrival mode, Type 3/4 departments in England, 2023/24.
 tar_read(uec_trans_barplot)
 ```
 
 ##### Trend
 
 ```{r uec_arrive_mode_trend}
+#| label: fig-uec_attends-mode-trend
+#| fig-cap: Percentage of attendances by arrival mode, Type 3/4 departments in England, 2019/20 to 2023/24.
 tar_read(uec_trans_trends)
 ```
 
@@ -673,7 +528,7 @@ tar_read(uec_trans_trends)
 
 ```{r uec_arrive_mode_table}
 #| label: tbl-uec-arrival
-#| tbl-cap: "Number and percentage of attendances by arrival mode and financial year."
+#| tbl-cap: Number and percentage of attendances by arrival mode and financial year.
 tar_read(uec_transp_trends) |>
   create_dt()
 ```
@@ -685,6 +540,8 @@ tar_read(uec_transp_trends) |>
 ##### Chart
 
 ```{r uec_arrive_time_plot}
+#| label: fig-uec-toa
+#| fig-cap: Percentage of attendances by hour of arrival, all of England, 2019/20 to 2023/24.
 tar_read(uec_toa_plot)
 ```
 
@@ -692,7 +549,7 @@ tar_read(uec_toa_plot)
 
 ```{r uec_arrive_time_table}
 #| label: tbl-uec-toa
-#| tbl-cap: "Number and percentage of attendances by time of arrival and financial year."
+#| tbl-cap: Number and percentage of attendances by hour of arrival, 2019/20 to 2023/24.
 tar_read(uec_toa_summary) |>
   create_dt()
 ```
@@ -706,6 +563,8 @@ SNOMED departure status codes allow us to identify patients that left the depart
 ##### Chart
 
 ```{r uec_left_plot}
+#| label: fig-uec_attends-left
+#| fig-cap: Percentage of attendances left before assessment or treatment, Type 3/4 departments in England, 2023/24.
 tar_read(uec_left_chart)
 ```
 
@@ -713,43 +572,72 @@ tar_read(uec_left_chart)
 
 ```{r uec_left_summary}
 #| label: tbl-uec-leave
-#| tbl-cap: "Number of attendances and patients leaving the departments before assessment or treatment by financial year."
+#| tbl-cap: Number of attendances and patients leaving the departments before assessment or treatment by financial year.
 tar_read(uec_left_summary) |>
   create_dt()
 ```
 :::
 
-### Detailed breakdowns
+### Detailed breakdowns {#sec-type34-breakdown}
 
 #### Percentage of all UEC attendances with MH as primary reason/diagnosis {#sec-uec-mh-attends}
 
 @fig-uec-perc-mh suggests greater percentage of Mental Health UEC attendances in 2023/24. This varies by ICB (@tbl-uec-perc) where some ICBs have consistently low or high percentages over time.
 
 ::: panel-tabset
-###### Overview
+##### Overview
 
 ```{r}
-#| label: "fig-uec-perc-mh"
-#| fig-cap: "Percentage of Mental Health UEC attendances over time."
+#| label: fig-uec-perc-mh
+#| fig-cap: Percentage of Mental Health UEC attendances over time.
 tar_read(uec_mh_attends_boxplot)
 ```
 
-###### ICB Variation
+##### ICB Variation
 
 ```{r}
-#| label: "tbl-uec-perc"
-#| tbl-cap: "Percentage of Mental Health UEC attendances by ICB."
+#| label: tbl-uec-perc
+#| tbl-cap: Percentage of Mental Health UEC attendances by ICB.
 tar_read(uec_mh_attends_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(0, 1.8, 0.25))
 ```
 :::
 
-Breakdowns for the number of attendances to UEC with MH as primary reason/diagnosis are below.
+#### Percentage of MH UEC attendances known to specialist services {#sec-uec-mh-known}
+
+@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known).
+
+::: panel-tabset
+##### Overview
+
+```{r}
+#| label: fig-uec-mh-known-boxplot
+#| fig-cap: Percentage of Mental Health UEC attendances known to specialist services over time.
+tar_read(uec_mh_known_boxplot)
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-uec-mh-known
+#| tbl-cap: Percentage of Mental Health UEC attendances known to specialist services by ICB.
+tar_read(uec_mh_known_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(30, 90, 8)) 
+```
+:::
+
+
+#### Utilisation rates, population sub-groups {#sec-type34-populations}
+
+Breakdowns for the number of attendances to Urgent Care or Walk-in with MH as primary reason/diagnosis are below.
 
 ##### Geographical variation
 
 ```{r icb_map_allmh_uec}
+#| label: fig-uec_attends-map
+#| fig-cap: Attendances rate per 100,000 population, Type 3/4 departments by ICB, 2023/24.
 tar_read(icb_uec_map_2324)
 ```
 
@@ -760,8 +648,8 @@ tar_read(icb_uec_map_2324)
 ###### Chart
 
 ```{r uec_attends_gender_plot}
-#| label: "fig-uec-attends-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by gender."
+#| label: fig-uec-attends-gender
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by gender.
 tar_read(gender_plot)$uec_mh_attends
 ```
 
@@ -780,8 +668,8 @@ tar_read(gender_breakdowns)$uec_mh_attends |>
 ###### Chart
 
 ```{r uec_attends_age_plot}
-#| label: "fig-uec-attends-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by age group."
+#| label: fig-uec-attends-age
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by age group.
 tar_read(age_plot)$uec_mh_attends
 ```
 
@@ -800,8 +688,8 @@ tar_read(age_breakdowns)$uec_mh_attends |>
 ###### Chart
 
 ```{r uec_attends_ethnic_plot}
-#| label: "fig-uec-attends-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by ethnic category."
+#| label: fig-uec-attends-ethnic
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by ethnic category.
 tar_read(ethnic_plot)$uec_mh_attends
 ```
 
@@ -820,14 +708,16 @@ tar_read(ethnic_breakdowns)$uec_mh_attends |>
 ###### Chart1
 
 ```{r}
-#| label: "fig-uec-attends-imd_1"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by Index of Multiple Deprivation decile."
+#| label: fig-uec-attends-imd_1
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by Index of Multiple Deprivation decile.
 tar_read(imd_plot)$uec_mh_attends
 ```
 
 ###### Chart2
 
 ```{r uec_attends_imd_plot2}
+#| label: fig-uec-attends-imd_2
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by Index of Multiple Deprivation decile and year.
 tar_read(uec_attends_imd)
 ```
 
@@ -846,14 +736,16 @@ tar_read(imd_breakdowns)$uec_mh_attends |>
 ###### Chart
 
 ```{r uec_attends_rural_plot}
+#| label: fig-uec-attends-urban
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by rural or urban classification.
 tar_read(rural_plot)$uec_mh_attends
 ```
 
 ###### Table
 
 ```{r uec_attends_rural_table}
-#| label: "fig-uec-attends-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by rural and urban populations."
+#| label: tbl-uec-attends-rural
+#| tbl-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by rural and urban populations.
 tar_read(rural_breakdowns)$uec_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban") |>
   create_dt()
@@ -861,246 +753,11 @@ tar_read(rural_breakdowns)$uec_mh_attends |>
 :::
 :::
 
-#### Percentage of MH UEC attendances known to specialist services {#sec-uec-mh-known}
+## Detailed analysis - NHS 111 calls {#sec-nhs111-overview}
 
-@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known).
+The following are a summary of NHS 111 telephone calls data where a caller is connected (i.e. didn't hang up before connection). This includes calls directed via the NHS 111 online service, though data quality does not allow for accurate breakdown of routes into the telephony service. No separate/standalone NHS 111 online data is available at this time though may be useful if available at a future date.
 
-::: panel-tabset
-###### Overview
-
-```{r}
-#| label: "fig-uec-mh-known-boxplot"
-#| fig-cap: "Percentage of Mental Health UEC attendances known to specialist services over time."
-tar_read(uec_mh_known_boxplot)
-```
-
-###### ICB Variation
-
-```{r}
-#| label: "tbl-uec-mh-known"
-#| tbl-cap: "Percentage of Mental Health UEC attendances known to specialist services by ICB."
-tar_read(uec_mh_known_table) |>
-  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
-                 seq(30, 90, 8)) 
-```
-:::
-
-Breakdowns for the number of UEC attendances with MH as primary reason/diagnosis where the patient was known to specialist services are below.
-
-::: panel-tabset
-##### Gender variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_known_gender_plot}
-#| label: "fig-uec_known-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by gender."
-tar_read(gender_plot)$uec_mh_known
-```
-
-###### Table
-
-```{r uec_known_gender_table}
-tar_read(gender_breakdowns)$uec_mh_known |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
-```
-:::
-
-##### Age-group variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_known_age_plot}
-#| label: "fig-uec_known-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by age group."
-tar_read(age_plot)$uec_mh_known
-```
-
-###### Table
-
-```{r uec_known_age_table}
-tar_read(age_breakdowns)$uec_mh_known |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
-```
-:::
-
-##### Ethnic group variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_known_ethnic_plot}
-#| label: "fig-uec_known-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by ethnic category."
-tar_read(ethnic_plot)$uec_mh_known
-```
-
-###### Table
-
-```{r uec_known_ethnic_table}
-tar_read(ethnic_breakdowns)$uec_mh_known |>
-  get_standard_table_for_breakdowns("ethnic_category") |>
-  create_dt()
-```
-:::
-
-##### Socioeconomic variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_known_imd_plot}
-#| label: "fig-uec_known-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by Index of Multiple Deprivation decile."
-tar_read(imd_plot)$uec_mh_known
-```
-
-###### Table
-
-```{r uec_known_imd_table}
-tar_read(imd_breakdowns)$uec_mh_known |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
-```
-:::
-
-##### Rural-urban variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_known_rural_plot}
-#| label: "fig-uec_known-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances where the patient was known to specialist services by rural and urban populations."
-tar_read(rural_plot)$uec_mh_known
-```
-
-###### Table
-
-```{r uec_known_rural_table}
-tar_read(rural_breakdowns)$uec_mh_known |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
-```
-:::
-:::
-
-#### Arrival mode breakdowns {#sec-uec-arrival-mode-breakdowns}
-
-The breakdowns below are for the number of mental health attendances only.
-
-::: panel-tabset
-##### Gender variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_arrival_mode_gender_plot}
-#| label: "fig-uec-arrival-mode-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by gender."
-tar_read(gender_plot)$uec_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r uec_arrival_mode_gender_table}
-tar_read(gender_breakdowns)$uec_arrival_mode |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
-```
-:::
-
-##### Age-group variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_arrival_mode_age_plot}
-#| label: "fig-uec-arrival-mode-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by age group."
-tar_read(age_plot)$uec_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r uec_arrival_mode_age_table}
-tar_read(age_breakdowns)$uec_arrival_mode |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
-```
-:::
-
-##### Ethnic group variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_arrival_mode_ethnic_plot}
-#| label: "fig-uec-arrival-mode-ethnic"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by ethnic category."
-tar_read(ethnic_plot)$uec_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r uec_arrival_mode_ethnic_table}
-tar_read(ethnic_breakdowns)$uec_arrival_mode |>
-  get_standard_table_for_breakdowns("ethnic_category") |>
-  create_dt()
-```
-:::
-
-##### Socioeconomic variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_arrival_mode_imd_plot}
-#| label: "fig-uec-arrival-mode-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by Index of Multiple Deprivation decile."
-tar_read(imd_plot)$uec_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r uec_arrival_mode_imd_table}
-tar_read(imd_breakdowns)$uec_arrival_mode |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
-```
-:::
-
-##### Rural-urban variation
-
-::: panel-tabset
-###### Chart
-
-```{r uec_arrival_mode_rural_plot}
-#| label: "fig-uec-arrival-mode-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health UEC attendances by arrival mode by rural or urban populations."
-tar_read(rural_plot)$uec_arrival_mode |> 
-  modify_arrival_mode_plots()
-```
-
-###### Table
-
-```{r uec_arrival_mode_rural_table}
-tar_read(rural_breakdowns)$uec_arrival_mode |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
-```
-:::
-:::
-
-## NHS 111 calls
+At the time of this analysis, only data up to 2021/22 was accessible, more may become available in the future.
 
 ```{r 111_summary_bits, include = FALSE}
 
@@ -1122,7 +779,7 @@ During 2021/22 there were `r round(nhs111_all,2)` million NHS111 calls costing �
 
 ```{r 111_top_ten_symptoms}
 #| label: tbl-111-symptoms
-#| tbl-cap: "Top 10 symptom codes in NHS111 calls. All of England, 2021/22."
+#| tbl-cap: Top 10 symptom codes in NHS111 calls. All of England, 2021/22.
 
 gt_causes <- tar_read(nhs111_sympt_summary) |> 
   filter(der_financial_year == '2020/21') |>
@@ -1135,13 +792,15 @@ gt_causes <- tar_read(nhs111_sympt_summary) |>
 create_dt(gt_causes)
 ```
 
-### Key metrics
+### Access and patient pathway {#sec-nhs111-pathway}
 
 #### Time of call
 
 There is very little difference in the times of day that patients with mental health issues call NHS111 compared to those with physical complaints.
 
-``` {r 111_time_of_day_calls}
+```{r 111_time_of_day_calls}
+#| label: fig-nhs111-toc
+#| fig-cap: Call times by Hour, NHS 111 calls, All of England, 2021/22.
 tar_read(nhs111_perc_mh_calls_toa)
 ```
 
@@ -1151,12 +810,16 @@ tar_read(nhs111_perc_mh_calls_toa)
 ##### All modes
 
 ```{r nhs111_disposition}
+#| label: fig-nhs111-disposal
+#| fig-cap: Disposal 'destination', NHS 111 calls, All of England, 2021/22.
 tar_read(nhs111_disposition_bar)
 ```
 
 ##### Trend
 
 ```{r nhs111_disposition_trend}
+#| label: fig-nhs111-disposal-trend
+#| fig-cap: Disposal 'destination' by year, NHS 111 calls, All of England, 2017/18 to 2021/22.
 tar_read(nhs111_disposition_trends_chart)
 ```
 
@@ -1164,7 +827,7 @@ tar_read(nhs111_disposition_trends_chart)
 
 ```{r nhs111_disposition_table}
 #| label: tbl-nhs111-disposition
-#| tbl-cap: "Number and percentage of calls by disposition and financial year."
+#| tbl-cap: Number and percentage of calls by disposal destination and financial year.
 tar_read(nhs111_disposition_trends) |>
    create_dt()
 ```
@@ -1190,42 +853,47 @@ Frequent fliers can be defined as those calling 5 or more times in a 12 month pe
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who attend frequently. This varies by ICB area.
 
 ```{r nhs111_freq_icb_plot}
+#| label: fig-nhs111-freq
+#| fig-cap: Percentage of NHS 111 callers with 5+ contacts in year, All of England, 2021/22.
 
 tar_read(nhs111_freq_boxplot)
 
 ```
 
-### Detailed breakdowns
+### Detailed breakdowns {#sec-nhs111-breakdown}
 
 #### Percentage of all calls being MH-related
 
 @fig-nhs111-perc-mh suggests ... Breakdowns by ICB are in @tbl-nhs111-perc and breakdowns by population demographics can be seen below.
 
 ::: panel-tabset
-###### Overview
+##### Overview
 
 ```{r}
-#| label: "fig-nhs111-perc-mh"
-#| fig-cap: "Percentage of Mental Health calls over time."
+#| label: fig-nhs111-perc-mh
+#| fig-cap: Percentage of Mental Health calls over time.
 tar_read(nhs111_mh_calls_boxplot)
 ```
 
-###### ICB Variation
+##### ICB Variation
 
 ```{r}
-#| label: "tbl-nhs111-perc"
-#| tbl-cap: "Percentage of Mental Health Type 1 calls by ICB."
+#| label: tbl-nhs111-perc
+#| tbl-cap: Percentage of Mental Health Type 1 calls by ICB.
 tar_read(nhs111_mh_calls_table) |>
   color_gradient(c("2017/18", "2018/19", "2019/20", "2020/21", "2021/22"), 
                  seq(0, 1.8, 0.25))
 ```
 :::
 
-#### Geographical variation
+
+#### Utilisation rates, population sub-groups {#sec-nhs111-populations}
+
+##### Geographical variation
 
 ```{r}
-#| label: "fig-nhs111-icb-map"
-#| fig-cap: "Mental Health calls rate to NHS 111 by ICB of residence, 21/22"
+#| label: fig-nhs111-icb-map
+#| fig-cap: Mental Health calls rate per 100,000 to NHS 111 by ICB of residence, 21/22
 tar_read(icb_111_map_2122)
 ```
 
@@ -1236,8 +904,8 @@ tar_read(icb_111_map_2122)
 ###### Chart
 
 ```{r nhs111_calls_gender_plot}
-#| label: "fig-nhs111_calls-gender"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by gender."
+#| label: fig-nhs111_calls-gender
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by gender.
 tar_read(gender_plot)$nhs111_mh_calls
 ```
 
@@ -1257,8 +925,8 @@ tar_read(gender_breakdowns)$nhs111_mh_calls |>
 ###### Chart
 
 ```{r nhs111_calls_age_plot}
-#| label: "fig-nhs111_calls-age"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by age group."
+#| label: fig-nhs111_calls-age
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by age group.
 tar_read(age_plot)$nhs111_mh_calls
 ```
 
@@ -1278,14 +946,16 @@ tar_read(age_breakdowns)$nhs111_mh_calls |>
 ###### Chart1
 
 ```{r nhs111_calls_imd_plot}
-#| label: "fig-nhs111_calls-imd"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by Index of Multiple Deprivation decile."
+#| label: fig-nhs111_calls-imd
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by Index of Multiple Deprivation decile.
 tar_read(imd_plot)$nhs111_mh_calls
 ```
 
 ###### Chart2
 
 ```{r nhs111_calls_imd_plot2}
+#| label: fig-nhs111_calls-imd2
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by Index of Multiple Deprivation decile and year.
 tar_read(nhs111_calls_imd)
 ```
 
@@ -1305,8 +975,8 @@ tar_read(imd_breakdowns)$nhs111_mh_calls |>
 ###### Chart
 
 ```{r nhs111_calls_rural_plot}
-#| label: "fig-nhs111_calls-rural"
-#| fig-cap: "Rates per 100,000 population of the number of Mental Health related calls to NHS111 by rural and urban populations."
+#| label: fig-nhs111_calls-rural
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by rural and urban populations.
 tar_read(rural_plot)$nhs111_mh_calls
 ```
 
