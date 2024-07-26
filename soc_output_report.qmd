@@ -36,7 +36,6 @@ css: styles.css
 library(targets)
 library(tidyverse)
 library(scales)
-library(gt)
 
 source("R/quarto_formatting.R")
 ```
@@ -1119,19 +1118,28 @@ tar_read(nhs111_perc_mh_calls_toa)
 
 #### Call disposition
 
-```{r nhs111_top_ten_causes}
-#| label: tbl-nhs111-dispositions
-#| tbl-cap: "Top 10 dispositions in NHS 111 calls. All of England, 2023/24."
+::: panel-tabset
+##### All modes
 
-# gt_causes <- tar_read(nhs111_disposition) |> 
-#   filter(der_financial_year == '2023/24') |> 
-#   summarise(attends = sum(attends), .by = term) |>
-#   rename(SNOMED_term = term) |> 
-#   arrange(desc(attends)) |> 
-#   slice_head(n = 10) 
-# 
-# create_dt(gt_causes) 
+```{r nhs111_disposition}
+tar_read(nhs111_disposition_bar)
 ```
+
+##### Trend
+
+```{r nhs111_disposition_trend}
+tar_read(nhs111_disposition_trends_chart)
+```
+
+##### Table
+
+```{r nhs111_disposition_table}
+#| label: tbl-nhs111-disposition
+#| tbl-cap: "Number and percentage of calls by disposition and financial year."
+tar_read(nhs111_disposition_trends) |>
+   create_dt()
+```
+:::
 
 #### Frequent Fliers
 

@@ -239,9 +239,6 @@ list(
   tar_target(nhs111_freq,
              load_csv("data/111_freqfly_icb.csv")
   ),
-  tar_target(nhs111_disposition,
-             load_csv("data/111_symptoms_mhflag.csv")
-  ),
 
   # Full extracts
   tar_target(
@@ -399,6 +396,7 @@ list(
 
   tar_target(ed_left_chart, ed_left_plot(ae_left_summary)),
   tar_target(uec_left_chart, ed_left_plot(uec_left_summary, "UEC")),
+
   # Overlayed bar chart for time of arrival to AE
   tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
   tar_target(uec_toa_plot, get_overlay_barchart_toa(uec_toa_summary, "UEC")),
@@ -478,6 +476,15 @@ list(
     nhs111_mh_calls_table,
     get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
   ),
-  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_toa))
+  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_toa)),
 
+  # disposition
+  tar_target(nhs111_disposition_summary,
+             get_disposition_summary(data_111)),
+  tar_target(nhs111_disposition_bar,
+             get_disposition_bar_chart(nhs111_disposition_summary)),
+  tar_target(nhs111_disposition_trends,
+             get_disposition_trends(data_111)),
+  tar_target(nhs111_disposition_trends_chart,
+             get_nhs111_disposition_trends_chart(nhs111_disposition_trends))
 )
