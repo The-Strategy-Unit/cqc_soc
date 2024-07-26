@@ -618,9 +618,23 @@ tar_read(rural_breakdowns)$type1_arrival_mode |>
 
 ## Walk-in and Urgent Care attendance
 
+```{r uec_summary_bits, include = FALSE}
+
+uec_all <- tar_read(uec_summary) |> filter(der_financial_year == '2023/24') |> pull(all)/1000000
+
+uec_all_cost <- tar_read(uec_summary) |> filter(der_financial_year == '2023/24') |> pull(all_cost)/1000000000
+
+uec_mh <- tar_read(uec_summary) |> filter(der_financial_year == '2023/24') |> pull(mh)/1000
+
+uec_mh_cost <- tar_read(uec_summary) |> filter(der_financial_year == '2023/24') |> pull(mh_cost)/1000000
+
+```
+
 These attendances are those specified within the ECDS as 'Type 3' urgent treatment centre and 'Type 4' walk-in centre attendances and should be typically self-conveyed patients requiring urgent assessment and treatment to prevent deterioration.
 
 The average urgent care attendance in England costs £107 <https://www.england.nhs.uk/costing-in-the-nhs/national-cost-collection/>.
+
+During 2023/24 there were `r round(uec_all,2)` million Type 1 attendances costing £ `r round(uec_all_cost,2)` billion. Of those attendances c`r round(uec_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(uec_mh_cost,2)` million.
 
 ```{r uec_top_ten_causes}
 #| label: tbl-uec-snomed
