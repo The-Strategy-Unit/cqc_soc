@@ -724,13 +724,7 @@ get_perc_mh_calls <- function(data) {
   return(mh_calls)
 }
 
-
-
-
-
-
-
-
+# To get the population average for breakdown plots:
 get_pop_average <- function(data_population,
                             data_filtered,
                             multiplier = 100000) {
@@ -750,6 +744,7 @@ get_pop_average <- function(data_population,
     )
 }
 
+#To get the population average for breakdown plots by arrival mode:
 get_pop_average_arrival_mode <- function(data_population,
                                          data_filtered,
                                          multiplier = 100000) {
@@ -769,4 +764,51 @@ get_pop_average_arrival_mode <- function(data_population,
     )
 
   return(pop_data)
+}
+
+# To group dispositions in NHS11 calls:
+group_dispositions <- function(data){
+
+  data_grouped <- data |>
+    dplyr::mutate(
+      disposition = dplyr::case_when(
+        grepl("Ambulance", mds_primary_split) ~ "Ambulance",
+        grepl("Primary", mds_primary_split) |
+          grepl("Home Care", mds_primary_split) ~ "Primary or \n Community Care",
+        mds_primary_split == "Not Recommended to Attend Other Service" |
+          mds_primary_split == "NULL"
+        ~ "No other service",
+        mds_primary_split == "Recommended to Attend A&E" ~ "A&E department",
+        grepl("Other Service", mds_primary_split) ~ "Other Service",
+        .default = "gssdg"
+      )
+    )
+
+  return(data_grouped)
+}
+
+# To get summary of NHS 111 calls by disposition:
+get_disposition_summary <- function(data){
+  summary <- data |>
+    dplyr::filter(der_financial_year == "2021/22") |>
+    group_dispositions() |>
+    dplyr::summarise(calls = sum(calls), .by = c(disposition, mh_symptom)) |>
+    dplyr::mutate(perc = calls / sum(calls) * 100, .by = mh_symptom)
+
+  return(summary)
+}
+
+# To get trends for NHS 111 calls by disposition:
+get_disposition_trends <- function(data) {
+  trends <- data |>
+    group_dispositions() |>
+    dplyr::summarise(
+      calls = sum(calls),
+      .by = c(disposition, mh_symptom, der_financial_year)
+    ) |>
+    dplyr::mutate(perc = calls / sum(calls) * 100,
+                  .by = c(mh_symptom, der_financial_year),
+                  disposition = stringr::str_replace(disposition, "\n", ""))
+
+  return(trends)
 }

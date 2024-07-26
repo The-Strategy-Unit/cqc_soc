@@ -329,3 +329,40 @@ get_perc_mh_calls_boxplot <- function(data) {
   return(plot)
 }
 
+# To get a bar chart of the disposition of NHS 111 calls:
+get_disposition_bar_chart <- function(data){
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(
+      x = disposition,
+      y = perc,
+      fill = as.factor(mh_symptom)
+    )) +
+    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::scale_fill_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(
+      x = "Disposition",
+      y = "Percent",
+      title = "Percentage of calls by disposition",
+      subtitle = "All NHS 111 calls in England 2021/22"
+    )
+
+  return(plot)
+}
+
+
+# To get line plot of nhs111 call dispositions over time:
+get_nhs111_disposition_trends_chart <- function(data){
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(x=der_financial_year, y=perc, group = mh_symptom)) +
+    ggplot2::geom_line(ggplot2::aes(colour = as.factor(mh_symptom))) +
+    ggplot2::scale_color_manual(values=c("#333739","#f9bf07"), name = "MH presentation") +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    ggplot2::facet_wrap(~ disposition, ncol = 1, scales = "free") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(title = "Call Disposition",
+                  subtitle = "All NHS 111 calls in England 2019/20 to 2023/24",
+                  x = "Financial Year",
+                  y = "Percentage of all")
+
+  return(plot)}
