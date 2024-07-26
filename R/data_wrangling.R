@@ -401,21 +401,22 @@ get_ae_summary <- function(tarobj) {
   return(data)
 }
 
-get_ae_summ_transp <- function(tarobj) {
+get_ae_summ_transp <- function(tarobj, type = "01") {
+
   tarobj |>
     filter(der_financial_year == '2023/24',
            arrival_mode != 'NULL',
-           ec_department_type == '01') |>
+           ec_department_type %in% type) |>
     group_by(mh_snomed, arrival_mode) |>
     summarise(attends = sum(attends)) |>
     group_by(mh_snomed) |>
     mutate(perc = attends / sum(attends) * 100)
 }
 
-get_ae_amb_trends <- function(tarobj) {
+get_ae_amb_trends <- function(tarobj, type = "01") {
   tarobj |>
     filter(arrival_mode != 'NULL',
-           ec_department_type == '01') |>
+           ec_department_type %in% type) |>
     group_by(mh_snomed, arrival_mode, der_financial_year) |>
     summarise(attends = sum(attends)) |>
     group_by(mh_snomed, der_financial_year) |>
@@ -588,6 +589,7 @@ get_breakdown_two_groups <- function(data_filtered,
 # To get the breakdowns for each dataset by a group:
 get_breakdowns <- function(data,
                            type1_arrival_mode,
+                           uec_arrival_mode,
                            data_population,
                            group) {
   if (group == "ethnic_category") {
@@ -598,12 +600,18 @@ get_breakdowns <- function(data,
   most <- purrr::map(data,
                      ~ get_breakdown_one_group(., data_population, group))
 
-  arrival_mode <- get_breakdown_two_groups(type1_arrival_mode,
+  type1_arrival_mode <- get_breakdown_two_groups(type1_arrival_mode,
                                            data_population,
                                            group,
                                            "arrival_mode")
 
-  all <- append(most, list(type1_arrival_mode = arrival_mode))
+  uec_arrival_mode <- get_breakdown_two_groups(uec_arrival_mode,
+                                           data_population,
+                                           group,
+                                           "arrival_mode")
+
+  all <- append(most, list(type1_arrival_mode = type1_arrival_mode,
+                           uec_arrival_mode = uec_arrival_mode))
 
   return(all)
 }
