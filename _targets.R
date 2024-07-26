@@ -239,6 +239,9 @@ list(
   tar_target(nhs111_freq,
              load_csv("data/111_freqfly_icb.csv")
   ),
+  tar_target(nhs111_disposition,
+             load_csv("data/111_symptoms_mhflag.csv")
+  ),
 
   # Full extracts
   tar_target(
@@ -382,7 +385,7 @@ list(
 
   # frequent fliers
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
-  tar_target(uec_freq_boxplot,
+  tar_target(nhs111_freq_boxplot,
              ed_freq_boxplot(nhs111_freq,
                              "NHS 111 calls",
                              "patients calling for MH related reasons")),
