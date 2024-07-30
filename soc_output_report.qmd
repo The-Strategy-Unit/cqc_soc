@@ -70,7 +70,7 @@ Ethnic category codes: The current field completion is 98.2% overall with a vali
 
 The likelihood of someone with a mental health problem contacting urgent and emergency care services varies greatly according to who they are and where they live. Females, those in adolescence, those in 'other' minority ethnic groups and those in deprived areas all access services at higher rates.
 
-Attendance rates to Type 1 units (emergency departments) are falling gradually over timne but those to urgent treatment centres are increasing. Patients with mental health difficulties also access services differently -- use ambulances more, arrive out of hours -- and are also more likely to wait longer in A&E departments for assessment and treatment than those with physical health complaints.
+Attendance rates to Type 1 units (emergency departments) are falling gradually over time but those to urgent treatment centres are increasing. Patients with mental health difficulties also access services differently -- use ambulances more, arrive out of hours -- and are also more likely to wait longer in A&E departments for assessment and treatment than those with physical health complaints.
 
 While the majority of these patients are known to specialist mental health providers, a substantial minority are not. Typically, the most common presenting conditions are depression and anxiety though material numbers do have more severe disorders.
 
@@ -155,7 +155,7 @@ create_dt(gt_causes)
 
 #### Arrival mode to ED
 
-Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. Breakdowns by population demographics can be seen in @sec-arrival-mode-breakdowns.
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. 
 
 ::: panel-tabset
 ##### All modes
@@ -505,7 +505,7 @@ create_dt(gt_causes)
 
 #### Arrival mode to ED
 
-Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. Breakdowns by population demographics can be seen in @sec-uec-arrival-mode-breakdowns.
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport.
 
 ::: panel-tabset
 ##### All modes
@@ -755,7 +755,7 @@ tar_read(rural_breakdowns)$uec_mh_attends |>
 
 ## Detailed analysis - NHS 111 calls {#sec-nhs111-overview}
 
-The following are a summary of NHS 111 telephone calls data where a caller is connected (i.e. didn't hang up before connection). This includes calls directed via the NHS 111 online service, though data quality does not allow for accurate breakdown of routes into the telephony service. No separate/standalone NHS 111 online data is available at this time though may be useful if available at a future date.
+The following are a summary of NHS 111 telephone calls data where a caller is connected (i.e. didn't hang up before connection). This includes calls directed via the NHS 111 online service, though data quality does not allow for accurate breakdown of routes into the telephone service. No separate/standalone NHS 111 online data is available at this time though may be useful if available at a future date.
 
 At the time of this analysis, only data up to 2021/22 was accessible, more may become available in the future.
 
@@ -864,7 +864,7 @@ tar_read(nhs111_freq_boxplot)
 
 #### Percentage of all calls being MH-related
 
-@fig-nhs111-perc-mh suggests ... Breakdowns by ICB are in @tbl-nhs111-perc and breakdowns by population demographics can be seen below.
+The percentage of NHS 111 calls being MH-related has increased over time (fig-nhs111-perc-mh). Breakdowns by ICB are in @tbl-nhs111-perc and breakdowns by population demographics can be seen below.
 
 ::: panel-tabset
 ##### Overview
