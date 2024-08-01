@@ -112,10 +112,10 @@ While the majority of these patients are known to specialist mental health provi
 -   The 5 most common calls are related to worsening of known mental health issues. Suicide-related symptoms account for around 30% of all calls.
 -   Around 85% of these patients calling NHS 111 with mental health issues are known to specialist mental health services.
 -   Patients presenting with MH issues are slightly more likely to call in the early morning and early evening.
--   More than 1 in 3 patients (34%) with primary mental health complaint are referred on to A&E department compared with only 11% with a physical complaint and this disparity is growing.
--   The rate of attendance in females (430/100,000 population) is significantly higher than males (350).
--   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation for MH.
--   There is a clear but reasonably shallow socio-economic gradient in MH presentation rates. IMD1 (most deprived) have rates just under 2 times higher than IMD10 the least deprived. Similarly, patients from urban areas are much more likely to call NHS 111 with MH problems.
+-   More than 1 in 3 patients calling NHS 111 (34%) with primary mental health complaint are referred on to A&E department compared with only 11% with a physical complaint and this disparity is growing.
+-   The rate of NHS 111 calls from females (430/100,000 population) is significantly higher than males (350).
+-   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of calls for MH.
+-   There is a clear but reasonably shallow socio-economic gradient in MH related calls. IMD1 (most deprived) have rates just under 2 times higher than IMD10 the least deprived. Similarly, patients from urban areas are much more likely to call NHS 111 with MH problems.
 
 ## Detailed analysis - Accident and Emergency attendance {#sec-type1-overview}
 
@@ -155,7 +155,7 @@ create_dt(gt_causes)
 
 #### Arrival mode to ED
 
-Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport. 
+Data is captured in ECDS for the mode of transport used to get the patient to the department categorised to ambulance conveyance, self-conveyance and by public transport.
 
 ::: panel-tabset
 ##### All modes
@@ -628,7 +628,6 @@ tar_read(uec_mh_known_table) |>
 ```
 :::
 
-
 #### Utilisation rates, population sub-groups {#sec-type34-populations}
 
 Breakdowns for the number of attendances to Urgent Care or Walk-in with MH as primary reason/diagnosis are below.
@@ -775,7 +774,7 @@ Callers to the NHS 111 service would be typically those unable to reach primary 
 
 The average cost of a call to NHS 111 is around £12 with those requiring clinical call-back an extra £15 and hear-treat or see-treat ambulance (999 referrals) costing on average another £203 <https://www.ncbi.nlm.nih.gov/books/NBK575169/>.
 
-During 2021/22 there were `r round(nhs111_all,2)` million NHS111 calls costing £ `r round(nhs111_all_cost,2)` billion. Of those attendances c`r round(nhs111_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(nhs111_mh_cost,2)` million.
+During 2021/22 there were `r round(nhs111_all,2)` million NHS 111 calls costing £ `r round(nhs111_all_cost,2)` billion. Of those calls c`r round(nhs111_mh,0)`k had a primary complaint/diagnosis of mental health disorders costing around £ `r round(nhs111_mh_cost,2)` million.
 
 ```{r 111_top_ten_symptoms}
 #| label: tbl-111-symptoms
@@ -796,7 +795,7 @@ create_dt(gt_causes)
 
 #### Time of call
 
-There is very little difference in the times of day that patients with mental health issues call NHS111 compared to those with physical complaints.
+There is very little difference in the times of day that patients with mental health issues call NHS 111 compared to those with physical complaints.
 
 ```{r 111_time_of_day_calls}
 #| label: fig-nhs111-toc
@@ -850,7 +849,7 @@ perc_freq_nhs111 <- round(avg_ff_attend_nhs111/avg_mh_attend_nhs111*100,1)
 
 Frequent fliers can be defined as those calling 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
 
-Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who attend frequently. This varies by ICB area.
+Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who call NHS 111 frequently. This varies by ICB area.
 
 ```{r nhs111_freq_icb_plot}
 #| label: fig-nhs111-freq
@@ -885,7 +884,6 @@ tar_read(nhs111_mh_calls_table) |>
                  seq(0, 1.8, 0.25))
 ```
 :::
-
 
 #### Utilisation rates, population sub-groups {#sec-nhs111-populations}
 

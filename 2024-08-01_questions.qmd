@@ -1,0 +1,110 @@
+---
+title: "Questions from 2024-08-01"
+author: "Anya Ferguson"
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    theme: cosmo
+    fig-format: svg
+    mainfont: arial
+    fontcolor: black
+    toc: true
+    toc-location: left
+    toc-title: Summary
+    toc-depth: 4
+    grid:
+      sidebar-width: 250px
+      body-width: 1050px
+      margin-width: 0px
+      gutter-width: 1.5rem
+execute:
+  echo: false
+  message: false
+  warning: false
+  cache: false
+lang: en-GB
+date: last-modified
+date-format: "YYYY-MM-DD"
+title-block-banner: "#f9bf07"
+title-block-banner-color: "#333739"
+css: styles.css
+---
+
+```{r}
+library(targets)
+
+source("R/quarto_formatting.R")
+```
+
+## Type 1 A&E attendances
+
+### Regional patterns in ICBs
+
+Question: *You’ve discussed the 4-fold difference in % of attendances being MH specific across the 42 ICB areas – I just wondered if there were any regional patterns that you noticed in these ICBs? I am very conscious that this could just be because these areas have different rurality’s and possible different screening practices. But if we pulled these areas out with caveats would that be fair?*
+
+There is a map of attendance rates by ICB in Figure 12 for an overview of regional patterns. Looking more into the rural urban data, a plot of the percentage of the population in an urban area in an ICB against the percentage of type 1 MH attendances doesn't suggest a relationship:
+
+```{r}
+# Each ICB has count of rural, count of urban - so can create a % of how urban 
+# it is:
+rural_perc <- tar_read(rural_by_icb) |>
+  tidyr::pivot_wider(names_from = rural_urban, 
+                     values_from = count, 
+                     values_fill = 0) |>
+  janitor::clean_names() |>
+  dplyr::mutate(perc_urban = urban / (urban + rural))
+
+# Can then correlate this with the type1_perc_mh_attends:
+type1_perc_mh_attends <- tar_read(type1_perc_mh_attends)
+
+type1_perc_mh_attends |>
+  dplyr::filter(der_financial_year == "2023/24") |>
+  dplyr::left_join(rural_perc, "icb_code") |>
+  ggplot2::ggplot(ggplot2::aes(value, perc_urban)) +
+  ggplot2::geom_point() +
+  ggplot2::labs(x = "Percentage of MH attendances",
+                y = "Percentage of population in urban areas",
+                title = "ICBs in England, 2023/24") +
+  ggplot2::theme_bw()
+```
+
+### Psychotic disorders
+
+Question: *There are some concerns about treatment of psychotic disorders particularly, would you be happy for us to present percentages for psychotic disorder, schizophrenia etc separately? Can I calculate the denominator from those listed in the table at the top of this section? Or are there some smaller disorders not listed in the table?*
+
+The full table of Type 1 attendances by SNOMED term for 2023/24 has 70 different SNOMED terms. There are SNOMED terms that would need to be manually classified/grouped together to get these percentages:
+
+```{r}
+# Removing top ten slice from SNOMED table:
+gt_causes <- tar_read(ae_diag) |> 
+  dplyr::filter(der_financial_year == '2023/24', ec_department_type == 1) |> 
+  dplyr::summarise(attends = sum(attends), .by = term) |>
+  dplyr::rename(SNOMED_term = term) |> 
+  dplyr::arrange(desc(attends)) #|> 
+  #slice_head(n = 10) 
+
+create_dt(gt_causes) 
+```
+
+## Walk-in and UTC attendances:
+
+### UEC attendances known to MH services
+
+Question: *Can I just check the rationale for this statement: Typically, around 50% of these patients presenting in urgent care are known to specialist mental health services, suggesting their mental health needs are less acute. Are you suggesting that the cohort is less likely to be those that have attempted to end their lives? Or are there other reasons for this. I’m just wondering whether people who haven’t accessed MH services are more likely to go to type 3 services as they may be perceived as less overwhelming environments and they’ve never been in crisis before.*
+
+?
+
+### Socio-economic gradients
+
+Question: *Can I just check whether this statement is correct as it refers to A&E not urgent treatment centres and is same as the section above: There is a very clear socio-economic gradient in MH presentation rates. IMD1 (most deprived) have rates over 3 times higher than IMD10 the least deprived. Similarly, patients from urban areas are nearly twice as likely to present in A&E with MH problems.*
+
+The socio-economic gradient is similar for Type 1 and Type 3/4 settings. Figures 16, 17 and their table and Figures 29, 30 and their table show that rates for IMD1 is about 3 times IMD10 for Type 1 and Type3/4 attendances respectively.
+
+## Calls to NHS 111
+
+### Attendances and calls
+
+Question: *When you say rate of attendance in this section is this to A&E following a call with NHS 111?*
+
+I think in our rush to complete this NHS 111 section we may have used the word attendances to mean calls, so I have reworded the section. If that doesn't help, please let me know and I'll look more into it.
