@@ -45,7 +45,9 @@ Question: *You’ve discussed the 4-fold difference in % of attendances being MH
 
 From the map of attendance rates by ICB in Figure 12, there aren't strong regional patterns (for example a north-south divide or coastal-inland split). 
 
-For the breakdowns by rural/urban we used the number of people in rural or urban LSOAs from [https://www.gov.uk/government/statistics/2011-rural-urban-classification-lookup-tables-for-all-geographies](https://www.gov.uk/government/statistics/2011-rural-urban-classification-lookup-tables-for-all-geographies) to calculate rates per 100,000 population (for example Figure 18). Further analysis on how to classify the rurality of an ICB wold be needed to answer this question, but as a very quick analysis: Aggregating the 2011 rural-urban LSOA data up to ICB level, calculating the percentage of the population in an urban area in an ICB and plotting it against the percentage of type 1 MH attendances does not suggest a relationship between an ICB's rurality and the % of attendances.
+For the breakdowns by rural/urban we used the binary rural urban classification of LSOAs from [https://www.gov.uk/government/statistics/2011-rural-urban-classification-lookup-tables-for-all-geographies](https://www.gov.uk/government/statistics/2011-rural-urban-classification-lookup-tables-for-all-geographies) to calculate rates per 100,000 population (for example Figure 18).
+
+Further analysis on how to classify the rurality of an ICB would be needed to answer this question, but as a very quick analysis: Aggregating the binary 2011 rural-urban LSOA data up to ICB level, calculating the percentage of the population in an urban area in an ICB and plotting it against the percentage of type 1 MH attendances does not suggest a relationship between an ICB's rurality and the % of attendances.
 
 ```{r}
 # Each ICB has count of rural, count of urban - so can create a % of how urban 
@@ -90,7 +92,7 @@ gt_causes <- tar_read(ae_diag) |>
 create_dt(gt_causes) 
 ```
 
-## Walk-in and UTC attendances:
+## Walk-in and UTC attendances
 
 ### UEC attendances known to MH services
 
@@ -98,7 +100,9 @@ Question: *Can I just check the rationale for this statement: Typically, around 
 
 50% of patients attending urgent care for MH reasons are already known to specialist mental health services. We are unsure about the statement "suggesting their mental health needs are less acute" and will double check with Andy when he gets back from leave.
 
-In our analysis, we did not look at why patients attend urgent care compared to Type 1, so can't say that this may be due to perceptions of less overwhelming environments or having been in crisis before. We suspect that patients are more likely to be referred or taken to AE other urgent care if they are known to MH services because of implications of severity, but have not looked into this.
+In our analysis, we did not look at why patients attended urgent care compared to Type 1 settings. There is no metric relating to the patient's decision process in our data, so we cannot say that this may be due to perceptions of less overwhelming environments or having been in crisis before. 
+
+We suspect that patients are more likely to be referred or taken to AE over urgent care if they are known to MH services because of implications of severity, but have not looked into this.
 
 ### Socio-economic gradients
 
@@ -112,4 +116,4 @@ The socio-economic gradient is similar for Type 1 and Type 3/4 settings. Figures
 
 Question: *When you say rate of attendance in this section is this to A&E following a call with NHS 111?*
 
-In our rush to complete the NHS 111 section we may have used the word attendances instead of calls. I have reworded the section for clarity. If that doesn't help, please let me know and I'll look more into it.
+This section relates to rates of calls to NHS 111. Due to tight turnaround times, we had limited time for editing the NHS 111 section. The section has been revised to improve clarity. Please let me know if there is anything else unclear.
