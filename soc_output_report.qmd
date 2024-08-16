@@ -95,7 +95,7 @@ While the majority of these patients are known to specialist mental health provi
 -   In 2023/24 there were around 6.5 million attendances to Type 3 or 4 departments, of which 20,000 had a primary diagnosis of mental health condition.
 -   These MH attendances cost £1.9m (not including ambulatory costs).
 -   Depression and anxiety account for over 85% of MH attendances in this setting.
--   Typically, around 50% of these patients presenting in urgent care are known to specialist mental health services, suggesting their mental health needs are less acute.
+-   Typically, around 50% of these patients presenting in urgent care are known to specialist mental health services, suggesting their mental health needs are less severe than those attending Type 1 Emergency Departments (80%+ known).
 -   The overwhelming majority (90%+) of both MH and non-MH patients convey themselves to the urgent care departments.
 -   Patients presenting with MH issues are slightly more likely to attend through the afternoon, evening and night than those with physical issues.
 -   Fewer patients with MH complaints (2.3%) leave the department before their assessment or treatment is concluded than those with physical complaints (3.6%).

@@ -98,7 +98,7 @@ create_dt(gt_causes)
 
 Question: *Can I just check the rationale for this statement: Typically, around 50% of these patients presenting in urgent care are known to specialist mental health services, suggesting their mental health needs are less acute. Are you suggesting that the cohort is less likely to be those that have attempted to end their lives? Or are there other reasons for this. I’m just wondering whether people who haven’t accessed MH services are more likely to go to type 3 services as they may be perceived as less overwhelming environments and they’ve never been in crisis before.*
 
-50% of patients attending urgent care for MH reasons are already known to specialist mental health services. We are unsure about the statement "suggesting their mental health needs are less acute" and will double check with Andy when he gets back from leave.
+50% of patients attending urgent care for MH reasons are already known to specialist mental health services. The comparative figure for those attending Type1 ED is 80%+ suggesting that the mental health needs/acuity of those in urgent care is lower than those in emergency care.
 
 In our analysis, we did not look at why patients attended urgent care compared to Type 1 settings. There is no metric relating to the patient's decision process in our data, so we cannot say that this may be due to perceptions of less overwhelming environments or having been in crisis before. 
 
