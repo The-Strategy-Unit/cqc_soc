@@ -341,11 +341,18 @@ list(
     get_icb_breakdown_table(uec_perc_mh_known, icb_codes_names)
   ),
 
-  # Average attendance rate per 100000
+  #### Average attendance rate per 100000 ####
+  # Type 1
   tar_target(avg_type1_mh_attends_rate,
              get_pop_average(pop_by_icb, type1_mh_attends)),
   tar_target(avg_type1_mh_attends_rate_plot,
-             get_avg_type1_mh_attends_rate_plot(avg_type1_mh_attends_rate)),
+             get_avg_mh_attends_rate_plot(avg_type1_mh_attends_rate)),
+
+  # UEC
+  tar_target(avg_uec_mh_attends_rate,
+             get_pop_average(pop_by_icb, uec_mh_attends)),
+  tar_target(avg_uec_mh_attends_rate_plot,
+             get_avg_mh_attends_rate_plot(avg_uec_mh_attends_rate)),
 
   #### Breakdowns ####
   tar_target(

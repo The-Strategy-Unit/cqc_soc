@@ -413,7 +413,6 @@ Breakdowns for the number of Type 1 attendances with MH as a primary reason/diag
 tar_read(icb_ed_map_2324)
 ```
 
-
 ::: panel-tabset
 
 ##### Overview
@@ -740,6 +739,30 @@ tar_read(icb_uec_map_2324)
 ```
 
 ::: panel-tabset
+
+##### Overview
+
+::: panel-tabset
+
+###### Chart
+```{r}
+#| label: fig-plot-uec-line
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances. All of England, 2023/24.
+tar_read(avg_uec_mh_attends_rate_plot)
+```
+
+###### Table
+
+```{r }
+tar_read(avg_uec_mh_attends_rate) |>
+    dplyr::select(1:6) |>
+    dplyr::arrange(der_financial_year) |>
+    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+  create_dt()
+```
+
+:::
+
 ##### Gender variation
 
 ::: panel-tabset

@@ -336,7 +336,7 @@ get_nhs111_disposition_trends_chart <- function(data){
 
   return(plot)}
 
-get_avg_type1_mh_attends_rate_plot <- function(data){
+get_avg_mh_attends_rate_plot <- function(data){
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(
       der_financial_year,
