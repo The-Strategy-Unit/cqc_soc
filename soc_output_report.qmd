@@ -1068,13 +1068,38 @@ tar_read(icb_111_map_2122)
 ```
 
 ::: panel-tabset
+
+##### Overview
+
+::: panel-tabset
+
+###### Chart
+```{r}
+#| label: fig-plot-nhs111-line
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111. All of England, 2023/24.
+tar_read(avg_nhs111_mh_calls_rate_plot)
+```
+
+###### Table
+
+```{r }
+tar_read(avg_nhs111_mh_calls_rate) |>
+  dplyr::rename(calls = attends) |>
+  dplyr::select(1:6) |>
+  dplyr::arrange(der_financial_year) |>
+  dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+  create_dt()
+```
+
+:::
+
 ##### Gender variation
 
 ::: panel-tabset
 ###### Chart
 
 ```{r nhs111_calls_gender_plot}
-#| label: fig-nhs111_calls-gender
+#| label: fig-nhs111-calls-gender
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by gender.
 tar_read(gender_plot)$nhs111_mh_calls
 ```
@@ -1095,7 +1120,7 @@ tar_read(gender_breakdowns)$nhs111_mh_calls |>
 ###### Chart
 
 ```{r nhs111_calls_age_plot}
-#| label: fig-nhs111_calls-age
+#| label: fig-nhs111-calls-age
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by age group.
 tar_read(age_plot)$nhs111_mh_calls
 ```
@@ -1116,7 +1141,7 @@ tar_read(age_breakdowns)$nhs111_mh_calls |>
 ###### Chart1
 
 ```{r nhs111_calls_imd_plot}
-#| label: fig-nhs111_calls-imd
+#| label: fig-nhs111-calls-imd
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by Index of Multiple Deprivation decile.
 tar_read(imd_plot)$nhs111_mh_calls
 ```
@@ -1124,7 +1149,7 @@ tar_read(imd_plot)$nhs111_mh_calls
 ###### Chart2
 
 ```{r nhs111_calls_imd_plot2}
-#| label: fig-nhs111_calls-imd2
+#| label: fig-nhs111-calls-imd2
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by Index of Multiple Deprivation decile and year.
 tar_read(nhs111_calls_imd)
 ```
@@ -1145,7 +1170,7 @@ tar_read(imd_breakdowns)$nhs111_mh_calls |>
 ###### Chart
 
 ```{r nhs111_calls_rural_plot}
-#| label: fig-nhs111_calls-rural
+#| label: fig-nhs111-calls-rural
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111 by rural and urban populations.
 tar_read(rural_plot)$nhs111_mh_calls
 ```

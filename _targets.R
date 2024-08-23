@@ -354,6 +354,14 @@ list(
   tar_target(avg_uec_mh_attends_rate_plot,
              get_avg_mh_attends_rate_plot(avg_uec_mh_attends_rate)),
 
+  # NHS111
+  tar_target(avg_nhs111_mh_calls_rate,
+             get_pop_average(pop_by_icb,
+                             nhs111_mh_calls|>
+                               dplyr::rename(attends = calls))),
+  tar_target(avg_nhs111_mh_calls_rate_plot,
+             get_avg_mh_attends_rate_plot(avg_nhs111_mh_calls_rate)),
+
   #### Breakdowns ####
   tar_target(
     data_for_breakdowns,
