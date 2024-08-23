@@ -297,6 +297,10 @@ Frequent attenders can be defined as those attending 5 or more times in a 12 mon
 
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
 
+::: panel-tabset
+
+##### Overview
+
 ```{r ae_freq_icb_plot}
 #| label: fig-plot-type1-freq
 #| fig-cap: Percentage of with 5+ attendances in year, Type 1 A&E. All of England, 2023/24.
@@ -304,6 +308,18 @@ Over the past 5 years in England, on average, there are `r comma(round(avg_mh_at
 tar_read(ae_freq_boxplot)
 
 ```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-type1-freq
+#| tbl-cap: Percentage of Mental Health Type 1 patients attending 5+ times a year by ICB.
+tar_read(ae_freq_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(0, 2.5, 0.35))
+```
+
+:::
 
 ### Detailed breakdowns {#sec-type1-breakdowns}
 

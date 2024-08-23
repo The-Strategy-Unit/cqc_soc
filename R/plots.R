@@ -65,12 +65,7 @@ ed_times_depart_plot <- function(tarobj) {
 }
 
 ed_freq_boxplot <- function(tarobj, type = "Type 1 attendances", title = "MH ED patients attending") {
-  plot <- tarobj |>
-    group_by(icb23nm, der_financial_year) |>
-    summarise(mh_pats = sum(mh_pats)
-              ,
-              mh_freqfly = sum(mh_freqfly)) |>
-    mutate(perc_freq = round(mh_freqfly / mh_pats * 100, 2)) |>
+  plot <- tarobj|>
     ggplot(aes(x = der_financial_year, y = perc_freq)) +
     geom_boxplot() +
     geom_point(colour = "salmon", alpha = 0.6) +

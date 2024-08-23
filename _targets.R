@@ -403,7 +403,15 @@ list(
   tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times_depart)),
 
   # frequent fliers
-  tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
+  tar_target(ae_freq_data, ed_freq_data(ae_freq)),
+  tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq_data)),
+  tar_target(ae_freq_table,
+             get_icb_breakdown_table(ae_freq_data |>
+                                       ungroup() |>
+                                       rename(icb_code = icb23cd,
+                                              value = perc_freq),
+                                     icb_codes_names)),
+
   tar_target(nhs111_freq_boxplot,
              ed_freq_boxplot(nhs111_freq,
                              "NHS 111 calls",

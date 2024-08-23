@@ -874,3 +874,14 @@ ed_times_depart <- function(tarobj){
 
   return(data)
 }
+
+ed_freq_data <- function(tarobj){
+  data <- tarobj |>
+    group_by(icb23nm, icb23cd, der_financial_year) |>
+    summarise(mh_pats = sum(mh_pats)
+              ,
+              mh_freqfly = sum(mh_freqfly)) |>
+    mutate(perc_freq = round(mh_freqfly / mh_pats * 100, 2))
+
+  return(data)
+}
