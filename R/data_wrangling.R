@@ -827,3 +827,50 @@ get_111_mh_known <- function(tarobj){
 
   return(data)
 }
+
+# summary of ED waits for England
+ed_times_assess <- function(tarobj){
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(assess_attends)
+              ,
+              time = sum(assess_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+ed_times_treat <- function(tarobj){
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(treat_attends)
+              ,
+              time = sum(treat_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+ed_times_conclude <- function(tarobj){
+
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(conclude_attends)
+              ,
+              time = sum(conclude_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+ed_times_depart <- function(tarobj){
+
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(depart_attends)
+              ,
+              time = sum(depart_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}

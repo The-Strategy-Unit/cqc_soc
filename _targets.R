@@ -385,10 +385,22 @@ list(
                             "ethnic_category")),
 
   #### Plots ####
-  tar_target(ae_times_assess_plot, ed_times_assess_plot(ae_times)),
-  tar_target(ae_times_treat_plot, ed_times_treat_plot(ae_times)),
-  tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times)),
-  tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
+  # ED waiting times
+  tar_target(ae_times_assess, ed_times_assess(ae_times)),
+  tar_target(ae_times_treat, ed_times_treat(ae_times)),
+  tar_target(ae_times_conclude, ed_times_treat(ae_times)),
+  tar_target(ae_times_depart, ed_times_treat(ae_times)),
+
+  tar_target(ae_times_table,
+             get_ae_times_table(ae_times_assess,
+                                ae_times_treat,
+                                ae_times_conclude,
+                                ae_times_depart)),
+
+  tar_target(ae_times_assess_plot, ed_times_assess_plot(ae_times_assess)),
+  tar_target(ae_times_treat_plot, ed_times_treat_plot(ae_times_treat)),
+  tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times_conclude)),
+  tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times_depart)),
 
   # frequent fliers
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),

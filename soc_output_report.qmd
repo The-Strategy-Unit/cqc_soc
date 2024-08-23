@@ -266,6 +266,16 @@ tar_read(ae_times_conclude_plot)
 #| fig-cap: Waiting time to leave department, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_depart_plot)
 ```
+
+##### Table
+
+```{r}
+#| label: tbl-type1-waiting-times
+#| tbl-cap: Waiting time for assessment, treatment, conclusion and to leave department, Type 1 A&E. All of England, 2023/24.
+tar_read(ae_times_table) |>
+  create_dt()
+```
+
 :::
 
 #### Mental health frequent attenders
