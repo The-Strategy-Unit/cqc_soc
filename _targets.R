@@ -385,17 +385,43 @@ list(
                             "ethnic_category")),
 
   #### Plots ####
-  tar_target(ae_times_assess_plot, ed_times_assess_plot(ae_times)),
-  tar_target(ae_times_treat_plot, ed_times_treat_plot(ae_times)),
-  tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times)),
-  tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times)),
+  #### ED waiting times ####
+  tar_target(ae_times_assess, get_ed_times_assess(ae_times)),
+  tar_target(ae_times_treat, get_ed_times_treat(ae_times)),
+  tar_target(ae_times_conclude, get_ed_times_treat(ae_times)),
+  tar_target(ae_times_depart, get_ed_times_treat(ae_times)),
+  tar_target(ae_times_table,
+             get_ae_times_table(ae_times_assess,
+                                ae_times_treat,
+                                ae_times_conclude,
+                                ae_times_depart)),
+
+  tar_target(ae_times_assess_plot, ed_times_assess_plot(ae_times_assess)),
+  tar_target(ae_times_treat_plot, ed_times_treat_plot(ae_times_treat)),
+  tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times_conclude)),
+  tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times_depart)),
 
   # frequent fliers
-  tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq)),
+  tar_target(ae_freq_data, get_ed_freq_data(ae_freq)),
+  tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq_data)),
+  tar_target(ae_freq_table,
+             get_icb_breakdown_table(ae_freq_data |>
+                                       ungroup() |>
+                                       rename(icb_code = icb23cd,
+                                              value = perc_freq),
+                                     icb_codes_names)),
+
+  tar_target(nhs111_freq_data, get_ed_freq_data(nhs111_freq)),
   tar_target(nhs111_freq_boxplot,
-             ed_freq_boxplot(nhs111_freq,
+             ed_freq_boxplot(nhs111_freq_data,
                              "NHS 111 calls",
                              "patients calling for MH related reasons")),
+  tar_target(nhs111_freq_table,
+             get_icb_breakdown_table_111(nhs111_freq_data |>
+                                              ungroup() |>
+                                              rename(icb_code = icb23cd,
+                                                     value = perc_freq),
+                                            icb_codes_names)),
 
   # arrival mode
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
@@ -485,7 +511,10 @@ list(
     nhs111_mh_calls_table,
     get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
   ),
-  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_toa)),
+
+  tar_target(nhs111_perc_toa,
+             get_perc_toa_111(nhs111_toa)),
+  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_perc_toa)),
 
   # disposition
   tar_target(nhs111_disposition_summary,
@@ -497,5 +526,26 @@ list(
   tar_target(nhs111_disposition_trends_chart,
              get_nhs111_disposition_trends_chart(nhs111_disposition_trends)),
   tar_target(nhs111_mh_known_summary,
-             get_111_mh_known(data_111))
+             get_111_mh_known(data_111)),
+
+  #### Average attendance rate per 100000 ####
+  # Type 1
+  tar_target(avg_type1_mh_attends_rate,
+             get_pop_average(pop_by_icb, type1_mh_attends)),
+  tar_target(avg_type1_mh_attends_rate_plot,
+             get_avg_mh_attends_rate_plot(avg_type1_mh_attends_rate)),
+
+  # UEC
+  tar_target(avg_uec_mh_attends_rate,
+             get_pop_average(pop_by_icb, uec_mh_attends)),
+  tar_target(avg_uec_mh_attends_rate_plot,
+             get_avg_mh_attends_rate_plot(avg_uec_mh_attends_rate)),
+
+  # NHS111
+  tar_target(avg_nhs111_mh_calls_rate,
+             get_pop_average(pop_by_icb,
+                             nhs111_mh_calls|>
+                               dplyr::rename(attends = calls))),
+  tar_target(avg_nhs111_mh_calls_rate_plot,
+             get_avg_mh_attends_rate_plot(avg_nhs111_mh_calls_rate))
 )

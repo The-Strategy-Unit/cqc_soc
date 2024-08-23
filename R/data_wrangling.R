@@ -742,6 +742,8 @@ get_pop_average <- function(data_population,
       confidence = 0.95,
       multiplier = multiplier
     )
+
+  return(data)
 }
 
 #To get the population average for breakdown plots by arrival mode:
@@ -823,6 +825,76 @@ get_111_mh_known <- function(tarobj){
     summarise(calls = sum(calls)) |>
     group_by(der_financial_year) |>
     mutate(perc = calls/sum(calls)*100) |>
+    ungroup()
+
+  return(data)
+}
+
+# summary of ED waits for England
+get_ed_times_assess <- function(tarobj){
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(assess_attends)
+              ,
+              time = sum(assess_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+get_ed_times_treat <- function(tarobj){
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(treat_attends)
+              ,
+              time = sum(treat_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+get_ed_times_conclude <- function(tarobj){
+
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(conclude_attends)
+              ,
+              time = sum(conclude_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+get_ed_times_depart <- function(tarobj){
+
+  data <- tarobj |>
+    group_by(mh_snomed, der_financial_year) |>
+    summarise(attends = sum(depart_attends)
+              ,
+              time = sum(depart_time_total)) |>
+    mutate(avg_time = time / attends)
+
+  return(data)
+}
+
+get_ed_freq_data <- function(tarobj){
+  data <- tarobj |>
+    group_by(icb23nm, icb23cd, der_financial_year) |>
+    summarise(mh_pats = sum(mh_pats)
+              ,
+              mh_freqfly = sum(mh_freqfly)) |>
+    mutate(perc_freq = round(mh_freqfly / mh_pats * 100, 2))
+
+  return(data)
+}
+
+get_perc_toa_111 <- function(tarobj) {
+  data <- tarobj |>
+    filter(der_financial_year == '2021/22') |>
+    group_by(mh_snomed, toa) |>
+    summarise(total = sum(attends)) |>
+    group_by(mh_snomed) |>
+    mutate(perc = total/sum(total)*100) |>
     ungroup()
 
   return(data)

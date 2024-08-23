@@ -1,12 +1,7 @@
 # summary of ED waits for England
 
 ed_times_assess_plot <- function(tarobj) {
-  plot <- tarobj |>
-    group_by(mh_snomed, der_financial_year) |>
-    summarise(attends = sum(assess_attends)
-              ,
-              time = sum(assess_time_total)) |>
-    mutate(avg_time = time / attends) |>
+  plot <-  tarobj |>
     ggplot(aes(x = der_financial_year, y = avg_time, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
     scale_color_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
@@ -23,11 +18,6 @@ ed_times_assess_plot <- function(tarobj) {
 
 ed_times_treat_plot <- function(tarobj) {
   plot <- tarobj |>
-    group_by(mh_snomed, der_financial_year) |>
-    summarise(attends = sum(treat_attends)
-              ,
-              time = sum(treat_time_total)) |>
-    mutate(avg_time = time / attends) |>
     ggplot(aes(x = der_financial_year, y = avg_time, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
     scale_color_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
@@ -44,11 +34,6 @@ ed_times_treat_plot <- function(tarobj) {
 
 ed_times_conclude_plot <- function(tarobj) {
   plot <- tarobj |>
-    group_by(mh_snomed, der_financial_year) |>
-    summarise(attends = sum(conclude_attends)
-              ,
-              time = sum(conclude_time_total)) |>
-    mutate(avg_time = time / attends) |>
     ggplot(aes(x = der_financial_year, y = avg_time, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
     scale_color_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
@@ -65,11 +50,6 @@ ed_times_conclude_plot <- function(tarobj) {
 
 ed_times_depart_plot <- function(tarobj) {
   plot <- tarobj |>
-    group_by(mh_snomed, der_financial_year) |>
-    summarise(attends = sum(depart_attends)
-              ,
-              time = sum(depart_time_total)) |>
-    mutate(avg_time = time / attends) |>
     ggplot(aes(x = der_financial_year, y = avg_time, group = mh_snomed)) +
     geom_line(aes(colour = as.factor(mh_snomed))) +
     scale_color_manual(values = c("#333739", "#f9bf07"), name = "MH presentation") +
@@ -85,12 +65,7 @@ ed_times_depart_plot <- function(tarobj) {
 }
 
 ed_freq_boxplot <- function(tarobj, type = "Type 1 attendances", title = "MH ED patients attending") {
-  plot <- tarobj |>
-    group_by(icb23nm, der_financial_year) |>
-    summarise(mh_pats = sum(mh_pats)
-              ,
-              mh_freqfly = sum(mh_freqfly)) |>
-    mutate(perc_freq = round(mh_freqfly / mh_pats * 100, 2)) |>
+  plot <- tarobj|>
     ggplot(aes(x = der_financial_year, y = perc_freq)) +
     geom_boxplot() +
     geom_point(colour = "salmon", alpha = 0.6) +
@@ -146,7 +121,7 @@ get_perc_mh_known_boxplot <- function(data, type) {
     ggplot2::labs(
       x = "Financial Year",
       y = "Percent",
-      title = "Percentage of attendances with MH known to specialist services",
+      title = "Percentage of MH attendances known to MH services",
       subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24 by ICB")
     )
 
@@ -257,12 +232,6 @@ get_overlay_barchart_toa <- function(tarobj, type = "Type 1") {
 
 get_overlay_barchart_toa_111 <- function(tarobj) {
   plot <- tarobj |>
-    filter(der_financial_year == '2021/22') |>
-    group_by(mh_snomed, toa) |>
-    summarise(total = sum(attends)) |>
-    group_by(mh_snomed) |>
-    mutate(perc = total/sum(total)*100) |>
-    ungroup() |>
     ggplot(aes(
       x = toa,
       y = perc,
@@ -350,7 +319,6 @@ get_disposition_bar_chart <- function(data){
   return(plot)
 }
 
-
 # To get line plot of nhs111 call dispositions over time:
 get_nhs111_disposition_trends_chart <- function(data){
   plot <- data |>
@@ -366,3 +334,29 @@ get_nhs111_disposition_trends_chart <- function(data){
                   y = "Percentage of all")
 
   return(plot)}
+
+# To plot the avg_mh_attends_rate:
+get_avg_mh_attends_rate_plot <- function(data){
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(
+      der_financial_year,
+      value,
+      group = 1
+    )) +
+    ggplot2::geom_line(linetype = "dashed") +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Financial Year",
+                  y = "Rate per 100,000 population",
+                  caption = "Dotted lines are 95% confidence intervals.") +
+    ggplot2::geom_ribbon(
+      ggplot2::aes(
+        ymin = lowercl,
+        ymax = uppercl
+      ),
+      alpha = 0.05,
+      linetype = "dotted"
+    )
+
+  return(plot)
+}

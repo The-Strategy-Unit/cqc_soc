@@ -29,3 +29,24 @@ get_icb_breakdown_table_111 <- function(data, key){
 
   return(table)
 }
+
+# To combine the ED waiting times into one table:
+get_ae_times_table <- function(assess, treat, conclude, depart){
+  assess <- assess |>
+    mutate(type = "assessment")
+
+  treat <- treat |>
+    mutate(type = "treatment")
+
+  conclude <- conclude |>
+    mutate(type = "conclusion")
+
+  depart <- depart |>
+    mutate(type = "departure")
+
+  data <- assess |>
+    rbind(treat, conclude, depart) |>
+    dplyr::relocate(type)
+
+  return(data)
+}
