@@ -309,6 +309,18 @@ tar_read(ae_freq_boxplot)
 
 ```
 
+##### Summary
+
+```{r}
+#| label: tbl-type1-freq-summary
+#| tbl-cap: Summary of percentage of with 5+ attendances over time.
+tar_read(ae_freq_data) |>
+  ungroup() |>
+  rename(icb_code = icb23cd,
+         value = perc_freq) |>
+  get_quantiles_and_mean()
+```
+
 ##### ICB Variation
 
 ```{r}
@@ -336,6 +348,15 @@ tar_read(ae_freq_table) |>
 tar_read(type1_mh_attends_boxplot)
 ```
 
+##### Summary
+
+```{r}
+#| label: tbl-type1-perc-summary
+#| tbl-cap: Summary of percentage of Mental Health Type 1 attendances over time.
+tar_read(type1_perc_mh_attends) |>
+  get_quantiles_and_mean()
+```
+
 ##### ICB Variation
 
 ```{r}
@@ -358,6 +379,15 @@ The percentages of Mental Health Type 1 attendances where the patient is already
 #| label: fig-type1-mh-known-boxplot
 #| fig-cap: Percentage of Mental Health Type 1 attendances known to MH services over time.
 tar_read(type1_mh_known_boxplot)
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-type1-mh-known-summary
+#| tbl-cap: Summary of percentage of Mental Health Type 1 known to MH services over time.
+tar_read(type1_perc_mh_known) |>
+  get_quantiles_and_mean()
 ```
 
 ##### ICB Variation
@@ -619,6 +649,15 @@ tar_read(uec_left_summary) |>
 tar_read(uec_mh_attends_boxplot)
 ```
 
+##### Summary
+
+```{r}
+#| label: tbl-uec-perc-summary
+#| tbl-cap: Summary of percentage of Mental Health UEC attendances over time.
+tar_read(uec_perc_mh_attends) |>
+  get_quantiles_and_mean()
+```
+
 ##### ICB Variation
 
 ```{r}
@@ -641,6 +680,15 @@ tar_read(uec_mh_attends_table) |>
 #| label: fig-uec-mh-known-boxplot
 #| fig-cap: Percentage of Mental Health UEC attendances known to MH services over time.
 tar_read(uec_mh_known_boxplot)
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-type1-mh_known-summary
+#| tbl-cap: Summary of percentage of Mental Health UEC attendances known to MH services over time.
+tar_read(uec_perc_mh_known) |>
+  get_quantiles_and_mean()
 ```
 
 ##### ICB Variation
@@ -872,7 +920,7 @@ tar_read(nhs111_disposition_trends) |>
 ```
 :::
 
-#### Frequent callers
+#### Mental Health frequent callers
 
 ```{r nhs111_freq_fly_figs, include = FALSE}
 avg_all_attends_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
@@ -903,6 +951,18 @@ tar_read(nhs111_freq_boxplot)
 
 ```
 
+##### Summary
+
+```{r}
+#| label: tbl-nhs111-freq-summary
+#| tbl-cap: Summary of percentage of with 5+ attendances over time.
+tar_read(nhs111_freq_data) |>
+  ungroup() |>
+  rename(icb_code = icb23cd,
+         value = perc_freq) |>
+  get_quantiles_and_mean()
+```
+
 ##### ICB Variation
 
 ```{r}
@@ -927,6 +987,15 @@ The percentage of NHS 111 calls being MH-related has increased over time (fig-nh
 #| label: fig-nhs111-perc-mh
 #| fig-cap: Percentage of Mental Health calls over time.
 tar_read(nhs111_mh_calls_boxplot)
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-nhs111-perc-mh
+#| tbl-cap: Summary of percentage of Mental Health calls over time.
+tar_read(nhs111_perc_mh_calls) |>
+  get_quantiles_and_mean()
 ```
 
 ##### ICB Variation
