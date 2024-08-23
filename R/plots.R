@@ -319,7 +319,6 @@ get_disposition_bar_chart <- function(data){
   return(plot)
 }
 
-
 # To get line plot of nhs111 call dispositions over time:
 get_nhs111_disposition_trends_chart <- function(data){
   plot <- data |>
@@ -336,6 +335,7 @@ get_nhs111_disposition_trends_chart <- function(data){
 
   return(plot)}
 
+# To plot the avg_mh_attends_rate:
 get_avg_mh_attends_rate_plot <- function(data){
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(

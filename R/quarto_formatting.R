@@ -55,12 +55,13 @@ color_gradient <- function(dt, column_names, breaks) {
   return(dt)
 }
 
-
+# To get a summary to accompany a boxplot:
 get_quantiles_and_mean <- function(data) {
   table <- data |>
     dplyr::summarise(as_tibble_row(quantile(value)),
                      mean = mean(value),
                      .by = der_financial_year) |>
+    dplyr::arrange(der_financial_year) |>
     create_dt()
 
   return(table)

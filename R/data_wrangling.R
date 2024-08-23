@@ -831,7 +831,7 @@ get_111_mh_known <- function(tarobj){
 }
 
 # summary of ED waits for England
-ed_times_assess <- function(tarobj){
+get_ed_times_assess <- function(tarobj){
   data <- tarobj |>
     group_by(mh_snomed, der_financial_year) |>
     summarise(attends = sum(assess_attends)
@@ -842,7 +842,7 @@ ed_times_assess <- function(tarobj){
   return(data)
 }
 
-ed_times_treat <- function(tarobj){
+get_ed_times_treat <- function(tarobj){
   data <- tarobj |>
     group_by(mh_snomed, der_financial_year) |>
     summarise(attends = sum(treat_attends)
@@ -853,7 +853,7 @@ ed_times_treat <- function(tarobj){
   return(data)
 }
 
-ed_times_conclude <- function(tarobj){
+get_ed_times_conclude <- function(tarobj){
 
   data <- tarobj |>
     group_by(mh_snomed, der_financial_year) |>
@@ -865,7 +865,7 @@ ed_times_conclude <- function(tarobj){
   return(data)
 }
 
-ed_times_depart <- function(tarobj){
+get_ed_times_depart <- function(tarobj){
 
   data <- tarobj |>
     group_by(mh_snomed, der_financial_year) |>
@@ -877,7 +877,7 @@ ed_times_depart <- function(tarobj){
   return(data)
 }
 
-ed_freq_data <- function(tarobj){
+get_ed_freq_data <- function(tarobj){
   data <- tarobj |>
     group_by(icb23nm, icb23cd, der_financial_year) |>
     summarise(mh_pats = sum(mh_pats)
@@ -887,8 +887,6 @@ ed_freq_data <- function(tarobj){
 
   return(data)
 }
-
-
 
 get_perc_toa_111 <- function(tarobj) {
   data <- tarobj |>

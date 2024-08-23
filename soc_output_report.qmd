@@ -422,7 +422,7 @@ tar_read(icb_ed_map_2324)
 ###### Chart
 ```{r}
 #| label: fig-plot-type1-line
-#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances. All of England, 2023/24.
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances. All of England.
 tar_read(avg_type1_mh_attends_rate_plot)
 ```
 
@@ -747,7 +747,7 @@ tar_read(icb_uec_map_2324)
 ###### Chart
 ```{r}
 #| label: fig-plot-uec-line
-#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances. All of England, 2023/24.
+#| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances. All of England.
 tar_read(avg_uec_mh_attends_rate_plot)
 ```
 
@@ -1076,7 +1076,7 @@ tar_read(icb_111_map_2122)
 ###### Chart
 ```{r}
 #| label: fig-plot-nhs111-line
-#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111. All of England, 2023/24.
+#| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111. All of England.
 tar_read(avg_nhs111_mh_calls_rate_plot)
 ```
 
