@@ -232,12 +232,6 @@ get_overlay_barchart_toa <- function(tarobj, type = "Type 1") {
 
 get_overlay_barchart_toa_111 <- function(tarobj) {
   plot <- tarobj |>
-    filter(der_financial_year == '2021/22') |>
-    group_by(mh_snomed, toa) |>
-    summarise(total = sum(attends)) |>
-    group_by(mh_snomed) |>
-    mutate(perc = total/sum(total)*100) |>
-    ungroup() |>
     ggplot(aes(
       x = toa,
       y = perc,

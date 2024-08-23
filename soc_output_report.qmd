@@ -823,11 +823,25 @@ create_dt(gt_causes)
 
 There is very little difference in the times of day that patients with mental health issues call NHS 111 compared to those with physical complaints.
 
+::: panel-tabset
+
+##### Chart
+
 ```{r 111_time_of_day_calls}
 #| label: fig-nhs111-toc
 #| fig-cap: Call times by Hour, NHS 111 calls, All of England, 2021/22.
 tar_read(nhs111_perc_mh_calls_toa)
 ```
+
+##### Table
+
+```{r nhs111_disposition_table}
+#| label: tbl-nhs111-toc
+#| tbl-cap: Call times by Hour, NHS 111 calls, All of England, 2021/22.
+tar_read(nhs111_perc_toa) |>
+   create_dt()
+```
+:::
 
 #### Call disposition
 

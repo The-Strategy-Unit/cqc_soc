@@ -512,7 +512,10 @@ list(
     nhs111_mh_calls_table,
     get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
   ),
-  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_toa)),
+
+  tar_target(nhs111_perc_toa,
+             get_perc_toa_111(nhs111_toa)),
+  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_perc_toa)),
 
   # disposition
   tar_target(nhs111_disposition_summary,

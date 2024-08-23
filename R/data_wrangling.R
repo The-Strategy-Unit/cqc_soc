@@ -885,3 +885,17 @@ ed_freq_data <- function(tarobj){
 
   return(data)
 }
+
+
+
+get_perc_toa_111 <- function(tarobj) {
+  data <- tarobj |>
+    filter(der_financial_year == '2021/22') |>
+    group_by(mh_snomed, toa) |>
+    summarise(total = sum(attends)) |>
+    group_by(mh_snomed) |>
+    mutate(perc = total/sum(total)*100) |>
+    ungroup()
+
+  return(data)
+}
