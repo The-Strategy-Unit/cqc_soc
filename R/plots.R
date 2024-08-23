@@ -335,3 +335,28 @@ get_nhs111_disposition_trends_chart <- function(data){
                   y = "Percentage of all")
 
   return(plot)}
+
+get_avg_type1_mh_attends_rate_plot <- function(data){
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(
+      der_financial_year,
+      value,
+      group = 1
+    )) +
+    ggplot2::geom_line(linetype = "dashed") +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Financial Year",
+                  y = "Rate per 100,000 population",
+                  caption = "Dotted lines are 95% confidence intervals.") +
+    ggplot2::geom_ribbon(
+      ggplot2::aes(
+        ymin = lowercl,
+        ymax = uppercl
+      ),
+      alpha = 0.05,
+      linetype = "dotted"
+    )
+
+  return(plot)
+}

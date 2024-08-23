@@ -742,6 +742,8 @@ get_pop_average <- function(data_population,
       confidence = 0.95,
       multiplier = multiplier
     )
+
+  return(data)
 }
 
 #To get the population average for breakdown plots by arrival mode:
