@@ -268,7 +268,7 @@ tar_read(ae_times_depart_plot)
 ```
 :::
 
-#### Mental health 'frequent fliers'
+#### Mental health frequent attenders
 
 ```{r freq_fly_figs, include = FALSE}
 avg_all_attends <- tar_read(ae_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
@@ -283,7 +283,7 @@ perc_freq <- round(avg_ff_attend/avg_mh_attend*100,1)
 
 ```
 
-Frequent fliers can be defined as those attending 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+Frequent attenders can be defined as those attending 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
 
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
 
@@ -832,7 +832,7 @@ tar_read(nhs111_disposition_trends) |>
 ```
 :::
 
-#### Frequent Fliers
+#### Frequent callers
 
 ```{r nhs111_freq_fly_figs, include = FALSE}
 avg_all_attends_nhs111 <- tar_read(nhs111_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
@@ -847,7 +847,7 @@ perc_freq_nhs111 <- round(avg_ff_attend_nhs111/avg_mh_attend_nhs111*100,1)
 
 ```
 
-Frequent fliers can be defined as those calling 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+Frequent callers can be defined as those calling 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
 
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who call NHS 111 frequently. This varies by ICB area.
 
