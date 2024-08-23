@@ -412,10 +412,17 @@ list(
                                               value = perc_freq),
                                      icb_codes_names)),
 
+  tar_target(nhs111_freq_data, ed_freq_data(nhs111_freq)),
   tar_target(nhs111_freq_boxplot,
-             ed_freq_boxplot(nhs111_freq,
+             ed_freq_boxplot(nhs111_freq_data,
                              "NHS 111 calls",
                              "patients calling for MH related reasons")),
+  tar_target(nhs111_freq_table,
+             get_icb_breakdown_table_111(nhs111_freq_data |>
+                                              ungroup() |>
+                                              rename(icb_code = icb23cd,
+                                                     value = perc_freq),
+                                            icb_codes_names)),
 
   # arrival mode
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),

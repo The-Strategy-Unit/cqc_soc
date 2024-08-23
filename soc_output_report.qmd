@@ -877,14 +877,29 @@ Frequent callers can be defined as those calling 5 or more times in a 12 month p
 
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who call NHS 111 frequently. This varies by ICB area.
 
+::: panel-tabset
+
+##### Overview
+
 ```{r nhs111_freq_icb_plot}
 #| label: fig-nhs111-freq
-#| fig-cap: Percentage of NHS 111 callers with 5+ contacts in year, All of England, 2021/22.
+#| fig-cap: Percentage of NHS 111 callers with 5+ contacts in a year, All of England, 2021/22.
 
 tar_read(nhs111_freq_boxplot)
 
 ```
 
+##### ICB Variation
+
+```{r}
+#| label: tbl-nhs111-freq
+#| tbl-cap: Percentage of NHS 111 callers with 5+ contacts in a year by ICB.
+tar_read(nhs111_freq_table) |>
+  color_gradient(c("2017/18", "2018/19", "2019/20", "2020/21", "2021/22"), 
+                 seq(1, 8, 1))
+```
+
+:::
 ### Detailed breakdowns {#sec-nhs111-breakdown}
 
 #### Percentage of all calls being MH-related
