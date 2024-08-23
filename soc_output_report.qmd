@@ -50,7 +50,7 @@ One of the key areas of interest is around perceived 'system failure' as measure
 
 We summarised routine data from the Emergency Care Dataset (ECDS), NHS 111 dataset and the Mental Health Services Dataset (MHSDS) via NCDR <https://www.ardengemcsu.nhs.uk/services/business-intelligence/ncdr/> according to specific population sub-groups and activity break-downs at Integrated Care Board (ICB) level. The period covers the 5 financial years from 1st April 2019 to 31st March 2024 unless otherwise stated.
 
-Patients were linked using common pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to specialist mental health services (referred and/or treated) or not.
+Patients were linked using common pseudonymised ID from ECDS and NHS111 to the MHSDS to establish whether they were known to mental health services (referred and/or treated) or not.
 
 The presence of a presenting mental health problem in **A&E data** was determined by all descendant SNOMED codes (n=1580) for 'Mental Health Disorders' in either the Chief Complaint field *OR* the 1st Diagnosis field. Codes relating to dementia, memory & cognition OR substance misuse were excluded.
 
@@ -72,14 +72,14 @@ The likelihood of someone with a mental health problem contacting urgent and eme
 
 Attendance rates to Type 1 units (emergency departments) are falling gradually over time but those to urgent treatment centres are increasing. Patients with mental health difficulties also access services differently -- use ambulances more, arrive out of hours -- and are also more likely to wait longer in A&E departments for assessment and treatment than those with physical health complaints.
 
-While the majority of these patients are known to specialist mental health providers, a substantial minority are not. Typically, the most common presenting conditions are depression and anxiety though material numbers do have more severe disorders.
+While the majority of these patients are known to mental health providers, a substantial minority are not. Typically, the most common presenting conditions are depression and anxiety though material numbers do have more severe disorders.
 
 ### Type 1 A&E attendances:
 
 -   In 2023/24 there were around 16 million attendances to ED, of which 200,000 had a primary diagnosis of mental health condition. There is a 4-fold difference in % of attendances being MH specific across the 42 ICB areas.
 -   These MH attendances cost \> £31m (not including ambulatory costs).
 -   Depression and anxiety account for around 70% of MH attendances. Psychosis, Personality Disorder, Schizophrenia and Bipolar disorder attendances make up around 17% of MH presentations and eating disorders around 2%.
--   Typically, over 80% of these patients presenting in A&E are known to specialist mental health services. This also means that nearly 20% are not.
+-   Typically, over 80% of these patients presenting in A&E are known to mental health services. This also means that nearly 20% are not.
 -   Significantly more patients with MH disorders are conveyed to A&E by ambulance than those with physical ailments -- 40% vs 30%.
 -   Patients presenting with MH issues are much more likely to attend between the hours of 8pm and 6am than those with physical issues.
 -   Fewer patients with MH complaints (4.3%) leave the department before their assessment or treatment is concluded than those with physical complaints (5.7%).
@@ -95,7 +95,7 @@ While the majority of these patients are known to specialist mental health provi
 -   In 2023/24 there were around 6.5 million attendances to Type 3 or 4 departments, of which 20,000 had a primary diagnosis of mental health condition.
 -   These MH attendances cost £1.9m (not including ambulatory costs).
 -   Depression and anxiety account for over 85% of MH attendances in this setting.
--   Typically, around 50% of these patients presenting in urgent care are known to specialist mental health services, suggesting their mental health needs are less severe than those attending Type 1 Emergency Departments (80%+ known).
+-   Typically, around 50% of these patients presenting in urgent care are known to mental health services, suggesting their mental health needs are less severe than those attending Type 1 Emergency Departments (80%+ known).
 -   The overwhelming majority (90%+) of both MH and non-MH patients convey themselves to the urgent care departments.
 -   Patients presenting with MH issues are slightly more likely to attend through the afternoon, evening and night than those with physical issues.
 -   Fewer patients with MH complaints (2.3%) leave the department before their assessment or treatment is concluded than those with physical complaints (3.6%).
@@ -110,7 +110,7 @@ While the majority of these patients are known to specialist mental health provi
 -   In 2023/24 there were around 33 million calls to NHS 111 services across England, of which 220,000 had a primary reason of mental health condition.
 -   These MH specific calls cost £2.7m (not including ambulatory costs).
 -   The 5 most common calls are related to worsening of known mental health issues. Suicide-related symptoms account for around 30% of all calls.
--   Around 85% of these patients calling NHS 111 with mental health issues are known to specialist mental health services.
+-   Around 85% of these patients calling NHS 111 with mental health issues are known to mental health services.
 -   Patients presenting with MH issues are slightly more likely to call in the early morning and early evening.
 -   More than 1 in 3 patients calling NHS 111 (34%) with primary mental health complaint are referred on to A&E department compared with only 11% with a physical complaint and this disparity is growing.
 -   The rate of NHS 111 calls from females (430/100,000 population) is significantly higher than males (350).
@@ -321,16 +321,16 @@ tar_read(type1_mh_attends_table) |>
 ```
 :::
 
-#### Percentage of MH Type 1 attendances known to specialist services {#sec-type1-mh-known}
+#### Percentage of MH Type 1 attendances known to MH services {#sec-type1-mh-known}
 
-The percentages of Mental Health Type 1 attendances where the patient is already known to specialist services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known).
+The percentages of Mental Health Type 1 attendances where the patient is already known to MH services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known).
 
 ::: panel-tabset
 ##### Overview
 
 ```{r}
 #| label: fig-type1-mh-known-boxplot
-#| fig-cap: Percentage of Mental Health Type 1 attendances known to specialist services over time.
+#| fig-cap: Percentage of Mental Health Type 1 attendances known to MH services over time.
 tar_read(type1_mh_known_boxplot)
 ```
 
@@ -338,7 +338,7 @@ tar_read(type1_mh_known_boxplot)
 
 ```{r}
 #| label: tbl-type1-mh-known
-#| tbl-cap: Percentage of Mental Health Type 1 attendances known to specialist services by ICB.
+#| tbl-cap: Percentage of Mental Health Type 1 attendances known to MH services by ICB.
 tar_read(type1_mh_known_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(60, 90, 4)) 
@@ -604,7 +604,7 @@ tar_read(uec_mh_attends_table) |>
 ```
 :::
 
-#### Percentage of MH UEC attendances known to specialist services {#sec-uec-mh-known}
+#### Percentage of MH UEC attendances known to MH services {#sec-uec-mh-known}
 
 @fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known).
 
@@ -613,7 +613,7 @@ tar_read(uec_mh_attends_table) |>
 
 ```{r}
 #| label: fig-uec-mh-known-boxplot
-#| fig-cap: Percentage of Mental Health UEC attendances known to specialist services over time.
+#| fig-cap: Percentage of Mental Health UEC attendances known to MH services over time.
 tar_read(uec_mh_known_boxplot)
 ```
 
@@ -621,7 +621,7 @@ tar_read(uec_mh_known_boxplot)
 
 ```{r}
 #| label: tbl-uec-mh-known
-#| tbl-cap: Percentage of Mental Health UEC attendances known to specialist services by ICB.
+#| tbl-cap: Percentage of Mental Health UEC attendances known to MH services by ICB.
 tar_read(uec_mh_known_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(30, 90, 8)) 

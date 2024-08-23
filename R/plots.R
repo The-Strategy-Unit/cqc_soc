@@ -146,7 +146,7 @@ get_perc_mh_known_boxplot <- function(data, type) {
     ggplot2::labs(
       x = "Financial Year",
       y = "Percent",
-      title = "Percentage of attendances with MH known to specialist services",
+      title = "Percentage of MH attendances known to MH services",
       subtitle = glue::glue("All {type} attendances in England 2019/20 to 2023/24 by ICB")
     )
 
