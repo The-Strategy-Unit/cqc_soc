@@ -409,11 +409,30 @@ Breakdowns for the number of Type 1 attendances with MH as a primary reason/diag
 
 ##### Geographical variation
 
+::: panel-tabset
+
+##### Map
+
 ```{r icb_map_allmh}
 #| label: fig-type1-map
 #| fig-cap: Attendance rate by ICB per 100,000 population, Type 1 A&E. All of England, 2023/24.
 tar_read(icb_ed_map_2324)
 ```
+
+##### Table
+
+```{r}
+tar_read(icb_rates_ed) |> 
+  filter(der_financial_year == '2023/24') |>
+  dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
+  dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
+    dplyr::select(1:6) |>
+    dplyr::arrange(der_financial_year) |>
+    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+  create_dt()
+```
+
+:::
 
 ::: panel-tabset
 
@@ -734,11 +753,30 @@ Breakdowns for the number of attendances to Urgent Care or Walk-in with MH as pr
 
 ##### Geographical variation
 
+::: panel-tabset
+
+##### Map
+
 ```{r icb_map_allmh_uec}
 #| label: fig-uec_attends-map
 #| fig-cap: Attendances rate per 100,000 population, Type 3/4 departments by ICB, 2023/24.
 tar_read(icb_uec_map_2324)
 ```
+
+##### Table
+
+```{r}
+tar_read(icb_rates_uec) |> 
+  filter(der_financial_year == '2023/24') |>
+  dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
+  dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
+    dplyr::select(1:6) |>
+    dplyr::arrange(der_financial_year) |>
+    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+  create_dt()
+```
+
+:::
 
 ::: panel-tabset
 
@@ -1063,11 +1101,29 @@ tar_read(nhs111_mh_calls_table) |>
 
 ##### Geographical variation
 
+::: panel-tabset
+
+##### Map
+
 ```{r}
 #| label: fig-nhs111-icb-map
 #| fig-cap: Mental Health calls rate per 100,000 to NHS 111 by ICB of residence, 21/22
 tar_read(icb_111_map_2122)
 ```
+
+##### Table
+
+```{r}
+tar_read(nhs111_mh_calls_rate) |> 
+  filter(der_financial_year == '2020/21') |>
+  dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
+  dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
+  dplyr::arrange(der_financial_year) |>
+  dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+  create_dt()
+```
+
+:::
 
 ::: panel-tabset
 
