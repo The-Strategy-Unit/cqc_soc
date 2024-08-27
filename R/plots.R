@@ -185,7 +185,7 @@ get_standard_line_for_breakdowns <- function(data, pop_by_icb, group) {
     ggplot2::theme_minimal() +
     ggplot2::labs(x = "Financial Year",
                   y = "Rate per 100,000 population",
-                  caption = "Dotted lines are 95% confidence intervals. \n Black dashed line is the population average.") +
+                  caption = "Dotted lines are 95% confidence intervals. \n Black dashed line is the sub-group average.") +
     ggplot2::geom_ribbon(
       ggplot2::aes(
         ymin = lowercl,
@@ -343,7 +343,7 @@ get_avg_mh_attends_rate_plot <- function(data){
       value,
       group = 1
     )) +
-    ggplot2::geom_line(linetype = "dashed") +
+    ggplot2::geom_line() +
     ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) +
     ggplot2::theme_minimal() +
     ggplot2::labs(x = "Financial Year",

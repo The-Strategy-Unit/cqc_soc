@@ -58,6 +58,8 @@ The presence of mental health in **NHS 111 data** were established using a bespo
 
 Denominator data on population numbers by sub-group (age, gender, imd decile, urban-rural) were sourced from ONS mid-year estimates at LSOA level grouped to 2023 ICB boundaries. As 2023 MYE has not yet been published for LSOA, the 2022 data has been rolled forward as a proxy. For ethnic category populations, the 2011 and 2021 census data has been used to impute linear estimates of the intervening and following years. In order to match 2001 categories used in SUS data <https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html>, the Chinese category has been moved from 'Asian' to 'Other' in the 2011 and 2021 census population data <https://www.ons.gov.uk/census/census2021dictionary/variablesbytopic/ethnicgroupnationalidentitylanguageandreligionvariablescensus2021/ethnicgroup/classifications>.
 
+In the detailed breakdowns sections, utilisation rates are presented by population sub-groups. These plots include a dashed black line for the average of the sub-groups (for example @fig-type1_attends-gender). A separate overview plot is provided to show the overall rates (for example @fig-type1-line).
+
 Calendar year data has been fully attributed to the financial year in which it falls e.g. 2021 = 2021/22.
 
 ### Data quality notes for A&E attendances:
@@ -161,7 +163,7 @@ Data is captured in ECDS for the mode of transport used to get the patient to th
 ##### All modes
 
 ```{r}
-#| label: fig-plot-type1-arrival
+#| label: fig-type1-arrival
 #| fig-cap: Arrival mode to Type 1 A&E. All of England, 2023/24.
 tar_read(ae_trans_barplot)
 ```
@@ -169,7 +171,7 @@ tar_read(ae_trans_barplot)
 ##### Trend
 
 ```{r}
-#| label: fig-plot-type1-arrival-trend
+#| label: fig-type1-arrival-trend
 #| fig-cap: Arrival mode to Type 1 A&E. All of England, 2019/20 to 2023/24.
 tar_read(ae_trans_trends)
 ```
@@ -192,7 +194,7 @@ Patients presenting with mental health complaints are more likely to attend afte
 ##### Chart
 
 ```{r ae_arrive_time_plot}
-#| label: fig-plot-type1-toa
+#| label: fig-type1-toa
 #| fig-cap: Hour of arrival to Type 1 A&E. All of England, 2023/24.
 tar_read(ae_toa_plot)
 ```
@@ -215,7 +217,7 @@ SNOMED departure status codes allow us to identify patients that left the depart
 ##### Chart
 
 ```{r ae_left_plot}
-#| label: fig-plot-type1-left
+#| label: fig-type1-left
 #| fig-cap: Left department before assessment or treatment complete. All of England, 2023/24.
 tar_read(ed_left_chart)
 ```
@@ -238,7 +240,7 @@ The ECDS allows calculation of times from arrival to assessment, treatment, conc
 ##### Assessment
 
 ```{r ae_wait_assess_plot}
-#| label: fig-plot-type1-waiting-ass
+#| label: fig-type1-waiting-ass
 #| fig-cap: Waiting time for assessment, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_assess_plot)
 ```
@@ -246,7 +248,7 @@ tar_read(ae_times_assess_plot)
 ##### Treatment
 
 ```{r ae_wait_treat_plot}
-#| label: fig-plot-type1-waiting-treat
+#| label: fig-type1-waiting-treat
 #| fig-cap: Waiting time for treatment, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_treat_plot)
 ```
@@ -254,7 +256,7 @@ tar_read(ae_times_treat_plot)
 ##### Conclusion
 
 ```{r ae_wait_conclude_plot}
-#| label: fig-plot-type1-waiting-concl
+#| label: fig-type1-waiting-concl
 #| fig-cap: Waiting time for conclusion, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_conclude_plot)
 ```
@@ -262,7 +264,7 @@ tar_read(ae_times_conclude_plot)
 ##### Departure
 
 ```{r ae_wait_depart_plot}
-#| label: fig-plot-type1-waiting-depart
+#| label: fig-type1-waiting-depart
 #| fig-cap: Waiting time to leave department, Type 1 A&E. All of England, 2023/24.
 tar_read(ae_times_depart_plot)
 ```
@@ -302,7 +304,7 @@ Over the past 5 years in England, on average, there are `r comma(round(avg_mh_at
 ##### Overview
 
 ```{r ae_freq_icb_plot}
-#| label: fig-plot-type1-freq
+#| label: fig-type1-freq
 #| fig-cap: Percentage of with 5+ attendances in year, Type 1 A&E. All of England, 2023/24.
 
 tar_read(ae_freq_boxplot)
@@ -408,7 +410,7 @@ Breakdowns for the number of Type 1 attendances with MH as a primary reason/diag
 ##### Geographical variation
 
 ```{r icb_map_allmh}
-#| label: fig-plot-type1-map
+#| label: fig-type1-map
 #| fig-cap: Attendance rate by ICB per 100,000 population, Type 1 A&E. All of England, 2023/24.
 tar_read(icb_ed_map_2324)
 ```
@@ -421,7 +423,7 @@ tar_read(icb_ed_map_2324)
 
 ###### Chart
 ```{r}
-#| label: fig-plot-type1-line
+#| label: fig-type1-line
 #| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances. All of England.
 tar_read(avg_type1_mh_attends_rate_plot)
 ```
@@ -746,7 +748,7 @@ tar_read(icb_uec_map_2324)
 
 ###### Chart
 ```{r}
-#| label: fig-plot-uec-line
+#| label: fig-uec-line
 #| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances. All of England.
 tar_read(avg_uec_mh_attends_rate_plot)
 ```
@@ -1075,7 +1077,7 @@ tar_read(icb_111_map_2122)
 
 ###### Chart
 ```{r}
-#| label: fig-plot-nhs111-line
+#| label: fig-nhs111-line
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111. All of England.
 tar_read(avg_nhs111_mh_calls_rate_plot)
 ```
