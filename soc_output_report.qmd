@@ -280,7 +280,7 @@ tar_read(ae_times_table) |>
 
 :::
 
-#### Mental health frequent attenders
+#### Mental health frequent attendees
 
 ```{r freq_fly_figs, include = FALSE}
 avg_all_attends <- tar_read(ae_freq) |> summarise(total = sum(all_pats)) |> pull(total)/5
@@ -295,7 +295,7 @@ perc_freq <- round(avg_ff_attend/avg_mh_attend*100,1)
 
 ```
 
-Frequent attenders can be defined as those attending 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
+Frequent attendees can be defined as those attending 5 or more times in a 12 month period with a primary complaint/diagnosis of mental health disorders.
 
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
 
