@@ -66,3 +66,15 @@ get_quantiles_and_mean <- function(data) {
 
   return(table)
 }
+
+
+get_standard_table <- function(data){
+
+  table <- data |>
+    dplyr::select(1:6) |>
+    dplyr::arrange(der_financial_year) |>
+    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+    create_dt()
+
+  return(table)
+}

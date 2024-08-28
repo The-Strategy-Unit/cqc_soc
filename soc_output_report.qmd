@@ -422,10 +422,7 @@ tar_read(icb_rates_ed) |>
   filter(der_financial_year == '2023/24') |>
   dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
   dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
-    dplyr::select(1:6) |>
-    dplyr::arrange(der_financial_year) |>
-    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
-  create_dt()
+  get_standard_table()
 ```
 :::
 
@@ -445,10 +442,7 @@ tar_read(avg_type1_mh_attends_rate_plot)
 
 ```{r }
 tar_read(avg_type1_mh_attends_rate) |>
-    dplyr::select(1:6) |>
-    dplyr::arrange(der_financial_year) |>
-    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
-  create_dt()
+  get_standard_table()
 ```
 :::
 
@@ -762,10 +756,7 @@ tar_read(icb_rates_uec) |>
   filter(der_financial_year == '2023/24') |>
   dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
   dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
-    dplyr::select(1:6) |>
-    dplyr::arrange(der_financial_year) |>
-    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
-  create_dt()
+  get_standard_table()
 ```
 :::
 
@@ -785,10 +776,7 @@ tar_read(avg_uec_mh_attends_rate_plot)
 
 ```{r }
 tar_read(avg_uec_mh_attends_rate) |>
-    dplyr::select(1:6) |>
-    dplyr::arrange(der_financial_year) |>
-    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
-  create_dt()
+  get_standard_table()
 ```
 :::
 
@@ -1127,10 +1115,7 @@ tar_read(avg_nhs111_mh_calls_rate_plot)
 ```{r }
 tar_read(avg_nhs111_mh_calls_rate) |>
   dplyr::rename(calls = attends) |>
-  dplyr::select(1:6) |>
-  dplyr::arrange(der_financial_year) |>
-  dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
-  create_dt()
+  get_standard_table()
 ```
 :::
 
