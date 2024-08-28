@@ -214,52 +214,84 @@ list(
 
   # 03. SQL data extracts ------------------------------------------------------
   # specific query data files
+  tarchetypes::tar_file(snomed_mh_filepath,
+                        "data/ref_mh_snomed_ct.csv"),
   tar_target(
     snomed_mh,
-    load_csv("data/ref_mh_snomed_ct.csv") |>
+    load_csv(snomed_mh_filepath) |>
       select(2, 3, 5, 6, 8, 13, 16, 19, 20, 23, 49, 61)
   ),
 
-  tar_target(ae_times
-             , load_csv("data/ae_waits_icb.csv")),
+  tarchetypes::tar_file(ae_times_filepath,
+                        "data/ae_waits_icb.csv"),
+  tar_target(ae_times,
+             load_csv(ae_times_filepath)),
+
+  tarchetypes::tar_file(ae_diag_filepath,
+                        "data/ae_diag_icb.csv"),
   tar_target(ae_diag,
-    load_csv("data/ae_diag_icb.csv") |>
+    load_csv(ae_diag_filepath) |>
       left_join(snomed_mh, by = c("ec_diagnosis_01" = "concept_id"))
   ),
+
+  tarchetypes::tar_file(ae_freq_filepath,
+                        "data/ae_freqfly_icb.csv"),
   tar_target(ae_freq,
-             load_csv("data/ae_freqfly_icb.csv")
+             load_csv(ae_freq_filepath)
   ),
+
+  tarchetypes::tar_file(ae_left_filepath,
+                        "data/ae_left_icb.csv"),
   tar_target(ae_left,
-             load_csv("data/ae_left_icb.csv")
+             load_csv(ae_left_filepath)
   ),
+
+  tarchetypes::tar_file(ae_toa_filepath,
+                        "data/ae_toa_icb.csv"),
   tar_target(ae_toa,
-             load_csv("data/ae_toa_icb.csv")
+             load_csv(ae_toa_filepath)
   ),
+
+  tarchetypes::tar_file(nhs111_toa_filepath,
+                        "data/111_toa_icb.csv"),
   tar_target(nhs111_toa,
-             load_csv("data/111_toa_icb.csv")
+             load_csv(nhs111_toa_filepath)
   ),
+
+  tarchetypes::tar_file(nhs111_freq_filepath,
+                        "data/111_freqfly_icb.csv"),
   tar_target(nhs111_freq,
-             load_csv("data/111_freqfly_icb.csv")
+             load_csv(nhs111_freq_filepath)
   ),
+
+  tarchetypes::tar_file(nhs111_disposition_filepath,
+                        "data/111_symptoms_mhflag.csv"),
   tar_target(nhs111_disposition,
-             load_csv("data/111_symptoms_mhflag.csv")
+             load_csv(nhs111_disposition_filepath)
   ),
+
+  tarchetypes::tar_file(nhs111_diagnosis_filepath,
+                        "data/111_sympt_icb.csv"),
   tar_target(nhs111_diagnosis,
-               load_csv("data/111_sympt_icb.csv")
+               load_csv(nhs111_diagnosis_filepath)
   ),
 
   # Full extracts
+  tarchetypes::tar_file(data_ae_filepath,
+                        "data/ae_extract_full.csv"),
   tar_target(
     data_ae,
-    load_csv("data/ae_extract_full.csv") |>
+    load_csv(data_ae_filepath) |>
       dplyr::rename(imd_decile = index_of_multiple_deprivation_decile) |>
       dplyr::mutate(imd_decile = factor(imd_decile,
                                         levels = as.character(1:10)))
   ),
 
+  tarchetypes::tar_file(data_111_filepath,
+                        "data/111_extract_full.csv"),
   tar_target(
     data_111,
-    load_csv("data/111_extract_full.csv") |>
+    load_csv(data_111_filepath) |>
       dplyr::rename(icb_code = icb23cd) |>
       dplyr::mutate(imd_decile = factor(imd_decile,
                                         levels = as.character(1:10)))
