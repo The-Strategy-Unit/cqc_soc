@@ -25,9 +25,9 @@ tar_source()
 
 # End this file with a list of target objects.
 list(
-  #### Data loading and initial wrangling ####
 
-  # LSOA to ICBs
+  # 01. LSOA and ICBs ----------------------------------------------------------
+  # LSOA to ICB
   tar_target(lsoa_11_to_icb_23, load_csv("data/LSOA2011_to_ICB2023.csv")),
   tar_target(lsoa_21_to_icb_23, load_csv("data/LSOA2021_to_ICB2023.csv")),
   tar_target(
@@ -38,6 +38,7 @@ list(
   # ICB codes and names
   tar_target(icb_codes_names, get_icb_codes_names(lsoa_to_icb)),
 
+  # 02. Population data including by subgroups ---------------------------------
   # URLs for population data
   tar_target(
     url_population_2021_22,
@@ -211,6 +212,7 @@ list(
       dplyr::mutate(ethnic_category = tolower(ethnic_category))
   ),
 
+  # 03. SQL data extracts ------------------------------------------------------
   # specific query data files
   tar_target(
     snomed_mh,
@@ -261,8 +263,7 @@ list(
       dplyr::rename(icb_code = icb23cd) |>
       dplyr::mutate(imd_decile = factor(imd_decile,
                                         levels = as.character(1:10)))
-  )
-  ,
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -283,7 +284,9 @@ list(
 
   tar_target(nhs111_sympt_summary, get_111_symptom_summary(nhs111_diagnosis)),
 
-  #### Type 1 ED activity ####
+  # 04. Data wrangling ---------------------------------------------------------
+
+  ## Type 1 ED activity ---------------------------------------------------------
   tar_target(data_ed, get_ed_activity(data_ae)),
 
   # MH attends
@@ -310,11 +313,11 @@ list(
     get_icb_breakdown_table(type1_perc_mh_known, icb_codes_names)
   ),
 
-  # Arrival mode
+  ### Arrival mode
   tar_target(type1_arrival_mode, filter_arrival_mode(data_ed)),
   tar_target(uec_arrival_mode, filter_arrival_mode(data_uec)),
 
-  #### UEC activity ####
+  ## UEC activity ---------------------------------------------------------------
   tar_target(data_uec, get_uec_activity(data_ae)),
 
   # MH attends
@@ -341,7 +344,36 @@ list(
     get_icb_breakdown_table(uec_perc_mh_known, icb_codes_names)
   ),
 
-  #### Breakdowns ####
+  ## NHS 111 --------------------------------------------------------------------
+  tar_target(nhs111_mh_calls, filter_mh_calls(data_111)),
+  tar_target(nhs111_mh_calls_rate, get_icb_111_rates(data_111, pop_by_icb)),
+  tar_target(nhs111_perc_mh_calls, get_perc_mh_calls(data_111)),
+  tar_target(
+    nhs111_mh_calls_boxplot,
+    get_perc_mh_calls_boxplot(nhs111_perc_mh_calls)
+  ),
+  tar_target(
+    nhs111_mh_calls_table,
+    get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
+  ),
+
+  tar_target(nhs111_perc_toa,
+             get_perc_toa_111(nhs111_toa)),
+  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_perc_toa)),
+
+  # disposition
+  tar_target(nhs111_disposition_summary,
+             get_disposition_summary(data_111)),
+  tar_target(nhs111_disposition_bar,
+             get_disposition_bar_chart(nhs111_disposition_summary)),
+  tar_target(nhs111_disposition_trends,
+             get_disposition_trends(data_111)),
+  tar_target(nhs111_disposition_trends_chart,
+             get_nhs111_disposition_trends_chart(nhs111_disposition_trends)),
+  tar_target(nhs111_mh_known_summary,
+             get_111_mh_known(data_111)),
+
+  # 05. Breakdowns -------------------------------------------------------------
   tar_target(
     data_for_breakdowns,
     list(
@@ -384,8 +416,8 @@ list(
                             ethnicity_by_icb_by_year,
                             "ethnic_category")),
 
-  #### Plots ####
-  #### ED waiting times ####
+  # 06. Plots ------------------------------------------------------------------
+  ## ED waiting times ----------------------------------------------------------
   tar_target(ae_times_assess, get_ed_times_assess(ae_times)),
   tar_target(ae_times_treat, get_ed_times_treat(ae_times)),
   tar_target(ae_times_conclude, get_ed_times_treat(ae_times)),
@@ -401,7 +433,7 @@ list(
   tar_target(ae_times_conclude_plot, ed_times_conclude_plot(ae_times_conclude)),
   tar_target(ae_times_depart_plot, ed_times_depart_plot(ae_times_depart)),
 
-  # frequent fliers
+  ## Frequent fliers -----------------------------------------------------------
   tar_target(ae_freq_data, get_ed_freq_data(ae_freq)),
   tar_target(ae_freq_boxplot, ed_freq_boxplot(ae_freq_data)),
   tar_target(ae_freq_table,
@@ -423,7 +455,7 @@ list(
                                                      value = perc_freq),
                                             icb_codes_names)),
 
-  # arrival mode
+  ## Arrival mode --------------------------------------------------------------
   tar_target(ae_trans_barplot, get_ed_transp_colplot(ae_summ_transp)),
   tar_target(ae_trans_trends, get_ed_transp_trends(ae_transp_trends)),
   tar_target(uec_trans_barplot, get_ed_transp_colplot(uec_summ_transp, "UEC")),
@@ -436,17 +468,7 @@ list(
   tar_target(ae_toa_plot, get_overlay_barchart_toa(ae_toa_summary)),
   tar_target(uec_toa_plot, get_overlay_barchart_toa(uec_toa_summary, "UEC")),
 
-  # ICB total populations
-  tar_target(pop_by_icb, get_icb_pop_total(gender_by_icb)),
-  tar_target(icb_rates_ed, get_icb_att_rates(data_ed, pop_by_icb)),
-  tar_target(icb_rates_uec, get_icb_att_rates(data_uec, pop_by_icb)),
-
-  # New IMD plots
-  tar_target(ae_attends_imd, imd_plot2(imd_breakdowns$type1_mh_attends)),
-  tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
-  tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
-
-  # Breakdowns
+  ## Breakdowns ----------------------------------------------------------------
   tar_target(
     gender_plot,
     purrr::map(
@@ -482,53 +504,13 @@ list(
       ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "ethnic_category")
     )
   ),
-  #### Map layers and map plots ####
 
-  # load icb april 2023 boundaries
-  tar_target(
-    icb_boundary,
-    get_icb_map(
-      "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Integrated_Care_Boards_April_2023_EN_BGC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-    )
-  ),
-  # 23/24 mh attendance rate ED by ICB map
-  tar_target(icb_ed_map_2324,
-             map_icb_allmh(icb_boundary, icb_rates_ed)),
-  tar_target(icb_uec_map_2324,
-             map_icb_allmh_uec(icb_boundary, icb_rates_uec)),
-  tar_target(icb_111_map_2122,
-             map_icb_allmh_111(icb_boundary, nhs111_mh_calls_rate, "2020/21")),
+  # New IMD plots
+  tar_target(ae_attends_imd, imd_plot2(imd_breakdowns$type1_mh_attends)),
+  tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
+  tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
 
-  #### NHS 111 ####
-  tar_target(nhs111_mh_calls, filter_mh_calls(data_111)),
-  tar_target(nhs111_mh_calls_rate, get_icb_111_rates(data_111, pop_by_icb)),
-  tar_target(nhs111_perc_mh_calls, get_perc_mh_calls(data_111)),
-  tar_target(
-    nhs111_mh_calls_boxplot,
-    get_perc_mh_calls_boxplot(nhs111_perc_mh_calls)
-  ),
-  tar_target(
-    nhs111_mh_calls_table,
-    get_icb_breakdown_table_111(nhs111_perc_mh_calls, icb_codes_names)
-  ),
-
-  tar_target(nhs111_perc_toa,
-             get_perc_toa_111(nhs111_toa)),
-  tar_target(nhs111_perc_mh_calls_toa, get_overlay_barchart_toa_111(nhs111_perc_toa)),
-
-  # disposition
-  tar_target(nhs111_disposition_summary,
-             get_disposition_summary(data_111)),
-  tar_target(nhs111_disposition_bar,
-             get_disposition_bar_chart(nhs111_disposition_summary)),
-  tar_target(nhs111_disposition_trends,
-             get_disposition_trends(data_111)),
-  tar_target(nhs111_disposition_trends_chart,
-             get_nhs111_disposition_trends_chart(nhs111_disposition_trends)),
-  tar_target(nhs111_mh_known_summary,
-             get_111_mh_known(data_111)),
-
-  #### Average attendance rate per 100000 ####
+  ## Average attendance rate per 100000 ----------------------------------------
   # Type 1
   tar_target(avg_type1_mh_attends_rate,
              get_pop_average(pop_by_icb, type1_mh_attends)),
@@ -547,5 +529,27 @@ list(
                              nhs111_mh_calls|>
                                dplyr::rename(attends = calls))),
   tar_target(avg_nhs111_mh_calls_rate_plot,
-             get_avg_mh_attends_rate_plot(avg_nhs111_mh_calls_rate))
+             get_avg_mh_attends_rate_plot(avg_nhs111_mh_calls_rate)),
+
+  # 07. Maps -------------------------------------------------------------------
+
+  # ICB total populations
+  tar_target(pop_by_icb, get_icb_pop_total(gender_by_icb)),
+  tar_target(icb_rates_ed, get_icb_att_rates(data_ed, pop_by_icb)),
+  tar_target(icb_rates_uec, get_icb_att_rates(data_uec, pop_by_icb)),
+
+  # load icb april 2023 boundaries
+  tar_target(
+    icb_boundary,
+    get_icb_map(
+      "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Integrated_Care_Boards_April_2023_EN_BGC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
+    )
+  ),
+  # 23/24 mh attendance rate ED by ICB map
+  tar_target(icb_ed_map_2324,
+             map_icb_allmh(icb_boundary, icb_rates_ed)),
+  tar_target(icb_uec_map_2324,
+             map_icb_allmh_uec(icb_boundary, icb_rates_uec)),
+  tar_target(icb_111_map_2122,
+             map_icb_allmh_111(icb_boundary, nhs111_mh_calls_rate, "2020/21"))
 )
