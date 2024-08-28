@@ -277,7 +277,6 @@ tar_read(ae_times_depart_plot)
 tar_read(ae_times_table) |>
   create_dt()
 ```
-
 :::
 
 #### Mental health frequent attendees
@@ -300,7 +299,6 @@ Frequent attendees can be defined as those attending 5 or more times in a 12 mon
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend))` patients presenting with a mental health problem. Of these around `r comma(round(avg_ff_attend))` ( `r perc_freq`% ) are those who attend frequently. This varies by ICB area.
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r ae_freq_icb_plot}
@@ -332,7 +330,6 @@ tar_read(ae_freq_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(0, 2.5, 0.35))
 ```
-
 :::
 
 ### Detailed breakdowns {#sec-type1-breakdowns}
@@ -410,7 +407,6 @@ Breakdowns for the number of Type 1 attendances with MH as a primary reason/diag
 ##### Geographical variation
 
 ::: panel-tabset
-
 ##### Map
 
 ```{r icb_map_allmh}
@@ -431,16 +427,14 @@ tar_read(icb_rates_ed) |>
     dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
-
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
+
 ```{r}
 #| label: fig-type1-line
 #| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances. All of England.
@@ -456,7 +450,6 @@ tar_read(avg_type1_mh_attends_rate) |>
     dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation
@@ -754,7 +747,6 @@ Breakdowns for the number of attendances to Urgent Care or Walk-in with MH as pr
 ##### Geographical variation
 
 ::: panel-tabset
-
 ##### Map
 
 ```{r icb_map_allmh_uec}
@@ -775,16 +767,14 @@ tar_read(icb_rates_uec) |>
     dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
-
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
+
 ```{r}
 #| label: fig-uec-line
 #| fig-cap: Rates per 100,000 population of the number of Mental Health UEC attendances. All of England.
@@ -800,7 +790,6 @@ tar_read(avg_uec_mh_attends_rate) |>
     dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation
@@ -960,7 +949,6 @@ create_dt(gt_causes)
 There is very little difference in the times of day that patients with mental health issues call NHS 111 compared to those with physical complaints.
 
 ::: panel-tabset
-
 ##### Chart
 
 ```{r 111_time_of_day_calls}
@@ -1028,7 +1016,6 @@ Frequent callers can be defined as those calling 5 or more times in a 12 month p
 Over the past 5 years in England, on average, there are `r comma(round(avg_mh_attend_nhs111))` patients calling NHS 111 with a mental health problem. Of these around `r comma(round(avg_ff_attend_nhs111))` ( `r perc_freq_nhs111`% ) are those who call NHS 111 frequently. This varies by ICB area.
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r nhs111_freq_icb_plot}
@@ -1060,8 +1047,8 @@ tar_read(nhs111_freq_table) |>
   color_gradient(c("2017/18", "2018/19", "2019/20", "2020/21", "2021/22"), 
                  seq(1, 8, 1))
 ```
-
 :::
+
 ### Detailed breakdowns {#sec-nhs111-breakdown}
 
 #### Percentage of all calls being MH-related
@@ -1102,7 +1089,6 @@ tar_read(nhs111_mh_calls_table) |>
 ##### Geographical variation
 
 ::: panel-tabset
-
 ##### Map
 
 ```{r}
@@ -1122,16 +1108,14 @@ tar_read(nhs111_mh_calls_rate) |>
   dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
-
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
+
 ```{r}
 #| label: fig-nhs111-line
 #| fig-cap: Rates per 100,000 population of the number of Mental Health related calls to NHS111. All of England.
@@ -1148,7 +1132,6 @@ tar_read(avg_nhs111_mh_calls_rate) |>
   dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation

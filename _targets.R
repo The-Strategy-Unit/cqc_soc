@@ -263,8 +263,7 @@ list(
       dplyr::rename(icb_code = icb23cd) |>
       dplyr::mutate(imd_decile = factor(imd_decile,
                                         levels = as.character(1:10)))
-  )
-  ,
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
