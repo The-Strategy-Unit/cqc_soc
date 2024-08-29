@@ -441,6 +441,20 @@ list(
   tar_target(nhs111_mh_known_summary,
              get_111_mh_known(data_111)),
 
+  ## Redetentions --------------------------------------------------------------
+  tar_target(cyp_redetentions_number,
+             cyp_redetentions |>
+               dplyr::summarise(value = sum(attends),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(
+    cyp_redetentions_boxplot,
+    get_standard_boxplot(cyp_redetentions_number)
+  ),
+  tar_target(
+    cyp_redetentions_number_table,
+    get_icb_breakdown_table_redetentions(cyp_redetentions_number, icb_codes_names)
+  ),
+
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
     data_for_breakdowns,
