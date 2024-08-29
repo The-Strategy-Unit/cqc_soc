@@ -75,6 +75,26 @@ tar_read(cyp_avg_redetentions_rate) |>
 ```
 :::
 
+##### Gender variation
+
+::: panel-tabset
+###### Chart
+
+```{r redetentions_gender_plot}
+#| label: fig-redetentions-gender
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions by gender.
+tar_read(gender_plot)$cyp_redetentions
+```
+
+###### Table
+
+```{r redetentions_gender_table}
+tar_read(gender_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("gender")
+```
+:::
+
 
 
 

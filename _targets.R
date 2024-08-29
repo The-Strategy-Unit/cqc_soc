@@ -428,7 +428,8 @@ list(
       type1_mh_attends = type1_mh_attends,
       type1_mh_known = type1_mh_known,
       nhs111_mh_calls = nhs111_mh_calls |>
-        dplyr::rename(attends = calls)
+        dplyr::rename(attends = calls),
+      cyp_redetentions = cyp_redetentions
     )
   ),
   tar_target(gender_breakdowns,
@@ -449,8 +450,10 @@ list(
                             uec_arrival_mode,
                             imd_by_icb,
                             "imd_decile")),
-  tar_target(rural_breakdowns,
-             get_breakdowns(data_for_breakdowns,
+  tar_target(rural_breakdowns, #
+             get_breakdowns(data_for_breakdowns[!grepl("redetentions",
+                                                       names(
+                                                         data_for_breakdowns))],
                             type1_arrival_mode,
                             uec_arrival_mode,
                             rural_by_icb,

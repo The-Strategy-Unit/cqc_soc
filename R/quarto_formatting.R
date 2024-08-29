@@ -32,7 +32,7 @@ create_dt <- function(x) {
 get_standard_table_for_breakdowns <- function(data, group = ""){
 
   table <- data |>
-    dplyr::select(tidyselect::any_of(c("icb_name", "der_financial_year", group, "attends", "calls", "pop", "count", "value", "lowercl", "uppercl"))) |>
+    dplyr::select(tidyselect::any_of(c("icb_name", "der_financial_year", group, "attends", "calls", "redetentions", "pop", "count", "value", "lowercl", "uppercl"))) |>
     dplyr::arrange(!!rlang::sym(group), der_financial_year) |>
     dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
     create_dt()
