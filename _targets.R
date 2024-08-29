@@ -303,7 +303,8 @@ list(
              load_csv(cyp_redetentions_filepath) |>
                dplyr::rename(der_financial_year = fin_year,
                              icb_code = icb23cd,
-                             attends = redetentions) |>
+                             attends = redetentions,
+                             imd_decile = imd_2019_decile) |>
                dplyr::mutate(der_financial_year =
                                stringr::str_replace_all(der_financial_year,
                                                         "-20",
@@ -454,8 +455,11 @@ list(
                             uec_arrival_mode,
                             rural_by_icb,
                             "rural_urban")),
-  tar_target(ethnic_breakdowns,
-             get_breakdowns(data_for_breakdowns,
+  tar_target(ethnic_breakdowns, # NHS111 data does not have ethnic category, so
+                                # have excluded this from the list
+             get_breakdowns(data_for_breakdowns[!grepl("nhs111",
+                                                       names(
+                                                         data_for_breakdowns))],
                             type1_arrival_mode,
                             uec_arrival_mode,
                             ethnicity_by_icb_by_year,
