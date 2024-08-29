@@ -36,6 +36,8 @@ css: styles.css
 library(targets)
 library(tidyverse)
 library(scales)
+
+source("R/quarto_formatting.R")
 ```
 
 ## Introduction
@@ -44,8 +46,36 @@ library(scales)
 
 ## Summary
 
-## Detailed analysis 
+## Detailed analysis
 
 ### Re-detentions
+
+```{r}
+redet <- tar_read(cyp_redetentions)
+```
+
+
+::: panel-tabset
+##### Overview
+
+::: panel-tabset
+###### Chart
+
+```{r}
+#| label: fig-redetentions-line
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions. All of England.
+tar_read(cyp_avg_redetentions_rate_plot)
+```
+
+###### Table
+
+```{r }
+tar_read(cyp_avg_redetentions_rate) |>
+  get_standard_table_for_breakdowns()
+```
+:::
+
+
+
 
 ### Travel distance

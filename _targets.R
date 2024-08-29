@@ -297,6 +297,19 @@ list(
                                         levels = as.character(1:10)))
   ),
 
+  tarchetypes::tar_file(cyp_redetentions_filepath,
+                        "data/cyp_redetentions.csv"),
+  tar_target(cyp_redetentions,
+             load_csv(cyp_redetentions_filepath) |>
+               dplyr::rename(der_financial_year = fin_year,
+                             icb_code = icb23cd,
+                             attends = redetentions) |>
+               dplyr::mutate(der_financial_year =
+                               stringr::str_replace_all(der_financial_year,
+                                                        "-20",
+                                                        "/"))
+             ),
+
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
   tar_target(uec_summary, get_uec_summary(data_uec)),
@@ -562,6 +575,12 @@ list(
                                dplyr::rename(attends = calls))),
   tar_target(avg_nhs111_mh_calls_rate_plot,
              get_avg_mh_attends_rate_plot(avg_nhs111_mh_calls_rate)),
+
+  # redetentions
+  tar_target(cyp_avg_redetentions_rate,
+             get_pop_average(pop_by_icb, cyp_redetentions)),
+  tar_target(cyp_avg_redetentions_rate_plot,
+             get_avg_mh_attends_rate_plot(cyp_avg_redetentions_rate)),
 
   # 07. Maps -------------------------------------------------------------------
 
