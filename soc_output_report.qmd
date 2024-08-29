@@ -88,7 +88,7 @@ While the majority of these patients are known to mental health providers, a sub
 -   In 2023/24, those presenting with MH issues waited longer in the department for assessment, treatment and to discharge from A&E. The average ED 'pathway' was almost an hour longer for MH patients.
 -   There were almost 2,500 patients in England attending Emergency OR Urgent care departments 5 or more times during the latest 12 month period with a primary mental health complaint.
 -   The rate of attendance in females (383/100,000 population) is significantly higher than males (309).
--   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation for MH. The 0-17 age group is the only one where the rates have increased since 2019/20.
+-   The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation for MH. The 0-17 age group is the only one where current rates are higher than in 2019/20.
 -   Patients with MH issues from 'Other' ethnic categories (Chinese, Arab and other) present more frequently than other groups. Rates in the Mixed ethnic groups are increasing over time.
 -   There is a very clear socio-economic gradient in MH presentation rates. IMD1 (most deprived) have rates over 3 times higher than IMD10 the least deprived. Similarly, patients from urban areas are around twice as likely to present in A&E with MH problems.
 
