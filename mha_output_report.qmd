@@ -95,7 +95,73 @@ tar_read(gender_breakdowns)$cyp_redetentions |>
 ```
 :::
 
+##### Age-group variation
 
+::: panel-tabset
+###### Chart
+
+```{r redetentions_age_plot}
+#| label: fig-redetentions-age
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions by age group.
+tar_read(age_plot)$cyp_redetentions
+```
+
+###### Table
+
+```{r redetentions_age_table}
+tar_read(age_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("age_group")
+```
+:::
+
+##### Ethnic group variation
+
+::: panel-tabset
+###### Chart
+
+```{r redetentions_ethnic_plot}
+#| label: fig-redetentions-ethnic
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions by ethnic category.
+tar_read(ethnic_plot)$cyp_redetentions
+```
+
+###### Table
+
+```{r redetentions_ethnic_table}
+tar_read(ethnic_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("ethnic_category")
+```
+:::
+
+##### Socioeconomic variation
+
+::: panel-tabset
+###### Chart1
+
+```{r redetentions_imd_plot}
+#| label: fig-redetentions-imd
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions by Index of Multiple Deprivation decile.
+tar_read(imd_plot)$cyp_redetentions
+```
+
+###### Chart2
+
+```{r redetentions_imd_plot2}
+#| label: fig-redetentions-imd2
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions by Index of Multiple Deprivation decile and year.
+#tar_read(ae_attends_imd)
+```
+
+###### Table
+
+```{r redetentions_imd_table}
+tar_read(imd_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("imd_decile")
+```
+:::
 
 
 ### Travel distance
