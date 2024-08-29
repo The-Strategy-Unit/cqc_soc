@@ -600,6 +600,7 @@ list(
   tar_target(ae_attends_imd, imd_plot2(imd_breakdowns$type1_mh_attends)),
   tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
+  tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
 
   ## Average attendance rate per 100000 ----------------------------------------
   # Type 1

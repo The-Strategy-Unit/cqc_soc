@@ -151,7 +151,7 @@ tar_read(imd_plot)$cyp_redetentions
 ```{r redetentions_imd_plot2}
 #| label: fig-redetentions-imd2
 #| fig-cap: Rates per 100,000 population of the number of MHA redetentions by Index of Multiple Deprivation decile and year.
-#tar_read(ae_attends_imd)
+tar_read(cyp_redetentions_imd)
 ```
 
 ###### Table
