@@ -36,6 +36,8 @@ css: styles.css
 library(targets)
 library(tidyverse)
 library(scales)
+
+source("R/quarto_formatting.R")
 ```
 
 ## Introduction
@@ -44,8 +46,154 @@ library(scales)
 
 ## Summary
 
-## Detailed analysis 
+## Detailed analysis
 
 ### Re-detentions
+
+```{r}
+redet <- tar_read(cyp_redetentions)
+```
+
+::: panel-tabset
+##### Overview
+
+```{r}
+#| label: fig-redetentions-mh
+#| fig-cap: Number of MHA redetentions withiin 12 months over time.
+tar_read(cyp_redetentions_boxplot) +
+  ggplot2::labs(title = "Number of MHA redetentions within 12 months over time",
+                subtitle = "England 2019/20 to 2022/23 by ICB.",
+                y = "Number")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-redetentions-summary
+#| tbl-cap: Summary of number of MHA redetentions within 12 months over time.
+tar_read(cyp_redetentions_number) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-redetentions
+#| tbl-cap: Number of MHA redetentions within 12 months by ICB.
+tar_read(cyp_redetentions_number_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
+                 seq(0, 600, 85))
+```
+
+:::
+
+::: panel-tabset
+##### Overview
+
+::: panel-tabset
+###### Chart
+
+```{r}
+#| label: fig-redetentions-line
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months. All of England.
+tar_read(cyp_avg_redetentions_rate_plot)
+```
+
+###### Table
+
+```{r }
+tar_read(cyp_avg_redetentions_rate) |>
+  get_standard_table_for_breakdowns()
+```
+:::
+
+##### Gender variation
+
+::: panel-tabset
+###### Chart
+
+```{r redetentions_gender_plot}
+#| label: fig-redetentions-gender
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by gender.
+tar_read(gender_plot)$cyp_redetentions
+```
+
+###### Table
+
+```{r redetentions_gender_table}
+tar_read(gender_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("gender")
+```
+:::
+
+##### Age-group variation
+
+::: panel-tabset
+###### Chart
+
+```{r redetentions_age_plot}
+#| label: fig-redetentions-age
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by age group.
+tar_read(cyp_age_plot)$cyp_redetentions
+```
+
+###### Table
+
+```{r redetentions_age_table}
+tar_read(cyp_age_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("age_group")
+```
+:::
+
+##### Ethnic group variation
+
+::: panel-tabset
+###### Chart
+
+```{r redetentions_ethnic_plot}
+#| label: fig-redetentions-ethnic
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by ethnic category.
+tar_read(ethnic_plot)$cyp_redetentions
+```
+
+###### Table
+
+```{r redetentions_ethnic_table}
+tar_read(ethnic_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("ethnic_category")
+```
+:::
+
+##### Socioeconomic variation
+
+::: panel-tabset
+###### Chart1
+
+```{r redetentions_imd_plot}
+#| label: fig-redetentions-imd
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by Index of Multiple Deprivation decile.
+tar_read(imd_plot)$cyp_redetentions
+```
+
+###### Chart2
+
+```{r redetentions_imd_plot2}
+#| label: fig-redetentions-imd2
+#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by Index of Multiple Deprivation decile and year.
+tar_read(cyp_redetentions_imd)
+```
+
+###### Table
+
+```{r redetentions_imd_table}
+tar_read(imd_breakdowns)$cyp_redetentions |>
+  dplyr::rename(redetentions = attends) |>
+  get_standard_table_for_breakdowns("imd_decile")
+```
+:::
+
 
 ### Travel distance

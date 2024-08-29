@@ -66,11 +66,6 @@ get_breakdowns <- function(data,
                            uec_arrival_mode,
                            data_population,
                            group) {
-  if (group == "ethnic_category") {
-    # NHS 111 data does not have ethnic category
-    data <- data[!grepl("nhs111", names(data))]
-  }
-
   most <- purrr::map(data,
                      ~ get_breakdown_one_group(., data_population, group))
 

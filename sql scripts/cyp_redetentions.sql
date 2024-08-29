@@ -3,27 +3,42 @@ DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions]
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions_agg]
 
 -- Getting redetentionsissions
-SELECT 
-	a.Der_person_ID, 
-	der_spell_id, 
-	StartDateMHActLegalStatusClass, 
-	pseudo_EndDateMHActLegalStatusClass, 
+SELECT
+	a.Der_person_ID,
+	der_spell_id,
+	StartDateMHActLegalStatusClass,
+	pseudo_EndDateMHActLegalStatusClass,
 	ICB23CD,
 	CAST(YEAR(DATEADD(MONTH, -3, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
-	b.der_spell_id2, 
-	b.StartDateMHActLegalStatusClass2, 
+	b.der_spell_id2,
+	b.StartDateMHActLegalStatusClass2,
 	b.pseudo_EndDateMHActLegalStatusClass2,
-	CASE WHEN b.Der_person_ID is not NULL THEN 1 ELSE 0 END AS redetentions_365_day, 
-	gender, EthnicCategory, imd_2019_decile
+	CASE WHEN b.Der_person_ID IS NOT NULL THEN 1 ELSE 0 END AS redetentions_365_day,
+	CASE
+		WHEN [AgeRepPeriodStart] < 18 THEN CAST('0-17' AS varchar)
+		WHEN [AgeRepPeriodStart] BETWEEN 18 AND 24 THEN CAST('18-24' AS varchar)
+		ELSE NULL END AS age_group,
+      imd_2019_decile,
+      CASE
+		WHEN a.[gENDer] = '1' THEN 'male'
+		WHEN a.[gENDer] = '2' THEN 'female'
+		ELSE NULL END AS gENDer,
+      CASE
+		WHEN LEFT([EthnicCategory],1) IN ('A','B','C') THEN 'white'
+		WHEN LEFT([EthnicCategory],1) IN ('D','E','F','G') THEN 'mixed'
+		WHEN LEFT([EthnicCategory],1) IN ('H','J','K','L') THEN 'asian'
+		WHEN LEFT([EthnicCategory],1) IN ('M','N','P') THEN 'black'
+		WHEN LEFT([EthnicCategory],1) IN ('R','S') THEN 'other'
+		ELSE NULL END AS Ethnic_Category
 
 INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
 
 FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS a
 
-LEFT OUTER JOIN(SELECT 
-					Der_person_ID, 
-					der_spell_id AS der_spell_id2, 
-					StartDateMHActLegalStatusClass AS StartDateMHActLegalStatusClass2, 
+LEFT OUTER JOIN(SELECT
+					Der_person_ID,
+					der_spell_id AS der_spell_id2,
+					StartDateMHActLegalStatusClass AS StartDateMHActLegalStatusClass2,
 					pseudo_EndDateMHActLegalStatusClass AS pseudo_EndDateMHActLegalStatusClass2
 
 				FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
@@ -36,33 +51,33 @@ WHERE a.AgeRepPeriodStart < 25 -- Would this be right?
 	AND a.pseudo_EndDateMHActLegalStatusClass < '2023-04-01'
 
 --## Now aggregating and making binary indicator for redetentionsission
-SELECT 
-	ICB23CD, 
-	fin_year, 
+SELECT
+	ICB23CD,
+	fin_year,
 	der_spell_id,
-	gender, EthnicCategory, imd_2019_decile
+	gender, Ethnic_Category, imd_2019_decile, age_group
 
 INTO #1
 
 FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
 
-GROUP BY ICB23CD, fin_year, der_spell_id, gender, EthnicCategory, imd_2019_decile
+GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group
 
 SELECT
-	ICB23CD, 
-	fin_year, 
+	ICB23CD,
+	fin_year,
 	der_spell_id,
-	gender, EthnicCategory, imd_2019_decile, 
+	gender, Ethnic_Category, imd_2019_decile, age_group,
 	SUM(CASE WHEN der_spell_id2 IS NULL THEN 0 ELSE 1 END) AS redetentions
 
 INTO #2
 
 FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
 
-GROUP BY ICB23CD, fin_year, der_spell_id, gender, EthnicCategory, imd_2019_decile
+GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group
 
-SELECT 
-	a.*, 
+SELECT
+	a.*,
 	CASE WHEN b.redetentions > 0 THEN 1 ELSE 0 END AS redetentions
 
 INTO #3
@@ -74,10 +89,10 @@ LEFT OUTER JOIN #2 b
 	AND a.fin_year = b.fin_year
 	AND a.der_spell_id = b.der_spell_id
 
-SELECT 
-	ICB23CD, 
+SELECT
+	ICB23CD,
 	fin_year,
-	gender, EthnicCategory, imd_2019_decile,
+	gender, Ethnic_Category, imd_2019_decile, age_group,
 	COUNT(distinct der_spell_id) AS detentions,
 	SUM(redetentions) AS redetentions
 
@@ -85,7 +100,7 @@ INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions_agg
 
 FROM #3
 
-GROUP BY ICB23CD, fin_year, gender, EthnicCategory, imd_2019_decile
+GROUP BY ICB23CD, fin_year, gender, Ethnic_Category, imd_2019_decile, age_group
 
 ORDER BY ICB23CD, fin_year
 
@@ -102,9 +117,9 @@ FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions_agg
 ORDER BY ICB23CD, fin_year
 
 ----## testing the (national) time series for scale and consistency
---SELECT 
---	fin_year, 
---	SUM(detentions) AS detentions, 
+--SELECT
+--	fin_year,
+--	SUM(detentions) AS detentions,
 --	SUM(redetentions) AS redetentions,
 --	SUM(CAST(redetentions AS FLOAT))/SUM(CAST(detentions AS FLOAT)) * 1.0
 

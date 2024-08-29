@@ -152,7 +152,27 @@ list(
       population_2020_males,
       population_2021,
       population_2022,
-      lsoa_to_icb
+      lsoa_to_icb,
+      "soc"
+    )
+  ),
+
+  # Population by age and icb for the CYP report - different age groupings
+  tar_target(
+    cyp_age_by_icb,
+    get_age_totals(
+      population_2017_females,
+      population_2017_males,
+      population_2018_females,
+      population_2018_males,
+      population_2019_females,
+      population_2019_males,
+      population_2020_females,
+      population_2020_males,
+      population_2021,
+      population_2022,
+      lsoa_to_icb,
+      "cyp"
     )
   ),
 
@@ -297,6 +317,22 @@ list(
                                         levels = as.character(1:10)))
   ),
 
+  tarchetypes::tar_file(cyp_redetentions_filepath,
+                        "data/cyp_redetentions.csv"),
+  tar_target(cyp_redetentions,
+             load_csv(cyp_redetentions_filepath) |>
+               dplyr::rename(der_financial_year = fin_year,
+                             icb_code = icb23cd,
+                             attends = redetentions,
+                             imd_decile = imd_2019_decile) |>
+               dplyr::mutate(der_financial_year =
+                               stringr::str_replace_all(der_financial_year,
+                                                        "-20",
+                                                        "/"),
+                             imd_decile = factor(imd_decile,
+                                                 levels = as.character(1:10)))
+             ),
+
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
   tar_target(uec_summary, get_uec_summary(data_uec)),
@@ -405,6 +441,20 @@ list(
   tar_target(nhs111_mh_known_summary,
              get_111_mh_known(data_111)),
 
+  ## Redetentions --------------------------------------------------------------
+  tar_target(cyp_redetentions_number,
+             cyp_redetentions |>
+               dplyr::summarise(value = sum(attends),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(
+    cyp_redetentions_boxplot,
+    get_standard_boxplot(cyp_redetentions_number)
+  ),
+  tar_target(
+    cyp_redetentions_number_table,
+    get_icb_breakdown_table_redetentions(cyp_redetentions_number, icb_codes_names)
+  ),
+
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
     data_for_breakdowns,
@@ -414,7 +464,8 @@ list(
       type1_mh_attends = type1_mh_attends,
       type1_mh_known = type1_mh_known,
       nhs111_mh_calls = nhs111_mh_calls |>
-        dplyr::rename(attends = calls)
+        dplyr::rename(attends = calls),
+      cyp_redetentions = cyp_redetentions
     )
   ),
   tar_target(gender_breakdowns,
@@ -424,10 +475,20 @@ list(
                             gender_by_icb,
                             "gender")),
   tar_target(age_breakdowns,
-             get_breakdowns(data_for_breakdowns,
+             get_breakdowns(data_for_breakdowns[!grepl("cyp",
+                                                       names(
+                                                         data_for_breakdowns))],
                             type1_arrival_mode,
                             uec_arrival_mode,
                             age_by_icb,
+                            "age_group")),
+  tar_target(cyp_age_breakdowns,
+             get_breakdowns(data_for_breakdowns[grepl("cyp",
+                                                       names(
+                                                         data_for_breakdowns))],
+                            type1_arrival_mode,
+                            uec_arrival_mode,
+                            cyp_age_by_icb,
                             "age_group")),
   tar_target(imd_breakdowns,
              get_breakdowns(data_for_breakdowns,
@@ -435,14 +496,19 @@ list(
                             uec_arrival_mode,
                             imd_by_icb,
                             "imd_decile")),
-  tar_target(rural_breakdowns,
-             get_breakdowns(data_for_breakdowns,
+  tar_target(rural_breakdowns, #
+             get_breakdowns(data_for_breakdowns[!grepl("redetentions",
+                                                       names(
+                                                         data_for_breakdowns))],
                             type1_arrival_mode,
                             uec_arrival_mode,
                             rural_by_icb,
                             "rural_urban")),
-  tar_target(ethnic_breakdowns,
-             get_breakdowns(data_for_breakdowns,
+  tar_target(ethnic_breakdowns, # NHS111 data does not have ethnic category, so
+                                # have excluded this from the list
+             get_breakdowns(data_for_breakdowns[!grepl("nhs111",
+                                                       names(
+                                                         data_for_breakdowns))],
                             type1_arrival_mode,
                             uec_arrival_mode,
                             ethnicity_by_icb_by_year,
@@ -516,6 +582,13 @@ list(
     )
   ),
   tar_target(
+    cyp_age_plot,
+    purrr::map(
+      cyp_age_breakdowns,
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
+    )
+  ),
+  tar_target(
     imd_plot,
     purrr::map(
       imd_breakdowns,
@@ -541,6 +614,7 @@ list(
   tar_target(ae_attends_imd, imd_plot2(imd_breakdowns$type1_mh_attends)),
   tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
+  tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
 
   ## Average attendance rate per 100000 ----------------------------------------
   # Type 1
@@ -562,6 +636,12 @@ list(
                                dplyr::rename(attends = calls))),
   tar_target(avg_nhs111_mh_calls_rate_plot,
              get_avg_mh_attends_rate_plot(avg_nhs111_mh_calls_rate)),
+
+  # redetentions
+  tar_target(cyp_avg_redetentions_rate,
+             get_pop_average(pop_by_icb, cyp_redetentions)),
+  tar_target(cyp_avg_redetentions_rate_plot,
+             get_avg_mh_attends_rate_plot(cyp_avg_redetentions_rate)),
 
   # 07. Maps -------------------------------------------------------------------
 
