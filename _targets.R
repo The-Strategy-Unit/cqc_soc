@@ -152,7 +152,27 @@ list(
       population_2020_males,
       population_2021,
       population_2022,
-      lsoa_to_icb
+      lsoa_to_icb,
+      "soc"
+    )
+  ),
+
+  # Population by age and icb for the CYP report - different age groupings
+  tar_target(
+    cyp_age_by_icb,
+    get_age_totals(
+      population_2017_females,
+      population_2017_males,
+      population_2018_females,
+      population_2018_males,
+      population_2019_females,
+      population_2019_males,
+      population_2020_females,
+      population_2020_males,
+      population_2021,
+      population_2022,
+      lsoa_to_icb,
+      "cyp"
     )
   ),
 
@@ -308,7 +328,9 @@ list(
                dplyr::mutate(der_financial_year =
                                stringr::str_replace_all(der_financial_year,
                                                         "-20",
-                                                        "/"))
+                                                        "/"),
+                             imd_decile = factor(imd_decile,
+                                                 levels = as.character(1:10)))
              ),
 
   # Summary from other extracts
@@ -439,10 +461,20 @@ list(
                             gender_by_icb,
                             "gender")),
   tar_target(age_breakdowns,
-             get_breakdowns(data_for_breakdowns,
+             get_breakdowns(data_for_breakdowns[!grepl("cyp",
+                                                       names(
+                                                         data_for_breakdowns))],
                             type1_arrival_mode,
                             uec_arrival_mode,
                             age_by_icb,
+                            "age_group")),
+  tar_target(cyp_age_breakdowns,
+             get_breakdowns(data_for_breakdowns[grepl("cyp",
+                                                       names(
+                                                         data_for_breakdowns))],
+                            type1_arrival_mode,
+                            uec_arrival_mode,
+                            cyp_age_by_icb,
                             "age_group")),
   tar_target(imd_breakdowns,
              get_breakdowns(data_for_breakdowns,
@@ -532,6 +564,13 @@ list(
     age_plot,
     purrr::map(
       age_breakdowns,
+      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
+    )
+  ),
+  tar_target(
+    cyp_age_plot,
+    purrr::map(
+      cyp_age_breakdowns,
       ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
     )
   ),

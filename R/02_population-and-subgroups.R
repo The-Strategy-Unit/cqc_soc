@@ -86,7 +86,7 @@ remove_welsh_lsoas <- function(data) {
 }
 
 # To wrangle the age data from the population files for 2018, 2019 and 2020:
-wrangle_age_totals_17_20 <- function(data) {
+wrangle_age_totals_17_20 <- function(data, report) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -100,17 +100,9 @@ wrangle_age_totals_17_20 <- function(data) {
     ) |>
     dplyr::mutate(
       age = readr::parse_number(age),
-      age_group = dplyr::case_when(
-        age < 18 ~ "0-17",
-        age < 22 ~ "18-21",
-        age < 40 ~ "22-39",
-        age < 65 ~ "40-64",
-        age < 75 ~ "65-74",
-        age < 120 ~ "75+",
-        .default = "error"
-      ),
       year = year
     ) |>
+    get_age_groups(report) |>
     dplyr::summarise(count = sum(count),
                      .by = c(year, lsoa_code, age_group)) |>
     dplyr::select(year, lsoa_code, age_group, count)
@@ -120,7 +112,7 @@ wrangle_age_totals_17_20 <- function(data) {
 }
 
 # To wrangle the age data from the population files for 2021 and 2022:
-wrangle_age_totals_21_22 <- function(data) {
+wrangle_age_totals_21_22 <- function(data, report) {
   name <- deparse(substitute(data))
 
   year <- name |>
@@ -134,17 +126,9 @@ wrangle_age_totals_21_22 <- function(data) {
     ) |>
     dplyr::mutate(
       age = readr::parse_number(category),
-      age_group = dplyr::case_when(
-        age < 18 ~ "0-17",
-        age < 22 ~ "18-21",
-        age < 40 ~ "22-39",
-        age < 65 ~ "40-64",
-        age < 75 ~ "65-74",
-        age < 120 ~ "75+",
-        .default = "error"
-      ),
       year = year
     ) |>
+    get_age_groups(report) |>
     dplyr::summarise(count = sum(count),
                      .by = c(year, age_group, lsoa_2021_code)) |>
     dplyr::select(year, lsoa_code = lsoa_2021_code, age_group, count)
@@ -164,22 +148,23 @@ get_age_totals <- function(population_2017_females,
                            population_2020_males,
                            population_2021,
                            population_2022,
-                           lsoa_to_icb) {
+                           lsoa_to_icb,
+                           report) {
   # 2023 data not yet available, so currently use 2022:
-  age_totals_2023 <- wrangle_age_totals_21_22(population_2022) |>
+  age_totals_2023 <- wrangle_age_totals_21_22(population_2022, report) |>
     dplyr::mutate(year = "2023")
 
   combined <- rbind(
-    wrangle_age_totals_17_20(population_2017_females),
-    wrangle_age_totals_17_20(population_2017_males),
-    wrangle_age_totals_17_20(population_2018_females),
-    wrangle_age_totals_17_20(population_2018_males),
-    wrangle_age_totals_17_20(population_2019_females),
-    wrangle_age_totals_17_20(population_2019_males),
-    wrangle_age_totals_17_20(population_2020_females),
-    wrangle_age_totals_17_20(population_2020_males),
-    wrangle_age_totals_21_22(population_2021),
-    wrangle_age_totals_21_22(population_2022),
+    wrangle_age_totals_17_20(population_2017_females, report),
+    wrangle_age_totals_17_20(population_2017_males, report),
+    wrangle_age_totals_17_20(population_2018_females, report),
+    wrangle_age_totals_17_20(population_2018_males, report),
+    wrangle_age_totals_17_20(population_2019_females, report),
+    wrangle_age_totals_17_20(population_2019_males, report),
+    wrangle_age_totals_17_20(population_2020_females, report),
+    wrangle_age_totals_17_20(population_2020_males, report),
+    wrangle_age_totals_21_22(population_2021, report),
+    wrangle_age_totals_21_22(population_2022, report),
     age_totals_2023
   ) |>
     remove_welsh_lsoas() |>
@@ -188,6 +173,35 @@ get_age_totals <- function(population_2017_females,
     dplyr::select(fin_year, icb_code, age_group, count)
 
   return(combined)
+}
+
+
+
+
+
+get_age_groups <- function(data, report) {
+  if (report == "soc") {
+    data_age_grouped <- data |>
+      dplyr::mutate(
+        age_group = dplyr::case_when(
+          age < 18 ~ "0-17",
+          age < 22 ~ "18-21",
+          age < 40 ~ "22-39",
+          age < 65 ~ "40-64",
+          age < 75 ~ "65-74",
+          age < 120 ~ "75+",
+          .default = "error"
+        )
+      )
+  } else if (report == "cyp") {
+    data_age_grouped <- data |>
+      dplyr::mutate(age_group = dplyr::case_when(
+        age < 18 ~ "0-17",
+        age < 22 ~ "18-24",
+        .default = "error"))
+  }
+
+  return(data_age_grouped)
 }
 
 # To wrangle the population data from the population files for 2018, 2019 and

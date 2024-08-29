@@ -103,13 +103,13 @@ tar_read(gender_breakdowns)$cyp_redetentions |>
 ```{r redetentions_age_plot}
 #| label: fig-redetentions-age
 #| fig-cap: Rates per 100,000 population of the number of MHA redetentions by age group.
-tar_read(age_plot)$cyp_redetentions
+tar_read(cyp_age_plot)$cyp_redetentions
 ```
 
 ###### Table
 
 ```{r redetentions_age_table}
-tar_read(age_breakdowns)$cyp_redetentions |>
+tar_read(cyp_age_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("age_group")
 ```
