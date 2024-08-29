@@ -29,12 +29,13 @@ create_dt <- function(x) {
 }
 
 # To get a standard table for the breakdowns:
-get_standard_table_for_breakdowns <- function(data, group){
+get_standard_table_for_breakdowns <- function(data, group = ""){
 
   table <- data |>
-    dplyr::select(1:7) |>
+    dplyr::select(tidyselect::any_of(c("icb_name", "der_financial_year", group, "attends", "calls", "pop", "count", "value", "lowercl", "uppercl"))) |>
     dplyr::arrange(!!rlang::sym(group), der_financial_year) |>
-    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2)))
+    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
+    create_dt()
 
   return(table)
 }
@@ -62,18 +63,6 @@ get_quantiles_and_mean <- function(data) {
                      mean = mean(value),
                      .by = der_financial_year) |>
     dplyr::arrange(der_financial_year) |>
-    create_dt()
-
-  return(table)
-}
-
-
-get_standard_table <- function(data){
-
-  table <- data |>
-    dplyr::select(1:6) |>
-    dplyr::arrange(der_financial_year) |>
-    dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
     create_dt()
 
   return(table)

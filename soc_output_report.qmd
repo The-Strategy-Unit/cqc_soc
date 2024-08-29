@@ -42,7 +42,7 @@ source("R/quarto_formatting.R")
 
 ## Introduction
 
-The care quality commission (CQC) are looking to supplement their State of Care (SOC) report with relevant additional data and analysis. The latest state of care report can be found here <https://www.cqc.org.uk/publications/major-report/state-care/2022-2023>.
+The Care Quality Commission (CQC) are looking to supplement their State of Care (SOC) report with relevant additional data and analysis. The latest state of care report can be found here <https://www.cqc.org.uk/publications/major-report/state-care/2022-2023>.
 
 One of the key areas of interest is around perceived 'system failure' as measured by inappropriate or avoidable attendance to urgent and emergency care settings for people with mental health problems.
 
@@ -109,9 +109,9 @@ While the majority of these patients are known to mental health providers, a sub
 
 ### Calls to NHS 111:
 
--   In 2023/24 there were around 33 million calls to NHS 111 services across England, of which 220,000 had a primary reason of mental health condition.
+-   In 2021/22 there were around 33 million calls to NHS 111 services across England, of which 220,000 had a primary reason of mental health condition.
 -   These MH specific calls cost £2.7m (not including ambulatory costs).
--   The 5 most common calls are related to worsening of known mental health issues. Suicide-related symptoms account for around 30% of all calls.
+-   The 5 most common calls with a mental health primary complaint were related to worsening of known mental health issues. Suicide-related symptoms account for around 30% of all calls.
 -   Around 85% of these patients calling NHS 111 with mental health issues are known to mental health services.
 -   Patients presenting with MH issues are slightly more likely to call in the early morning and early evening.
 -   More than 1 in 3 patients calling NHS 111 (34%) with primary mental health complaint are referred on to A&E department compared with only 11% with a physical complaint and this disparity is growing.
@@ -421,8 +421,7 @@ tar_read(icb_ed_map_2324)
 tar_read(icb_rates_ed) |> 
   filter(der_financial_year == '2023/24') |>
   dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
-  dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
-  get_standard_table()
+  get_standard_table_for_breakdowns()
 ```
 :::
 
@@ -442,7 +441,7 @@ tar_read(avg_type1_mh_attends_rate_plot)
 
 ```{r }
 tar_read(avg_type1_mh_attends_rate) |>
-  get_standard_table()
+  get_standard_table_for_breakdowns()
 ```
 :::
 
@@ -461,8 +460,7 @@ tar_read(gender_plot)$type1_mh_attends
 
 ```{r type1_attends_gender_table}
 tar_read(gender_breakdowns)$type1_mh_attends |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
+  get_standard_table_for_breakdowns("gender")
 ```
 :::
 
@@ -481,8 +479,7 @@ tar_read(age_plot)$type1_mh_attends
 
 ```{r type1_attends_age_table}
 tar_read(age_breakdowns)$type1_mh_attends |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
+  get_standard_table_for_breakdowns("age_group")
 ```
 :::
 
@@ -501,8 +498,7 @@ tar_read(ethnic_plot)$type1_mh_attends
 
 ```{r type1_attends_ethnic_table}
 tar_read(ethnic_breakdowns)$type1_mh_attends |>
-  get_standard_table_for_breakdowns("ethnic_category") |>
-  create_dt()
+  get_standard_table_for_breakdowns("ethnic_category")
 ```
 :::
 
@@ -529,8 +525,7 @@ tar_read(ae_attends_imd)
 
 ```{r type1_attends_imd_table}
 tar_read(imd_breakdowns)$type1_mh_attends |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
+  get_standard_table_for_breakdowns("imd_decile")
 ```
 :::
 
@@ -549,8 +544,7 @@ tar_read(rural_plot)$type1_mh_attends
 
 ```{r type1_attends_rural_table}
 tar_read(rural_breakdowns)$type1_mh_attends |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
+  get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
 :::
@@ -755,8 +749,7 @@ tar_read(icb_uec_map_2324)
 tar_read(icb_rates_uec) |> 
   filter(der_financial_year == '2023/24') |>
   dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
-  dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
-  get_standard_table()
+  get_standard_table_for_breakdowns()
 ```
 :::
 
@@ -776,7 +769,7 @@ tar_read(avg_uec_mh_attends_rate_plot)
 
 ```{r }
 tar_read(avg_uec_mh_attends_rate) |>
-  get_standard_table()
+  get_standard_table_for_breakdowns()
 ```
 :::
 
@@ -795,8 +788,7 @@ tar_read(gender_plot)$uec_mh_attends
 
 ```{r uec_attends_gender_table}
 tar_read(gender_breakdowns)$uec_mh_attends |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
+  get_standard_table_for_breakdowns("gender")
 ```
 :::
 
@@ -815,8 +807,7 @@ tar_read(age_plot)$uec_mh_attends
 
 ```{r uec_attends_age_table}
 tar_read(age_breakdowns)$uec_mh_attends |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
+  get_standard_table_for_breakdowns("age_group")
 ```
 :::
 
@@ -835,8 +826,7 @@ tar_read(ethnic_plot)$uec_mh_attends
 
 ```{r uec_attends_ethnic_table}
 tar_read(ethnic_breakdowns)$uec_mh_attends |>
-  get_standard_table_for_breakdowns("ethnic_category") |>
-  create_dt()
+  get_standard_table_for_breakdowns("ethnic_category")
 ```
 :::
 
@@ -863,8 +853,7 @@ tar_read(uec_attends_imd)
 
 ```{r uec_attends_imd_table}
 tar_read(imd_breakdowns)$uec_mh_attends |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
+  get_standard_table_for_breakdowns("imd_decile")
 ```
 :::
 
@@ -885,8 +874,7 @@ tar_read(rural_plot)$uec_mh_attends
 #| label: tbl-uec-attends-rural
 #| tbl-cap: Rates per 100,000 population of the number of Mental Health UEC attendances by rural and urban populations.
 tar_read(rural_breakdowns)$uec_mh_attends |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
+  get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
 :::
@@ -1091,10 +1079,8 @@ tar_read(icb_111_map_2122)
 tar_read(nhs111_mh_calls_rate) |> 
   filter(der_financial_year == '2020/21') |>
   dplyr::left_join(tar_read(icb_codes_names), "icb_code") |>
-  dplyr::select(icb_name, der_financial_year, attends, pop, value, lowercl) |>
-  dplyr::arrange(der_financial_year) |>
-  dplyr::mutate(across(where(is.numeric), ~janitor::round_half_up(., 2))) |>
-  create_dt()
+  dplyr::rename(calls = attends) |>
+  get_standard_table_for_breakdowns()
 ```
 :::
 
@@ -1115,7 +1101,7 @@ tar_read(avg_nhs111_mh_calls_rate_plot)
 ```{r }
 tar_read(avg_nhs111_mh_calls_rate) |>
   dplyr::rename(calls = attends) |>
-  get_standard_table()
+  get_standard_table_for_breakdowns()
 ```
 :::
 
@@ -1135,8 +1121,7 @@ tar_read(gender_plot)$nhs111_mh_calls
 ```{r nhs111_calls_gender_table}
 tar_read(gender_breakdowns)$nhs111_mh_calls |>
   dplyr::rename(calls = attends) |>
-  get_standard_table_for_breakdowns("gender") |>
-  create_dt()
+  get_standard_table_for_breakdowns("gender")
 ```
 :::
 
@@ -1156,8 +1141,7 @@ tar_read(age_plot)$nhs111_mh_calls
 ```{r nhs111_calls_age_table}
 tar_read(age_breakdowns)$nhs111_mh_calls |>
   dplyr::rename(calls = attends) |>
-  get_standard_table_for_breakdowns("age_group") |>
-  create_dt()
+  get_standard_table_for_breakdowns("age_group")
 ```
 :::
 
@@ -1185,8 +1169,7 @@ tar_read(nhs111_calls_imd)
 ```{r nhs111_calls_imd_table}
 tar_read(imd_breakdowns)$nhs111_mh_calls |>
   dplyr::rename(calls = attends) |>
-  get_standard_table_for_breakdowns("imd_decile") |>
-  create_dt()
+  get_standard_table_for_breakdowns("imd_decile")
 ```
 :::
 
@@ -1206,8 +1189,7 @@ tar_read(rural_plot)$nhs111_mh_calls
 ```{r nhs111_calls_rural_table}
 tar_read(rural_breakdowns)$nhs111_mh_calls |>
   dplyr::rename(calls = attends) |>
-  get_standard_table_for_breakdowns("rural_urban") |>
-  create_dt()
+  get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
 :::
