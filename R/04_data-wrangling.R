@@ -415,3 +415,19 @@ get_icb_breakdown_table_111 <- function(data, key){
 
   return(table)
 }
+
+# Redetentions -----------------------------------------------------------------
+
+get_icb_breakdown_table_redetentions <- function(data, key){
+  table <- data |>
+    dplyr::left_join(key, "icb_code") |>
+    dplyr::select("ICB" = icb_name, der_financial_year, value) |>
+    dplyr::mutate(value = janitor::round_half_up(value, 2)) |>
+    dplyr::arrange(der_financial_year) |>
+    tidyr::pivot_wider(names_from = der_financial_year,
+                       values_from = value) |>
+    dplyr::arrange(desc(`2022/23`)) |>
+    create_dt()
+
+  return(table)
+}
