@@ -452,8 +452,8 @@ list(
   ## ED waiting times ----------------------------------------------------------
   tar_target(ae_times_assess, get_ed_times_assess(ae_times)),
   tar_target(ae_times_treat, get_ed_times_treat(ae_times)),
-  tar_target(ae_times_conclude, get_ed_times_treat(ae_times)),
-  tar_target(ae_times_depart, get_ed_times_treat(ae_times)),
+  tar_target(ae_times_conclude, get_ed_times_conclude(ae_times)),
+  tar_target(ae_times_depart, get_ed_times_depart(ae_times)),
   tar_target(ae_times_table,
              get_ae_times_table(ae_times_assess,
                                 ae_times_treat,
