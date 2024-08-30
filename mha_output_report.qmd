@@ -48,18 +48,33 @@ source("R/quarto_formatting.R")
 
 ## Detailed analysis
 
-### Re-detentions
+### Mental Health Act Re-detentions
+
+The number of Mental Health Act (MHA) Re-detentions within 12 months is defined as the number of subsequent MHA detention end-dates within 365 days of the first MHA detention end-date in a financial year.
+
+For example, if a patient was detained under the MHA on the following dates:
+
+  2024-04-05 \
+  2024-08-07 \
+  2025-04-02 \
+  2025-04-16 \
+
+Then the number of re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively.  
 
 ```{r}
-redet <- tar_read(cyp_redetentions)
+redet <- tar_read(cyp_redetentions) |>
+  dplyr::rename(redetentions = attends)
 ```
 
+The number of MHA re-detentions within 12 months has increased over time (@fig-redetentions-mh) and varies by ICB (@tbl-redetentions).
+
 ::: panel-tabset
+
 ##### Overview
 
 ```{r}
 #| label: fig-redetentions-mh
-#| fig-cap: Number of MHA redetentions withiin 12 months over time.
+#| fig-cap: Number of MHA redetentions within 12 months over time.
 tar_read(cyp_redetentions_boxplot) +
   ggplot2::labs(title = "Number of MHA redetentions within 12 months over time",
                 subtitle = "England 2019/20 to 2022/23 by ICB.",
