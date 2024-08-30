@@ -1,0 +1,29 @@
+﻿LegalStatusCode,Legal_Status_Desc,legal_status_short,count,perc
+02,02: Formally detained under mental health act section 2,section 2,34942,41.6%
+20,20: Formally detained under mental health act section 136,section 136,19752,23.5%
+03,03: Formally detained under mental health act section 3,section 3,18349,21.8%
+05,05: Formally detained under mental health act section 5(2),section 5(2),7494,8.9%
+06,06: Formally detained under mental health act section 5(4),section 5(4),1367,1.6%
+98,98: Not applicable,N/A,425,0.5%
+32,32: Formally detained under other acts,other section,332,0.4%
+10,10: Formally detained under mental health act section 37,section 37,321,0.4%
+19,19: Formally detained under mental health act section 135,section 135,254,0.3%
+01,01: Informal,informal,186,0.2%
+12,12: Formally detained under mental health act section 38,section 38,132,0.2%
+04,04: Formally detained under mental health act section 4,section 4,130,0.2%
+99,99: Not known,unknown,85,0.1%
+NULL,NULL,unknown,82,0.1%
+16,16: Formally detained under mental health act section 47,section 47,39,0.0%
+07,07: Formally detained under mental health act section 35,section 35,20,0.0%
+17,17: Formally detained under mental health act section 48 with section 49 restrictions,section 48 (49 restr),18,0.0%
+08,08: Formally detained under mental health act section 36,section 36,17,0.0%
+37,37: Formally detained under Mental Health Act Section 45A (Limited direction in force),section 45A,16,0.0%
+15,15: Formally detained under mental health act section 47 with section 49 restrictions,section 47 (49 restr),10,0.0%
+35,35: Subject to guardianship under mental health act section 7,section 7,6,0.0%
+09,09: Formally detained under mental health act section 37 with section 41 restrictions,section 37 (41 restr),2,0.0%
+CT,NULL,unknown,2,0.0%
+XX,NULL,unknown,2,0.0%
+47,NULL,unknown,2,0.0%
+46,NULL,unknown,1,0.0%
+18,18: Formally detained under mental health act section 48,section 48,1,0.0%
+36,36: Subject to guardianship under mental health act section 37,section 37,1,0.0%
