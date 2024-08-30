@@ -29,7 +29,11 @@ SELECT
 		WHEN LEFT([EthnicCategory], 1) IN ('H','J','K','L') THEN 'asian'
 		WHEN LEFT([EthnicCategory], 1) IN ('M','N','P') THEN 'black'
 		WHEN LEFT([EthnicCategory], 1) IN ('R','S') THEN 'other'
-		ELSE NULL END AS Ethnic_Category
+		ELSE NULL END AS Ethnic_Category,
+	CASE
+		WHEN LegalStatusCode = '01' THEN 'Informal'
+		WHEN LegalStatusCode IN ('98', '99', 'XX', NULL) THEN 'Not known'
+		ELSE 'Formal' END AS legal_status
 
 INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
 
@@ -57,26 +61,26 @@ SELECT
 	ICB23CD,
 	fin_year,
 	der_spell_id,
-	gender, Ethnic_Category, imd_2019_decile, age_group
+	gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
 
 INTO #1
 
 FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
 
-GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group
+GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
 
 SELECT
 	ICB23CD,
 	fin_year,
 	der_spell_id,
-	gender, Ethnic_Category, imd_2019_decile, age_group,
+	gender, Ethnic_Category, imd_2019_decile, age_group, legal_status,
 	SUM(CASE WHEN der_spell_id2 IS NULL THEN 0 ELSE 1 END) AS redetentions
 
 INTO #2
 
 FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
 
-GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group
+GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
 
 SELECT
 	a.*,
@@ -94,7 +98,7 @@ LEFT OUTER JOIN #2 b
 SELECT
 	ICB23CD,
 	fin_year,
-	gender, Ethnic_Category, imd_2019_decile, age_group,
+	gender, Ethnic_Category, imd_2019_decile, age_group, legal_status,
 	COUNT(distinct der_spell_id) AS detentions,
 	SUM(redetentions) AS redetentions
 
@@ -102,7 +106,7 @@ INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions_agg
 
 FROM #3
 
-GROUP BY ICB23CD, fin_year, gender, Ethnic_Category, imd_2019_decile, age_group
+GROUP BY ICB23CD, fin_year, gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
 
 ORDER BY ICB23CD, fin_year
 

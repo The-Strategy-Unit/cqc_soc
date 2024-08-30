@@ -101,10 +101,55 @@ tar_read(cyp_redetentions_perc_table) |>
 
 :::
 
+#### Formal and Informal Mental Health Act Re-detentions
+
+```{r}
+legal_status_22_23 <- tar_read(cyp_redetentions_legal_status) |>
+  dplyr::filter(der_financial_year == "2022/23") |>
+  dplyr::mutate(perc = 100 * value)
+
+formal_legal_status_22_23 <- legal_status_22_23 |>
+  dplyr::filter(legal_status == "Formal") |>
+  dplyr::pull(perc) |>
+  janitor::round_half_up(2)
+
+informal_legal_status_22_23 <- legal_status_22_23 |>
+  dplyr::filter(legal_status == "Informal") |>
+  dplyr::pull(perc) |>
+  janitor::round_half_up(2)
+```
+
+The percentage of re-detentions within 12 months where the legal status of the first MHA detention was informal is consistently lower than when the legal status was formal or unknown (@fig-redetentions-status). In 2022/23, `r formal_legal_status_22_23`% of formal MHA detentions had re-detentions, compared to `r informal_legal_status_22_23`% of informal MHA detentions.
+
 ::: panel-tabset
+
+##### Chart
+```{r}
+#| label: fig-redetentions-status
+#| fig-cap: Percentage of redetentions within 12 months by legal status.
+tar_read(cyp_redetentions_legal_status_plot)
+```
+
+##### Table
+```{r}
+#| label: tbl-redetentions-status
+#| tbl-cap: Percentage of redetentions within 12 months by legal status.
+tar_read(cyp_redetentions_legal_status) |>
+  dplyr::rename(redetentions = attends,
+                perc = value) |>
+  create_dt()
+```
+
+:::
+
+#### Rates of Mental Health Act Re-detentions
+
+::: panel-tabset
+
 ##### Overview
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r}
@@ -120,11 +165,13 @@ tar_read(cyp_avg_redetentions_rate) |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns()
 ```
+
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r redetentions_gender_plot}
@@ -140,11 +187,13 @@ tar_read(gender_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("gender")
 ```
+
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r redetentions_age_plot}
@@ -160,11 +209,13 @@ tar_read(cyp_age_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("age_group")
 ```
+
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r redetentions_ethnic_plot}
@@ -180,11 +231,13 @@ tar_read(ethnic_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("ethnic_category")
 ```
+
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
+
 ###### Chart1
 
 ```{r redetentions_imd_plot}
@@ -208,6 +261,7 @@ tar_read(imd_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("imd_decile")
 ```
+
 :::
 
 
