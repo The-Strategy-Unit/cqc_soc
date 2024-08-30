@@ -65,6 +65,8 @@ SELECT
     COUNT(UniqWardStayID) AS wardstay_count,
     COUNT(Der_Person_ID) AS person_ID_count
 
+INTO #2
+
 FROM #1
 
 WHERE --AgeRepPeriodStart < 25
@@ -98,6 +100,77 @@ GROUP BY
 ORDER BY
 	--mean_distance,
 	wardstay_count DESC
+
+
+--## Aggregate tables for extracts
+SELECT
+	ICB23CD,
+	ICB23NM,
+	fin_year,
+	gender_desc,
+	Ethnic_Category,
+	imd_2019_decile,
+	age_group,
+	SUM(mean_distance) AS Travel_distance
+
+--INTO #3
+
+FROM #2
+
+GROUP BY
+	ICB23CD,
+	ICB23NM,
+	fin_year,
+	gender_desc,
+	Ethnic_Category,
+	imd_2019_decile,
+	age_group
+
+--Test
+SELECT
+	ICB23CD,
+	ICB23NM,
+	fin_year,
+	avg(mean_distance) AS Average_travel_distance,
+	sum(mean_distance) AS Total_travel_distance,
+	count(*) AS count_records_IGcheck
+--INTO #4
+FROM #2
+GROUP BY
+	ICB23CD,
+	ICB23NM,
+	fin_year
+ORDER BY
+	--mean_distance,
+	count_records_IGcheck --,
+	--Average_travel_distance DESC
+
+SELECT
+--	ICB23CD,
+--	ICB23NM,
+	fin_year,
+	gender_desc,
+--	Ethnic_Category,
+--	imd_2019_decile,
+--	age_group,
+	avg(mean_distance) AS Average_travel_distance,
+	sum(mean_distance) AS Total_travel_distance,
+	count(*) AS count_records_IGcheck
+--INTO #4
+FROM #2
+GROUP BY
+--	ICB23CD,
+--	ICB23NM,
+	fin_year,
+	gender_desc
+--	Ethnic_Category,
+--	imd_2019_decile,
+--	age_group,
+
+ORDER BY
+	--mean_distance,
+	count_records_IGcheck --,
+	--Average_travel_distance DESC
 
 --## clean up
 DROP TABLE #1
