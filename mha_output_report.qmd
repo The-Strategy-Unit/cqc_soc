@@ -50,7 +50,7 @@ source("R/quarto_formatting.R")
 
 ### Mental Health Act Re-detentions
 
-The number of Mental Health Act (MHA) Re-detentions within 12 months is defined as the number of subsequent MHA detention end-dates within 365 days of the first MHA detention end-date in a financial year.
+The number of Mental Health Act (MHA) re-detentions within 12 months is defined as the number of subsequent MHA detention end-dates within 365 days of the first MHA detention end-date in a financial year.
 
 For example, if a patient was detained under the MHA on the following dates:
 
@@ -59,14 +59,14 @@ For example, if a patient was detained under the MHA on the following dates:
   2025-04-02 \
   2025-04-16 \
 
-Then the number of re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively.  
+Then the number of MHA re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively. The percentage of re-detentions within 12 months for financial years 2024/25 and 2025/26 would be 100% and 50%, respectively.
 
 ```{r}
 redet <- tar_read(cyp_redetentions) |>
   dplyr::rename(redetentions = attends)
 ```
 
-The number of MHA re-detentions within 12 months has increased over time (@fig-redetentions-mh) and varies by ICB (@tbl-redetentions).
+About half of MHA detentions are re-detentions (@fig-redetentions-mh) but this varies by ICB (@tbl-redetentions).
 
 ::: panel-tabset
 
@@ -74,19 +74,18 @@ The number of MHA re-detentions within 12 months has increased over time (@fig-r
 
 ```{r}
 #| label: fig-redetentions-mh
-#| fig-cap: Number of MHA redetentions within 12 months over time.
-tar_read(cyp_redetentions_boxplot) +
-  ggplot2::labs(title = "Number of MHA redetentions within 12 months over time",
-                subtitle = "England 2019/20 to 2022/23 by ICB.",
-                y = "Number")
+#| fig-cap: Percentage of redetentions within 12 months.
+tar_read(cyp_redetentions_perc_boxplot) +
+  ggplot2::labs(title = "Percentage of redetentions within 12 months",
+                subtitle = "England 2019/20 to 2022/23 by ICB.")
 ```
 
 ##### Summary
 
 ```{r}
 #| label: tbl-redetentions-summary
-#| tbl-cap: Summary of number of MHA redetentions within 12 months over time.
-tar_read(cyp_redetentions_number) |>
+#| tbl-cap: Summary of percentage of redetentions within 12 months.
+tar_read(cyp_redetentions_perc) |>
   get_quantiles_and_mean()
 ```
 
@@ -94,10 +93,10 @@ tar_read(cyp_redetentions_number) |>
 
 ```{r}
 #| label: tbl-redetentions
-#| tbl-cap: Number of MHA redetentions within 12 months by ICB.
-tar_read(cyp_redetentions_number_table) |>
+#| tbl-cap: Percentage of redetentions within 12 months by ICB.
+tar_read(cyp_redetentions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
-                 seq(0, 600, 85))
+                 seq(0, 0.9, 0.125))
 ```
 
 :::
@@ -118,6 +117,7 @@ tar_read(cyp_avg_redetentions_rate_plot)
 
 ```{r }
 tar_read(cyp_avg_redetentions_rate) |>
+  dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns()
 ```
 :::
