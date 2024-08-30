@@ -2,14 +2,14 @@
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions]
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions_agg]
 
--- Getting redetentionsissions
+-- Getting redetentions
 SELECT
 	a.Der_person_ID,
 	der_spell_id,
 	StartDateMHActLegalStatusClass,
 	pseudo_EndDateMHActLegalStatusClass,
 	ICB23CD,
-	CAST(YEAR(DATEADD(MONTH, -3, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
+	CAST(YEAR(DATEADD(MONTH, -3, a.pseudo_EndDateMHActLegalStatusClass)) AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
 	b.der_spell_id2,
 	b.StartDateMHActLegalStatusClass2,
 	b.pseudo_EndDateMHActLegalStatusClass2,
@@ -20,15 +20,15 @@ SELECT
 		ELSE NULL END AS age_group,
       imd_2019_decile,
       CASE
-		WHEN a.[gENDer] = '1' THEN 'male'
-		WHEN a.[gENDer] = '2' THEN 'female'
-		ELSE NULL END AS gENDer,
+		WHEN a.[gender] = '1' THEN 'male'
+		WHEN a.[gender] = '2' THEN 'female'
+		ELSE NULL END AS gender,
       CASE
-		WHEN LEFT([EthnicCategory],1) IN ('A','B','C') THEN 'white'
-		WHEN LEFT([EthnicCategory],1) IN ('D','E','F','G') THEN 'mixed'
-		WHEN LEFT([EthnicCategory],1) IN ('H','J','K','L') THEN 'asian'
-		WHEN LEFT([EthnicCategory],1) IN ('M','N','P') THEN 'black'
-		WHEN LEFT([EthnicCategory],1) IN ('R','S') THEN 'other'
+		WHEN LEFT([EthnicCategory], 1) IN ('A','B','C') THEN 'white'
+		WHEN LEFT([EthnicCategory], 1) IN ('D','E','F','G') THEN 'mixed'
+		WHEN LEFT([EthnicCategory], 1) IN ('H','J','K','L') THEN 'asian'
+		WHEN LEFT([EthnicCategory], 1) IN ('M','N','P') THEN 'black'
+		WHEN LEFT([EthnicCategory], 1) IN ('R','S') THEN 'other'
 		ELSE NULL END AS Ethnic_Category
 
 INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_redetentions
@@ -42,15 +42,17 @@ LEFT OUTER JOIN(SELECT
 					pseudo_EndDateMHActLegalStatusClass AS pseudo_EndDateMHActLegalStatusClass2
 
 				FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
+
+				WHERE mha_spell_start_flag_final = 1
 				) b
 	ON a.Der_person_ID = b.Der_person_ID
 	AND DATEDIFF(dd, a.pseudo_EndDateMHActLegalStatusClass, b.StartDateMHActLegalStatusClass2) BETWEEN 0 AND 365
 
-WHERE a.AgeRepPeriodStart < 25 -- Would this be right?
+WHERE a.AgeRepPeriodStart < 25
 	AND a.mha_spell_end_flag_final = 1
 	AND a.pseudo_EndDateMHActLegalStatusClass < '2023-04-01'
 
---## Now aggregating and making binary indicator for redetentionsission
+--## Now aggregating and making binary indicator for redetention
 SELECT
 	ICB23CD,
 	fin_year,
