@@ -54,7 +54,7 @@ LEFT OUTER JOIN(SELECT
 
 WHERE a.AgeRepPeriodStart < 25
 	AND a.mha_spell_end_flag_final = 1
-	AND a.pseudo_EndDateMHActLegalStatusClass < '2023-04-01'
+	AND a.pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2023-03-31'
 
 --## Now aggregating and making binary indicator for redetention
 SELECT

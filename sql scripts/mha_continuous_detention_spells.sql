@@ -1,8 +1,8 @@
 USE NHSE_MHSDS
 GO
 
-IF OBJECT_ID('[NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full', 'U') IS NOT NULL 
-  DROP TABLE [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full; 
+IF OBJECT_ID('[NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full', 'U') IS NOT NULL
+  DROP TABLE [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full;
 
 ----## find a complex patient to test on
 
@@ -37,14 +37,12 @@ SELECT [MHS401UniqID]
       ,[NHSDLegalStatus]
       ,[InactTimeMHAPeriod]
       ,[NHSEUniqSubmissionID]
-      ,[Effective_From]
       ,[Der_Person_ID]
- 
+
  into #1
  FROM [NHSE_MHSDS].[dbo].[MHS401MHActPeriod]
 
-  where Effective_From is not NULL --'live' records only
-  and StartDateMHActLegalStatusClass >= '2005-01-01' -- detentions last 20 years only
+  where StartDateMHActLegalStatusClass >= '2005-01-01' -- detentions last 20 years only
   and (ExpiryDateMHActLegalStatusClass is not NULL OR EndDateMHActLegalStatusClass is not NULL) -- must have an end or expiry date
   and (left(ExpiryDateMHActLegalStatusClass,4) != '9999' AND left(EndDateMHActLegalStatusClass,4) != '9999' )  -- both invalid expiry/end dates
 
@@ -53,7 +51,7 @@ SELECT [MHS401UniqID]
   ----## Step to remove duplicates where multiple start and end dates
 
 Select a.*
-into #1b 
+into #1b
 from #1 a
 inner join(
 		select der_person_id, StartDateMHActLegalStatusClass, EndDateMHActLegalStatusClass, max(MHS401UniqID) as max_uniqid
@@ -100,16 +98,16 @@ left outer join (select UniqMHActEpisodeID, max(rownum) as max_rownum
 
 into #4
 from #3
-where rownum = 1 
+where rownum = 1
 order by startdateMHActLegalStatusClass, pseudo_enddate
 
 ----## Identify isolated and connected MHA episodes, add consecutive ID for episodes (proxy for patient spell)
 Select *
-, ROW_NUMBER() over (PARTITION BY der_person_id ORDER BY startdateMHActLegalStatusClass, pseudo_enddate) as pat_row_id 
+, ROW_NUMBER() over (PARTITION BY der_person_id ORDER BY startdateMHActLegalStatusClass, pseudo_enddate) as pat_row_id
 , case
 	when der_person_id != [lag_person_id] then 1
 	when der_person_id = [lag_person_id] AND startdateMHActLegalStatusClass > lag_enddate then 1 else 0 end as mha_spell_start_flag
-	
+
 , case
 	when der_person_id = [lead_person_id] AND pseudo_enddate < lead_startdate then 1
 	when der_person_id != [lead_person_id] then 1 else 0 end as mha_spell_end_flag
@@ -147,9 +145,9 @@ from #6
 where mha_spell_start_flag_final=1 OR (mha_spell_start_flag_final=0 AND mha_spell_end_flag_final = 1)
 
 select a.*
-,case when a.mha_spell_start_flag_final = 1 AND a.mha_spell_end_flag_final = 1 then a.[pat_row_id] else b.[pat_row_id] end as [end_rowid] 
+,case when a.mha_spell_start_flag_final = 1 AND a.mha_spell_end_flag_final = 1 then a.[pat_row_id] else b.[pat_row_id] end as [end_rowid]
 into #8
-from #7 A 
+from #7 A
 left outer join #7 B
 on A.Der_Person_ID = b.Der_Person_ID
 and
