@@ -431,3 +431,13 @@ get_icb_breakdown_table_redetentions <- function(data, key){
 
   return(table)
 }
+
+get_perc_redetentions <- function(data, group){
+  perc <- data |>
+    dplyr::summarise(detentions = sum(detentions),
+                     attends = sum(attends),
+                     .by = c(der_financial_year, !!rlang::sym(group))) |>
+    dplyr::mutate(value = attends / detentions)
+
+  return(perc)
+}
