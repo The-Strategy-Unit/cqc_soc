@@ -360,22 +360,3 @@ get_avg_mh_attends_rate_plot <- function(data){
 
   return(plot)
 }
-
-get_redetentions_legal_status_plot <- function(data){
-  plot <- data |>
-    ggplot2::ggplot(ggplot2::aes(
-      x = der_financial_year,
-      y = value,
-      fill = as.factor(legal_status)
-    )) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::scale_fill_manual(values = c("#333739", "#f9bf07", "#5881c1"), name = "MH presentation") +
-    ggplot2::theme_minimal() +
-    ggplot2::labs(
-      x = "Financial year",
-      y = "Percent",
-      title = "Percentage of MHA re-detentions by legal status"
-    )
-
-  return(plot)
-}

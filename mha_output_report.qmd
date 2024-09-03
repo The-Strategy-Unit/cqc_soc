@@ -52,7 +52,7 @@ source("R/quarto_formatting.R")
 
 The number of Mental Health Act (MHA) re-detentions within 12 months is defined as the number of subsequent MHA detention end-dates within 365 days of the first MHA detention end-date in a financial year.
 
-For example, if a patient was detained under the MHA on the following dates:
+For example, if a patient had the following MHA detention end dates:
 
   2024-04-05 \
   2024-08-07 \
@@ -103,44 +103,23 @@ tar_read(cyp_redetentions_perc_table) |>
 
 #### Formal and Informal Mental Health Act Re-detentions
 
+The majority or MHA re-detentions are formal with less than 1% being informal
+or unknown.
+
 ```{r}
-legal_status_22_23 <- tar_read(cyp_redetentions_legal_status) |>
-  dplyr::filter(der_financial_year == "2022/23") |>
-  dplyr::mutate(perc = 100 * value)
+cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
+  dplyr::summarise(redetentions = sum(attends), .by = c(legal_status, 
+                                                         der_financial_year)) |>
+  dplyr::mutate(perc = janitor::round_half_up(redetentions / sum(redetentions), 4), 
+                .by = der_financial_year) 
 
-formal_legal_status_22_23 <- legal_status_22_23 |>
-  dplyr::filter(legal_status == "Formal") |>
-  dplyr::pull(perc) |>
-  janitor::round_half_up(2)
-
-informal_legal_status_22_23 <- legal_status_22_23 |>
-  dplyr::filter(legal_status == "Informal") |>
-  dplyr::pull(perc) |>
-  janitor::round_half_up(2)
-```
-
-The percentage of re-detentions within 12 months where the legal status of the first MHA detention was informal is consistently lower than when the legal status was formal or unknown (@fig-redetentions-status). In 2022/23, `r formal_legal_status_22_23`% of formal MHA detentions had re-detentions, compared to `r informal_legal_status_22_23`% of informal MHA detentions.
-
-::: panel-tabset
-
-##### Chart
-```{r}
-#| label: fig-redetentions-status
-#| fig-cap: Percentage of redetentions within 12 months by legal status.
-tar_read(cyp_redetentions_legal_status_plot)
-```
-
-##### Table
-```{r}
-#| label: tbl-redetentions-status
-#| tbl-cap: Percentage of redetentions within 12 months by legal status.
-tar_read(cyp_redetentions_legal_status) |>
-  dplyr::rename(redetentions = attends,
-                perc = value) |>
+cyp_redetentions_legal_status_perc |>
+  dplyr::select(-perc) |>
+  tidyr::pivot_wider(names_from = legal_status, values_from = redetentions) |>
   create_dt()
 ```
 
-:::
+
 
 #### Rates of Mental Health Act Re-detentions
 
