@@ -54,10 +54,10 @@ The number of Mental Health Act (MHA) re-detentions within 12 months is defined 
 
 For example, if a patient had the following MHA detention end dates:
 
-  2024-04-05 \
-  2024-08-07 \
-  2025-04-02 \
-  2025-04-16 \
+2024-04-05\
+2024-08-07\
+2025-04-02\
+2025-04-16\
 
 Then the number of MHA re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively. The percentage of re-detentions within 12 months for financial years 2024/25 and 2025/26 would be 100% and 50%, respectively.
 
@@ -80,7 +80,6 @@ tar_read(cyp_redetentions) |>
 ```
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r}
@@ -109,13 +108,13 @@ tar_read(cyp_redetentions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
                  seq(0, 0.9, 0.125))
 ```
-
 :::
 
 #### Formal and Informal Mental Health Act Re-detentions
 
 The majority or MHA re-detentions are formal with less than 1% being informal
 or unknown.
+
 
 ```{r}
 cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
@@ -131,7 +130,6 @@ cyp_redetentions_legal_status_perc |>
 ```
 
 
-
 #### Rates of Mental Health Act Re-detentions
 
 ::: panel-tabset
@@ -139,7 +137,6 @@ cyp_redetentions_legal_status_perc |>
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -155,13 +152,11 @@ tar_read(cyp_avg_redetentions_rate) |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns()
 ```
-
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_gender_plot}
@@ -177,13 +172,11 @@ tar_read(gender_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("gender")
 ```
-
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_age_plot}
@@ -199,13 +192,11 @@ tar_read(cyp_age_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("age_group")
 ```
-
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_ethnic_plot}
@@ -221,13 +212,11 @@ tar_read(ethnic_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("ethnic_category")
 ```
-
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
-
 ###### Chart1
 
 ```{r redetentions_imd_plot}
@@ -251,9 +240,56 @@ tar_read(imd_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("imd_decile")
 ```
-
-:::
-
 :::
 
 ### Travel distance
+
+#### Overview of metric
+
+The Ward Location Distance from Home variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions. Additionally, this data can be used for research studies to examine the relationship between travel distance and patient outcomes.
+
+**Definition:** This variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. It is often used to assess the accessibility of healthcare services and inform population health planning.
+
+**Purpose:**
+
+-   Accessibility: Measures the convenience and proximity of healthcare facilities for patients.
+
+-   Population Health: Informs resource allocation and planning by understanding the distribution of healthcare services in relation to population density.
+
+-   Research: Can be used to study the impact of travel distance on patient outcomes and adherence to treatment.
+
+**Interpretation:**
+
+-   Lower values: Indicate greater accessibility and convenience for patients.
+
+-   Higher values: Suggest potential barriers to healthcare access, such as long travel times or transportation difficulties.
+
+**Potential Use Cases:**
+
+-   Patient Experience: Analyzing the relationship between ward location distance and patient satisfaction or outcomes.
+
+-   Health Disparities: Identifying disparities in healthcare access based on geographic location.
+
+-   Service Planning: Informing the location of new healthcare facilities or the expansion of existing services.
+
+#### **Calculation of 'Ward location distance from home'**
+
+Derived from: SITE CODE (OF TREATMENT)\
+\
+NHS Digital guidance: Look up the postcode for this SiteCode in the ODS reference data file that holds the address for organisation sites. Then identify the Northings\\Eastings for this postcode by using the ONS NHS Postcode Directory file.
+
+**Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
+
+#### Summary
+
+#### Variation
+
+##### ICB
+
+##### Gender
+
+##### Age-group
+
+##### Ethnic group
+
+##### Socioeconomic variation
