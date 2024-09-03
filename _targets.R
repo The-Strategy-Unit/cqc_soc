@@ -443,7 +443,8 @@ list(
 
   ## Redetentions --------------------------------------------------------------
   tar_target(cyp_redetentions_perc,
-             get_perc_redetentions(cyp_redetentions, "icb_code")),
+             get_perc_redetentions(cyp_redetentions, "icb_code") |>
+               dplyr::filter(icb_code != "NULL")),
   tar_target(
     cyp_redetentions_perc_boxplot,
     get_standard_boxplot(cyp_redetentions_perc)
@@ -455,8 +456,6 @@ list(
   tar_target(cyp_redetentions_legal_status,
              get_perc_redetentions(cyp_redetentions, "legal_status") |>
                dplyr::arrange(der_financial_year, legal_status)),
-  tar_target(cyp_redetentions_legal_status_plot,
-             get_redetentions_legal_status_plot(cyp_redetentions_legal_status)),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
