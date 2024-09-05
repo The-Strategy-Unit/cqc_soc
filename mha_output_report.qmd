@@ -59,14 +59,14 @@ For example, if a patient had the following MHA detention end dates:
 2025-04-02\
 2025-04-16\
 
-Then the number of MHA re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively. The percentage of re-detentions within 12 months for financial years 2024/25 and 2025/26 would be 100% and 50%, respectively.
+Then the number of MHA re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively. The percentage of MHA detentions that had a re-detention within 12 months for financial years 2024/25 and 2025/26 would be 100% and 50%, respectively.
 
 ```{r}
 redet <- tar_read(cyp_redetentions) |>
   dplyr::rename(redetentions = attends)
 ```
 
-About half of MHA detentions are re-detentions (@tbl-redetentions-number) but this varies by ICB (@fig-redetentions-mh).
+About half of MHA detentions had a re-detention within 12 months (@tbl-redetentions-number) but this varies by ICB (@fig-redetentions-mh).
 
 ```{r}
 #| label: tbl-redetentions-number
@@ -80,7 +80,8 @@ tar_read(cyp_redetentions) |>
 ```
 
 ::: panel-tabset
-##### Overview
+
+###### Overview
 
 ```{r}
 #| label: fig-redetentions-mh
@@ -90,7 +91,7 @@ tar_read(cyp_redetentions_perc_boxplot) +
                 subtitle = "England 2019/20 to 2022/23 by ICB.")
 ```
 
-##### Summary
+###### Summary
 
 ```{r}
 #| label: tbl-redetentions-summary
@@ -99,7 +100,7 @@ tar_read(cyp_redetentions_perc) |>
   get_quantiles_and_mean()
 ```
 
-##### ICB Variation
+###### ICB Variation
 
 ```{r}
 #| label: tbl-redetentions
@@ -115,7 +116,6 @@ tar_read(cyp_redetentions_perc_table) |>
 The majority or MHA re-detentions are formal with less than 1% being informal
 or unknown.
 
-
 ```{r}
 cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
   dplyr::summarise(redetentions = sum(attends), .by = c(legal_status, 
@@ -129,6 +129,55 @@ cyp_redetentions_legal_status_perc |>
   create_dt()
 ```
 
+#### Re-admissions after a Mental Health Act detention
+
+Definition - an admission after a MHA detention that did not start as a new detention within 365 days.
+
+The percentage of MHA detentions that had a subsequent MH admission within 12 months has decreased over time (@tbl-readmissions-number) and varies by ICB (@fig-readmissions-mh).
+
+```{r}
+#| label: tbl-readmissions-number
+#| tbl-cap: Number of admissions within 12 months of a MHA detention.
+tar_read(cyp_readmissions) |>
+  dplyr::summarise(detentions = sum(detentions),
+                   readmissions = sum(attends),
+                   .by = der_financial_year) |>
+  mutate(perc = janitor::round_half_up(readmissions / detentions, 4)) |>
+  create_dt()
+```
+
+::: panel-tabset
+
+##### Overview
+
+```{r}
+#| label: fig-readmissions-mh
+#| fig-cap: Percentage of readmissions within 12 months.
+tar_read(cyp_readmissions_perc_boxplot) +
+  ggplot2::labs(title = "Percentage of readmissions within 12 months",
+                subtitle = "England 2019/20 to 2022/23 by ICB.")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-readmissions-summary
+#| tbl-cap: Summary of percentage of readmissions within 12 months.
+tar_read(cyp_readmissions_perc) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-readmissions
+#| tbl-cap: Percentage of readmissions within 12 months by ICB.
+tar_read(cyp_readmissions_perc_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
+                 seq(0, 0.9, 0.125))
+```
+
+:::
 
 #### Rates of Mental Health Act Re-detentions
 
@@ -137,6 +186,7 @@ cyp_redetentions_legal_status_perc |>
 ##### Overview
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r}
@@ -152,11 +202,13 @@ tar_read(cyp_avg_redetentions_rate) |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns()
 ```
+
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r redetentions_gender_plot}
@@ -172,11 +224,13 @@ tar_read(gender_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("gender")
 ```
+
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r redetentions_age_plot}
@@ -192,11 +246,13 @@ tar_read(cyp_age_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("age_group")
 ```
+
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
+
 ###### Chart
 
 ```{r redetentions_ethnic_plot}
@@ -212,11 +268,13 @@ tar_read(ethnic_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("ethnic_category")
 ```
+
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
+
 ###### Chart1
 
 ```{r redetentions_imd_plot}
@@ -240,6 +298,9 @@ tar_read(imd_breakdowns)$cyp_redetentions |>
   dplyr::rename(redetentions = attends) |>
   get_standard_table_for_breakdowns("imd_decile")
 ```
+
+:::
+
 :::
 
 ### Travel distance
