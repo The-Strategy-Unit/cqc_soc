@@ -441,3 +441,35 @@ get_perc_redetentions <- function(data, group){
 
   return(perc)
 }
+
+# LOS - detentions -------------------------------------------------------------
+get_cyp_los_line_by_group <- function(data, group){
+
+  table <- data |>
+    dplyr::filter(!!rlang::sym(group) != "NULL") |>
+    dplyr::summarise(value = median(mha_ep_los), .by = c(der_financial_year, !!rlang::sym(group)))
+
+  plot <- table |>
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
+    ggplot2::geom_line() +
+    ggplot2::labs(x = "Financial year",
+                  y = "Median length of MHA detention") +
+    ggplot2::theme_minimal()
+
+  return(list(plot = plot, table = table))
+}
+
+get_cyp_los_line <- function(data){
+
+  table <- data |>
+    dplyr::summarise(value = median(mha_ep_los), .by = der_financial_year)
+
+  plot <- table |>
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, group = 1)) +
+    ggplot2::geom_line() +
+    ggplot2::labs(x = "Financial year",
+                  y = "Median length of MHA detention") +
+    ggplot2::theme_minimal()
+
+  return(list(plot = plot, table = table))
+}
