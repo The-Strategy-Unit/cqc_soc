@@ -332,6 +332,21 @@ list(
                              imd_decile = factor(imd_decile,
                                                  levels = as.character(1:10)))
              ),
+  tarchetypes::tar_file(cyp_readmissions_filepath,
+                        "data/cyp_readmissions.csv"),
+  tar_target(cyp_readmissions,
+             load_csv(cyp_readmissions_filepath) |>
+               dplyr::rename(der_financial_year = fin_year,
+                             icb_code = icb23cd,
+                             attends = readmissions,
+                             imd_decile = imd_2019_decile) |>
+               dplyr::mutate(der_financial_year =
+                               stringr::str_replace_all(der_financial_year,
+                                                        "-20",
+                                                        "/"),
+                             imd_decile = factor(imd_decile,
+                                                 levels = as.character(1:10)))
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -456,6 +471,18 @@ list(
   tar_target(cyp_redetentions_legal_status,
              get_perc_redetentions(cyp_redetentions, "legal_status") |>
                dplyr::arrange(der_financial_year, legal_status)),
+  # Readmissions
+  tar_target(cyp_readmissions_perc,
+             get_perc_redetentions(cyp_readmissions, "icb_code") |>
+               dplyr::filter(icb_code != "NULL")),
+  tar_target(
+    cyp_readmissions_perc_boxplot,
+    get_standard_boxplot(cyp_readmissions_perc)
+  ),
+  tar_target(
+    cyp_readmissions_perc_table,
+    get_icb_breakdown_table_redetentions(cyp_readmissions_perc, icb_codes_names)
+  ),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
