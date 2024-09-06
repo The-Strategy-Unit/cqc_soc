@@ -133,7 +133,7 @@ cyp_redetentions_legal_status_perc |>
 
 Definition - an admission after a MHA detention that did not start as a new detention within 365 days.
 
-The percentage of MHA detentions that had a subsequent MH admission within 12 months has decreased over time (@tbl-readmissions-number) and varies by ICB (@fig-readmissions-mh).
+The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased in 2022/23 compared to earlier years (@tbl-readmissions-number). This also varies by ICB (@fig-readmissions-mh).
 
 ```{r}
 #| label: tbl-readmissions-number
