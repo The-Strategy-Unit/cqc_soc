@@ -48,6 +48,158 @@ source("R/quarto_formatting.R")
 
 ## Detailed analysis
 
+### Mental Health Act Detentions Length of Stay
+
+```{r}
+#| label: fig-los-histo
+#| fig-cap: Histogram of lengths of MHA detentions, capped at 500 days.
+tar_read(cyp_los_histo)
+```
+
+::: panel-tabset
+
+##### Overview
+
+```{r}
+#| label: fig-los-mh
+#| fig-cap: Median length of Mental Health Act detention.
+tar_read(cyp_los_boxplot)  +
+  ggplot2::labs(y = "Median length of MHA detention",
+                title = "Median length of MHA detention",
+                subtitle = "England 2019/20 to 2023/24 by ICB")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-los-summary
+#| tbl-cap: Summary of median length of Mental Health Act detention.
+tar_read(cyp_los_median) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-los
+#| tbl-cap: Median length of Mental Health Act detention by ICB.
+tar_read(cyp_los_median_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
+                 seq(0, 30, 4))
+```
+
+:::
+
+::: panel-tabset
+
+##### Overview
+
+::: panel-tabset
+
+###### Chart
+
+```{r}
+#| label: fig-los-line
+#| fig-cap: Median length of MHA detention over time.
+tar_read(cyp_los_plot_overview)$plot
+```
+
+###### Table
+
+```{r }
+tar_read(cyp_los_plot_overview)$table |>
+  create_dt()
+```
+
+:::
+
+##### Gender variation
+
+::: panel-tabset
+
+###### Chart
+
+```{r los_gender_plot}
+#| label: fig-los-gender
+#| fig-cap: Median length of MHA detention over time by gender.
+tar_read(cyp_los_plot_gender)$plot
+```
+
+###### Table
+
+```{r los_gender_table}
+tar_read(cyp_los_plot_gender)$table |>
+  create_dt()
+```
+
+:::
+
+##### Age-group variation
+
+::: panel-tabset
+
+###### Chart
+
+```{r los_age_plot}
+#| label: fig-los-age
+#| fig-cap: Median length of MHA detention over time by age group.
+tar_read(cyp_los_plot_age_group)$plot
+```
+
+###### Table
+
+```{r los_age_table}
+tar_read(cyp_los_plot_age_group)$table |>
+  create_dt()
+```
+
+:::
+
+##### Ethnic group variation
+
+::: panel-tabset
+
+###### Chart
+
+```{r los_ethnic_plot}
+#| label: fig-los-ethnic
+#| fig-cap: Median length of MHA detention over time by ethnic category.
+tar_read(cyp_los_plot_ethnic_category)$plot
+```
+
+###### Table
+
+```{r los_ethnic_table}
+tar_read(cyp_los_plot_ethnic_category)$table |>
+  create_dt()
+```
+
+:::
+
+##### Socioeconomic variation
+
+::: panel-tabset
+
+###### Chart1
+
+```{r los_imd_plot}
+#| label: fig-los-imd
+#| fig-cap: Median length of MHA detention over time by Index of Multiple Deprivation decile.
+tar_read(cyp_los_plot_imd_decile)$plot
+```
+
+###### Table
+
+```{r los_imd_table}
+tar_read(cyp_los_plot_imd_decile)$table |>
+  create_dt()
+```
+
+:::
+
+:::
+
+
 ### Mental Health Act Re-detentions
 
 The number of Mental Health Act (MHA) re-detentions within 12 months is defined as the number of subsequent MHA detention end-dates within 365 days of the first MHA detention end-date in a financial year.

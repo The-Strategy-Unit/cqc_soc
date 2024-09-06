@@ -316,7 +316,6 @@ list(
       dplyr::mutate(imd_decile = factor(imd_decile,
                                         levels = as.character(1:10)))
   ),
-
   tarchetypes::tar_file(cyp_redetentions_filepath,
                         "data/cyp_redetentions.csv"),
   tar_target(cyp_redetentions,
@@ -339,6 +338,20 @@ list(
                dplyr::rename(der_financial_year = fin_year,
                              icb_code = icb23cd,
                              attends = readmissions,
+                             imd_decile = imd_2019_decile) |>
+               dplyr::mutate(der_financial_year =
+                               stringr::str_replace_all(der_financial_year,
+                                                        "-20",
+                                                        "/"),
+                             imd_decile = factor(imd_decile,
+                                                 levels = as.character(1:10)))
+  ),
+  tarchetypes::tar_file(cyp_los_filepath,
+                        "data/cyp_los.csv"),
+  tar_target(cyp_los,
+             load_csv(cyp_los_filepath) |>
+               dplyr::rename(der_financial_year = fin_year,
+                             icb_code = icb23cd,
                              imd_decile = imd_2019_decile) |>
                dplyr::mutate(der_financial_year =
                                stringr::str_replace_all(der_financial_year,
@@ -456,7 +469,7 @@ list(
   tar_target(nhs111_mh_known_summary,
              get_111_mh_known(data_111)),
 
-  ## Redetentions --------------------------------------------------------------
+  ## MHA Redetentions ----------------------------------------------------------
   tar_target(cyp_redetentions_perc,
              get_perc_redetentions(cyp_redetentions, "icb_code") |>
                dplyr::filter(icb_code != "NULL")),
@@ -482,6 +495,35 @@ list(
   tar_target(
     cyp_readmissions_perc_table,
     get_icb_breakdown_table_redetentions(cyp_readmissions_perc, icb_codes_names)
+  ),
+  ## LOS - MHA detentions ------------------------------------------------------
+  # Histogram for 22/23
+  tar_target(cyp_los_histo,
+             cyp_los |>
+               dplyr::filter(der_financial_year == "2023/24",
+                             los < 500) |>
+               ggplot2::ggplot(ggplot2::aes(los)) +
+               ggplot2::geom_histogram() +
+               ggplot2::theme_minimal()),
+
+  # Boxplot and table for median LOS
+  tar_target(cyp_los_median,
+             cyp_los |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot,
+             get_standard_boxplot(cyp_los_median)),
+  tar_target(cyp_los_median_table,
+             get_icb_breakdown_table(cyp_los_median,
+                                     icb_codes_names)),
+  # Median LOS by group
+  tar_target(cyp_los_plot_overview,
+             get_cyp_los_line(cyp_los)),
+  tarchetypes::tar_map(
+    list(group = c("gender", "age_group", "imd_decile", "ethnic_category")),
+    tar_target(cyp_los_plot,
+               get_cyp_los_line_by_group(cyp_los,
+                                         group))
   ),
 
   # 05. Breakdowns -------------------------------------------------------------

@@ -1,3 +1,4 @@
+-- Length of stay of a MHA detention spell
 -- Details (for example age) can change during a spell, so have summed los by spell, then joined details from end of spell on afterwards
 
 DROP TABLE IF EXISTS #lengthofstay
@@ -11,12 +12,11 @@ INTO #lengthofstay
 FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
 
 WHERE AgeRepPeriodStart < 25
+AND pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2024-03-31'
 
 GROUP BY der_spell_id
 
-SELECT
-	los.der_spell_id,
-	ICB23CD,
+SELECT ICB23CD,
 	CAST(YEAR(DATEADD(MONTH, -3, pseudo_EndDateMHActLegalStatusClass)) AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
 	CASE
 		WHEN [AgeRepPeriodStart] < 18 THEN CAST('0-17' AS varchar)
@@ -38,10 +38,7 @@ SELECT
 
 FROM #lengthofstay AS los
 
-INNER JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS details
+LEFT JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS details
 	ON los.der_spell_id = details.der_spell_id
-	AND details.mha_spell_end_flag_final = 1
-	AND pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2024-03-31'
 
-ORDER BY pseudo_EndDateMHActLegalStatusClass, los desc
-
+WHERE details.mha_spell_end_flag_final = 1
