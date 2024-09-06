@@ -1,129 +1,108 @@
+-- Admissions with 12 months of a detention
+
 -- Setup
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_readmissions]
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_readmissions_agg]
 
--- Getting readmissions
-SELECT
-a.Der_person_ID,
-der_spell_id,
-StartDateMHActLegalStatusClass,
-pseudo_EndDateMHActLegalStatusClass,
-ICB23CD,
-CAST(YEAR(DATEADD(MONTH, -3, a.pseudo_EndDateMHActLegalStatusClass)) AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
-b.HospProvSpellID,
-b.StartDateHospProvSpell,
-b.DischDateHospProvSpell,
-CASE WHEN b.Der_person_ID IS NOT NULL THEN 1 ELSE 0 END AS readmissions_365_day,
+----## base table of spells and dates
+
+Select distinct der_person_id, der_spell_id, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass,
+CAST(YEAR(DATEADD(MONTH, -3, pseudo_EndDateMHActLegalStatusClass)) AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
+dateadd(DAY,365,pseudo_EndDateMHActLegalStatusClass) as detend_plus_365
+into #base
+from [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
+where mha_spell_end_flag_final = 1
+and AgeRepPeriodStart < 25
+order by Der_Person_ID, der_spell_id, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass
+
+----## Classification of some patient variables
+
+SELECT a.*,
+b.ICB23CD,
 CASE
-WHEN [AgeRepPeriodStart] < 18 THEN CAST('0-17' AS varchar)
-WHEN [AgeRepPeriodStart] BETWEEN 18 AND 24 THEN CAST('18-24' AS varchar)
-ELSE NULL END AS age_group,
+	WHEN [AgeRepPeriodStart] < 18 THEN CAST('0-17' AS varchar)
+	WHEN [AgeRepPeriodStart] BETWEEN 18 AND 24 THEN CAST('18-24' AS varchar)
+	ELSE NULL END AS age_group,
 imd_2019_decile,
 CASE
-WHEN a.[gender] = '1' THEN 'male'
-WHEN a.[gender] = '2' THEN 'female'
-ELSE NULL END AS gender,
+	WHEN b.[gender] = '1' THEN 'male'
+	WHEN b.[gender] = '2' THEN 'female'
+	ELSE NULL END AS gender,
 CASE
-WHEN LEFT([EthnicCategory], 1) IN ('A','B','C') THEN 'white'
-WHEN LEFT([EthnicCategory], 1) IN ('D','E','F','G') THEN 'mixed'
-WHEN LEFT([EthnicCategory], 1) IN ('H','J','K','L') THEN 'asian'
-WHEN LEFT([EthnicCategory], 1) IN ('M','N','P') THEN 'black'
-WHEN LEFT([EthnicCategory], 1) IN ('R','S') THEN 'other'
-ELSE NULL END AS Ethnic_Category,
-CASE
-WHEN LegalStatusCode = '01' THEN 'Informal'
-WHEN LegalStatusCode IN ('98', '99', 'XX', NULL) THEN 'Not known'
-ELSE 'Formal' END AS legal_status,
-ROW_NUMBER ( )  -- used later to remove duplication caused by
-				-- (for example) if a spell is 3 months after detention 1 and 1 month after detention 2
-    OVER (PARTITION BY a.Der_Person_ID, b.StartDateHospProvSpell ORDER BY a.StartDateMHActLegalStatusClass)  AS rownumber
-
-INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions
-
-FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS a
-
-LEFT OUTER JOIN(SELECT DISTINCT
-                x.Der_person_ID,
-                x.HospProvSpellID,
-                x.StartDateHospProvSpell,
-                x.DischDateHospProvSpell
-
-                FROM [NHSE_MHSDS].[dbo].[MHS501HospProvSpell] AS x
-
-					LEFT JOIN (--List of all start detention dates by person
-						SELECT StartDateMHActLegalStatusClass, Der_person_ID
-						FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
-						WHERE AgeRepPeriodStart < 25
-							AND mha_spell_end_flag_final = 1
-							) as y
-						ON x.StartDateHospProvSpell = y.StartDateMHActLegalStatusClass
-							AND x.Der_person_ID = y.Der_Person_ID
-
-				WHERE y.StartDateMHActLegalStatusClass IS NULL -- Remove if admission is same day as a detention
-					AND x.DischDateHospProvSpell IS NOT NULL
-) b
-ON a.Der_person_ID = b.Der_person_ID
-AND DATEDIFF(dd, a.pseudo_EndDateMHActLegalStatusClass, b.StartDateHospProvSpell) BETWEEN 0 AND 365
-
-WHERE a.AgeRepPeriodStart < 25
-AND a.mha_spell_end_flag_final = 1
-AND a.pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2023-03-31'
-
---## Now aggregating and making binary indicator for redetention
-SELECT
-ICB23CD,
-fin_year,
-der_spell_id,
-gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
+	WHEN LEFT([EthnicCategory], 1) IN ('A','B','C') THEN 'white'
+	WHEN LEFT([EthnicCategory], 1) IN ('D','E','F','G') THEN 'mixed'
+	WHEN LEFT([EthnicCategory], 1) IN ('H','J','K','L') THEN 'asian'
+	WHEN LEFT([EthnicCategory], 1) IN ('M','N','P') THEN 'black'
+	WHEN LEFT([EthnicCategory], 1) IN ('R','S') THEN 'other'
+	ELSE NULL END AS Ethnic_Category
 
 INTO #1
 
-FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions
+FROM #base a
+left outer join [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS b
+on a.der_person_id = b.der_person_id
+and a.der_spell_id = b.der_spell_id
+and b.mha_spell_end_flag_final = 1
 
-GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
 
-SELECT
-ICB23CD,
+----## Getting readmissions
+
+Select a.*,
+x.HospProvSpellID, x.StartDateHospProvSpell, x.DischDateHospProvSpell,
+CASE WHEN x.Der_person_ID IS NOT NULL THEN 1 ELSE 0 END AS readmissions_365_day
+
+into [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions
+
+from #1 a
+
+LEFT OUTER JOIN(SELECT DISTINCT
+                Der_person_ID,
+                HospProvSpellID,
+                StartDateHospProvSpell,
+                DischDateHospProvSpell
+
+                FROM [NHSE_MHSDS].[dbo].[MHS501HospProvSpell]
+				where StartDateHospProvSpell is not NULL AND DischDateHospProvSpell is not NULL) AS x --completed admissions only
+
+				on a.der_person_id = x.der_person_id
+				and x.StartDateHospProvSpell between a.pseudo_EndDateMHActLegalStatusClass and a.detend_plus_365
+
+WHERE a.pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2023-03-31'
+
+order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
+
+---- ## addtional rule here to take out any admissions that happen after another re-detention has happened:
+Select *
+, LEAD(Der_Person_ID, 1, Der_Person_ID) over (order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_person_id]
+, LEAD(pseudo_EndDateMHActLegalStatusClass, 1, pseudo_EndDateMHActLegalStatusClass) over (order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_det_end_date]
+, LEAD(StartDateHospProvSpell, 1, StartDateHospProvSpell) over (order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_adm_date]
+into #2
+from [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions
+order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
+
+Select *
+, case
+		when hospprovspellid is NULL then 0
+		when der_person_id = lead_person_id AND lead_adm_date > lead_det_end_date then 0 else readmissions_365_day end as readmission_flag_final
+into #3
+from #2
+order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
+
+--## Now aggregating
+SELECT ICB23CD,
 fin_year,
-der_spell_id,
-gender, Ethnic_Category, imd_2019_decile, age_group, legal_status,
-SUM(CASE WHEN HospProvSpellID IS NOT NULL AND rownumber = 1 THEN 1 ELSE 0 END) AS readmissions
-
-INTO #2
-
-FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions
-
-GROUP BY ICB23CD, fin_year, der_spell_id, gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
-
-SELECT
-a.*,
-CASE WHEN b.readmissions > 0  THEN b.readmissions ELSE 0 END AS readmissions
-
-INTO #3
-
-FROM #1 a
-
-LEFT OUTER JOIN #2 b
-ON a.ICB23CD = b.ICB23CD
-AND a.fin_year = b.fin_year
-AND a.der_spell_id = b.der_spell_id
-
-SELECT
-ICB23CD,
-fin_year,
-gender, Ethnic_Category, imd_2019_decile, age_group, legal_status,
-COUNT(distinct der_spell_id) AS detentions,
-SUM(readmissions) AS readmissions
+gender, Ethnic_Category, imd_2019_decile, age_group,
+count(distinct der_spell_id) as detentions,
+sum(case when readmission_flag_final = 1 then 1 else 0 end) as readmissions
 
 INTO [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions_agg
 
 FROM #3
 
-GROUP BY ICB23CD, fin_year, gender, Ethnic_Category, imd_2019_decile, age_group, legal_status
-
-ORDER BY ICB23CD, fin_year
+GROUP BY ICB23CD, fin_year, gender, Ethnic_Category, imd_2019_decile, age_group
 
 --## clean up
+DROP TABLE #base
 DROP TABLE #1
 DROP TABLE #2
 DROP TABLE #3
@@ -133,5 +112,4 @@ SELECT *
 
 FROM [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions_agg
 
-ORDER BY ICB23CD, fin_year
-
+ORDER BY ICB23CD, fin_year, gender, Ethnic_Category, imd_2019_decile, age_group
