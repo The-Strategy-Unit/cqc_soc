@@ -447,7 +447,7 @@ get_cyp_los_line_by_group <- function(data, group){
 
   table <- data |>
     dplyr::filter(!!rlang::sym(group) != "NULL") |>
-    dplyr::summarise(value = median(mha_ep_los), .by = c(der_financial_year, !!rlang::sym(group)))
+    dplyr::summarise(value = median(los), .by = c(der_financial_year, !!rlang::sym(group)))
 
   plot <- table |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, value, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
@@ -462,7 +462,7 @@ get_cyp_los_line_by_group <- function(data, group){
 get_cyp_los_line <- function(data){
 
   table <- data |>
-    dplyr::summarise(value = median(mha_ep_los), .by = der_financial_year)
+    dplyr::summarise(value = median(los), .by = der_financial_year)
 
   plot <- table |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, value, group = 1)) +

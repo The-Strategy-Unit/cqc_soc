@@ -500,14 +500,14 @@ list(
   tar_target(cyp_los_histo,
              cyp_los |>
                dplyr::filter(der_financial_year == "2023/24",
-                             mha_ep_los < 500) |>
-               ggplot2::ggplot(ggplot2::aes(mha_ep_los)) +
+                             los < 500) |>
+               ggplot2::ggplot(ggplot2::aes(los)) +
                ggplot2::geom_histogram() +
                ggplot2::theme_minimal()),
 
   tar_target(cyp_los_median,
              cyp_los |>
-               dplyr::summarise(value = median(mha_ep_los),
+               dplyr::summarise(value = median(los),
                                 .by = c(der_financial_year, icb_code))),
   tar_target(cyp_los_boxplot,
              get_standard_boxplot(cyp_los_median)),
