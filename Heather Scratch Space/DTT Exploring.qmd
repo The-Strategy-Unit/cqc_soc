@@ -1,0 +1,65 @@
+---
+title: "DTT Scratch Area"
+format: html
+editor: visual
+---
+
+## Basic Charts
+
+![](Heather Scratch Space/plotFY.png){width="438"}
+
+![](Heather Scratch Space/plotAG.png){width="366"}
+
+::: panel-tabset
+##### All modes
+
+```{r}
+#| label: fig-type1-arrival
+#| fig-cap: Arrival mode to Type 1 A&E. All of England, 2023/24.
+tar_read(ae_trans_barplot)
+```
+
+##### Trend
+
+```{r}
+#| label: fig-type1-arrival-trend
+#| fig-cap: Arrival mode to Type 1 A&E. All of England, 2019/20 to 2023/24.
+tar_read(ae_trans_trends)
+```
+
+##### Table
+
+```{r}
+#| label: tbl-type1-arrival-trend
+#| tbl-cap: Arrival mode to Type 1 A&E. All of England, 2019/20 to 2023/24.
+tar_read(ae_transp_trends) |>
+  create_dt()
+```
+:::
+
+##### Table
+
+```{r}
+#| label: tbl-type1-arrival-trend
+#| tbl-cap: Arrival mode to Type 1 A&E. All of England, 2019/20 to 2023/24.
+gt_causes <- tar_read(ae_diag) |> 
+  filter(der_financial_year == '2023/24', ec_department_type == 1) |> 
+  summarise(attends = sum(attends), .by = term) |>
+  rename(SNOMED_term = term) |> 
+  arrange(desc(attends)) |> 
+  slice_head(n = 10) 
+
+create_dt(gt_causes) 
+```
+
+##### Table
+
+```{r}
+#| label: Distance by FY
+#| tbl-cap: Distance by FY.
+    data |>
+    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+                     .by = FIN_YEAR) |>
+      mutate(Average_Distance = janitor::round_half_up(Average_Distance, 4)) |>
+      create_dt()
+```
