@@ -496,7 +496,8 @@ list(
     cyp_readmissions_perc_table,
     get_icb_breakdown_table_redetentions(cyp_readmissions_perc, icb_codes_names)
   ),
-  # LOS - MHA detentions -------------------------------------------------------
+  ## LOS - MHA detentions ------------------------------------------------------
+  # Histogram for 22/23
   tar_target(cyp_los_histo,
              cyp_los |>
                dplyr::filter(der_financial_year == "2023/24",
@@ -505,6 +506,7 @@ list(
                ggplot2::geom_histogram() +
                ggplot2::theme_minimal()),
 
+  # Boxplot and table for median LOS
   tar_target(cyp_los_median,
              cyp_los |>
                dplyr::summarise(value = median(los),
@@ -514,6 +516,7 @@ list(
   tar_target(cyp_los_median_table,
              get_icb_breakdown_table(cyp_los_median,
                                      icb_codes_names)),
+  # Median LOS by group
   tar_target(cyp_los_plot_overview,
              get_cyp_los_line(cyp_los)),
   tarchetypes::tar_map(

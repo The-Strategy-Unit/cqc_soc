@@ -57,3 +57,4 @@ data/ae_extract_full.csv
 data/cyp_ae_extract_full.csv
 data/cyp_redetentions.csv
 data/cyp_readmissions.csv
+data/cyp_los.csv

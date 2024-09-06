@@ -1,3 +1,5 @@
+-- MHA detentions within 12 months of a MHA detention
+
 -- Setup
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions]
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions_agg]

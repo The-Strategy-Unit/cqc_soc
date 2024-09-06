@@ -417,7 +417,7 @@ get_icb_breakdown_table_111 <- function(data, key){
 }
 
 # Redetentions -----------------------------------------------------------------
-
+# To create the % redetentions by financial year and ICB, coloured by value:
 get_icb_breakdown_table_redetentions <- function(data, key){
   table <- data |>
     dplyr::left_join(key, "icb_code") |>
@@ -432,6 +432,7 @@ get_icb_breakdown_table_redetentions <- function(data, key){
   return(table)
 }
 
+# To get the percentage of redentions for a financial year:
 get_perc_redetentions <- function(data, group){
   perc <- data |>
     dplyr::summarise(detentions = sum(detentions),
@@ -443,14 +444,15 @@ get_perc_redetentions <- function(data, group){
 }
 
 # LOS - detentions -------------------------------------------------------------
-get_cyp_los_line_by_group <- function(data, group){
+
+# To get a line plot and table of LOS over time
+get_cyp_los_line <- function(data){
 
   table <- data |>
-    dplyr::filter(!!rlang::sym(group) != "NULL") |>
-    dplyr::summarise(value = median(los), .by = c(der_financial_year, !!rlang::sym(group)))
+    dplyr::summarise(value = median(los), .by = der_financial_year)
 
   plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, group = 1)) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Financial year",
                   y = "Median length of MHA detention") +
@@ -459,13 +461,15 @@ get_cyp_los_line_by_group <- function(data, group){
   return(list(plot = plot, table = table))
 }
 
-get_cyp_los_line <- function(data){
+# To get a line plot and table of LOS over time by a group (gender, age, ...)
+get_cyp_los_line_by_group <- function(data, group){
 
   table <- data |>
-    dplyr::summarise(value = median(los), .by = der_financial_year)
+    dplyr::filter(!!rlang::sym(group) != "NULL") |>
+    dplyr::summarise(value = median(los), .by = c(der_financial_year, !!rlang::sym(group)))
 
   plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, group = 1)) +
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Financial year",
                   y = "Median length of MHA detention") +

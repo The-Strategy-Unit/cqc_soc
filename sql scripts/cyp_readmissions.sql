@@ -1,4 +1,4 @@
--- Admissions with 12 months of a detention
+-- Admissions within 12 months of a MHA detention
 
 -- Setup
 DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_readmissions]
