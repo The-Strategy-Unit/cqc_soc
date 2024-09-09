@@ -6,9 +6,9 @@ editor: visual
 
 ## Basic Charts
 
-![](Heather Scratch Space/plotFY.png){width="438"}
+![](Heather%20Scratch%20Space/plotFY.png){width="438"}
 
-![](Heather Scratch Space/plotAG.png){width="366"}
+![](Heather%20Scratch%20Space/plotAG.png){width="366"}
 
 ::: panel-tabset
 ##### All modes

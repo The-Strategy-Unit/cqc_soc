@@ -735,4 +735,17 @@ list(
              map_icb_allmh_uec(icb_boundary, icb_rates_uec)),
   tar_target(icb_111_map_2122,
              map_icb_allmh_111(icb_boundary, nhs111_mh_calls_rate, "2020/21"))
-)
+  ,
+
+  # 08. DTT (Heather) -------------------------------------------------------------------
+  tarchetypes::tar_file(DTT_filepath,
+                        "data/cyp_DTT.csv"),
+  tar_target(DTT,
+             load_csv(DTT_filepath)),
+
+  tar_target(table_DTT_FY,
+             get_table_DTT_FY (DTT)) # it's DTT here not data because that's what it was called in
+                                    #the tar_read() function
+
+  )
+
