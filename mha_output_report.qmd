@@ -50,11 +50,41 @@ source("R/quarto_formatting.R")
 
 ### Mental Health Act Detention Spells Length of Stay
 
+This is the length of the MHA detention spell, where consecutive MHA detentions would be considered the same spell. 
+
+In 2022/23, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is another peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed). 
+
+There are some very long lengths of stay because ...
+
+::: panel-tabset
+
+#### All LoS
+
 ```{r}
 #| label: fig-los-histo
-#| fig-cap: Histogram of lengths of MHA detention spells.
+#| fig-cap: Histogram of lengths of MHA detention spells for 2023-24.
 tar_read(cyp_los_histo)
 ```
+
+#### LoS < 50 days
+
+```{r}
+#| label: fig-los-histo-zoomed
+#| fig-cap: Histogram of lengths of MHA detention spells less than 50 days for 2023-24.
+tar_read(cyp_los_histo_zoomed)
+```
+
+:::
+
+```{r}
+los_median_23_24 <- tar_read(cyp_los_median) |>
+  dplyr::filter(der_financial_year == "2023/24") |>
+  dplyr::summarise(median = median(value)) |>
+  dplyr::pull()
+```
+
+
+The median length of MHA detention spell has increased (@fig-los-mh) over time to `r los_median_23_24` days in 2023/24. This varies by ICB (@tbl-los-icb).
 
 ::: panel-tabset
 
@@ -81,7 +111,7 @@ tar_read(cyp_los_median) |>
 ##### ICB Variation
 
 ```{r}
-#| label: tbl-los
+#| label: tbl-los-icb
 #| tbl-cap: Median length of Mental Health Act detention spell by ICB.
 tar_read(cyp_los_median_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
@@ -89,6 +119,8 @@ tar_read(cyp_los_median_table) |>
 ```
 
 :::
+
+Median length of stay for MHA detention spells are higher for females compared to males, higher to under 18s compared to 18-24 year olds and also show ethnic group and socioeconomic variation.
 
 ::: panel-tabset
 
@@ -265,8 +297,7 @@ tar_read(cyp_redetentions_perc_table) |>
 
 #### Formal and Informal Mental Health Act Re-detentions
 
-The majority or MHA re-detentions are formal with less than 1% being informal
-or unknown.
+The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
 
 ```{r}
 cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
@@ -283,7 +314,7 @@ cyp_redetentions_legal_status_perc |>
 
 #### Re-admissions after a Mental Health Act detention
 
-Definition - an admission after a MHA detention that did not start as a new detention within 365 days.
+A re-admission is defined as a MH admission within 365 days of a MHA detention that did not start as a new MHA detention.
 
 The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased in 2022/23 compared to earlier years (@tbl-readmissions-number). This also varies by ICB (@fig-readmissions-mh).
 
@@ -331,129 +362,9 @@ tar_read(cyp_readmissions_perc_table) |>
 
 :::
 
-#### Rates of Mental Health Act Re-detentions
 
-::: panel-tabset
 
-##### Overview
 
-::: panel-tabset
-
-###### Chart
-
-```{r}
-#| label: fig-redetentions-line
-#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months. All of England.
-tar_read(cyp_avg_redetentions_rate_plot)
-```
-
-###### Table
-
-```{r }
-tar_read(cyp_avg_redetentions_rate) |>
-  dplyr::rename(redetentions = attends) |>
-  get_standard_table_for_breakdowns()
-```
-
-:::
-
-##### Gender variation
-
-::: panel-tabset
-
-###### Chart
-
-```{r redetentions_gender_plot}
-#| label: fig-redetentions-gender
-#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by gender.
-tar_read(gender_plot)$cyp_redetentions
-```
-
-###### Table
-
-```{r redetentions_gender_table}
-tar_read(gender_breakdowns)$cyp_redetentions |>
-  dplyr::rename(redetentions = attends) |>
-  get_standard_table_for_breakdowns("gender")
-```
-
-:::
-
-##### Age-group variation
-
-::: panel-tabset
-
-###### Chart
-
-```{r redetentions_age_plot}
-#| label: fig-redetentions-age
-#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by age group.
-tar_read(cyp_age_plot)$cyp_redetentions
-```
-
-###### Table
-
-```{r redetentions_age_table}
-tar_read(cyp_age_breakdowns)$cyp_redetentions |>
-  dplyr::rename(redetentions = attends) |>
-  get_standard_table_for_breakdowns("age_group")
-```
-
-:::
-
-##### Ethnic group variation
-
-::: panel-tabset
-
-###### Chart
-
-```{r redetentions_ethnic_plot}
-#| label: fig-redetentions-ethnic
-#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by ethnic category.
-tar_read(ethnic_plot)$cyp_redetentions
-```
-
-###### Table
-
-```{r redetentions_ethnic_table}
-tar_read(ethnic_breakdowns)$cyp_redetentions |>
-  dplyr::rename(redetentions = attends) |>
-  get_standard_table_for_breakdowns("ethnic_category")
-```
-
-:::
-
-##### Socioeconomic variation
-
-::: panel-tabset
-
-###### Chart1
-
-```{r redetentions_imd_plot}
-#| label: fig-redetentions-imd
-#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by Index of Multiple Deprivation decile.
-tar_read(imd_plot)$cyp_redetentions
-```
-
-###### Chart2
-
-```{r redetentions_imd_plot2}
-#| label: fig-redetentions-imd2
-#| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by Index of Multiple Deprivation decile and year.
-tar_read(cyp_redetentions_imd)
-```
-
-###### Table
-
-```{r redetentions_imd_table}
-tar_read(imd_breakdowns)$cyp_redetentions |>
-  dplyr::rename(redetentions = attends) |>
-  get_standard_table_for_breakdowns("imd_decile")
-```
-
-:::
-
-:::
 
 ### Travel distance
 

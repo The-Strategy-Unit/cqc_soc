@@ -484,7 +484,20 @@ get_cyp_los_histo <- function(data) {
     dplyr::filter(der_financial_year == "2023/24") |>
     ggplot2::ggplot(ggplot2::aes(los)) +
     ggplot2::geom_histogram(fill = "#f9bf07") +
-    ggplot2::theme_minimal()
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Length of Stay (days)")
+
+  return(plot)
+}
+
+get_cyp_los_histo_zoomed <- function(data) {
+
+  plot <- data |>
+    dplyr::filter(der_financial_year == "2023/24", los < 50) |>
+    ggplot2::ggplot(ggplot2::aes(los)) +
+    ggplot2::geom_histogram(fill = "#f9bf07", binwidth = 1) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Length of Stay (days)")
 
   return(plot)
 }

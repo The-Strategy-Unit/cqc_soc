@@ -500,6 +500,8 @@ list(
   # Histogram for 22/23
   tar_target(cyp_los_histo,
              get_cyp_los_histo(cyp_los)),
+  tar_target(cyp_los_histo_zoomed,
+             get_cyp_los_histo_zoomed(cyp_los)),
 
   # Boxplot and table for median LOS
   tar_target(cyp_los_median,
