@@ -499,12 +499,7 @@ list(
   ## LOS - MHA detentions ------------------------------------------------------
   # Histogram for 22/23
   tar_target(cyp_los_histo,
-             cyp_los |>
-               dplyr::filter(der_financial_year == "2023/24",
-                             los < 500) |>
-               ggplot2::ggplot(ggplot2::aes(los)) +
-               ggplot2::geom_histogram() +
-               ggplot2::theme_minimal()),
+             get_cyp_los_histo(cyp_los)),
 
   # Boxplot and table for median LOS
   tar_target(cyp_los_median,

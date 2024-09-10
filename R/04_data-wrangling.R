@@ -472,8 +472,19 @@ get_cyp_los_line_by_group <- function(data, group){
     ggplot2::ggplot(ggplot2::aes(der_financial_year, value, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Financial year",
-                  y = "Median length of MHA detention") +
+                  y = "Median length of MHA detention spell") +
     ggplot2::theme_minimal()
 
   return(list(plot = plot, table = table))
+}
+
+get_cyp_los_histo <- function(data) {
+
+  plot <- data |>
+    dplyr::filter(der_financial_year == "2023/24") |>
+    ggplot2::ggplot(ggplot2::aes(los)) +
+    ggplot2::geom_histogram(fill = "#f9bf07") +
+    ggplot2::theme_minimal()
+
+  return(plot)
 }
