@@ -340,6 +340,8 @@ tar_read(cyp_avg_redetentions_rate) |>
 ::: panel-tabset
 ###### Chart
 
+tar_read(gender_plot)\$cyp_redetentions
+
 ```{r redetentions_gender_plot}
 #| label: fig-redetentions-gender
 #| fig-cap: Rates per 100,000 population of the number of MHA redetentions within 12 months by gender.
@@ -462,20 +464,204 @@ NHS Digital guidance: Look up the postcode for this SiteCode in the ODS referenc
 
 **Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
 
-#### Summary
+#### Travel distance
+
+::: panel-tabset
+#### Overview
+
+::: panel-tabset
+##### Chart
 
 ```{r}
-tar_read(table_DTT_FY)
+#| label: fig-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per financial year."
+tar_read(chart_DTT_FY)
 ```
 
-#### Variation
+##### Table
 
-##### ICB
+```{r}
+#| label: fig-average-distance-fy
+#| fig-cap: "Table summarizing average distance per financial year."
+tar_read(table_DTT_FY) %>% create_dt()
+```
+:::
 
-##### Gender
+#### Gender Variation
 
-##### Age-group
+::: panel-tabset
+##### Chart
 
-##### Ethnic group
+```{r}
+#| label: fig-gender-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per gender and financial year."
+tar_read(chart_DTT_gender_FY)
+```
 
-##### Socioeconomic variation
+##### Table
+
+```{r}
+#| label: fig-gender-average-distance 
+#| fig-cap: "Table summarizing average distance per gender and financial year."
+tar_read(DTT_gender_FY) %>% create_dt()
+```
+:::
+
+#### Age Group Variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-age-group-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per age group and financial year."
+tar_read(chart_DTT_age_group_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-age-group-average-distance 
+#| fig-cap: "Table summarizing average distance per age group and financial year."
+tar_read(DTT_age_group_FY) %>% create_dt()
+```
+:::
+
+#### Ethnicity Variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-ethnic-category-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per ethnic categroy and financial year."
+tar_read(chart_DTT_ethnic_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-ethnic-average-distance 
+#| fig-cap: "Table summarizing average distance per ethnic category and financial year."
+tar_read(DTT_ethnic_FY) %>% create_dt()
+```
+:::
+
+#### Socioeconomic variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-IMD-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per IMD and financial year."
+tar_read(chart_DTT_IMD_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-imd-average-distance 
+#| fig-cap: "Table summarizing average distance per IMD decile and financial year."
+tar_read(DTT_IMD_FY) %>% create_dt()
+```
+:::
+:::
+
+#### Travel distance by number of admissions
+
+::: panel-tabset
+#### Overview
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-comparison-admissions-distance
+#| fig-cap: "Comparison of Total Admissions and Travel Distance Over Time."
+tar_read(chart_admissions_vs_distance)
+```
+
+##### Table
+
+```{r}
+#| label: fig-DTT-FY-with-admissions-table
+#| fig-cap: "Table showing average distance per admission and total admissions by financial year."
+
+tar_read(table_DTT_FY_with_admissions)
+
+```
+:::
+
+#### Gender
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-gender-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Gender Over Time."
+tar_read(chart_DTT_gender_FY_with_admissions)
+```
+
+##### Table
+
+```{r}
+#| label: fig-gender-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender and financial year."
+tar_read(table_DTT_gender_FY_with_admissions)
+```
+:::
+
+#### Age Group
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-age-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Age Group Over Time."
+tar_read(chart_DTT_age_group_FY_with_admissions)
+```
+
+##### Table
+
+```{r}
+#| label: fig-age-group-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by age group and financial year."
+tar_read(table_DTT_age_group_FY_with_admissions)
+```
+:::
+
+#### Ethnicity
+
+::: panel-tabset
+##### Chart
+
+##### Table
+
+```{r}
+#| label: fig-ethnic-category-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by ethnic category and financial year."
+tar_read(table_DTT_ethnic_FY_with_admissions)
+```
+:::
+
+#### IMD
+
+::: panel-tabset
+##### Chart
+
+##### Table
+
+```{r}
+#| label: fig-IMD-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by IMD and financial year."
+tar_read(table_DTT_IMD_FY_with_admissions)
+```
+:::
+:::
+
+#### Questions for Andi
+
+1.  FY - range?
