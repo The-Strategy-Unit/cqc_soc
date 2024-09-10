@@ -432,15 +432,53 @@ get_icb_breakdown_table_redetentions <- function(data, key){
   return(table)
 }
 
-# To get the percentage of redentions for a financial year:
+# To get the percentage of redetentions for a financial year:
 get_perc_redetentions <- function(data, group){
   perc <- data |>
     dplyr::summarise(detentions = sum(detentions),
                      attends = sum(attends),
                      .by = c(der_financial_year, !!rlang::sym(group))) |>
-    dplyr::mutate(value = attends / detentions)
+    dplyr::mutate(value = attends / detentions) |>
+    dplyr::filter(!!rlang::sym(group) != "NULL")
 
   return(perc)
+}
+
+# To get a line for % of redetentions
+get_cyp_redetentions_line <- function(data){
+
+  table <- data |>
+    dplyr::summarise(detentions = sum(detentions),
+                     attends = sum(attends),
+                     .by = c(der_financial_year)) |>
+    dplyr::mutate(perc = attends / detentions) |>
+    dplyr::rename(redetentions = attends)
+
+  plot <- table |>
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, perc, group = 1)) +
+    ggplot2::geom_line() +
+    ggplot2::labs(x = "Financial year",
+                  y = "Percentage") +
+    ggplot2::theme_minimal()
+
+  return(list(plot = plot, table = table))
+}
+
+# To get a line for % of redetentions by group
+get_cyp_redetentions_line_by_group <- function(data, group){
+
+  table <- data |>
+    dplyr::rename(redetentions = attends,
+                  perc = value)
+
+  plot <- table |>
+    ggplot2::ggplot(ggplot2::aes(der_financial_year, perc, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
+    ggplot2::geom_line() +
+    ggplot2::labs(x = "Financial year",
+                  y = "Percentage") +
+    ggplot2::theme_minimal()
+
+  return(list(plot = plot, table = table))
 }
 
 # LOS - detentions -------------------------------------------------------------
@@ -478,6 +516,7 @@ get_cyp_los_line_by_group <- function(data, group){
   return(list(plot = plot, table = table))
 }
 
+# To get histogram of 23/24 los
 get_cyp_los_histo <- function(data) {
 
   plot <- data |>
@@ -490,6 +529,7 @@ get_cyp_los_histo <- function(data) {
   return(plot)
 }
 
+# To get histogram of 23/24 los < 50 days
 get_cyp_los_histo_zoomed <- function(data) {
 
   plot <- data |>
