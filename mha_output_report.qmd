@@ -48,11 +48,11 @@ source("R/quarto_formatting.R")
 
 ## Detailed analysis
 
-### Mental Health Act Detentions Length of Stay
+### Mental Health Act Detention Spells Length of Stay
 
 ```{r}
 #| label: fig-los-histo
-#| fig-cap: Histogram of lengths of MHA detentions, capped at 500 days.
+#| fig-cap: Histogram of lengths of MHA detention spells.
 tar_read(cyp_los_histo)
 ```
 
@@ -62,10 +62,10 @@ tar_read(cyp_los_histo)
 
 ```{r}
 #| label: fig-los-mh
-#| fig-cap: Median length of Mental Health Act detention.
+#| fig-cap: Median length of Mental Health Act detention spell.
 tar_read(cyp_los_boxplot)  +
-  ggplot2::labs(y = "Median length of MHA detention",
-                title = "Median length of MHA detention",
+  ggplot2::labs(y = "Median length of MHA detention spell",
+                title = "Median length of MHA detention spell",
                 subtitle = "England 2019/20 to 2023/24 by ICB")
 ```
 
@@ -73,7 +73,7 @@ tar_read(cyp_los_boxplot)  +
 
 ```{r}
 #| label: tbl-los-summary
-#| tbl-cap: Summary of median length of Mental Health Act detention.
+#| tbl-cap: Summary of median length of Mental Health Act detention spell.
 tar_read(cyp_los_median) |>
   get_quantiles_and_mean()
 ```
@@ -82,10 +82,10 @@ tar_read(cyp_los_median) |>
 
 ```{r}
 #| label: tbl-los
-#| tbl-cap: Median length of Mental Health Act detention by ICB.
+#| tbl-cap: Median length of Mental Health Act detention spell by ICB.
 tar_read(cyp_los_median_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
-                 seq(0, 30, 4))
+                 seq(0, 39, 5))
 ```
 
 :::
