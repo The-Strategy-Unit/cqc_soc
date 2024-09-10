@@ -6,14 +6,14 @@ DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_readmissions_agg]
 
 ----## base table of spells and dates
 
-Select distinct der_person_id, der_spell_id, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass,
+Select distinct der_person_id, der_spell_id, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass,
 CAST(YEAR(DATEADD(MONTH, -3, pseudo_EndDateMHActLegalStatusClass)) AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
 dateadd(DAY,365,pseudo_EndDateMHActLegalStatusClass) as detend_plus_365
 into #base
 from [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
 where mha_spell_end_flag_final = 1
 and AgeRepPeriodStart < 25
-order by Der_Person_ID, der_spell_id, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass
+order by Der_Person_ID, der_spell_id, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass
 
 ----## Classification of some patient variables
 
@@ -69,16 +69,16 @@ LEFT OUTER JOIN(SELECT DISTINCT
 
 WHERE a.pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2023-03-31'
 
-order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
+order by Der_Person_ID, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
 
 ---- ## addtional rule here to take out any admissions that happen after another re-detention has happened:
 Select *
-, LEAD(Der_Person_ID, 1, Der_Person_ID) over (order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_person_id]
-, LEAD(pseudo_EndDateMHActLegalStatusClass, 1, pseudo_EndDateMHActLegalStatusClass) over (order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_det_end_date]
-, LEAD(StartDateHospProvSpell, 1, StartDateHospProvSpell) over (order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_adm_date]
+, LEAD(Der_Person_ID, 1, Der_Person_ID) over (order by Der_Person_ID, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_person_id]
+, LEAD(pseudo_EndDateMHActLegalStatusClass, 1, pseudo_EndDateMHActLegalStatusClass) over (order by Der_Person_ID, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_det_end_date]
+, LEAD(StartDateHospProvSpell, 1, StartDateHospProvSpell) over (order by Der_Person_ID, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id) as [lead_adm_date]
 into #2
 from [NHSE_Sandbox_StrategyUnit].dbo.cqc_readmissions
-order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
+order by Der_Person_ID, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
 
 Select *
 , case
@@ -86,7 +86,7 @@ Select *
 		when der_person_id = lead_person_id AND lead_adm_date > lead_det_end_date then 0 else readmissions_365_day end as readmission_flag_final
 into #3
 from #2
-order by Der_Person_ID, StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
+order by Der_Person_ID, pseudo_StartDateMHActLegalStatusClass, pseudo_EndDateMHActLegalStatusClass, StartDateHospProvSpell, DischDateHospProvSpell, der_spell_id
 
 --## Now aggregating
 SELECT ICB23CD,
