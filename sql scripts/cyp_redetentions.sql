@@ -8,12 +8,12 @@ DROP TABLE IF EXISTS [NHSE_Sandbox_StrategyUnit].dbo.[cqc_redetentions_agg]
 SELECT
 	a.Der_person_ID,
 	der_spell_id,
-	StartDateMHActLegalStatusClass,
+	pseudo_StartDateMHActLegalStatusClass,
 	pseudo_EndDateMHActLegalStatusClass,
 	ICB23CD,
 	CAST(YEAR(DATEADD(MONTH, -3, a.pseudo_EndDateMHActLegalStatusClass)) AS VARCHAR) + '-' + CAST(YEAR(DATEADD(MONTH, 9, a.pseudo_EndDateMHActLegalStatusClass))AS VARCHAR) AS fin_year,
 	b.der_spell_id2,
-	b.StartDateMHActLegalStatusClass2,
+	b.pseudo_StartDateMHActLegalStatusClass2,
 	b.pseudo_EndDateMHActLegalStatusClass2,
 	CASE WHEN b.Der_person_ID IS NOT NULL THEN 1 ELSE 0 END AS redetentions_365_day,
 	CASE
@@ -44,7 +44,7 @@ FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS a
 LEFT OUTER JOIN(SELECT
 					Der_person_ID,
 					der_spell_id AS der_spell_id2,
-					StartDateMHActLegalStatusClass AS StartDateMHActLegalStatusClass2,
+					pseudo_StartDateMHActLegalStatusClass AS pseudo_StartDateMHActLegalStatusClass2,
 					pseudo_EndDateMHActLegalStatusClass AS pseudo_EndDateMHActLegalStatusClass2
 
 				FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
@@ -52,7 +52,7 @@ LEFT OUTER JOIN(SELECT
 				WHERE mha_spell_start_flag_final = 1
 				) b
 	ON a.Der_person_ID = b.Der_person_ID
-	AND DATEDIFF(dd, a.pseudo_EndDateMHActLegalStatusClass, b.StartDateMHActLegalStatusClass2) BETWEEN 0 AND 365
+	AND DATEDIFF(dd, a.pseudo_EndDateMHActLegalStatusClass, b.pseudo_StartDateMHActLegalStatusClass2) BETWEEN 0 AND 365
 
 WHERE a.AgeRepPeriodStart < 25
 	AND a.mha_spell_end_flag_final = 1
