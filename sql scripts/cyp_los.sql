@@ -5,14 +5,13 @@ DROP TABLE IF EXISTS #lengthofstay
 
 SELECT
 der_spell_id,
-SUM(mha_ep_los) AS los
+SUM(pseudo_mha_ep_los) AS los
 
 INTO #lengthofstay
 
 FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
 
 WHERE AgeRepPeriodStart < 25
-AND pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2024-03-31'
 
 GROUP BY der_spell_id
 
@@ -38,7 +37,7 @@ SELECT ICB23CD,
 
 FROM #lengthofstay AS los
 
-LEFT JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS details
+INNER JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full AS details
 	ON los.der_spell_id = details.der_spell_id
-
-WHERE details.mha_spell_end_flag_final = 1
+	AND details.mha_spell_end_flag_final = 1
+	AND pseudo_EndDateMHActLegalStatusClass BETWEEN '2019-04-01' AND '2024-03-31'

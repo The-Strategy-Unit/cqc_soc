@@ -471,40 +471,60 @@ list(
 
   ## MHA Redetentions ----------------------------------------------------------
   tar_target(cyp_redetentions_perc,
-             get_perc_redetentions(cyp_redetentions, "icb_code") |>
-               dplyr::filter(icb_code != "NULL")),
+             get_cyp_redetentions_line(cyp_redetentions)),
+  tarchetypes::tar_map(
+    list(group = c("icb_code", "gender", "age_group", "imd_decile", "ethnic_category")),
+    tar_target(cyp_redetentions_perc,
+               get_perc_redetentions(cyp_redetentions, group))
+  ),
+  # by icb
   tar_target(
     cyp_redetentions_perc_boxplot,
-    get_standard_boxplot(cyp_redetentions_perc)
+    get_standard_boxplot(cyp_redetentions_perc_icb_code)
   ),
   tar_target(
     cyp_redetentions_perc_table,
-    get_icb_breakdown_table_redetentions(cyp_redetentions_perc, icb_codes_names)
+    get_icb_breakdown_table_redetentions(cyp_redetentions_perc_icb_code, icb_codes_names)
   ),
+  # by formal or informal
   tar_target(cyp_redetentions_legal_status,
              get_perc_redetentions(cyp_redetentions, "legal_status") |>
                dplyr::arrange(der_financial_year, legal_status)),
+  tar_target(cyp_redetentions_formal_table,
+             get_cyp_redetentions_formal_table(cyp_redetentions_legal_status)),
+  # by group
+  tar_target(cyp_redetentions_plot_gender,
+             get_cyp_redetentions_line_by_group(cyp_redetentions_perc_gender,
+                                                "gender")),
+  tar_target(cyp_redetentions_plot_ethnic_category,
+             get_cyp_redetentions_line_by_group(cyp_redetentions_perc_ethnic_category,
+                                                "ethnic_category")),
+  tar_target(cyp_redetentions_plot_age_group,
+             get_cyp_redetentions_line_by_group(cyp_redetentions_perc_age_group,
+                                                "age_group")),
+  tar_target(cyp_redetentions_plot_imd_decile,
+             get_cyp_redetentions_line_by_group(cyp_redetentions_perc_imd_decile,
+                                                "imd_decile")),
   # Readmissions
   tar_target(cyp_readmissions_perc,
+             get_cyp_readmissions_perc(cyp_readmissions)),
+  tar_target(cyp_readmissions_perc_icb_code,
              get_perc_redetentions(cyp_readmissions, "icb_code") |>
                dplyr::filter(icb_code != "NULL")),
   tar_target(
     cyp_readmissions_perc_boxplot,
-    get_standard_boxplot(cyp_readmissions_perc)
+    get_standard_boxplot(cyp_readmissions_perc_icb_code)
   ),
   tar_target(
     cyp_readmissions_perc_table,
-    get_icb_breakdown_table_redetentions(cyp_readmissions_perc, icb_codes_names)
+    get_icb_breakdown_table_redetentions(cyp_readmissions_perc_icb_code, icb_codes_names)
   ),
   ## LOS - MHA detentions ------------------------------------------------------
   # Histogram for 22/23
   tar_target(cyp_los_histo,
-             cyp_los |>
-               dplyr::filter(der_financial_year == "2023/24",
-                             los < 500) |>
-               ggplot2::ggplot(ggplot2::aes(los)) +
-               ggplot2::geom_histogram() +
-               ggplot2::theme_minimal()),
+             get_cyp_los_histo(cyp_los)),
+  tar_target(cyp_los_histo_zoomed,
+             get_cyp_los_histo_zoomed(cyp_los)),
 
   # Boxplot and table for median LOS
   tar_target(cyp_los_median,
