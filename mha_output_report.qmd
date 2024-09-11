@@ -50,9 +50,9 @@ source("R/quarto_formatting.R")
 
 ### Mental Health Act Detention Spell Length of Stay
 
-A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date. 
+A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.
 
-In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed). 
+In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed).
 
 ```{r}
 llos_perc <- tar_read(cyp_los) |>
@@ -61,11 +61,9 @@ llos_perc <- tar_read(cyp_los) |>
             perc_llos = sum(llos) * 100 / count) 
 ```
 
-
 Of the `r llos_perc |> dplyr::pull(count)` MHA detention spells in 2023/24, `r llos_perc |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were longer than 365 days. Most of these long spells were due to consecutive detentions under Section 3 of the MHA.
 
 ::: panel-tabset
-
 #### All LoS
 
 ```{r}
@@ -74,14 +72,13 @@ Of the `r llos_perc |> dplyr::pull(count)` MHA detention spells in 2023/24, `r l
 tar_read(cyp_los_histo)
 ```
 
-#### LoS < 30 days
+#### LoS \< 30 days
 
 ```{r}
 #| label: fig-los-histo-zoomed
 #| fig-cap: Histogram of lengths of MHA detention spells less than 30 days for 2023-24.
 tar_read(cyp_los_histo_zoomed)
 ```
-
 :::
 
 ```{r}
@@ -91,11 +88,9 @@ los_median_23_24 <- tar_read(cyp_los_median) |>
   dplyr::pull()
 ```
 
-
 The median length of MHA detention spell has increased (@fig-los-mh) over time to `r los_median_23_24` days in 2023/24. This varies by ICB (@tbl-los-icb).
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r}
@@ -125,17 +120,14 @@ tar_read(cyp_los_median_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
                  seq(0, 39, 5))
 ```
-
 :::
 
 Median length of stay for MHA detention spells are higher for males compared to females, higher for under 18s compared to 18-24 year olds and also show ethnic group and socioeconomic variation.
 
 ::: panel-tabset
-
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -150,13 +142,11 @@ tar_read(cyp_los_plot_overview)$plot
 tar_read(cyp_los_plot_overview)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r los_gender_plot}
@@ -171,13 +161,11 @@ tar_read(cyp_los_plot_gender)$plot
 tar_read(cyp_los_plot_gender)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r los_age_plot}
@@ -192,13 +180,11 @@ tar_read(cyp_los_plot_age_group)$plot
 tar_read(cyp_los_plot_age_group)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r los_ethnic_plot}
@@ -213,13 +199,11 @@ tar_read(cyp_los_plot_ethnic_category)$plot
 tar_read(cyp_los_plot_ethnic_category)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
-
 ###### Chart1
 
 ```{r los_imd_plot}
@@ -234,9 +218,7 @@ tar_read(cyp_los_plot_imd_decile)$plot
 tar_read(cyp_los_plot_imd_decile)$table |>
   create_dt()
 ```
-
 :::
-
 :::
 
 ### Mental Health Act Re-detentions
@@ -267,7 +249,6 @@ tar_read(cyp_redetentions_perc)$table |>
 ```
 
 ::: panel-tabset
-
 ###### Overview
 
 ```{r}
@@ -298,14 +279,77 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles.
+#### Formal and Informal Mental Health Act Re-detentions
+
+The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
+
+```{r}
+cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
+  dplyr::summarise(redetentions = sum(attends), .by = c(legal_status, 
+                                                         der_financial_year)) |>
+  dplyr::mutate(perc = janitor::round_half_up(redetentions / sum(redetentions), 4), 
+                .by = der_financial_year) 
+
+cyp_redetentions_legal_status_perc |>
+  dplyr::select(-perc) |>
+  tidyr::pivot_wider(names_from = legal_status, values_from = redetentions) |>
+  create_dt()
+```
+
+#### Re-admissions after a Mental Health Act detention
+
+Definition - an admission after a MHA detention that did not start as a new detention within 365 days.
+
+The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased in 2022/23 compared to earlier years (@tbl-readmissions-number). This also varies by ICB (@fig-readmissions-mh).
+
+```{r}
+#| label: tbl-readmissions-number
+#| tbl-cap: Number of admissions within 12 months of a MHA detention.
+tar_read(cyp_readmissions) |>
+  dplyr::summarise(detentions = sum(detentions),
+                   readmissions = sum(attends),
+                   .by = der_financial_year) |>
+  mutate(perc = janitor::round_half_up(readmissions / detentions, 4)) |>
+  create_dt()
+```
 
 ::: panel-tabset
+##### Overview
 
+```{r}
+#| label: fig-readmissions-mh
+#| fig-cap: Percentage of readmissions within 12 months.
+tar_read(cyp_readmissions_perc_boxplot) +
+  ggplot2::labs(title = "Percentage of readmissions within 12 months",
+                subtitle = "England 2019/20 to 2022/23 by ICB.")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-readmissions-summary
+#| tbl-cap: Summary of percentage of readmissions within 12 months.
+tar_read(cyp_readmissions_perc) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-readmissions
+#| tbl-cap: Percentage of readmissions within 12 months by ICB.
+tar_read(cyp_readmissions_perc_table) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
+                 seq(0, 0.9, 0.125))
+```
+:::
+
+#### Rates of Mental Health Act Re-detentions
+
+::: panel-tabset
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -320,14 +364,14 @@ tar_read(cyp_redetentions_perc)$plot
 tar_read(cyp_redetentions_perc)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
-
 ###### Chart
+
+tar_read(gender_plot)\$cyp_redetentions
 
 ```{r redetentions_gender_plot}
 #| label: fig-redetentions-gender
@@ -341,13 +385,11 @@ tar_read(cyp_redetentions_plot_gender)$plot
 tar_read(cyp_redetentions_plot_gender)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_age_plot}
@@ -362,13 +404,11 @@ tar_read(cyp_redetentions_plot_age_group)$plot
 tar_read(cyp_redetentions_plot_age_group)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_ethnic_plot}
@@ -383,13 +423,11 @@ tar_read(cyp_redetentions_plot_ethnic_category)$plot
 tar_read(cyp_redetentions_plot_ethnic_category)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
-
 ###### Chart1
 
 ```{r redetentions_imd_plot}
@@ -404,9 +442,7 @@ tar_read(cyp_redetentions_plot_imd_decile)$plot
 tar_read(cyp_redetentions_plot_imd_decile)$table |>
   create_dt()
 ```
-
 :::
-
 :::
 
 #### Formal and Informal Mental Health Act Re-detentions
@@ -432,7 +468,6 @@ tar_read(cyp_readmissions_perc) |>
 ```
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r}
@@ -461,7 +496,6 @@ tar_read(cyp_readmissions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
                  seq(0, 70, 9))
 ```
-
 :::
 
 ### Travel distance
@@ -502,16 +536,204 @@ NHS Digital guidance: Look up the postcode for this SiteCode in the ODS referenc
 
 **Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
 
-#### Summary
+#### Travel distance
 
-#### Variation
+::: panel-tabset
+#### Overview
 
-##### ICB
+::: panel-tabset
+##### Chart
 
-##### Gender
+```{r}
+#| label: fig-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per financial year."
+tar_read(chart_DTT_FY)
+```
 
-##### Age-group
+##### Table
 
-##### Ethnic group
+```{r}
+#| label: fig-average-distance-fy
+#| fig-cap: "Table summarizing average distance per financial year."
+tar_read(table_DTT_FY) %>% create_dt()
+```
+:::
 
-##### Socioeconomic variation
+#### Gender Variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-gender-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per gender and financial year."
+tar_read(chart_DTT_gender_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-gender-average-distance 
+#| fig-cap: "Table summarizing average distance per gender and financial year."
+tar_read(DTT_gender_FY) %>% create_dt()
+```
+:::
+
+#### Age Group Variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-age-group-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per age group and financial year."
+tar_read(chart_DTT_age_group_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-age-group-average-distance 
+#| fig-cap: "Table summarizing average distance per age group and financial year."
+tar_read(DTT_age_group_FY) %>% create_dt()
+```
+:::
+
+#### Ethnicity Variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-ethnic-category-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per ethnic categroy and financial year."
+tar_read(chart_DTT_ethnic_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-ethnic-average-distance 
+#| fig-cap: "Table summarizing average distance per ethnic category and financial year."
+tar_read(DTT_ethnic_FY) %>% create_dt()
+```
+:::
+
+#### Socioeconomic variation
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-IMD-average-distance-chart
+#| fig-cap: "Chart summarizing average distance per IMD and financial year."
+tar_read(chart_DTT_IMD_FY)
+```
+
+##### Table
+
+```{r}
+#| label: fig-imd-average-distance 
+#| fig-cap: "Table summarizing average distance per IMD decile and financial year."
+tar_read(DTT_IMD_FY) %>% create_dt()
+```
+:::
+:::
+
+#### Travel distance by number of admissions
+
+::: panel-tabset
+#### Overview
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-comparison-admissions-distance
+#| fig-cap: "Comparison of Total Admissions and Travel Distance Over Time."
+tar_read(chart_admissions_vs_distance)
+```
+
+##### Table
+
+```{r}
+#| label: fig-DTT-FY-with-admissions-table
+#| fig-cap: "Table showing average distance per admission and total admissions by financial year."
+
+tar_read(table_DTT_FY_with_admissions)
+
+```
+:::
+
+#### Gender
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-gender-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Gender Over Time."
+tar_read(chart_DTT_gender_FY_with_admissions)
+```
+
+##### Table
+
+```{r}
+#| label: fig-gender-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender and financial year."
+tar_read(table_DTT_gender_FY_with_admissions)
+```
+:::
+
+#### Age Group
+
+::: panel-tabset
+##### Chart
+
+```{r}
+#| label: fig-age-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Age Group Over Time."
+tar_read(chart_DTT_age_group_FY_with_admissions)
+```
+
+##### Table
+
+```{r}
+#| label: fig-age-group-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by age group and financial year."
+tar_read(table_DTT_age_group_FY_with_admissions)
+```
+:::
+
+#### Ethnicity
+
+::: panel-tabset
+##### Chart
+
+##### Table
+
+```{r}
+#| label: fig-ethnic-category-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by ethnic category and financial year."
+tar_read(table_DTT_ethnic_FY_with_admissions)
+```
+:::
+
+#### IMD
+
+::: panel-tabset
+##### Chart
+
+##### Table
+
+```{r}
+#| label: fig-IMD-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by IMD and financial year."
+tar_read(table_DTT_IMD_FY_with_admissions)
+```
+:::
+:::
+
+#### Questions for Andi
+
+1.  FY - range?

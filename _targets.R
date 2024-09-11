@@ -755,4 +755,93 @@ list(
              map_icb_allmh_uec(icb_boundary, icb_rates_uec)),
   tar_target(icb_111_map_2122,
              map_icb_allmh_111(icb_boundary, nhs111_mh_calls_rate, "2020/21"))
+  ,
+
+  # 08. DTT (Heather) -------------------------------------------------------------------
+  tarchetypes::tar_file(DTT_filepath, "data/cyp_DTT.csv"),
+
+  tar_target(DTT,load_csv(DTT_filepath)),
+
+  tar_target(custom_colours,get_custom_colours()),
+
+  # Add the original FY target
+  tar_target(table_DTT_FY,
+             get_table_DTT_FY(DTT)), # DTT here not data b/c that's what it's called in tar_read() function
+
+  # Add the gender target
+  tar_target(DTT_gender_FY, get_table_DTT_gender_FY(DTT)),
+
+  # Add the age group target
+  tar_target(DTT_age_group_FY, get_table_DTT_age_group_FY(DTT)),
+
+  # Add the ethnic category target
+  tar_target(DTT_ethnic_FY, get_table_DTT_ethnic_FY(DTT)),
+
+  # Add the IMD target
+  tar_target(DTT_IMD_FY, get_table_DTT_IMD_FY(DTT)),
+
+#For the charts - pull the name from the table above into the target
+
+  #Chart for Overview
+  tar_target(chart_DTT_FY,
+             get_chart_DTT_FY(table_DTT_FY, custom_colours$su_colours)),
+
+  #Chart for gender
+  tar_target(chart_DTT_gender_FY,
+           get_chart_DTT_gender_FY(DTT_gender_FY, table_DTT_FY, custom_colours$su_colours)),
+
+  #Chart for age group
+  tar_target(chart_DTT_age_group_FY,
+           get_chart_DTT_age_group_FY(DTT_age_group_FY, table_DTT_FY, custom_colours$su_colours)),
+
+  #Chart for ethnic category
+  tar_target(chart_DTT_ethnic_FY,
+           get_chart_DTT_ethnic_FY(DTT_ethnic_FY, table_DTT_FY, custom_colours$su_colours)),
+
+  #Chart for IMD
+  tar_target(chart_DTT_IMD_FY,
+           get_chart_DTT_IMD_FY(DTT_IMD_FY, custom_colours$imd_colours_custom)),
+
+  #Chart 2 for Overall
+tar_target(
+  table_DTT_FY_with_admissions,
+  get_table_DTT_FY_with_admissions(DTT)
+),
+
+tar_target(
+  chart_admissions_vs_distance,
+  get_chart_admissions_vs_distance(table_DTT_FY_with_admissions, custom_colours$su_colours)
+),
+
+#Subgroups tables
+tar_target(
+  table_DTT_gender_FY_with_admissions,
+  get_table_DTT_gender_FY_with_admissions(DTT)
+),
+
+tar_target(
+  DTT_age_group_FY_with_admissions,
+  get_table_DTT_age_group_FY_with_admissions(DTT)
+),
+
+tar_target(DTT_ethnic_FY_with_admissions,
+           get_table_DTT_ethnic_FY_with_admissions(DTT)),
+
+tar_target(
+  table_DTT_IMD_FY_with_admissions,
+  get_table_DTT_IMD_FY_with_admissions(DTT)
+),
+
+#Charts
+tar_target(
+  chart_DTT_gender_FY_with_admissions,
+  get_chart_admissions_vs_distance_gender(table_DTT_gender_FY_with_admissions, custom_colours$su_colours)
+),
+
+tar_target(
+  chart_DTT_age_group_FY_with_admissions,
+  get_chart_admissions_vs_distance_age(DTT_age_group_FY_with_admissions, custom_colours$su_colours)
+)
+
+
 )
