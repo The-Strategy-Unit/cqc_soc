@@ -50,9 +50,9 @@ source("R/quarto_formatting.R")
 
 ### Mental Health Act Detention Spell Length of Stay
 
-A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date. 
+A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.
 
-In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed). 
+In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed).
 
 ```{r}
 llos_perc <- tar_read(cyp_los) |>
@@ -61,11 +61,9 @@ llos_perc <- tar_read(cyp_los) |>
             perc_llos = sum(llos) * 100 / count) 
 ```
 
-
 Of the `r llos_perc |> dplyr::pull(count)` MHA detention spells in 2023/24, `r llos_perc |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were longer than 365 days. Most of these long spells were due to consecutive detentions under Section 3 of the MHA.
 
 ::: panel-tabset
-
 #### All LoS
 
 ```{r}
@@ -74,14 +72,13 @@ Of the `r llos_perc |> dplyr::pull(count)` MHA detention spells in 2023/24, `r l
 tar_read(cyp_los_histo)
 ```
 
-#### LoS < 30 days
+#### LoS \< 30 days
 
 ```{r}
 #| label: fig-los-histo-zoomed
 #| fig-cap: Histogram of lengths of MHA detention spells less than 30 days for 2023-24.
 tar_read(cyp_los_histo_zoomed)
 ```
-
 :::
 
 ```{r}
@@ -90,7 +87,6 @@ los_median_23_24 <- tar_read(cyp_los_median) |>
   dplyr::summarise(median = median(value)) |>
   dplyr::pull()
 ```
-
 
 The median length of MHA detention spell has increased (@fig-los-mh) over time to `r los_median_23_24` days in 2023/24. This varies by ICB (@tbl-los-icb).
 
@@ -472,7 +468,6 @@ tar_read(cyp_readmissions_perc) |>
 ```
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r}
@@ -501,7 +496,6 @@ tar_read(cyp_readmissions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
                  seq(0, 70, 9))
 ```
-
 :::
 
 ### Travel distance
