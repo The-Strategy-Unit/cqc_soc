@@ -435,11 +435,7 @@ The percentage of MHA detentions that had a subsequent MH admission within 12 mo
 ```{r}
 #| label: tbl-readmissions-number
 #| tbl-cap: Number of admissions within 12 months of a MHA detention.
-tar_read(cyp_readmissions) |>
-  dplyr::summarise(detentions = sum(detentions),
-                   readmissions = sum(attends),
-                   .by = der_financial_year) |>
-  mutate(perc = janitor::round_half_up(readmissions / detentions, 4)) |>
+tar_read(cyp_readmissions_perc) |>
   create_dt()
 ```
 
@@ -460,7 +456,7 @@ tar_read(cyp_readmissions_perc_boxplot) +
 ```{r}
 #| label: tbl-readmissions-summary
 #| tbl-cap: Summary of percentage of readmissions within 12 months.
-tar_read(cyp_readmissions_perc) |>
+tar_read(cyp_readmissions_perc_icb_code) |>
   get_quantiles_and_mean()
 ```
 
@@ -471,7 +467,7 @@ tar_read(cyp_readmissions_perc) |>
 #| tbl-cap: Percentage of readmissions within 12 months by ICB.
 tar_read(cyp_readmissions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
-                 seq(0, 0.5, 0.07))
+                 seq(0, 70, 9))
 ```
 
 :::

@@ -505,15 +505,17 @@ list(
                                                 "imd_decile")),
   # Readmissions
   tar_target(cyp_readmissions_perc,
+             get_cyp_readmissions_perc(cyp_readmissions)),
+  tar_target(cyp_readmissions_perc_icb_code,
              get_perc_redetentions(cyp_readmissions, "icb_code") |>
                dplyr::filter(icb_code != "NULL")),
   tar_target(
     cyp_readmissions_perc_boxplot,
-    get_standard_boxplot(cyp_readmissions_perc)
+    get_standard_boxplot(cyp_readmissions_perc_icb_code)
   ),
   tar_target(
     cyp_readmissions_perc_table,
-    get_icb_breakdown_table_redetentions(cyp_readmissions_perc, icb_codes_names)
+    get_icb_breakdown_table_redetentions(cyp_readmissions_perc_icb_code, icb_codes_names)
   ),
   ## LOS - MHA detentions ------------------------------------------------------
   # Histogram for 22/23

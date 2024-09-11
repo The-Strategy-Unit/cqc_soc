@@ -472,7 +472,7 @@ get_cyp_redetentions_line_by_group <- function(data, group){
                   perc = value)
 
   plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year, 
+    ggplot2::ggplot(ggplot2::aes(der_financial_year,
                                  perc,
                                  col = !!rlang::sym(group),
                                  group = !!rlang::sym(group))) +
@@ -482,6 +482,17 @@ get_cyp_redetentions_line_by_group <- function(data, group){
     ggplot2::theme_minimal()
 
   return(list(plot = plot, table = table))
+}
+
+# To get % of readmissions
+get_cyp_readmissions_perc <- function(data){
+  wrangled <- data |>
+    dplyr::summarise(detentions = sum(detentions),
+                     readmissions = sum(attends),
+                     .by = der_financial_year) |>
+    mutate(perc = readmissions * 100 / detentions)
+
+  return(wrangled)
 }
 
 # LOS - detentions -------------------------------------------------------------
@@ -507,13 +518,13 @@ get_cyp_los_line_by_group <- function(data, group){
 
   table <- data |>
     dplyr::filter(!!rlang::sym(group) != "NULL") |>
-    dplyr::summarise(value = median(los), .by = c(der_financial_year, 
+    dplyr::summarise(value = median(los), .by = c(der_financial_year,
                                                   !!rlang::sym(group)))
 
   plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year, 
-                                 value, 
-                                 col = !!rlang::sym(group), 
+    ggplot2::ggplot(ggplot2::aes(der_financial_year,
+                                 value,
+                                 col = !!rlang::sym(group),
                                  group = !!rlang::sym(group))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Financial year",
