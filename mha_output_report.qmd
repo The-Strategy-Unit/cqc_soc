@@ -262,11 +262,7 @@ About half of MHA detentions had a re-detention within 12 months (@tbl-redetenti
 ```{r}
 #| label: tbl-redetentions-number
 #| tbl-cap: Number of MHA detentions and redetentions within 12 months.
-tar_read(cyp_redetentions) |>
-  dplyr::summarise(detentions = sum(detentions),
-                   redetentions = sum(attends),
-                   .by = der_financial_year) |>
-  mutate(perc = janitor::round_half_up(redetentions / detentions, 4)) |>
+tar_read(cyp_redetentions_perc)$table |>
   create_dt()
 ```
 
@@ -298,7 +294,7 @@ tar_read(cyp_redetentions_perc_icb_code) |>
 #| tbl-cap: Percentage of MHA redetentions within 12 months by ICB.
 tar_read(cyp_redetentions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
-                 seq(0, 0.9, 0.125))
+                 seq(0, 90, 12.5))
 ```
 :::
 
