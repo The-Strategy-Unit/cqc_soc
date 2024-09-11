@@ -283,7 +283,6 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-<<<<<<< HEAD
 #### Formal and Informal Mental Health Act Re-detentions
 
 The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
@@ -350,9 +349,6 @@ tar_read(cyp_readmissions_perc_table) |>
 :::
 
 #### Rates of Mental Health Act Re-detentions
-=======
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles.
->>>>>>> d0f0d85f4c8f1138a84431779e5921876026a434
 
 ::: panel-tabset
 ##### Overview
