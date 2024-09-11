@@ -15,8 +15,8 @@ library(sf)
 
 
 # Step 2: Sync with project
-# Open R studio --> go to main --> pull the latest --> go to my branch --> merge the latest
-# then run:
+# Open R studio --> go to main --> pull the latest --> go to my branch
+#--> merge the latest by running:
   usethis::pr_merge_main ()
 
 #Step 3:
