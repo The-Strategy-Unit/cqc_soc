@@ -820,11 +820,11 @@ tar_target(
 ),
 
 tar_target(
-  DTT_age_group_FY_with_admissions,
+  table_DTT_age_group_FY_with_admissions,
   get_table_DTT_age_group_FY_with_admissions(DTT)
 ),
 
-tar_target(DTT_ethnic_FY_with_admissions,
+tar_target(table_DTT_ethnic_FY_with_admissions,
            get_table_DTT_ethnic_FY_with_admissions(DTT)),
 
 tar_target(
@@ -840,7 +840,7 @@ tar_target(
 
 tar_target(
   chart_DTT_age_group_FY_with_admissions,
-  get_chart_admissions_vs_distance_age(DTT_age_group_FY_with_admissions, custom_colours$su_colours)
+  get_chart_admissions_vs_distance_age(table_DTT_age_group_FY_with_admissions, custom_colours$su_colours)
 )
 
 
