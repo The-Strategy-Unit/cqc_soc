@@ -438,7 +438,7 @@ get_perc_redetentions <- function(data, group){
     dplyr::summarise(detentions = sum(detentions),
                      attends = sum(attends),
                      .by = c(der_financial_year, !!rlang::sym(group))) |>
-    dplyr::mutate(value = attends / detentions) |>
+    dplyr::mutate(value = attends * 100 / detentions) |>
     dplyr::filter(!!rlang::sym(group) != "NULL")
 
   return(perc)
@@ -451,7 +451,7 @@ get_cyp_redetentions_line <- function(data){
     dplyr::summarise(detentions = sum(detentions),
                      attends = sum(attends),
                      .by = c(der_financial_year)) |>
-    dplyr::mutate(perc = attends / detentions) |>
+    dplyr::mutate(perc = attends * 100 / detentions) |>
     dplyr::rename(redetentions = attends)
 
   plot <- table |>
@@ -472,13 +472,39 @@ get_cyp_redetentions_line_by_group <- function(data, group){
                   perc = value)
 
   plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year, perc, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
+    ggplot2::ggplot(ggplot2::aes(der_financial_year,
+                                 perc,
+                                 col = !!rlang::sym(group),
+                                 group = !!rlang::sym(group))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Financial year",
                   y = "Percentage") +
     ggplot2::theme_minimal()
 
   return(list(plot = plot, table = table))
+}
+
+# To get % of readmissions
+get_cyp_readmissions_perc <- function(data){
+  wrangled <- data |>
+    dplyr::summarise(detentions = sum(detentions),
+                     readmissions = sum(attends),
+                     .by = der_financial_year) |>
+    mutate(perc = readmissions * 100 / detentions)
+
+  return(wrangled)
+}
+
+# To get table for formal/informal redetentions
+get_cyp_redetentions_formal_table <- function(data){
+  wrangled <- data |>
+    dplyr::summarise(redetentions = sum(attends),
+                     .by = c(legal_status,
+                             der_financial_year)) |>
+    tidyr::pivot_wider(names_from = legal_status,
+                       values_from = redetentions)
+
+  return(wrangled)
 }
 
 # LOS - detentions -------------------------------------------------------------
@@ -504,10 +530,14 @@ get_cyp_los_line_by_group <- function(data, group){
 
   table <- data |>
     dplyr::filter(!!rlang::sym(group) != "NULL") |>
-    dplyr::summarise(value = median(los), .by = c(der_financial_year, !!rlang::sym(group)))
+    dplyr::summarise(value = median(los), .by = c(der_financial_year,
+                                                  !!rlang::sym(group)))
 
   plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year, value, col = !!rlang::sym(group), group = !!rlang::sym(group))) +
+    ggplot2::ggplot(ggplot2::aes(der_financial_year,
+                                 value,
+                                 col = !!rlang::sym(group),
+                                 group = !!rlang::sym(group))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Financial year",
                   y = "Median length of MHA detention spell") +
@@ -533,7 +563,7 @@ get_cyp_los_histo <- function(data) {
 get_cyp_los_histo_zoomed <- function(data) {
 
   plot <- data |>
-    dplyr::filter(der_financial_year == "2023/24", los < 50) |>
+    dplyr::filter(der_financial_year == "2023/24", los < 30) |>
     ggplot2::ggplot(ggplot2::aes(los)) +
     ggplot2::geom_histogram(fill = "#f9bf07", binwidth = 1) +
     ggplot2::theme_minimal() +
