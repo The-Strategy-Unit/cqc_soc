@@ -734,6 +734,23 @@ tar_read(table_DTT_IMD_FY_with_admissions)
 :::
 :::
 
+Testing Space:
+
+![](Heather Scratch Space/Tableau Plots/Chart DTT Admissions FY Gender Age.png)
+
+![](Heather Scratch Space/Tableau Plots/Table of Subgroups FY 202021 - 202425.png)
+
+#### ![](Heather Scratch Space/Tableau Plots/Trends Overview FY.png)
+
+![](Heather Scratch Space/Tableau Plots/Good example.png)
+
+```{r}
+library(magick)
+img <- image_read("Heather Scratch Space/Tableau Plots/Good example.png")
+plot(img)
+
+```
+
 #### Questions for Andi
 
 1.  FY - range?
