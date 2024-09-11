@@ -279,72 +279,7 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-#### Formal and Informal Mental Health Act Re-detentions
-
-The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
-
-```{r}
-cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
-  dplyr::summarise(redetentions = sum(attends), .by = c(legal_status, 
-                                                         der_financial_year)) |>
-  dplyr::mutate(perc = janitor::round_half_up(redetentions / sum(redetentions), 4), 
-                .by = der_financial_year) 
-
-cyp_redetentions_legal_status_perc |>
-  dplyr::select(-perc) |>
-  tidyr::pivot_wider(names_from = legal_status, values_from = redetentions) |>
-  create_dt()
-```
-
-#### Re-admissions after a Mental Health Act detention
-
-Definition - an admission after a MHA detention that did not start as a new detention within 365 days.
-
-The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased in 2022/23 compared to earlier years (@tbl-readmissions-number). This also varies by ICB (@fig-readmissions-mh).
-
-```{r}
-#| label: tbl-readmissions-number
-#| tbl-cap: Number of admissions within 12 months of a MHA detention.
-tar_read(cyp_readmissions) |>
-  dplyr::summarise(detentions = sum(detentions),
-                   readmissions = sum(attends),
-                   .by = der_financial_year) |>
-  mutate(perc = janitor::round_half_up(readmissions / detentions, 4)) |>
-  create_dt()
-```
-
-::: panel-tabset
-##### Overview
-
-```{r}
-#| label: fig-readmissions-mh
-#| fig-cap: Percentage of readmissions within 12 months.
-tar_read(cyp_readmissions_perc_boxplot) +
-  ggplot2::labs(title = "Percentage of readmissions within 12 months",
-                subtitle = "England 2019/20 to 2022/23 by ICB.")
-```
-
-##### Summary
-
-```{r}
-#| label: tbl-readmissions-summary
-#| tbl-cap: Summary of percentage of readmissions within 12 months.
-tar_read(cyp_readmissions_perc) |>
-  get_quantiles_and_mean()
-```
-
-##### ICB Variation
-
-```{r}
-#| label: tbl-readmissions
-#| tbl-cap: Percentage of readmissions within 12 months by ICB.
-tar_read(cyp_readmissions_perc_table) |>
-  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
-                 seq(0, 0.9, 0.125))
-```
-:::
-
-#### Rates of Mental Health Act Re-detentions
+The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles.
 
 ::: panel-tabset
 ##### Overview
@@ -370,8 +305,6 @@ tar_read(cyp_redetentions_perc)$table |>
 
 ::: panel-tabset
 ###### Chart
-
-tar_read(gender_plot)\$cyp_redetentions
 
 ```{r redetentions_gender_plot}
 #| label: fig-redetentions-gender
@@ -734,22 +667,33 @@ tar_read(table_DTT_IMD_FY_with_admissions)
 :::
 :::
 
-Testing Space:
+#### Questions for Andi
 
-![](Heather Scratch Space/Tableau Plots/Chart DTT Admissions FY Gender Age.png)
+1.  FY - range?
 
-![](Heather Scratch Space/Tableau Plots/Table of Subgroups FY 202021 - 202425.png)
+#### Testing Tableau Additions
 
-#### ![](Heather Scratch Space/Tableau Plots/Trends Overview FY.png)
+::: panel-tabset
+#### Overview
 
-![](Heather Scratch Space/Tableau Plots/Good example.png)
+::: panel-tabset
+##### Chart 1
 
-```{r}
-library(magick)
-img <- image_read("Heather Scratch Space/Tableau Plots/Good example.png")
-plot(img)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Chart%20DTT%20Admissions%20FY%20Gender%20Age.png)
 
-```
+##### Chart 2
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Table%20of%20Subgroups%20FY%20202021%20-%20202425.png)
+
+##### Chart 3
+
+#### ![](Heather%20Scratch%20Space/Tableau%20Plots/Trends%20Overview%20FY.png)
+
+##### Chart 4
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Good%20example.png)
+:::
+:::
 
 #### Questions for Andi
 
