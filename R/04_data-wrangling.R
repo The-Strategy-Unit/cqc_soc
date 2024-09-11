@@ -495,6 +495,18 @@ get_cyp_readmissions_perc <- function(data){
   return(wrangled)
 }
 
+# To get table for formal/informal redetentions
+get_cyp_redetentions_formal_table <- function(data){
+  wrangled <- data |>
+    dplyr::summarise(redetentions = sum(attends),
+                     .by = c(legal_status,
+                             der_financial_year)) |>
+    tidyr::pivot_wider(names_from = legal_status,
+                       values_from = redetentions)
+
+  return(wrangled)
+}
+
 # LOS - detentions -------------------------------------------------------------
 
 # To get a line plot and table of LOS over time

@@ -414,15 +414,7 @@ tar_read(cyp_redetentions_plot_imd_decile)$table |>
 The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
 
 ```{r}
-cyp_redetentions_legal_status_perc <- tar_read(cyp_redetentions_legal_status) |>
-  dplyr::summarise(redetentions = sum(attends), .by = c(legal_status, 
-                                                         der_financial_year)) |>
-  dplyr::mutate(perc = janitor::round_half_up(redetentions / sum(redetentions), 4), 
-                .by = der_financial_year) 
-
-cyp_redetentions_legal_status_perc |>
-  dplyr::select(-perc) |>
-  tidyr::pivot_wider(names_from = legal_status, values_from = redetentions) |>
+tar_read(cyp_redetentions_formal_table) |>
   create_dt()
 ```
 

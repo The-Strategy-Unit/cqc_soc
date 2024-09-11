@@ -490,6 +490,8 @@ list(
   tar_target(cyp_redetentions_legal_status,
              get_perc_redetentions(cyp_redetentions, "legal_status") |>
                dplyr::arrange(der_financial_year, legal_status)),
+  tar_target(cyp_redetentions_formal_table,
+             get_cyp_redetentions_formal_table(cyp_redetentions_legal_status)),
   # by group
   tar_target(cyp_redetentions_plot_gender,
              get_cyp_redetentions_line_by_group(cyp_redetentions_perc_gender,
