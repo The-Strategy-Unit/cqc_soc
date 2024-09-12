@@ -50,9 +50,9 @@ source("R/quarto_formatting.R")
 
 ### Mental Health Act Detention Spell Length of Stay
 
-A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date. 
+A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.
 
-In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed). 
+In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed).
 
 ```{r}
 llos_perc <- tar_read(cyp_los) |>
@@ -61,11 +61,9 @@ llos_perc <- tar_read(cyp_los) |>
             perc_llos = sum(llos) * 100 / count) 
 ```
 
-
 Of the `r llos_perc |> dplyr::pull(count)` MHA detention spells in 2023/24, `r llos_perc |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were longer than 365 days. Most of these long spells were due to consecutive detentions under Section 3 of the MHA.
 
 ::: panel-tabset
-
 #### All LoS
 
 ```{r}
@@ -74,14 +72,13 @@ Of the `r llos_perc |> dplyr::pull(count)` MHA detention spells in 2023/24, `r l
 tar_read(cyp_los_histo)
 ```
 
-#### LoS < 30 days
+#### LoS \< 30 days
 
 ```{r}
 #| label: fig-los-histo-zoomed
 #| fig-cap: Histogram of lengths of MHA detention spells less than 30 days for 2023-24.
 tar_read(cyp_los_histo_zoomed)
 ```
-
 :::
 
 ```{r}
@@ -91,11 +88,9 @@ los_median_23_24 <- tar_read(cyp_los_median) |>
   dplyr::pull()
 ```
 
-
 The median length of MHA detention spell has increased (@fig-los-mh) over time to `r los_median_23_24` days in 2023/24. This varies by ICB (@tbl-los-icb).
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r}
@@ -125,17 +120,14 @@ tar_read(cyp_los_median_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
                  seq(0, 39, 5))
 ```
-
 :::
 
 Median length of stay for MHA detention spells are higher for males compared to females, higher for under 18s compared to 18-24 year olds and also show ethnic group and socioeconomic variation.
 
 ::: panel-tabset
-
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -150,13 +142,11 @@ tar_read(cyp_los_plot_overview)$plot
 tar_read(cyp_los_plot_overview)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r los_gender_plot}
@@ -171,13 +161,11 @@ tar_read(cyp_los_plot_gender)$plot
 tar_read(cyp_los_plot_gender)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r los_age_plot}
@@ -192,13 +180,11 @@ tar_read(cyp_los_plot_age_group)$plot
 tar_read(cyp_los_plot_age_group)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r los_ethnic_plot}
@@ -213,13 +199,11 @@ tar_read(cyp_los_plot_ethnic_category)$plot
 tar_read(cyp_los_plot_ethnic_category)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
-
 ###### Chart1
 
 ```{r los_imd_plot}
@@ -234,9 +218,7 @@ tar_read(cyp_los_plot_imd_decile)$plot
 tar_read(cyp_los_plot_imd_decile)$table |>
   create_dt()
 ```
-
 :::
-
 :::
 
 ### Mental Health Act Re-detentions
@@ -267,7 +249,6 @@ tar_read(cyp_redetentions_perc)$table |>
 ```
 
 ::: panel-tabset
-
 ###### Overview
 
 ```{r}
@@ -301,11 +282,9 @@ tar_read(cyp_redetentions_perc_table) |>
 The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles.
 
 ::: panel-tabset
-
 ##### Overview
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -320,13 +299,11 @@ tar_read(cyp_redetentions_perc)$plot
 tar_read(cyp_redetentions_perc)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Gender variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_gender_plot}
@@ -341,13 +318,11 @@ tar_read(cyp_redetentions_plot_gender)$plot
 tar_read(cyp_redetentions_plot_gender)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Age-group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_age_plot}
@@ -362,13 +337,11 @@ tar_read(cyp_redetentions_plot_age_group)$plot
 tar_read(cyp_redetentions_plot_age_group)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Ethnic group variation
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r redetentions_ethnic_plot}
@@ -383,13 +356,11 @@ tar_read(cyp_redetentions_plot_ethnic_category)$plot
 tar_read(cyp_redetentions_plot_ethnic_category)$table |>
   create_dt()
 ```
-
 :::
 
 ##### Socioeconomic variation
 
 ::: panel-tabset
-
 ###### Chart1
 
 ```{r redetentions_imd_plot}
@@ -404,9 +375,7 @@ tar_read(cyp_redetentions_plot_imd_decile)$plot
 tar_read(cyp_redetentions_plot_imd_decile)$table |>
   create_dt()
 ```
-
 :::
-
 :::
 
 #### Formal and Informal Mental Health Act Re-detentions
@@ -432,7 +401,6 @@ tar_read(cyp_readmissions_perc) |>
 ```
 
 ::: panel-tabset
-
 ##### Overview
 
 ```{r}
@@ -461,7 +429,6 @@ tar_read(cyp_readmissions_perc_table) |>
   color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
                  seq(0, 70, 9))
 ```
-
 :::
 
 ### Travel distance
