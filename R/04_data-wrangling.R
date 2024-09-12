@@ -571,3 +571,24 @@ get_cyp_los_histo_zoomed <- function(data) {
 
   return(plot)
 }
+
+## Working with conversions data
+# Identify different conversion types for MHA episodes as per Helen's list
+get_conversions_mapped <- function(tar_obj) {
+
+  data <- tar_obj |>
+    mutate(conversion_desc = case_when(grepl("06-05", sections_all) ~ "Section 5(4) to Section 5(2)",
+                                       grepl("19-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("20-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("19-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("20-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("05-02", sections_all) ~ "Section 5(2) to Section 2 ",
+                                       grepl("05-03", sections_all) ~ "Section 5(2) to Section 3",
+                                       grepl("20-02", sections_all) ~ "Section 136 to Section 2",
+                                       grepl("20-03", sections_all) ~ "Section 136 to Section 3",
+                                       grepl("04-02", sections_all) ~ "Section 4 to Section 2",
+                                       grepl("04-03", sections_all) ~ "Section 4 to Section 3",
+                                       grepl("03-03", sections_all) ~ "Section 3 renewal")
+    )
+}
+
