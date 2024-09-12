@@ -460,7 +460,8 @@ get_cyp_redetentions_line <- function(data){
                        linetype = "longdash") +
     ggplot2::labs(x = "Financial year",
                   y = "Percentage") +
-    ggplot2::theme_minimal()
+    ggplot2::theme_minimal() +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA))
 
   return(list(plot = plot, table = table))
 }
@@ -520,7 +521,8 @@ get_cyp_los_line <- function(data){
                        linetype = "longdash") +
     ggplot2::labs(x = "Financial year",
                   y = "Median length of MHA detention") +
-    ggplot2::theme_minimal()
+    ggplot2::theme_minimal() +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA))
 
   return(list(plot = plot, table = table))
 }

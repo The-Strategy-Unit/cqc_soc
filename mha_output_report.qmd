@@ -117,7 +117,7 @@ tar_read(cyp_los_median) |>
 #| label: tbl-los-icb
 #| tbl-cap: Median length of Mental Health Act detention spell by ICB.
 tar_read(cyp_los_median_table) |>
-  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23"), 
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
                  seq(0, 39, 5))
 ```
 :::
@@ -204,7 +204,7 @@ tar_read(cyp_los_plot_ethnic_category)$table |>
 ##### Socioeconomic variation
 
 ::: panel-tabset
-###### Chart1
+###### Chart
 
 ```{r los_imd_plot}
 #| label: fig-los-imd
@@ -361,7 +361,7 @@ tar_read(cyp_redetentions_plot_ethnic_category)$table |>
 ##### Socioeconomic variation
 
 ::: panel-tabset
-###### Chart1
+###### Chart
 
 ```{r redetentions_imd_plot}
 #| label: fig-redetentions-imd
