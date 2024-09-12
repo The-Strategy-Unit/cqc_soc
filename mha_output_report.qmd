@@ -593,7 +593,7 @@ tar_read(chart_admissions_vs_distance)
 #| label: fig-DTT-FY-with-admissions-table
 #| fig-cap: "Table showing average distance per admission and total admissions by financial year."
 
-tar_read(table_DTT_FY_with_admissions)
+tar_read(table_DTT_FY_with_admissions) %>% create_dt()
 
 ```
 :::
@@ -614,7 +614,7 @@ tar_read(chart_DTT_gender_FY_with_admissions)
 ```{r}
 #| label: fig-gender-average-distance-admissions
 #| fig-cap: "Table summarizing average distance and total admissions by gender and financial year."
-tar_read(table_DTT_gender_FY_with_admissions)
+tar_read(table_DTT_gender_FY_with_admissions) %>% create_dt()
 ```
 :::
 
@@ -634,7 +634,7 @@ tar_read(chart_DTT_age_group_FY_with_admissions)
 ```{r}
 #| label: fig-age-group-average-distance-admissions
 #| fig-cap: "Table summarizing average distance and total admissions by age group and financial year."
-tar_read(table_DTT_age_group_FY_with_admissions)
+tar_read(table_DTT_age_group_FY_with_admissions)%>% create_dt()
 ```
 :::
 
@@ -643,12 +643,18 @@ tar_read(table_DTT_age_group_FY_with_admissions)
 ::: panel-tabset
 ##### Chart
 
+```{r}
+#| label: fig-ethnic-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Ethnicity Over Time."
+tar_read(chart_DTT_ethnic_FY_with_admissions)
+```
+
 ##### Table
 
 ```{r}
 #| label: fig-ethnic-category-average-distance-admissions
 #| fig-cap: "Table summarizing average distance and total admissions by ethnic category and financial year."
-tar_read(table_DTT_ethnic_FY_with_admissions)
+tar_read(table_DTT_ethnic_FY_with_admissions)%>% create_dt()
 ```
 :::
 
@@ -657,44 +663,94 @@ tar_read(table_DTT_ethnic_FY_with_admissions)
 ::: panel-tabset
 ##### Chart
 
+```{r}
+#| label: fig-IMD-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by IMD Over Time."
+tar_read(chart_DTT_IMD_FY_with_admissions)
+```
+
 ##### Table
 
 ```{r}
 #| label: fig-IMD-average-distance-admissions
 #| fig-cap: "Table summarizing average distance and total admissions by IMD and financial year."
-tar_read(table_DTT_IMD_FY_with_admissions)
+tar_read(table_DTT_IMD_FY_with_admissions)%>% create_dt()
 ```
 :::
 :::
 
-#### Questions for Andi
+#### Additional Analysis
 
-1.  FY - range?
+::: panel-tabset
+#### DTT and Number of Admissions by Gender and Age
 
-#### Testing Tableau Additions
+::: panel-tabset
+##### Chart
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Gender%20Age%20Time.png)
+
+##### Table
+
+```{r}
+#| label: fig-gender-age-FY-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, and financial year."
+tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
+```
+:::
+
+#### Table of Subgroup Rates
+
+::: panel-tabset
+##### Chart
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Grid.png)
+
+##### Table
+
+```{r}
+#| label: fig-gender-age-ethnicity-IMD-5-years-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
+tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
+```
+:::
+
+#### IMD by Age Group and Gender Over Time
+
+::: panel-tabset
+##### Chart
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20IMD%20over%20time.png)
+
+##### Table
+
+```{r}
+#| label: fig-gender-age-IMD-FY-average-distance
+#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
+tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
+```
+:::
+:::
+
+#### DTT by ICBs
 
 ::: panel-tabset
 #### Overview
 
 ::: panel-tabset
-##### Chart 1
+##### Chart
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Chart%20DTT%20Admissions%20FY%20Gender%20Age.png)
+```{r}
+#| label: fig-ICB-heat-map
+#| fig-cap: "Chart summarizing average distance per ICB." 
+tar_read(heatmap_DTT_subgroups)
+```
 
-##### Chart 2
+##### Table
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Table%20of%20Subgroups%20FY%20202021%20-%20202425.png)
-
-##### Chart 3
-
-#### ![](Heather%20Scratch%20Space/Tableau%20Plots/Trends%20Overview%20FY.png)
-
-##### Chart 4
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Good%20example.png)
+```{r}
+#| label: fig-ICB-average-distance 
+#| fig-cap: "Table summarizing average distance per ICB and financial year."
+tar_read(DTT_ICB_FY) %>% create_dt()
+```
 :::
 :::
-
-#### Questions for Andi
-
-1.  FY - range?
