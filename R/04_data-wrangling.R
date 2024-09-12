@@ -456,7 +456,8 @@ get_cyp_redetentions_line <- function(data){
 
   plot <- table |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, perc, group = 1)) +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(colour = "black",
+                       linetype = "longdash") +
     ggplot2::labs(x = "Financial year",
                   y = "Percentage") +
     ggplot2::theme_minimal()
@@ -471,15 +472,13 @@ get_cyp_redetentions_line_by_group <- function(data, group){
     dplyr::rename(redetentions = attends,
                   perc = value)
 
-  plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year,
-                                 perc,
-                                 col = !!rlang::sym(group),
-                                 group = !!rlang::sym(group))) +
-    ggplot2::geom_line() +
-    ggplot2::labs(x = "Financial year",
-                  y = "Percentage") +
-    ggplot2::theme_minimal()
+  plot <- get_cyp_redetentions_line(data)$plot +
+    ggplot2::geom_line(ggplot2::aes(der_financial_year,
+                                    perc,
+                                    col = !!rlang::sym(group),
+                                    group = !!rlang::sym(group)),
+                       data = table) +
+    ggplot2::labs(caption = "Black dashed line is the overall trend")
 
   return(list(plot = plot, table = table))
 }
@@ -517,7 +516,8 @@ get_cyp_los_line <- function(data){
 
   plot <- table |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, value, group = 1)) +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(colour = "black",
+                       linetype = "longdash") +
     ggplot2::labs(x = "Financial year",
                   y = "Median length of MHA detention") +
     ggplot2::theme_minimal()
@@ -533,15 +533,13 @@ get_cyp_los_line_by_group <- function(data, group){
     dplyr::summarise(value = median(los), .by = c(der_financial_year,
                                                   !!rlang::sym(group)))
 
-  plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year,
-                                 value,
-                                 col = !!rlang::sym(group),
-                                 group = !!rlang::sym(group))) +
-    ggplot2::geom_line() +
-    ggplot2::labs(x = "Financial year",
-                  y = "Median length of MHA detention spell") +
-    ggplot2::theme_minimal()
+  plot <- get_cyp_los_line(data)$plot +
+    ggplot2::geom_line(ggplot2::aes(der_financial_year,
+                                    value,
+                                    col = !!rlang::sym(group),
+                                    group = !!rlang::sym(group)),
+                       data = table) +
+    ggplot2::labs(caption = "Black dashed line is the overall trend")
 
   return(list(plot = plot, table = table))
 }
