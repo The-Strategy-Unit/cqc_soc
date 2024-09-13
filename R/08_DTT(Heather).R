@@ -4,7 +4,7 @@
 #Overview:
 get_table_DTT_FY <- function (data){ DTT_FY <- data |>
   filter(!is.na(fin_year) & fin_year != "NULL") %>%
-  dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+  dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                    .by = fin_year) |>
   mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #|>
   #create_dt()
@@ -15,7 +15,7 @@ return (DTT_FY) # do the return because some functions do more than one thing
 get_table_DTT_gender_FY <- function(data) {
   DTT_gender_FY <- data %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(gender_desc, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
     #create_dt()
@@ -26,7 +26,7 @@ get_table_DTT_gender_FY <- function(data) {
 get_table_DTT_age_group_FY <- function(data) {
   DTT_age_group_FY <- data %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(age_group, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
     #create_dt()
@@ -37,7 +37,7 @@ get_table_DTT_age_group_FY <- function(data) {
 get_table_DTT_ethnic_FY <- function(data) {
   DTT_ethnic_FY <- data %>%
     filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(ethnic_category, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
     #create_dt()
@@ -48,7 +48,7 @@ get_table_DTT_ethnic_FY <- function(data) {
 get_table_DTT_IMD_FY <- function(data) {
   DTT_IMD_FY <- data %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(imd_2019_decile, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))%>%
     mutate(imd_2019_decile = factor(imd_2019_decile, levels = as.character(1:10)))
@@ -222,7 +222,7 @@ get_table_DTT_FY_with_admissions <- function(data) {
   DTT_FY_with_admissions <- data %>%
     filter(!is.na(fin_year) & fin_year != "NULL") %>%
     dplyr::summarise(
-      Average_Distance = mean(average_distance_per_admission, na.rm = TRUE),  # Average distance
+      Average_Distance = sum(total_distance) / sum(admissions),  # Average distance
       Total_Admissions = sum(admissions, na.rm = TRUE),  # Total admissions
       .by = fin_year
     ) %>%
@@ -326,7 +326,7 @@ get_table_DTT_gender_FY_with_admissions <- function(data) {
   DTT_gender_FY_with_admissions <- data %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     dplyr::summarise(
-      Average_Distance = mean(average_distance_per_admission, na.rm = TRUE),
+      Average_Distance = sum(total_distance) / sum(admissions),
       Total_Admissions = sum(admissions, na.rm = TRUE),
       .by = c(gender_desc, fin_year)
     ) %>%
@@ -339,7 +339,7 @@ get_table_DTT_age_group_FY_with_admissions <- function(data) {
   DTT_age_group_FY_with_admissions <- data %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
     dplyr::summarise(
-      Average_Distance = mean(average_distance_per_admission, na.rm = TRUE),
+      Average_Distance = sum(total_distance) / sum(admissions), na.rm = TRUE,
       Total_Admissions = sum(admissions, na.rm = TRUE),
       .by = c(age_group, fin_year)
     ) %>%
@@ -352,7 +352,7 @@ get_table_DTT_ethnic_FY_with_admissions <- function(data) {
   DTT_ethnic_FY_with_admissions <- data %>%
     filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
     dplyr::summarise(
-      Average_Distance = mean(average_distance_per_admission, na.rm = TRUE),
+      Average_Distance = sum(total_distance) / sum(admissions),
       Total_Admissions = sum(admissions, na.rm = TRUE),
       .by = c(ethnic_category, fin_year)
     ) %>%
@@ -365,7 +365,7 @@ get_table_DTT_IMD_FY_with_admissions <- function(data) {
   DTT_IMD_FY_with_admissions <- data %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
     dplyr::summarise(
-      Average_Distance = mean(average_distance_per_admission, na.rm = TRUE),
+      Average_Distance = sum(total_distance) / sum(admissions),
       Total_Admissions = sum(admissions, na.rm = TRUE),
       .by = c(imd_2019_decile, fin_year)
     ) %>%
@@ -821,7 +821,7 @@ get_chart_admissions_vs_distance_IMD <- function(data) {
 get_table_DTT_ICB_FY <- function(data) {
   DTT_ICB_FY <- data %>%
     filter(!is.na(icb23nm) & icb23nm != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23nm, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
   #create_dt()
@@ -860,7 +860,7 @@ get_table_DTT_admissions_gender_age_group_FY <- function(data) {
     filter(!is.na(fin_year) & fin_year != "NULL") %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      Number_of_Admissions = sum(admissions),
                      .by = c(gender_desc, age_group, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) %>%
@@ -876,7 +876,7 @@ get_table_DTT_gender_age_group_IMD_FY <- function(data) {
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      #Number_of_Admissions = sum(admissions),
                      .by = c(gender_desc, age_group, imd_2019_decile, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
@@ -889,10 +889,10 @@ get_table_DTT_gender_age_group_IMD_FY <- function(data) {
 get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
   DTT_admissions_gender_age_group_over_5_years <- data %>%
     filter(!is.na(fin_year) & fin_year != "NULL") %>%
-    filter(fin_year >= "2020/21") %>%  # Filter for years 2020/21 and up
+    filter(fin_year >= "2019/20") %>%  # Filter for years 2020/21 and up- for some reason needs to be year before to actually work
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      Number_of_Admissions = sum(admissions),
                      .by = c(gender_desc, age_group)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) %>%
@@ -905,13 +905,13 @@ get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
 get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- function(data) {
   DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- data %>%
     filter(!is.na(fin_year) & fin_year != "NULL") %>%
-    filter(fin_year >= "2020/21") %>%  # Filter for years 2020/21 and up
+    filter(fin_year >= "2019/20") %>%  # Filter for years 2020/21 and up - for some reason needs to be year before to actually work
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
     group_by(gender_desc, age_group, ethnic_category, imd_2019_decile) %>%
-    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      Number_of_Admissions = sum(admissions)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) %>%
     mutate(Number_of_Admissions = janitor::round_half_up(Number_of_Admissions, 1)) %>%
