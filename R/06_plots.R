@@ -361,12 +361,8 @@ get_avg_mh_attends_rate_plot <- function(data){
   return(plot)
 }
 
-mha_conversion_bar_plot <- function(tar_obj, feature, feature_txt, txt){
-
+mha_conversion_table <- function(tar_obj, feature, feature_txt){
   feature <- enquo(feature)
-
-  ft_ct <- tar_obj |>
-    summarise(val = ceiling(n_distinct(!!feature)/3))
 
   total <- tar_obj |>
     filter(fin_year != "2018/19") |>
@@ -380,17 +376,29 @@ mha_conversion_bar_plot <- function(tar_obj, feature, feature_txt, txt){
                                        TRUE ~ conversion_desc)) |>
     left_join(total, by = feature_txt) |>
     group_by(!!feature, conversion_desc) |>
-    PHEindicatormethods::phe_proportion(x=sum, n=total, confidence = 0.95, multiplier = 100)
+    PHEindicatormethods::phe_proportion(x=sum, n=total, confidence = 0.95, multiplier = 100) |>
+    select(1:7) |>
+    as.data.frame()
 
-  plot <- subgroup |>
+  return(subgroup)
+
+}
+mha_conversion_bar_plot <- function(tar_obj, feature, feature_txt, title_txt){
+
+  feature <- enquo(feature)
+
+  ft_ct <- tar_obj |>
+    summarise(val = ceiling(n_distinct(!!feature)/3))
+
+  plot <- tar_obj |>
     filter(conversion_desc != "Other section pathways") |>
     ggplot(aes(x=conversion_desc, y=(value), group = 1)) +
     geom_col(aes(), fill = "#f9bf07", colour = "#333739", lwd = 0.2) +
-    facet_wrap(~ !!feature, nrow = ft_ct$val) +
+    facet_wrap(feature_txt, nrow = ft_ct$val) +
     coord_flip() +
     theme_minimal() +
     labs(title = "Selected conversion pathways during MHA detention spells",
-         subtitle = paste0("Completed detention by ", txt, ", 2018/19 to 2023/24"),
+         subtitle = paste0("Completed detention by ", title_txt, ", 2018/19 to 2023/24"),
          x= "Conversion description",
          y= "Percentage of all detention spells")
 

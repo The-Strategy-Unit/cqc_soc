@@ -718,8 +718,18 @@ list(
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
   tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
 
-  # Plots for section conversions
-  tar_target(mha_conv_age, mha_conversion_bar_plot(conversion_map, age_group, "age_group", "age group")),
+  # Tables and plots for section conversions
+  tar_target(mha_conv_age_tab, mha_conversion_table(conversion_map, age_group, "age_group")),
+  tar_target(mha_conv_age_plot, mha_conversion_bar_plot(mha_conv_age_tab, age_group, "age_group", "age group")),
+
+  tar_target(mha_conv_sex_tab, mha_conversion_table(conversion_map, gender, "gender")),
+  tar_target(mha_conv_sex_plot, mha_conversion_bar_plot(mha_conv_sex_tab, gender, "gender", "gender")),
+
+  tar_target(mha_conv_eth_tab, mha_conversion_table(conversion_map, ethnic_category, "ethnic_category")),
+  tar_target(mha_conv_eth_plot, mha_conversion_bar_plot(mha_conv_eth_tab, ethnic_category, "ethnic_category", "ethnic category")),
+
+  tar_target(mha_conv_imd_tab, mha_conversion_table(conversion_map, imd_2019_decile, "imd_2019_decile")),
+  tar_target(mha_conv_imd_plot, mha_conversion_bar_plot(mha_conv_imd_tab, imd_2019_decile, "imd_2019_decile", "IMD decile(2019)")),
 
 
   ## Average attendance rate per 100000 ----------------------------------------
