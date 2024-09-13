@@ -3,6 +3,10 @@ tar_make()
 get_table_DTT_FY()
 print(colnames(DTT))
 
+avg_distance_per_admission_by_year <- DTT %>%
+  group_by(FIN_YEAR) %>%
+  summarise(average_distance_per_admission = sum(TOTAL_DISTANCE) / sum(ADMISSIONS))
+
 print(unique(data$Total_Admissions))
 print(unique(data$Average_Distance))
 
