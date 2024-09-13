@@ -238,8 +238,7 @@ There were `r llos_perc_135_136 |> dplyr::pull(count)` spells that began with a 
 tar_read(cyp_los_histo_135_136)
 ```
 
-:::panel-tabset
-
+::: panel-tabset
 ##### Overview
 
 ```{r}
