@@ -572,7 +572,8 @@ get_cyp_los_histo_zoomed <- function(data) {
   return(plot)
 }
 
-## Working with conversions data
+# Working with conversions data ------------------------------------------------
+
 # Identify different conversion types for MHA episodes as per Helen's list
 get_conversions_mapped <- function(tar_obj) {
 
