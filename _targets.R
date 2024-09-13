@@ -360,6 +360,12 @@ list(
                              imd_decile = factor(imd_decile,
                                                  levels = as.character(1:10)))
   ),
+  tarchetypes::tar_file(mha_conversion_filepath,
+                          "data/cyp_mha_conversions.csv"),
+  tar_target(
+    cyp_conversions,
+    load_csv(mha_conversion_filepath)
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -546,6 +552,69 @@ list(
                                          group))
   ),
 
+  # perc llos
+  tar_target(cyp_llos_perc,
+             get_llos_perc(cyp_los, 365)),
+
+  # LOS by section
+  tar_target(cyp_los_135_136,
+             get_cyp_los_by_section(cyp_los, c(19, 20))),
+  tar_target(cyp_los_histo_135_136,
+             get_cyp_los_histo(cyp_los_135_136)),
+  tar_target(cyp_llos_perc_135_136,
+             get_llos_perc(cyp_los_135_136, 1)),
+  tar_target(cyp_los_median_135_136,
+             cyp_los_135_136 |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot_135_136,
+             get_standard_boxplot(cyp_los_median_135_136 |>
+                                    dplyr::filter(value < 5))),
+  tar_target(cyp_los_median_table_135_136,
+             get_icb_breakdown_table(cyp_los_median_135_136,
+                                     icb_codes_names)),
+
+  tar_target(cyp_los_2,
+             get_cyp_los_by_section(cyp_los, c(2))),
+  tar_target(cyp_los_histo_2,
+             get_cyp_los_histo(cyp_los_2)),
+  tar_target(cyp_llos_perc_2,
+             get_llos_perc(cyp_los_2, 28)),
+  tar_target(cyp_los_median_2,
+             cyp_los_2 |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot_2,
+             get_standard_boxplot(cyp_los_median_2 |>
+                                    dplyr::filter(value < 50))),
+  tar_target(cyp_los_median_table_2,
+             get_icb_breakdown_table(cyp_los_median_2,
+                                     icb_codes_names)),
+
+  tar_target(cyp_los_3,
+             get_cyp_los_by_section(cyp_los, c(3))),
+  tar_target(cyp_los_histo_3,
+             get_cyp_los_histo(cyp_los_3)),
+  tar_target(cyp_llos_perc_3,
+             get_llos_perc(cyp_los_3, 365)),
+  tar_target(cyp_los_median_3,
+             cyp_los_3 |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot_3,
+             get_standard_boxplot(cyp_los_median_3)),
+  tar_target(cyp_los_median_table_3,
+             get_icb_breakdown_table(cyp_los_median_3,
+                                     icb_codes_names)),
+
+
+
+  ## Conversions ---------------------------------------------------------------
+  #Mapping the key section transitions to text
+  tar_target(conversion_map,
+             get_conversions_mapped(cyp_conversions)
+             ),
+
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
     data_for_breakdowns,
@@ -706,6 +775,10 @@ list(
   tar_target(uec_attends_imd, imd_plot2(imd_breakdowns$uec_mh_attends)),
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
   tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
+
+  # Plots for section conversions
+  tar_target(mha_conv_age, mha_conversion_bar_plot(conversion_map, age_group, "age_group", "age group")),
+
 
   ## Average attendance rate per 100000 ----------------------------------------
   # Type 1

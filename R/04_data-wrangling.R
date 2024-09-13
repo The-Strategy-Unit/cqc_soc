@@ -456,10 +456,12 @@ get_cyp_redetentions_line <- function(data){
 
   plot <- table |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, perc, group = 1)) +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(colour = "black",
+                       linetype = "longdash") +
     ggplot2::labs(x = "Financial year",
                   y = "Percentage") +
-    ggplot2::theme_minimal()
+    ggplot2::theme_minimal() +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA))
 
   return(list(plot = plot, table = table))
 }
@@ -471,15 +473,13 @@ get_cyp_redetentions_line_by_group <- function(data, group){
     dplyr::rename(redetentions = attends,
                   perc = value)
 
-  plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year,
-                                 perc,
-                                 col = !!rlang::sym(group),
-                                 group = !!rlang::sym(group))) +
-    ggplot2::geom_line() +
-    ggplot2::labs(x = "Financial year",
-                  y = "Percentage") +
-    ggplot2::theme_minimal()
+  plot <- get_cyp_redetentions_line(data)$plot +
+    ggplot2::geom_line(ggplot2::aes(der_financial_year,
+                                    perc,
+                                    col = !!rlang::sym(group),
+                                    group = !!rlang::sym(group)),
+                       data = table) +
+    ggplot2::labs(caption = "Black dashed line is the overall trend")
 
   return(list(plot = plot, table = table))
 }
@@ -517,10 +517,12 @@ get_cyp_los_line <- function(data){
 
   plot <- table |>
     ggplot2::ggplot(ggplot2::aes(der_financial_year, value, group = 1)) +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(colour = "black",
+                       linetype = "longdash") +
     ggplot2::labs(x = "Financial year",
                   y = "Median length of MHA detention") +
-    ggplot2::theme_minimal()
+    ggplot2::theme_minimal() +
+    ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA))
 
   return(list(plot = plot, table = table))
 }
@@ -533,15 +535,13 @@ get_cyp_los_line_by_group <- function(data, group){
     dplyr::summarise(value = median(los), .by = c(der_financial_year,
                                                   !!rlang::sym(group)))
 
-  plot <- table |>
-    ggplot2::ggplot(ggplot2::aes(der_financial_year,
-                                 value,
-                                 col = !!rlang::sym(group),
-                                 group = !!rlang::sym(group))) +
-    ggplot2::geom_line() +
-    ggplot2::labs(x = "Financial year",
-                  y = "Median length of MHA detention spell") +
-    ggplot2::theme_minimal()
+  plot <- get_cyp_los_line(data)$plot +
+    ggplot2::geom_line(ggplot2::aes(der_financial_year,
+                                    value,
+                                    col = !!rlang::sym(group),
+                                    group = !!rlang::sym(group)),
+                       data = table) +
+    ggplot2::labs(caption = "Black dashed line is the overall trend")
 
   return(list(plot = plot, table = table))
 }
@@ -571,3 +571,44 @@ get_cyp_los_histo_zoomed <- function(data) {
 
   return(plot)
 }
+
+# To filter cyp_los by certain sections:
+get_cyp_los_by_section <- function(data, sections) {
+  filtered <- data |>
+    dplyr::filter(first_legal_status_code %in% c(sections))
+
+  return(filtered)
+}
+
+# To get a percentage of spells over a specified number of days:
+get_llos_perc <- function(data, llos_cutoff){
+
+  llos_perc <- data |>
+    dplyr::mutate(llos = ifelse(los > llos_cutoff, 1, 0)) |>
+    summarise(count = dplyr::n(),
+              perc_llos = sum(llos) * 100 / count)
+
+  return(llos_perc)
+}
+
+# Working with conversions data ------------------------------------------------
+
+# Identify different conversion types for MHA episodes as per Helen's list
+get_conversions_mapped <- function(tar_obj) {
+
+  data <- tar_obj |>
+    mutate(conversion_desc = case_when(grepl("06-05", sections_all) ~ "Section 5(4) to Section 5(2)",
+                                       grepl("19-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("20-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("19-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("20-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+                                       grepl("05-02", sections_all) ~ "Section 5(2) to Section 2 ",
+                                       grepl("05-03", sections_all) ~ "Section 5(2) to Section 3",
+                                       grepl("20-02", sections_all) ~ "Section 136 to Section 2",
+                                       grepl("20-03", sections_all) ~ "Section 136 to Section 3",
+                                       grepl("04-02", sections_all) ~ "Section 4 to Section 2",
+                                       grepl("04-03", sections_all) ~ "Section 4 to Section 3",
+                                       grepl("03-03", sections_all) ~ "Section 3 renewal")
+    )
+}
+
