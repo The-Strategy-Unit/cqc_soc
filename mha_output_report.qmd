@@ -220,9 +220,11 @@ tar_read(cyp_los_plot_imd_decile)$table |>
 
 #### LOS by section of the Mental Health Act
 
-Def - By first section, length for whole spell, some conversions so not saying that llos for section 2 is x, but if spell starts with section 2, is X
+As seen in @-ref-to-conversions-section-when-available, some spells start under one section of the MHA and are then converted to other sections. In this section of the report, the length of stay is explored by the section of the first MHA detention in the spell.
 
-*Sections 135 or 136*
+Extreme outliers have been excluded from some of the boxplots in this section for visualisation purposes. Charts have been annotated in this case and outliers are still present in the boxplot summary statistics.
+
+##### Sections 135 or 136
 
 ```{r}
 llos_perc_135_136 <- tar_read(cyp_llos_perc_135_136)
@@ -236,7 +238,41 @@ There were `r llos_perc_135_136 |> dplyr::pull(count)` spells that began with a 
 tar_read(cyp_los_histo_135_136)
 ```
 
-*Section 2*
+:::panel-tabset
+
+##### Overview
+
+```{r}
+#| label: fig-los-mh_135_136
+#| fig-cap: Median length of Mental Health Act detention spell where the first detention was under sections 135 or 136.
+tar_read(cyp_los_boxplot_135_136)  +
+  ggplot2::labs(y = "Median length of MHA detention spell",
+                title = "Median length of MHA detention spell ",
+                subtitle = "All spells that began with a sections 135 or 136 detention in England 2019/20 to 2023/24 by ICB",
+                caption = "Extreme outliers have been excluded from this chart for visualisation purposes")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-los-summary_135_136
+#| tbl-cap: Summary of median length of Mental Health Act detention spell where the first detention was under sections 135 or 136.
+tar_read(cyp_los_median_135_136) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-los-icb_135_136
+#| tbl-cap: Median length of Mental Health Act detention spell by ICB where the first detention was under sections 135 or 136.
+tar_read(cyp_los_median_table_135_136) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(0, 21, 3))
+```
+:::
+
+##### Section 2
 
 ```{r}
 llos_perc_2 <- tar_read(cyp_llos_perc_2)
@@ -250,8 +286,40 @@ There were `r llos_perc_2 |> dplyr::pull(count)` spells that began with a MHA de
 tar_read(cyp_los_histo_2)
 ```
 
+::: panel-tabset
+##### Overview
 
-*Section 3*
+```{r}
+#| label: fig-los-mh_2
+#| fig-cap: Median length of Mental Health Act detention spell where the first detention was under section 2.
+tar_read(cyp_los_boxplot_2)  +
+  ggplot2::labs(y = "Median length of MHA detention spell",
+                title = "Median length of MHA detention spell ",
+                subtitle = "All spells that began with a section 2 detention in England 2019/20 to 2023/24 by ICB",
+                caption = "Extreme outliers have been excluded from this chart for visualisation purposes")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-los-summary_2
+#| tbl-cap: Summary of median length of Mental Health Act detention spell where the first detention was under section 2.
+tar_read(cyp_los_median_2) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-los-icb_2
+#| tbl-cap: Median length of Mental Health Act detention spell by ICB where the first detention was under section 2.
+tar_read(cyp_los_median_table_2) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(0, 39, 5))
+```
+:::
+
+##### Section 3
 
 ```{r}
 llos_perc_3 <- tar_read(cyp_llos_perc_3)
@@ -264,6 +332,38 @@ There were `r llos_perc_3 |> dplyr::pull(count)` spells that began with a MHA de
 #| fig-cap: Histogram of lengths of MHA detention spells for 2023/24 where the first detention was under section 3.
 tar_read(cyp_los_histo_3)
 ```
+
+::: panel-tabset
+##### Overview
+
+```{r}
+#| label: fig-los-mh_3
+#| fig-cap: Median length of Mental Health Act detention spell where the first detention was under section 3.
+tar_read(cyp_los_boxplot_3)  +
+  ggplot2::labs(y = "Median length of MHA detention spell",
+                title = "Median length of MHA detention spell ",
+                subtitle = "All spells that began with a section 3 detention in England 2019/20 to 2023/24 by ICB")
+```
+
+##### Summary
+
+```{r}
+#| label: tbl-los-summary_3
+#| tbl-cap: Summary of median length of Mental Health Act detention spell where the first detention was under section 3.
+tar_read(cyp_los_median_3) |>
+  get_quantiles_and_mean()
+```
+
+##### ICB Variation
+
+```{r}
+#| label: tbl-los-icb_3
+#| tbl-cap: Median length of Mental Health Act detention spell by ICB where the first detention was under section 3.
+tar_read(cyp_los_median_table_3) |>
+  color_gradient(c("2019/20", "2020/21", "2021/22", "2022/23", "2023/24"), 
+                 seq(0, 365, 50))
+```
+:::
 
 ### Mental Health Act Re-detentions
 
