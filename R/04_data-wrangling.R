@@ -572,6 +572,25 @@ get_cyp_los_histo_zoomed <- function(data) {
   return(plot)
 }
 
+# To filter cyp_los by certain sections:
+get_cyp_los_by_section <- function(data, sections) {
+  filtered <- data |>
+    dplyr::filter(first_legal_status_code %in% c(sections))
+
+  return(filtered)
+}
+
+# To get a percentage of spells over a specified number of days:
+get_llos_perc <- function(data, llos_cutoff){
+
+  llos_perc <- data |>
+    dplyr::mutate(llos = ifelse(los > llos_cutoff, 1, 0)) |>
+    summarise(count = dplyr::n(),
+              perc_llos = sum(llos) * 100 / count)
+
+  return(llos_perc)
+}
+
 # Working with conversions data ------------------------------------------------
 
 # Identify different conversion types for MHA episodes as per Helen's list

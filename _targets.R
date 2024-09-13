@@ -360,12 +360,12 @@ list(
                              imd_decile = factor(imd_decile,
                                                  levels = as.character(1:10)))
   ),
-  tarchetypes::tar_file(mha_conversion_filepath,
-                          "data/cyp_mha_conversions.csv"),
-  tar_target(
-    cyp_conversions,
-    load_csv(mha_conversion_filepath)
-  ),
+  # tarchetypes::tar_file(mha_conversion_filepath,
+  #                         "data/cyp_mha_conversions.csv"),
+  # tar_target(
+  #   cyp_conversions,
+  #   load_csv(mha_conversion_filepath)
+  # ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -552,11 +552,39 @@ list(
                                          group))
   ),
 
+  # perc llos
+  tar_target(cyp_llos_perc,
+             get_llos_perc(cyp_los, 365)),
+
+  # LOS by section
+  tar_target(cyp_los_135_136,
+             get_cyp_los_by_section(cyp_los, c(19, 20))),
+  tar_target(cyp_los_histo_135_136,
+             get_cyp_los_histo(cyp_los_135_136)),
+  tar_target(cyp_llos_perc_135_136,
+             get_llos_perc(cyp_los_135_136, 1)),
+
+  tar_target(cyp_los_2,
+             get_cyp_los_by_section(cyp_los, c(2))),
+  tar_target(cyp_los_histo_2,
+             get_cyp_los_histo(cyp_los_2)),
+  tar_target(cyp_llos_perc_2,
+             get_llos_perc(cyp_los_2, 28)),
+
+  tar_target(cyp_los_3,
+             get_cyp_los_by_section(cyp_los, c(3))),
+  tar_target(cyp_los_histo_3,
+             get_cyp_los_histo(cyp_los_3)),
+  tar_target(cyp_llos_perc_3,
+             get_llos_perc(cyp_los_3, 365)),
+
+
+
   ## Conversions ---------------------------------------------------------------
   # Mapping the key section transitions to text
-  tar_target(conversion_map,
-             get_conversions_mapped(cyp_conversions)
-             ),
+  # tar_target(conversion_map,
+  #            get_conversions_mapped(cyp_conversions)
+  #            ),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
