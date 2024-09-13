@@ -1,6 +1,6 @@
 #DTT Things for Targets to grab#################################################
 
-#Summary Tables ################################################################
+# 1. Summary Tables ################################################################
 #Overview:
 get_table_DTT_FY <- function (data){ DTT_FY <- data |>
   filter(!is.na(fin_year) & fin_year != "NULL") %>%
@@ -57,7 +57,7 @@ get_table_DTT_IMD_FY <- function(data) {
   return(DTT_IMD_FY)
 }
 
-#Charts ########################################################################
+# 2. Charts ########################################################################
 # Overview Chart
 get_chart_DTT_FY <- function(data, su_colours) {
   plot <- ggplot(data, aes(x = fin_year, y = Average_Distance, group = 1)) +
@@ -191,7 +191,7 @@ get_chart_DTT_IMD_FY <- function(data, imd_colours) {
   return(plot)
 }
 
-#DTT Formatting ################################################################
+# 3. DTT Formatting ################################################################
 get_custom_colours <- function() {
   # Define SU colour palette
   su_colours <- c(
@@ -215,7 +215,7 @@ get_custom_colours <- function() {
   ))
 }
 
-# Admissions by DTT Overview #############################################################
+# 4. Admissions by DTT Overview #############################################################
 
 # Admissions vs Travel Distance Table
 get_table_DTT_FY_with_admissions <- function(data) {
@@ -320,7 +320,7 @@ get_chart_admissions_vs_distance <- function(data, su_colours) {
   return(combined_plot)
 }
 
-# Admissions by DTT Subgroups Tables ##################################################
+# 5. Admissions by DTT Subgroups Tables ##################################################
 # Table for Gender
 get_table_DTT_gender_FY_with_admissions <- function(data) {
   DTT_gender_FY_with_admissions <- data %>%
@@ -360,7 +360,7 @@ get_table_DTT_ethnic_FY_with_admissions <- function(data) {
   return(DTT_ethnic_FY_with_admissions)
 }
 
-#Table for IMD (Index of Multiple Deprivation)
+#Table for IMD
 get_table_DTT_IMD_FY_with_admissions <- function(data) {
   DTT_IMD_FY_with_admissions <- data %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
@@ -374,7 +374,7 @@ get_table_DTT_IMD_FY_with_admissions <- function(data) {
   return(DTT_IMD_FY_with_admissions)
 }
 
-# Admissions by DTT Subgroups Charts - Gender ##################################################
+# 6. Admissions by DTT Subgroups Charts - Gender ##################################################
 # Chart for Gender with Admissions
 # Step 1: Data Preparation by Gender
 prepare_admissions_distance_data_gender <- function(data) {
@@ -481,23 +481,16 @@ get_chart_admissions_vs_distance_gender <- function(data, su_colours) {
   return(combined_plot)
 }
 
-
-
-
-
-
-
-# Admissions by DTT Subgroups Charts - Age Group ##################################################
+# 7. Admissions by DTT Subgroups Charts - Age Group ##################################################
 # Chart for Age Group with Admissions
-# Custom color generation based on number of unique age groups
+# Custom color age groups
 generate_age_group_colours <- function(data, su_colours) {
   age_group_levels <- unique(data$age_group)  # Extract unique age groups
   n_age_groups <- length(age_group_levels)  # Get the number of unique age groups
 
-  # Generate color palette based on SU colors (you can choose different colors if needed)
   age_group_colours <- colorRampPalette(c(su_colours["su_yellow"], su_colours["su_blue"]))(n_age_groups)
 
-  # Create named vector for the palette
+  # Create named vector for palette
   names(age_group_colours) <- age_group_levels
 
   return(age_group_colours)
@@ -600,4 +593,330 @@ get_chart_admissions_vs_distance_age <- function(data, su_colours) {
   combined_plot <- combine_admissions_distance_plot_age(bar_plot, line_plot, data_prepared, age_group_colours)
 
   return(combined_plot)
+}
+
+# 8. Admissions by DTT Subgroups Charts: Ethnicity #############################
+generate_ethnic_category_colours <- function(data, su_colours) {
+  ethnic_levels <- unique(data$ethnic_category)  # Extract unique age groups
+  n_ethnic_category <- length(ethnic_levels)  # Get the number of unique age groups
+
+  ethnic_category_colours <- colorRampPalette(c(su_colours["su_yellow"],
+                                                su_colours["su_blue"],
+                                                su_colours["su_red"],
+                                                su_colours["su_grey"],
+                                                su_colours["su_light_blue"])
+                                              )(n_ethnic_category)
+  # Create named vector for palette
+  names(ethnic_category_colours) <- ethnic_levels
+
+  return(ethnic_category_colours)
+}
+
+# Step 1: Data Preparation for Age Group
+prepare_admissions_distance_data_ethnic <- function(data) {
+  data_prepared <- data %>%
+    mutate(
+      category_fill = factor("Total Admissions", levels = c("Total Admissions")),
+      category_line = factor("Average Distance", levels = c("Average Distance")),
+      ethnic_category = factor(ethnic_category, levels = unique(ethnic_category))
+    )
+
+  # Debug: Print the structure of the data prepared
+  print("Data Structure after preparing factors by Ethnicity:")
+  print(str(data_prepared))
+
+  return(data_prepared)
+}
+
+# Step 2: Bar Plot for Total Admissions by Age Group
+get_admissions_bar_plot_ethnic <- function(data, ethnic_category_colours) {
+  bar_plot <- ggplot(data, aes(x = fin_year, y = Total_Admissions, fill = ethnic_category)) +
+    geom_bar(stat = "identity", position = "dodge", alpha = 0.7) +
+    scale_fill_manual(values = ethnic_category_colours) +
+    theme_minimal() +
+    labs(
+      y = "Total Admissions",
+      fill = "Ethnicity"
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  return(bar_plot)
+}
+
+# Step 3: Line Plot for Average Distance by Ethnicity
+get_distance_line_plot_ethnic <- function(data, ethnic_category_colours) {
+  line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = ethnic_category, color = ethnic_category)) +
+    geom_line(linewidth = 1) +
+    geom_point(size = 3) +
+    scale_color_manual(values = ethnic_category_colours) +  # Explicit color mapping
+    theme_minimal() +
+    labs(
+      y = "Average Distance (km)",
+      color = "Ethnicity"
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  return(line_plot)
+}
+
+# Step 4: Combine Bar and Line Plots for Age Group
+combine_admissions_distance_plot_ethnic <- function(bar_plot, line_plot, data, ethnic_category_colours) {
+  combined_plot <- ggplot(data, aes(x = fin_year)) +
+
+    # Bar plot for total admissions, colored by age group
+    geom_bar(aes(y = Total_Admissions, fill = ethnic_category), stat = "identity", position = "dodge", alpha = 0.7) +
+
+    # Line plot for average distance, colored by age group
+    geom_line(aes(y = Average_Distance * 1000, color = ethnic_category, group = ethnic_category), linewidth = 1) +
+    geom_point(aes(y = Average_Distance * 1000, color = ethnic_category), size = 3) +
+
+    # Set dual axis
+    scale_y_continuous(
+      name = "Total Admissions",
+      sec.axis = sec_axis(~./1000, name = "Average Distance (km)")
+    ) +
+
+    scale_fill_manual(values = ethnic_category_colours) +  # Fill for bars
+    scale_color_manual(values = ethnic_category_colours) +  # Color for lines
+
+    theme_minimal() +
+    labs(
+      title = "Comparison of Total Admissions and Average Travel Distance by Ethnicity Over Time",
+      x = "Financial Year",
+      fill = "Ethnicity",
+      color = "Ethnicity"
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  return(combined_plot)
+}
+
+# Step 5: Chart Function for Age Group Breakdown
+get_chart_admissions_vs_distance_ethnic <- function(data, su_colours) {
+  # Step 1: Prepare Data
+  data_prepared <- prepare_admissions_distance_data_ethnic(data)
+
+  # Step 2: Generate colors for age groups based on the data
+  ethnic_category_colours <- generate_ethnic_category_colours (data_prepared, su_colours)
+
+  # Step 3: Create Bar Plot
+  bar_plot <- get_admissions_bar_plot_ethnic(data_prepared, ethnic_category_colours)
+
+  # Step 4: Create Line Plot
+  line_plot <- get_distance_line_plot_ethnic(data_prepared, ethnic_category_colours)
+
+  # Step 5: Combine Plots
+  combined_plot <- combine_admissions_distance_plot_ethnic(bar_plot, line_plot, data_prepared, ethnic_category_colours)
+
+  return(combined_plot)
+}
+
+# 9. Admissions by DTT Subgroups Charts: IMD #############################
+
+# Step 1: Data Preparation for IMD
+prepare_admissions_distance_data_IMD <- function(data) {
+  data_prepared <- data %>%
+    mutate(
+      category_fill = factor("Total Admissions", levels = c("Total Admissions")),
+      category_line = factor("Average Distance", levels = c("Average Distance")),
+      imd_2019_decile = factor(imd_2019_decile, levels = unique(imd_2019_decile))
+    )
+
+  # Debug: Print the structure of the data prepared
+  print("Data Structure after preparing factors by IMD:")
+  print(str(data_prepared))
+
+  return(data_prepared)
+}
+
+# Step 2: Bar Plot for Total Admissions by IMD
+get_admissions_bar_plot_IMD <- function(data, imd_colours) {
+  bar_plot <- ggplot(data, aes(x = fin_year, y = Total_Admissions, fill = imd_2019_decile)) +
+    geom_bar(stat = "identity", position = "dodge", alpha = 0.7) +
+    scale_fill_manual(values = imd_colours) +
+    theme_minimal() +
+    labs(
+      y = "Total Admissions",
+      fill = "IMD"
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  return(bar_plot)
+}
+
+# Step 3: Line Plot for Average Distance by IMD
+get_distance_line_plot_IMD <- function(data, imd_colours) {
+  line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = imd_2019_decile, color = imd_2019_decile)) +
+    geom_line(linewidth = 1) +
+    geom_point(size = 3) +
+    scale_color_manual(values = imd_colours) +  # Explicit color mapping
+    theme_minimal() +
+    labs(
+      y = "Average Distance (km)",
+      color = "IMD"
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  return(line_plot)
+}
+
+# Step 4: Combine Bar and Line Plots for IMD
+combine_admissions_distance_plot_IMD <- function(bar_plot, line_plot, data, imd_colours) {
+  combined_plot <- ggplot(data, aes(x = fin_year)) +
+
+    # Bar plot for total admissions, colored by IMD
+    geom_bar(aes(y = Total_Admissions, fill = imd_2019_decile), stat = "identity", position = "dodge", alpha = 0.7) +
+
+    # Line plot for average distance, colored by IMD
+    geom_line(aes(y = Average_Distance * 1000, color = imd_2019_decile, group = imd_2019_decile), linewidth = 1) +
+    geom_point(aes(y = Average_Distance * 1000, color = imd_2019_decile), size = 3) +
+
+    # Set dual axis
+    scale_y_continuous(
+      name = "Total Admissions",
+      sec.axis = sec_axis(~./1000, name = "Average Distance (km)")
+    ) +
+
+    scale_fill_manual(values = imd_colours) +  # Fill for bars
+    scale_color_manual(values = imd_colours) +  # Color for lines
+
+    theme_minimal() +
+    labs(
+      title = "Comparison of Total Admissions and Average Travel Distance by IMD Over Time",
+      x = "Financial Year",
+      fill = "IMD",
+      color = "IMD"
+    ) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  return(combined_plot)
+}
+
+# Step 5: Chart Function for IMD Breakdown
+get_chart_admissions_vs_distance_IMD <- function(data) {
+  # Step 1: Prepare Data
+  data_prepared <- prepare_admissions_distance_data_IMD(data)
+
+  # Step 2: Get custom colors including IMD colors
+  colours <- get_custom_colours()
+  imd_colours <- colours$imd_colours_custom
+
+  # Step 3: Create Bar Plot
+  bar_plot <- get_admissions_bar_plot_IMD(data_prepared, imd_colours)
+
+  # Step 4: Create Line Plot
+  line_plot <- get_distance_line_plot_IMD(data_prepared, imd_colours)
+
+  # Step 5: Combine Plots
+  combined_plot <- combine_admissions_distance_plot_IMD(bar_plot, line_plot, data_prepared, imd_colours)
+
+  return(combined_plot)
+}
+
+
+
+# 10. ICB Stuff ################################################################
+#ICB
+#Make a table with columns ICB, FY, and Average Distance
+get_table_DTT_ICB_FY <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(!is.na(icb23nm) & icb23nm != "NULL") %>%
+    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+                     .by = c(icb23nm, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
+  #create_dt()
+  return(DTT_ICB_FY)
+}
+
+#Make a heat map of that table
+
+# Function to generate the heatmap from the table
+get_heatmap_DTT_subgroups <- function(data) {
+  heatmap_DTT_subgroups <- ggplot(data, aes(x = imd_2019_decile,
+                                           # y = interaction(age_group, gender_desc, ethnic_category),
+                                            y = interaction(ethnic_category, gender_desc, age_group),
+                                            fill = Average_Distance)) +
+    geom_tile(color = "white") +  # Adding a white border for clarity
+    geom_text(aes(label = round(Average_Distance, 1)), color = "black", size = 3) +  # Add Average Distance labels
+    scale_fill_gradient(low = "#d9d9d9", high = "#5881c1", name = "Average Distance") +
+    labs(
+      title = "Average Distance to Travel by Subgroups",
+      x = "IMD 2019 Decile",
+      y = "Age Group, Gender, and Ethnic Category"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          axis.title.y = element_blank(),
+          panel.grid = element_blank())  # Removing grid lines for a cleaner look
+
+  return(heatmap_DTT_subgroups)
+}
+
+
+# 11. Other Stuff ##############################################################
+#Make a table of average DTT and number of admissions by age group and gender by FY
+get_table_DTT_admissions_gender_age_group_FY <- function(data) {
+  DTT_admissions_gender_age_group_FY <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(age_group) & age_group != "NULL") %>%
+    filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
+    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+                     Number_of_Admissions = sum(admissions),
+                     .by = c(gender_desc, age_group, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) %>%
+    mutate(Number_of_Admissions = janitor::round_half_up(Number_of_Admissions, 1)) #%>%
+  #create_dt()
+  return(DTT_admissions_gender_age_group_FY)
+}
+
+#Make a table of average DTT by age group, gender, and IMD by FY
+get_table_DTT_gender_age_group_IMD_FY <- function(data) {
+  DTT_gender_age_group_IMD_FY <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(age_group) & age_group != "NULL") %>%
+    filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
+    filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
+    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+                     #Number_of_Admissions = sum(admissions),
+                     .by = c(gender_desc, age_group, imd_2019_decile, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
+    #mutate(Number_of_Admissions = janitor::round_half_up(Number_of_Admissions, 1)) #%>%
+  #create_dt()
+  return(DTT_gender_age_group_IMD_FY)
+}
+
+#Make a table of average DTT over last 5 years by age group and gender
+get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
+  DTT_admissions_gender_age_group_over_5_years <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(fin_year >= "2020/21") %>%  # Filter for years 2020/21 and up
+    filter(!is.na(age_group) & age_group != "NULL") %>%
+    filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
+    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+                     Number_of_Admissions = sum(admissions),
+                     .by = c(gender_desc, age_group)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) %>%
+    mutate(Number_of_Admissions = janitor::round_half_up(Number_of_Admissions, 1)) #%>%
+  #create_dt()
+  return(DTT_admissions_gender_age_group_over_5_years)
+}
+
+#Make a table of average DTT over last 5 years by age group, gender, ethnicity, and IMD
+get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- function(data) {
+  DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(fin_year >= "2020/21") %>%  # Filter for years 2020/21 and up
+    filter(!is.na(age_group) & age_group != "NULL") %>%
+    filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
+    filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
+    filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
+    group_by(gender_desc, age_group, ethnic_category, imd_2019_decile) %>%
+    dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
+                     Number_of_Admissions = sum(admissions)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) %>%
+    mutate(Number_of_Admissions = janitor::round_half_up(Number_of_Admissions, 1)) %>%
+    mutate(imd_2019_decile = factor(imd_2019_decile, levels = as.character(1:10)))  # Order IMD from 1 to 10
+    #mutate(imd_2019_decile = factor(imd_2019_decile, levels = unique(imd_2019_decile)))
+  #create_dt()
+  return(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)
 }

@@ -552,7 +552,65 @@ list(
                                          group))
   ),
 
-  # Mapping the key section transitions to text
+  # perc llos
+  tar_target(cyp_llos_perc,
+             get_llos_perc(cyp_los, 365)),
+
+  # LOS by section
+  tar_target(cyp_los_135_136,
+             get_cyp_los_by_section(cyp_los, c(19, 20))),
+  tar_target(cyp_los_histo_135_136,
+             get_cyp_los_histo(cyp_los_135_136)),
+  tar_target(cyp_llos_perc_135_136,
+             get_llos_perc(cyp_los_135_136, 1)),
+  tar_target(cyp_los_median_135_136,
+             cyp_los_135_136 |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot_135_136,
+             get_standard_boxplot(cyp_los_median_135_136 |>
+                                    dplyr::filter(value < 5))),
+  tar_target(cyp_los_median_table_135_136,
+             get_icb_breakdown_table(cyp_los_median_135_136,
+                                     icb_codes_names)),
+
+  tar_target(cyp_los_2,
+             get_cyp_los_by_section(cyp_los, c(2))),
+  tar_target(cyp_los_histo_2,
+             get_cyp_los_histo(cyp_los_2)),
+  tar_target(cyp_llos_perc_2,
+             get_llos_perc(cyp_los_2, 28)),
+  tar_target(cyp_los_median_2,
+             cyp_los_2 |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot_2,
+             get_standard_boxplot(cyp_los_median_2 |>
+                                    dplyr::filter(value < 50))),
+  tar_target(cyp_los_median_table_2,
+             get_icb_breakdown_table(cyp_los_median_2,
+                                     icb_codes_names)),
+
+  tar_target(cyp_los_3,
+             get_cyp_los_by_section(cyp_los, c(3))),
+  tar_target(cyp_los_histo_3,
+             get_cyp_los_histo(cyp_los_3)),
+  tar_target(cyp_llos_perc_3,
+             get_llos_perc(cyp_los_3, 365)),
+  tar_target(cyp_los_median_3,
+             cyp_los_3 |>
+               dplyr::summarise(value = median(los),
+                                .by = c(der_financial_year, icb_code))),
+  tar_target(cyp_los_boxplot_3,
+             get_standard_boxplot(cyp_los_median_3)),
+  tar_target(cyp_los_median_table_3,
+             get_icb_breakdown_table(cyp_los_median_3,
+                                     icb_codes_names)),
+
+
+
+  ## Conversions ---------------------------------------------------------------
+  #Mapping the key section transitions to text
   tar_target(conversion_map,
              get_conversions_mapped(cyp_conversions)
              ),
@@ -830,43 +888,68 @@ list(
   #Chart 2 for Overall
 tar_target(
   table_DTT_FY_with_admissions,
-  get_table_DTT_FY_with_admissions(DTT)
-),
+  get_table_DTT_FY_with_admissions(DTT)),
 
 tar_target(
   chart_admissions_vs_distance,
-  get_chart_admissions_vs_distance(table_DTT_FY_with_admissions, custom_colours$su_colours)
-),
+  get_chart_admissions_vs_distance(table_DTT_FY_with_admissions, custom_colours$su_colours)),
 
 #Subgroups tables
-tar_target(
-  table_DTT_gender_FY_with_admissions,
-  get_table_DTT_gender_FY_with_admissions(DTT)
-),
+  tar_target(
+    table_DTT_gender_FY_with_admissions,
+    get_table_DTT_gender_FY_with_admissions(DTT)),
 
-tar_target(
-  table_DTT_age_group_FY_with_admissions,
-  get_table_DTT_age_group_FY_with_admissions(DTT)
-),
+  tar_target(
+    table_DTT_age_group_FY_with_admissions,
+    get_table_DTT_age_group_FY_with_admissions(DTT)),
 
-tar_target(table_DTT_ethnic_FY_with_admissions,
-           get_table_DTT_ethnic_FY_with_admissions(DTT)),
+  tar_target(
+    table_DTT_ethnic_FY_with_admissions,
+    get_table_DTT_ethnic_FY_with_admissions(DTT)),
 
-tar_target(
-  table_DTT_IMD_FY_with_admissions,
-  get_table_DTT_IMD_FY_with_admissions(DTT)
-),
+  tar_target(
+    table_DTT_IMD_FY_with_admissions,
+    get_table_DTT_IMD_FY_with_admissions(DTT)),
 
 #Charts
 tar_target(
   chart_DTT_gender_FY_with_admissions,
-  get_chart_admissions_vs_distance_gender(table_DTT_gender_FY_with_admissions, custom_colours$su_colours)
-),
+  get_chart_admissions_vs_distance_gender(table_DTT_gender_FY_with_admissions, custom_colours$su_colours)),
 
 tar_target(
   chart_DTT_age_group_FY_with_admissions,
-  get_chart_admissions_vs_distance_age(table_DTT_age_group_FY_with_admissions, custom_colours$su_colours)
-)
+  get_chart_admissions_vs_distance_age(table_DTT_age_group_FY_with_admissions, custom_colours$su_colours)),
 
+tar_target(
+  chart_DTT_ethnic_FY_with_admissions,
+  get_chart_admissions_vs_distance_ethnic(table_DTT_ethnic_FY_with_admissions, custom_colours$su_colours)),
+
+tar_target(
+  chart_DTT_IMD_FY_with_admissions,
+  get_chart_admissions_vs_distance_IMD(table_DTT_IMD_FY_with_admissions)),
+
+#DTT Part 2
+#Make a table with columns ICB, FY, and Average Distance
+tar_target(DTT_ICB_FY, get_table_DTT_ICB_FY(DTT)),
+
+#Make a table of average DTT and admissions by age group and gender by FY
+tar_target(DTT_admissions_gender_age_group_FY,
+           get_table_DTT_admissions_gender_age_group_FY(DTT)),
+
+#Make a table of average DTT by age group and gender by FY
+tar_target(DTT_gender_age_group_IMD_FY,
+           get_table_DTT_gender_age_group_IMD_FY(DTT)),
+
+#Make a table of average DTT over last 5 years by age group and gender
+tar_target(DTT_admissions_gender_age_group_over_5_years,
+           get_table_DTT_admissions_gender_age_group_over_5_years(DTT)),
+
+#Make a table of average DTT over last 5 years by age group gender ethnicity and IMD
+tar_target(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years,
+           get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years(DTT)),
+
+#Make a heatmap of the subgroups
+tar_target(heatmap_DTT_subgroups,
+           get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years))
 
 )

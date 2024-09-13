@@ -12,7 +12,7 @@ library(readr)
 library(tidyverse)
 library(targets)
 library(sf)
-
+library(magick)
 
 # Step 2: Sync with project
 # Open R studio --> go to main --> pull the latest --> go to my branch
@@ -24,3 +24,9 @@ data <- tar_read(DTT)
 
 #Step 4:
 tar_make()
+
+
+
+install.packages("magick")
+
+
