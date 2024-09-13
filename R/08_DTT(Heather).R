@@ -889,7 +889,7 @@ get_table_DTT_gender_age_group_IMD_FY <- function(data) {
 get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
   DTT_admissions_gender_age_group_over_5_years <- data %>%
     filter(!is.na(fin_year) & fin_year != "NULL") %>%
-    filter(fin_year >= "2020/21") %>%  # Filter for years 2020/21 and up
+    filter(fin_year >= "2019/20") %>%  # Filter for years 2020/21 and up- for some reason needs to be year before to actually work
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     dplyr::summarise(Average_Distance = mean(average_distance_per_admission),
@@ -905,7 +905,7 @@ get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
 get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- function(data) {
   DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- data %>%
     filter(!is.na(fin_year) & fin_year != "NULL") %>%
-    filter(fin_year >= "2020/21") %>%  # Filter for years 2020/21 and up
+    filter(fin_year >= "2019/20") %>%  # Filter for years 2020/21 and up - for some reason needs to be year before to actually work
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
