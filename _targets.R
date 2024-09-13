@@ -360,12 +360,12 @@ list(
                              imd_decile = factor(imd_decile,
                                                  levels = as.character(1:10)))
   ),
-  # tarchetypes::tar_file(mha_conversion_filepath,
-  #                         "data/cyp_mha_conversions.csv"),
-  # tar_target(
-  #   cyp_conversions,
-  #   load_csv(mha_conversion_filepath)
-  # ),
+  tarchetypes::tar_file(mha_conversion_filepath,
+                          "data/cyp_mha_conversions.csv"),
+  tar_target(
+    cyp_conversions,
+    load_csv(mha_conversion_filepath)
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -610,10 +610,10 @@ list(
 
 
   ## Conversions ---------------------------------------------------------------
-  # Mapping the key section transitions to text
-  # tar_target(conversion_map,
-  #            get_conversions_mapped(cyp_conversions)
-  #            ),
+  #Mapping the key section transitions to text
+  tar_target(conversion_map,
+             get_conversions_mapped(cyp_conversions)
+             ),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(

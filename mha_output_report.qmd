@@ -220,7 +220,7 @@ tar_read(cyp_los_plot_imd_decile)$table |>
 
 #### LOS by section of the Mental Health Act
 
-As seen in @-ref-to-conversions-section-when-available, some spells start under one section of the MHA and are then converted to other sections. In this section of the report, the length of stay is explored by the section of the first MHA detention in the spell.
+As seen in @ref-to-conversions-section-when-available, some spells start under one section of the MHA and are then converted to other sections. In this section of the report, the length of stay is explored by the section of the first MHA detention in the spell.
 
 Extreme outliers have been excluded from some of the boxplots in this section for visualisation purposes. Charts have been annotated in this case and outliers are still present in the boxplot summary statistics.
 
