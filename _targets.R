@@ -878,43 +878,68 @@ list(
   #Chart 2 for Overall
 tar_target(
   table_DTT_FY_with_admissions,
-  get_table_DTT_FY_with_admissions(DTT)
-),
+  get_table_DTT_FY_with_admissions(DTT)),
 
 tar_target(
   chart_admissions_vs_distance,
-  get_chart_admissions_vs_distance(table_DTT_FY_with_admissions, custom_colours$su_colours)
-),
+  get_chart_admissions_vs_distance(table_DTT_FY_with_admissions, custom_colours$su_colours)),
 
 #Subgroups tables
-tar_target(
-  table_DTT_gender_FY_with_admissions,
-  get_table_DTT_gender_FY_with_admissions(DTT)
-),
+  tar_target(
+    table_DTT_gender_FY_with_admissions,
+    get_table_DTT_gender_FY_with_admissions(DTT)),
 
-tar_target(
-  table_DTT_age_group_FY_with_admissions,
-  get_table_DTT_age_group_FY_with_admissions(DTT)
-),
+  tar_target(
+    table_DTT_age_group_FY_with_admissions,
+    get_table_DTT_age_group_FY_with_admissions(DTT)),
 
-tar_target(table_DTT_ethnic_FY_with_admissions,
-           get_table_DTT_ethnic_FY_with_admissions(DTT)),
+  tar_target(
+    table_DTT_ethnic_FY_with_admissions,
+    get_table_DTT_ethnic_FY_with_admissions(DTT)),
 
-tar_target(
-  table_DTT_IMD_FY_with_admissions,
-  get_table_DTT_IMD_FY_with_admissions(DTT)
-),
+  tar_target(
+    table_DTT_IMD_FY_with_admissions,
+    get_table_DTT_IMD_FY_with_admissions(DTT)),
 
 #Charts
 tar_target(
   chart_DTT_gender_FY_with_admissions,
-  get_chart_admissions_vs_distance_gender(table_DTT_gender_FY_with_admissions, custom_colours$su_colours)
-),
+  get_chart_admissions_vs_distance_gender(table_DTT_gender_FY_with_admissions, custom_colours$su_colours)),
 
 tar_target(
   chart_DTT_age_group_FY_with_admissions,
-  get_chart_admissions_vs_distance_age(table_DTT_age_group_FY_with_admissions, custom_colours$su_colours)
-)
+  get_chart_admissions_vs_distance_age(table_DTT_age_group_FY_with_admissions, custom_colours$su_colours)),
 
+tar_target(
+  chart_DTT_ethnic_FY_with_admissions,
+  get_chart_admissions_vs_distance_ethnic(table_DTT_ethnic_FY_with_admissions, custom_colours$su_colours)),
+
+tar_target(
+  chart_DTT_IMD_FY_with_admissions,
+  get_chart_admissions_vs_distance_IMD(table_DTT_IMD_FY_with_admissions)),
+
+#DTT Part 2
+#Make a table with columns ICB, FY, and Average Distance
+tar_target(DTT_ICB_FY, get_table_DTT_ICB_FY(DTT)),
+
+#Make a table of average DTT and admissions by age group and gender by FY
+tar_target(DTT_admissions_gender_age_group_FY,
+           get_table_DTT_admissions_gender_age_group_FY(DTT)),
+
+#Make a table of average DTT by age group and gender by FY
+tar_target(DTT_gender_age_group_IMD_FY,
+           get_table_DTT_gender_age_group_IMD_FY(DTT)),
+
+#Make a table of average DTT over last 5 years by age group and gender
+tar_target(DTT_admissions_gender_age_group_over_5_years,
+           get_table_DTT_admissions_gender_age_group_over_5_years(DTT)),
+
+#Make a table of average DTT over last 5 years by age group gender ethnicity and IMD
+tar_target(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years,
+           get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years(DTT)),
+
+#Make a heatmap of the subgroups
+tar_target(heatmap_DTT_subgroups,
+           get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years))
 
 )

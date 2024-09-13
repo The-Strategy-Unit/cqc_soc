@@ -8,7 +8,15 @@ print(unique(data$Average_Distance))
 
 tar_read(table_DTT_gender_FY_with_admissions)
 
+tar_make(chart_DTT_IMD_subgroups_heatmap, force = TRUE)
 
+tar_invalidate(chart_DTT_IMD_subgroups_heatmap)
+
+tar_make(chart_DTT_IMD_subgroups_heatmap)
+
+# Step 3: Load the target from storage and display the heatmap
+heatmap_plot <- tar_read(chart_DTT_IMD_subgroups_heatmap)
+heatmap_plot
 
 # 1: General Setup ################################################################
 # Load necessary libraries
@@ -229,5 +237,39 @@ ggsave("plots/avg_distance_by_ethnic_category_over_time_plot.png", width = 10, h
 
 # End ##########################################################################
 
+get_table_DTT_ethnic_FY_with_admissions <- function(data) {
+  DTT_ethnic_FY_with_admissions <- data %>%
+    filter(!is.na(Ethnic_Category) & Ethnic_Category != "NULL") %>%
+    dplyr::summarise(
+      Average_Distance = mean(average_distance_per_admission, na.rm = TRUE),
+      Total_Admissions = sum(admissions, na.rm = TRUE),
+      .by = c(Ethnic_Category, fin_year)
+    ) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
 
+  return(DTT_ethnic_FY_with_admissions)
+}
 
+# Function to generate heatmap-style table
+get_heatmap_DTT_IMD_subgroups <- function(data) {
+  # Ensure the IMD decile is treated as a factor with the correct ordering
+  data <- data %>%
+    mutate(
+      imd_2019_decile = factor(imd_2019_decile, levels = as.character(1:10))
+    )
+
+  # Create the heatmap using ggplot2
+  heatmap_plot <- ggplot(data, aes(x = imd_2019_decile, y = interaction(age_group, gender_desc, ethnic_category), fill = Average_Distance)) +
+    geom_tile() +
+    scale_fill_gradient(low = "lightblue", high = "darkblue", name = "Average Distance") +
+    labs(
+      title = "Average Distance to Travel by Subgroups",
+      x = "IMD 2019 Decile",
+      y = "Age Group, Gender, and Ethnic Category"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          axis.title.y = element_blank())
+
+  return(heatmap_plot)
+}
