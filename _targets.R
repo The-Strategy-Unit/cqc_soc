@@ -776,6 +776,10 @@ list(
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
   tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
 
+  # Plots for section conversions
+  tar_target(mha_conv_age, mha_conversion_bar_plot(conversion_map, age_group, "age_group", "age group")),
+
+
   ## Average attendance rate per 100000 ----------------------------------------
   # Type 1
   tar_target(avg_type1_mh_attends_rate,
