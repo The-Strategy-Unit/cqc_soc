@@ -16,7 +16,8 @@ tar_option_set(
     "readODS",
     "patchwork",
     "PHEindicatormethods",
-    "sf"
+    "sf",
+    "stringr"
   )
 )
 

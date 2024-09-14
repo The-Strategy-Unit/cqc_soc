@@ -48,6 +48,83 @@ source("R/quarto_formatting.R")
 
 ## Detailed analysis
 
+### 'Conversions' between section of the act
+
+#### Background
+
+Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be released.
+
+The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
+
+#### Data processing and quality
+
+Basic process and caveats....
+
+#### Single and multi-episode detentions
+
+Across the 5 year period to 2023/24, there were `r tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+') |> summarise(spells = sum(spells)) |> pull(spells)` detention spells in those aged under 25 at time of detention.
+
+Of these, `r tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count == 1) |> summarise(spells = sum(spells)) |> pull(spells)` were single episode detentions whereas `r tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |> summarise(spells = sum(spells)) |> pull(spells)` had more than one detention episodes.
+
+#### Most common 'pathways' during a detention spell
+
+For those spells containing more than 1 detention episode, the following are the most common (top ten) in CYP over time:
+
+```{r}
+tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |> group_by(fin_year, sections_all) |> summarise(spells = sum(spells)) |> pivot_wider(names_from = fin_year, values_from = spells) |> arrange(desc(`2023-2024`)) |> head(10) |>
+  create_dt()
+```
+
+***NB. We need to map the correct sections to the legal status code in the data i.e. 20 = s.136.***  
+
+#### Specific pathways of interest by population sub-group
+
+The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team.
+
+::: panel-tabset
+
+##### Age group
+
+```{r}
+#| label: fig-conversion_age
+#| fig-cap: Frequency of specific multi-episode pathways by age groups, 2019/20 to 2023/24.
+
+tar_read(mha_conv_age_plot)
+```
+
+##### Gender
+
+```{r}
+#| label: fig-conversion_sex
+#| fig-cap: Frequency of specific multi-episode pathways by gender, 2019/20 to 2023/24.
+
+tar_read(mha_conv_sex_plot)
+```
+
+##### Ethnic category
+
+```{r}
+#| label: fig-conversion_eth
+#| fig-cap: Frequency of specific multi-episode pathways by ethnic category, 2019/20 to 2023/24.
+
+tar_read(mha_conv_eth_plot)
+```
+
+##### IMD decile
+
+```{r}
+#| label: fig-conversion_imd
+#| fig-cap: Frequency of specific multi-episode pathways by IMD decile, 2019/20 to 2023/24.
+
+tar_read(mha_conv_imd_plot)
+```
+
+##### ICB area
+
+Still working on this one! Also will be regrouping the ethnic categories and IMD into quantiles for ease of display.
+
+:::
+
 ### Mental Health Act Detention Spell Length of Stay
 
 A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.

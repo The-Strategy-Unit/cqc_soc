@@ -608,7 +608,8 @@ get_conversions_mapped <- function(tar_obj) {
                                        grepl("20-03", sections_all) ~ "Section 136 to Section 3",
                                        grepl("04-02", sections_all) ~ "Section 4 to Section 2",
                                        grepl("04-03", sections_all) ~ "Section 4 to Section 3",
-                                       grepl("03-03", sections_all) ~ "Section 3 renewal")
+                                       grepl("03-03", sections_all) ~ "Section 3 renewal"),
+           epi_count = stringr::str_count(sections_all,"-") + 1
     )
 }
 
