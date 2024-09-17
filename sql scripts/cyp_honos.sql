@@ -5,7 +5,7 @@ IF OBJECT_ID('[NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes', 'U') IS NOT NU
   DROP TABLE [NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes;
 
 CREATE TABLE [NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes (
-  snomed_ct_cd varchar(20),
+    snomed_ct_cd varchar(20),
 	snomed_ct_desc varchar(255),
 	snomed_ct_group varchar(20)
 )
@@ -39,6 +39,18 @@ VALUES
 ('989781000000108', 'Health of the Nation Outcome Scales for Children and Adolescents - clinician-rated scale 12 score - family life and relationships', 'honos_caa_c')
 
 ------------------------------------------------------------------------------
+-- isolate from the large table only the assessments that are HONOS:
+SELECT der_spell_id, snomed_ct_group, CareContDate, PersScore
+
+INTO #honos_assessments
+
+FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_assess AS assess
+
+INNER JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes AS honos_codes
+	ON assess.CodedAssToolType = honos_codes.snomed_ct_cd
+
+------------------------------------------------------------------------------
+
 -- Get ids and dates where a full assessment happened:
 SELECT der_spell_id, snomed_ct_group, CareContDate, number
 
@@ -47,11 +59,7 @@ INTO #full_assess_ids
 FROM (
 	SELECT der_spell_id, snomed_ct_group, CareContDate, COUNT(*) AS number
 
-	FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_assess AS assess
-
-	-- isolate from the large table only the assessments that are HONOS:
-	INNER JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes AS honos_codes
-		ON assess.CodedAssToolType = honos_codes.snomed_ct_cd
+	FROM #honos_assessments AS assess
 
 	WHERE PersScore NOT IN ('Missi', '9', '9.0')
 
@@ -73,11 +81,7 @@ SELECT
 
 INTO #full_assessments
 
-FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_assess AS assess
-
--- isolate from the large table only the assessments that are HONOS:
-INNER JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes AS honos_codes
-		ON assess.CodedAssToolType = honos_codes.snomed_ct_cd
+FROM  #honos_assessments AS assess
 
 -- return only those where there are the full 12 (adult) / 13 (cyp) scores at the same time:
 INNER JOIN #full_assess_ids AS ids
@@ -163,23 +167,67 @@ FROM(
 WHERE row_last_assess = 1
 
 -- Puting first and last HONOS scores per spell together:
-SELECT *,
-last_score / first_score AS rate_of_change
+SELECT
+	first.der_spell_id,
+	spell_start_date,
+	spell_end_date,
+	first_assess_date,
+	first_score,
+	last_assess_date,
+	last_score,
+	last_score / first_score AS rate_of_change
+
+INTO #final
 
 FROM
 
-#first_assess AS first -- 2230 P had a full assessment within 7 days of their spell start date
+#first_assess AS first
 
 INNER JOIN #last_assess AS last
 
-ON first.der_spell_id = last.der_spell_id -- 490P had a full assessment within 7 days of start and 7 days of end
--- just use last assessment because spells can last longer than MHA episode?
+ON first.der_spell_id = last.der_spell_id
 	AND first.first_assess_date != last.last_assess_date
+
+SELECT * FROM #final
+
+------------------------------------------------------------------------------
+-- Get numbers of spells at each stage of this process:
+SELECT
+	'honos_assessments' AS stage,
+	COUNT(DISTINCT(der_spell_id)) AS number
+
+FROM #honos_assessments
+
+UNION
+
+SELECT
+	'full_assessments' AS stage,
+	COUNT(DISTINCT(der_spell_id)) AS number
+
+FROM #full_assessments
+
+UNION
+
+SELECT
+	'first_assessments' AS stage,
+	COUNT(*) AS number
+
+FROM #first_assess
+
+UNION
+
+SELECT
+	'first_and_last_assessments' AS stage,
+	COUNT(*) AS number
+
+FROM #final
 
 ------------------------------------------------------------------------------
 -- Tidy up
+DROP TABLE #honos_assessments
 DROP TABLE #full_assess_ids
 DROP TABLE #full_assessments
 DROP TABLE #spells
 DROP TABLE #first_assess
 DROP TABLE #last_assess
+DROP TABLE #final
