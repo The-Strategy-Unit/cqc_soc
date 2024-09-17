@@ -916,6 +916,20 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ```
 :::
 
+#### Mean and median DTT and Number of Admissions by Gender and Age
+
+::: panel-tabset
+##### Chart
+
+![](Heather Scratch Space/Tableau Plots/MM Chart Gender Age Admissions.png)
+
+##### Table
+
+```{r}
+
+```
+:::
+
 #### Table of Subgroup Rates
 
 ::: panel-tabset
@@ -935,9 +949,13 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 #### IMD by Age Group and Gender Over Time
 
 ::: panel-tabset
-##### Chart
+##### IMD over time by age and gender
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20IMD%20over%20time.png)
+
+##### IMD: Mean and median trends over time by gender
+
+![](Heather Scratch Space/Tableau Plots/IMD by gender over time trends.png)
 
 ##### Table
 
@@ -954,6 +972,27 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 #### Overview
 
+::: panel-tabset
+##### ICB Avg DTT
+
+![](Heather Scratch Space/Tableau Plots/ICB Avg sorted by 2024.png)
+
+##### ICB Median DTT
+
+![](Heather Scratch Space/Tableau Plots/ICB Med sorted by 2024.png)
+
+##### Thing 3
+
+##### Thing 4
+:::
+:::
+
+#### DTT by ICBs
+
+::: panel-tabset
+#### Overview
+
+::: panel-tabset
 ::: panel-tabset
 ##### Chart
 
@@ -972,3 +1011,6 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 ```
 :::
 :::
+:::
+
+{r} #\| label: fig-ICB-average-distance #\| fig-cap: "Table summarizing average distance per ICB and financial year." tar_read(DTT_ICB_FY) %\>% create_dt()
