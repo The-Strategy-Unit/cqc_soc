@@ -614,7 +614,7 @@ get_conversions_mapped <- function(tar_obj) {
 }
 
 # HONOS ------------------------------------------------------------------------
-
+# To get perc of the numbers at each stage of the honos query:
 get_honos_flow_perc <- function(data) {
 
   number_spells <- data |>
@@ -627,6 +627,7 @@ get_honos_flow_perc <- function(data) {
   return(perc)
 }
 
+# To get a flowchart of the numbers at each stage of the honos query:
 get_honos_numbers_flowchart <- function(data){
 
   number_spells <- data |>
@@ -694,6 +695,7 @@ get_honos_numbers_flowchart <- function(data){
 
 }
 
+# To get a histogram of the rates of change in honos scores:
 get_honos_histo <- function(data){
   plot <- data |>
     ggplot2::ggplot(ggplot2::aes(rate_of_change)) +
@@ -704,6 +706,7 @@ get_honos_histo <- function(data){
   return(plot)
 }
 
+# To get the perc of honos scores were rate of change > 1
 get_honos_perc_worse <- function(data){
 
   perc <- data |>
