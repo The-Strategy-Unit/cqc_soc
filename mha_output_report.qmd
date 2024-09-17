@@ -830,7 +830,7 @@ tar_read(table_DTT_IMD_FY_with_admissions)%>% create_dt()
 ::: panel-tabset
 ##### Chart
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Gender%20Age%20Time.png)
+![](Heather Scratch Space/Tableau Plots/Age Gender Time 170924.png)
 
 ##### Table
 
@@ -846,8 +846,6 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ::: panel-tabset
 ##### Chart
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Grid.png)
-
 ##### Table
 
 ```{r}
@@ -862,7 +860,7 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 ##### Chart
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20IMD%20over%20time.png)
+![](Heather Scratch Space/Tableau Plots/IMD Time 170924.png)
 
 ##### Table
 
@@ -881,6 +879,8 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 
 ::: panel-tabset
 ##### Chart
+
+![](Heather Scratch Space/Tableau Plots/IMD Table 170924.png)
 
 ```{r}
 #| label: fig-ICB-heat-map
