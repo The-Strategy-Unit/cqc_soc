@@ -3,7 +3,7 @@
 # 1. Summary Tables ################################################################
 #Overview:
 get_table_DTT_FY <- function (data){ DTT_FY <- data |>
-  filter(!is.na(fin_year) & fin_year != "NULL") %>%
+  filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
   dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                    .by = fin_year) |>
   mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #|>
@@ -14,6 +14,7 @@ return (DTT_FY) # do the return because some functions do more than one thing
 #Gender
 get_table_DTT_gender_FY <- function(data) {
   DTT_gender_FY <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(gender_desc, fin_year)) %>%
@@ -25,6 +26,7 @@ get_table_DTT_gender_FY <- function(data) {
 # Age Group
 get_table_DTT_age_group_FY <- function(data) {
   DTT_age_group_FY <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(age_group, fin_year)) %>%
@@ -36,6 +38,7 @@ get_table_DTT_age_group_FY <- function(data) {
 # Ethnic Category
 get_table_DTT_ethnic_FY <- function(data) {
   DTT_ethnic_FY <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(ethnic_category, fin_year)) %>%
@@ -47,6 +50,7 @@ get_table_DTT_ethnic_FY <- function(data) {
 # IMD (Index of Multiple Deprivation)
 get_table_DTT_IMD_FY <- function(data) {
   DTT_IMD_FY <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(imd_2019_decile, fin_year)) %>%
@@ -62,7 +66,7 @@ get_table_DTT_IMD_FY <- function(data) {
 get_chart_DTT_FY <- function(data, su_colours) {
   plot <- ggplot(data, aes(x = fin_year, y = Average_Distance, group = 1)) +
     geom_line(aes(color = "Average Distance"), linewidth = 1) +
-    geom_point(aes(color = "Average Distance"), size = 2) +
+    geom_point(aes(color = "Average Distance"), size = 1) +
     scale_color_manual(values = su_colours["su_blue"]) +
     theme_minimal() +
     labs(
@@ -72,7 +76,8 @@ get_chart_DTT_FY <- function(data, su_colours) {
       y = "Average Distance (km)"
     ) +
     theme(legend.position = "none",
-      axis.text.x = element_text(angle = 45, hjust = 1))
+      axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
   return(plot)
 }
 
@@ -90,7 +95,7 @@ get_chart_DTT_gender_FY <- function(data, overall_data, su_colours) {
   # Create the plot
   plot <- ggplot(combined_data, aes(x = fin_year, y = Average_Distance, group = gender_desc)) +
     geom_line(aes(color = gender_desc, linetype = ifelse(gender_desc == "Overall", "dashed", "solid")), linewidth = 1) +
-    geom_point(aes(color = gender_desc), size = 2) +
+    geom_point(aes(color = gender_desc), size = 1) +
     scale_color_manual(values = gender_colours) +
     scale_linetype_identity() +
     theme_minimal() +
@@ -103,7 +108,8 @@ get_chart_DTT_gender_FY <- function(data, overall_data, su_colours) {
       linetype = "Line Type"
     ) +
     theme(
-      axis.text.x = element_text(angle = 45, hjust = 1))
+      axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
   return(plot)
 }
 
@@ -121,7 +127,7 @@ get_chart_DTT_age_group_FY <- function(data, overall_data, su_colours) {
   # Create the plot
   plot <- ggplot(combined_data, aes(x = fin_year, y = Average_Distance, group = age_group)) +
     geom_line(aes(color = age_group, linetype = ifelse(age_group == "Overall", "dashed", "solid")), linewidth = 1) +
-    geom_point(aes(color = age_group), size = 2) +
+    geom_point(aes(color = age_group), size = 1) +
     scale_color_manual(values = age_colours) +
     scale_linetype_identity() +
     theme_minimal() +
@@ -134,7 +140,8 @@ get_chart_DTT_age_group_FY <- function(data, overall_data, su_colours) {
       linetype = "Line Type"
     ) +
     theme(
-      axis.text.x = element_text(angle = 45, hjust = 1))
+      axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
   return(plot)
 }
 
@@ -152,7 +159,7 @@ get_chart_DTT_ethnic_FY <- function(data, overall_data, su_colours) {
   # Create the plot
   plot <- ggplot(combined_data, aes(x = fin_year, y = Average_Distance, group = ethnic_category)) +
     geom_line(aes(color = ethnic_category, linetype = ifelse(ethnic_category == "Overall", "dashed", "solid")), linewidth = 1) +
-    geom_point(aes(color = ethnic_category), size = 2) +
+    geom_point(aes(color = ethnic_category), size = 1) +
     scale_color_manual(values = ethnic_colours) +
     scale_linetype_identity() +
     theme_minimal() +
@@ -164,7 +171,8 @@ get_chart_DTT_ethnic_FY <- function(data, overall_data, su_colours) {
       color = "Ethnic Category",
       linetype = "Line Type"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
   return(plot)
 }
 
@@ -177,7 +185,7 @@ get_chart_DTT_IMD_FY <- function(data, imd_colours) {
   #Create plot
     plot <- ggplot(data, aes(x = fin_year, y = Average_Distance, group = imd_2019_decile, color = imd_2019_decile)) +
     geom_line(linewidth = 1) +
-    geom_point(size = 2) +
+    geom_point(size = 1) +
     scale_color_manual(values = imd_colours) +
     theme_minimal() +
     labs(
@@ -187,7 +195,8 @@ get_chart_DTT_IMD_FY <- function(data, imd_colours) {
       y = "Average Distance (km)",
       color = "IMD Decile"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+      ylim(0, NA)
   return(plot)
 }
 
@@ -220,7 +229,7 @@ get_custom_colours <- function() {
 # Admissions vs Travel Distance Table
 get_table_DTT_FY_with_admissions <- function(data) {
   DTT_FY_with_admissions <- data %>%
-    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     dplyr::summarise(
       Average_Distance = sum(total_distance) / sum(admissions),  # Average distance
       Total_Admissions = sum(admissions, na.rm = TRUE),  # Total admissions
@@ -254,7 +263,8 @@ get_admissions_bar_plot <- function(data, su_colours) {
       y = "Total Admissions",
       fill = "Metric"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(bar_plot)
 }
@@ -263,13 +273,14 @@ get_admissions_bar_plot <- function(data, su_colours) {
 get_distance_line_plot <- function(data, su_colours) {
   line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = 1)) +
     geom_line(linewidth = 1, color = su_colours["su_blue"]) +  # Use `color` directly
-    geom_point(size = 3, color = su_colours["su_blue"]) +
+    geom_point(size = 1, color = su_colours["su_blue"]) +
     theme_minimal() +
     labs(
       y = "Average Distance (km)",
       color = "Metric"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(line_plot)
 }
@@ -283,7 +294,7 @@ combine_admissions_distance_plot <- function(bar_plot, line_plot, data, su_colou
 
     # Add line plot for average distance
     geom_line(aes(y = Average_Distance * 1000, group = 1), linewidth = 1, color = su_colours["su_blue"]) +
-    geom_point(aes(y = Average_Distance * 1000), size = 3, color = su_colours["su_blue"]) +
+    geom_point(aes(y = Average_Distance * 1000), size = 1, color = su_colours["su_blue"]) +
 
     # Add dual axis (primary for total admissions, secondary for average distance)
     scale_y_continuous(
@@ -298,7 +309,8 @@ combine_admissions_distance_plot <- function(bar_plot, line_plot, data, su_colou
       fill = "Metric",
       color = "Metric"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(combined_plot)
 }
@@ -324,6 +336,7 @@ get_chart_admissions_vs_distance <- function(data, su_colours) {
 # Table for Gender
 get_table_DTT_gender_FY_with_admissions <- function(data) {
   DTT_gender_FY_with_admissions <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     dplyr::summarise(
       Average_Distance = sum(total_distance) / sum(admissions),
@@ -337,6 +350,7 @@ get_table_DTT_gender_FY_with_admissions <- function(data) {
 #Table for Age Group
 get_table_DTT_age_group_FY_with_admissions <- function(data) {
   DTT_age_group_FY_with_admissions <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
     dplyr::summarise(
       Average_Distance = sum(total_distance) / sum(admissions), na.rm = TRUE,
@@ -350,6 +364,7 @@ get_table_DTT_age_group_FY_with_admissions <- function(data) {
 #Table for Ethnic Category
 get_table_DTT_ethnic_FY_with_admissions <- function(data) {
   DTT_ethnic_FY_with_admissions <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(ethnic_category) & ethnic_category != "NULL") %>%
     dplyr::summarise(
       Average_Distance = sum(total_distance) / sum(admissions),
@@ -363,6 +378,7 @@ get_table_DTT_ethnic_FY_with_admissions <- function(data) {
 #Table for IMD
 get_table_DTT_IMD_FY_with_admissions <- function(data) {
   DTT_IMD_FY_with_admissions <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
     dplyr::summarise(
       Average_Distance = sum(total_distance) / sum(admissions),
@@ -404,7 +420,8 @@ get_admissions_bar_plot_gender <- function(data, su_colours) {
       y = "Total Admissions",
       fill = "Gender"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(bar_plot)
 }
@@ -416,14 +433,15 @@ get_distance_line_plot_gender <- function(data, su_colours) {
 
   line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = gender_desc, color = gender_desc)) +
     geom_line(linewidth = 1) +
-    geom_point(size = 3) +
+    geom_point(size = 1) +
     scale_color_manual(values = gender_colours) +
     theme_minimal() +
     labs(
       y = "Average Distance (km)",
       color = "Gender"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(line_plot)
 }
@@ -440,7 +458,7 @@ combine_admissions_distance_plot_gender <- function(bar_plot, line_plot, data, s
 
     # Add line plot for average distance
     geom_line(aes(y = Average_Distance * 1000, group = gender_desc, color = gender_desc), linewidth = 1) +
-    geom_point(aes(y = Average_Distance * 1000, color = gender_desc), size = 3) +
+    geom_point(aes(y = Average_Distance * 1000, color = gender_desc), size = 1) +
 
     # Add dual axis (primary for total admissions, secondary for average distance)
     scale_y_continuous(
@@ -459,7 +477,8 @@ combine_admissions_distance_plot_gender <- function(bar_plot, line_plot, data, s
       fill = "Gender",
       color = "Gender"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(combined_plot)
 }
@@ -522,7 +541,8 @@ get_admissions_bar_plot_age <- function(data, age_group_colours) {
       y = "Total Admissions",
       fill = "Age Group"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(bar_plot)
 }
@@ -531,14 +551,15 @@ get_admissions_bar_plot_age <- function(data, age_group_colours) {
 get_distance_line_plot_age <- function(data, age_group_colours) {
   line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = age_group, color = age_group)) +
     geom_line(linewidth = 1) +
-    geom_point(size = 3) +
+    geom_point(size = 1) +
     scale_color_manual(values = age_group_colours) +  # Explicit color mapping
     theme_minimal() +
     labs(
       y = "Average Distance (km)",
       color = "Age Group"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(line_plot)
 }
@@ -552,7 +573,7 @@ combine_admissions_distance_plot_age <- function(bar_plot, line_plot, data, age_
 
     # Line plot for average distance, colored by age group
     geom_line(aes(y = Average_Distance * 1000, color = age_group, group = age_group), linewidth = 1) +
-    geom_point(aes(y = Average_Distance * 1000, color = age_group), size = 3) +
+    geom_point(aes(y = Average_Distance * 1000, color = age_group), size = 1) +
 
     # Set dual axis
     scale_y_continuous(
@@ -570,7 +591,8 @@ combine_admissions_distance_plot_age <- function(bar_plot, line_plot, data, age_
       fill = "Age Group",
       color = "Age Group"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(combined_plot)
 }
@@ -638,7 +660,8 @@ get_admissions_bar_plot_ethnic <- function(data, ethnic_category_colours) {
       y = "Total Admissions",
       fill = "Ethnicity"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(bar_plot)
 }
@@ -647,14 +670,15 @@ get_admissions_bar_plot_ethnic <- function(data, ethnic_category_colours) {
 get_distance_line_plot_ethnic <- function(data, ethnic_category_colours) {
   line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = ethnic_category, color = ethnic_category)) +
     geom_line(linewidth = 1) +
-    geom_point(size = 3) +
+    geom_point(size = 1) +
     scale_color_manual(values = ethnic_category_colours) +  # Explicit color mapping
     theme_minimal() +
     labs(
       y = "Average Distance (km)",
       color = "Ethnicity"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(line_plot)
 }
@@ -668,7 +692,7 @@ combine_admissions_distance_plot_ethnic <- function(bar_plot, line_plot, data, e
 
     # Line plot for average distance, colored by age group
     geom_line(aes(y = Average_Distance * 1000, color = ethnic_category, group = ethnic_category), linewidth = 1) +
-    geom_point(aes(y = Average_Distance * 1000, color = ethnic_category), size = 3) +
+    geom_point(aes(y = Average_Distance * 1000, color = ethnic_category), size = 1) +
 
     # Set dual axis
     scale_y_continuous(
@@ -686,7 +710,8 @@ combine_admissions_distance_plot_ethnic <- function(bar_plot, line_plot, data, e
       fill = "Ethnicity",
       color = "Ethnicity"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(combined_plot)
 }
@@ -716,6 +741,7 @@ get_chart_admissions_vs_distance_ethnic <- function(data, su_colours) {
 # Step 1: Data Preparation for IMD
 prepare_admissions_distance_data_IMD <- function(data) {
   data_prepared <- data %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     mutate(
       category_fill = factor("Total Admissions", levels = c("Total Admissions")),
       category_line = factor("Average Distance", levels = c("Average Distance")),
@@ -739,7 +765,8 @@ get_admissions_bar_plot_IMD <- function(data, imd_colours) {
       y = "Total Admissions",
       fill = "IMD"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0,NA)
 
   return(bar_plot)
 }
@@ -748,14 +775,15 @@ get_admissions_bar_plot_IMD <- function(data, imd_colours) {
 get_distance_line_plot_IMD <- function(data, imd_colours) {
   line_plot <- ggplot(data, aes(x = fin_year, y = Average_Distance * 1000, group = imd_2019_decile, color = imd_2019_decile)) +
     geom_line(linewidth = 1) +
-    geom_point(size = 3) +
+    geom_point(size = 1) +
     scale_color_manual(values = imd_colours) +  # Explicit color mapping
     theme_minimal() +
     labs(
       y = "Average Distance (km)",
       color = "IMD"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0, NA)
 
   return(line_plot)
 }
@@ -769,7 +797,7 @@ combine_admissions_distance_plot_IMD <- function(bar_plot, line_plot, data, imd_
 
     # Line plot for average distance, colored by IMD
     geom_line(aes(y = Average_Distance * 1000, color = imd_2019_decile, group = imd_2019_decile), linewidth = 1) +
-    geom_point(aes(y = Average_Distance * 1000, color = imd_2019_decile), size = 3) +
+    geom_point(aes(y = Average_Distance * 1000, color = imd_2019_decile), size = 1) +
 
     # Set dual axis
     scale_y_continuous(
@@ -787,7 +815,8 @@ combine_admissions_distance_plot_IMD <- function(bar_plot, line_plot, data, imd_
       fill = "IMD",
       color = "IMD"
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    ylim(0,NA)
 
   return(combined_plot)
 }
@@ -821,6 +850,7 @@ get_chart_admissions_vs_distance_IMD <- function(data) {
 get_table_DTT_ICB_FY <- function(data) {
   DTT_ICB_FY <- data %>%
     filter(!is.na(icb23nm) & icb23nm != "NULL") %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23nm, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1)) #%>%
@@ -837,7 +867,7 @@ get_heatmap_DTT_subgroups <- function(data) {
                                             y = interaction(ethnic_category, gender_desc, age_group),
                                             fill = Average_Distance)) +
     geom_tile(color = "white") +  # Adding a white border for clarity
-    geom_text(aes(label = round(Average_Distance, 1)), color = "black", size = 3) +  # Add Average Distance labels
+    geom_text(aes(label = round(Average_Distance, 1)), color = "black", size = 1) +  # Add Average Distance labels
     scale_fill_gradient(low = "#d9d9d9", high = "#5881c1", name = "Average Distance") +
     labs(
       title = "Average Distance to Travel by Subgroups",
@@ -847,8 +877,8 @@ get_heatmap_DTT_subgroups <- function(data) {
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
           axis.title.y = element_blank(),
-          panel.grid = element_blank())  # Removing grid lines for a cleaner look
-
+          panel.grid = element_blank())  +  # Removing grid lines for a cleaner look
+    ylim(0, NA)
   return(heatmap_DTT_subgroups)
 }
 
@@ -857,7 +887,7 @@ get_heatmap_DTT_subgroups <- function(data) {
 #Make a table of average DTT and number of admissions by age group and gender by FY
 get_table_DTT_admissions_gender_age_group_FY <- function(data) {
   DTT_admissions_gender_age_group_FY <- data %>%
-    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
@@ -872,7 +902,7 @@ get_table_DTT_admissions_gender_age_group_FY <- function(data) {
 #Make a table of average DTT by age group, gender, and IMD by FY
 get_table_DTT_gender_age_group_IMD_FY <- function(data) {
   DTT_gender_age_group_IMD_FY <- data %>%
-    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
     filter(!is.na(imd_2019_decile) & imd_2019_decile != "NULL") %>%
@@ -888,7 +918,7 @@ get_table_DTT_gender_age_group_IMD_FY <- function(data) {
 #Make a table of average DTT over last 5 years by age group and gender
 get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
   DTT_admissions_gender_age_group_over_5_years <- data %>%
-    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(fin_year >= "2019/20") %>%  # Filter for years 2020/21 and up- for some reason needs to be year before to actually work
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
@@ -904,7 +934,7 @@ get_table_DTT_admissions_gender_age_group_over_5_years <- function(data) {
 #Make a table of average DTT over last 5 years by age group, gender, ethnicity, and IMD
 get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- function(data) {
   DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- data %>%
-    filter(!is.na(fin_year) & fin_year != "NULL") %>%
+    filter(!is.na(fin_year) & fin_year != "NULL" & fin_year != "2015-2016" & fin_year != "2016-2017") %>%
     filter(fin_year >= "2019/20") %>%  # Filter for years 2020/21 and up - for some reason needs to be year before to actually work
     filter(!is.na(age_group) & age_group != "NULL") %>%
     filter(!is.na(gender_desc) & gender_desc != "NULL") %>%
