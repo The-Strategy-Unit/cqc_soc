@@ -367,6 +367,18 @@ list(
     cyp_conversions,
     load_csv(mha_conversion_filepath)
   ),
+  tarchetypes::tar_file(cyp_honos_filepath,
+                        "data/cyp_honos_scores.csv"),
+  tar_target(
+    cyp_honos,
+    load_csv(cyp_honos_filepath)
+  ),
+  tarchetypes::tar_file(cyp_honos_summary_filepath,
+                        "data/cyp_honos_summary.csv"),
+  tar_target(
+    cyp_honos_summary,
+    load_csv(cyp_honos_summary_filepath)
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -615,6 +627,10 @@ list(
   tar_target(conversion_map,
              get_conversions_mapped(cyp_conversions)
              ),
+
+  ## HONOS ---------------------------------------------------------------------
+  tar_target(honos_flowchart,
+             get_honos_numbers_flowchart(cyp_honos_summary)),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(

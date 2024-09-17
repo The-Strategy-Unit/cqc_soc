@@ -613,3 +613,47 @@ get_conversions_mapped <- function(tar_obj) {
     )
 }
 
+# HONOS ------------------------------------------------------------------------
+
+get_honos_numbers_flowchart <- function(data){
+
+  number_honos_assess <- data |>
+    dplyr::filter(stage == 'honos_assessments') |>
+    dplyr::pull(number)
+
+  number_full_assess <- data |>
+    dplyr::filter(stage == 'full_assessments') |>
+    dplyr::pull(number)
+
+  number_first_assess <- data |>
+    dplyr::filter(stage == 'first_assessments') |>
+    dplyr::pull(number)
+
+  number_last_assess <- data |>
+    dplyr::filter(stage == 'first_and_last_assessments') |>
+    dplyr::pull(number)
+
+  DiagrammeR::grViz("
+  digraph test {
+    graph []
+
+    node [shape = box, style = filled, fillcolor = \"#f9bf07\", color = \"#f9bf07\"]
+    A [label = '@@1', color = \"#333739\"]
+    B [label = '@@2', color = \"#333739\"]
+    C [label = '@@3', color = \"#333739\"]
+    D [label = '@@4', color = \"#333739\"]
+
+    A -> B
+    B -> C
+    C -> D
+
+  }
+
+  [1]: paste('Number of spells with at least 1 HONOS score:', '\\n', number_honos_assess )
+  [2]: paste('Number of spells with a complete HONOS assessment:', '\\n', number_full_assess)
+  [3]: paste('... at the start of the spell:', '\\n', number_first_assess)
+  [4]: paste('... and at the end of the spell:', '\\n', number_last_assess)
+")
+
+}
+
