@@ -629,8 +629,14 @@ list(
              ),
 
   ## HONOS ---------------------------------------------------------------------
+  tar_target(honos_flow_perc,
+             get_honos_flow_perc(cyp_honos_summary)),
   tar_target(honos_flowchart,
-             get_honos_numbers_flowchart(cyp_honos_summary)),
+             get_honos_numbers_flowchart(honos_flow_perc)),
+  tar_target(honos_histo,
+             get_honos_histo(cyp_honos)),
+  tar_target(honos_perc_worse,
+             get_honos_perc_worse(cyp_honos)),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(

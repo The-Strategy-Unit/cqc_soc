@@ -615,25 +615,57 @@ get_conversions_mapped <- function(tar_obj) {
 
 # HONOS ------------------------------------------------------------------------
 
+get_honos_flow_perc <- function(data) {
+
+  number_spells <- data |>
+    dplyr::filter(stage == 'spells') |>
+    dplyr::pull(number)
+
+  perc <- data |>
+    dplyr::mutate(perc = janitor::round_half_up(number * 100 / number_spells, 2))
+
+  return(perc)
+}
+
 get_honos_numbers_flowchart <- function(data){
+
+  number_spells <- data |>
+    dplyr::filter(stage == 'spells') |>
+    dplyr::pull(number)
 
   number_honos_assess <- data |>
     dplyr::filter(stage == 'honos_assessments') |>
     dplyr::pull(number)
 
+  perc_honos_assess <- data |>
+    dplyr::filter(stage == 'honos_assessments') |>
+    dplyr::pull(perc)
+
   number_full_assess <- data |>
     dplyr::filter(stage == 'full_assessments') |>
     dplyr::pull(number)
+
+  perc_full_assess <- data |>
+    dplyr::filter(stage == 'full_assessments') |>
+    dplyr::pull(perc)
 
   number_first_assess <- data |>
     dplyr::filter(stage == 'first_assessments') |>
     dplyr::pull(number)
 
+  perc_first_assess <- data |>
+    dplyr::filter(stage == 'first_assessments') |>
+    dplyr::pull(perc)
+
   number_last_assess <- data |>
     dplyr::filter(stage == 'first_and_last_assessments') |>
     dplyr::pull(number)
 
-  DiagrammeR::grViz("
+  perc_last_assess <- data |>
+    dplyr::filter(stage == 'first_and_last_assessments') |>
+    dplyr::pull(perc)
+
+  flowchart <- DiagrammeR::grViz("
   digraph test {
     graph []
 
@@ -642,18 +674,40 @@ get_honos_numbers_flowchart <- function(data){
     B [label = '@@2', color = \"#333739\"]
     C [label = '@@3', color = \"#333739\"]
     D [label = '@@4', color = \"#333739\"]
+    E [label = '@@5', color = \"#333739\"]
 
     A -> B
     B -> C
     C -> D
+    D -> E
 
   }
 
-  [1]: paste('Number of spells with at least 1 HONOS score:', '\\n', number_honos_assess )
-  [2]: paste('Number of spells with a complete HONOS assessment:', '\\n', number_full_assess)
-  [3]: paste('... at the start of the spell:', '\\n', number_first_assess)
-  [4]: paste('... and at the end of the spell:', '\\n', number_last_assess)
+  [1]: paste0('Number of CYP MH spells:', '\\n', number_spells)
+  [2]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
+  [3]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
+  [4]: paste0('... at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
+  [5]: paste0('... and at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
 ")
+
+  return(flowchart)
 
 }
 
+get_honos_histo <- function(data){
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(rate_of_change)) +
+    ggplot2::geom_histogram(fill = "#f9bf07") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Rate of change")
+
+  return(plot)
+}
+
+get_honos_perc_worse <- function(data){
+
+  perc <- data |>
+    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0)) |>
+    summarise(count = dplyr::n(),
+              perc_worse = sum(worse) * 100 / count)
+}
