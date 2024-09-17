@@ -974,3 +974,39 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 ```
 :::
 :::
+
+### HONOS
+
+```{r}
+honos_flow_perc <- tar_read(honos_flow_perc)
+
+number_spells <- honos_flow_perc |>
+  dplyr::filter(stage == 'spells') |>
+  dplyr::pull(number)
+
+perc_honos_assess <- honos_flow_perc |>
+  dplyr::filter(stage == 'honos_assessments') |>
+  dplyr::pull(perc)
+
+perc_last_assess <- honos_flow_perc |>
+  dplyr::filter(stage == 'first_and_last_assessments') |>
+  dplyr::pull(perc)
+```
+
+Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. 
+
+```{r}
+#| label: fig-honos-flow
+#| fig-cap: Numbers and percentages of CYP MH spells with complete HONOS assessments near the start and end of the MH spell. 
+tar_read(honos_flowchart)
+```
+
+The rate of change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell such that rates of change less than 1 indicate improvement in MH symptoms. Most spells had a reduction in HONOS scores (@fig-honos-histo), with `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% showing a worsening in symptoms.
+
+```{r}
+#| label: fig-honos-histo
+#| fig-cap: Histogram of the rate of change in HONOS scores at the start and end of a CYP MH spell. 
+tar_read(honos_histo)
+```
+
+
