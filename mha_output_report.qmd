@@ -921,7 +921,7 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ::: panel-tabset
 ##### Chart
 
-![](Heather Scratch Space/Tableau Plots/MM Chart Gender Age Admissions.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20Chart%20Gender%20Age%20Admissions.png)
 
 ##### Table
 
@@ -955,7 +955,7 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 
 ##### IMD: Mean and median trends over time by gender
 
-![](Heather Scratch Space/Tableau Plots/IMD by gender over time trends.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20gender%20over%20time%20trends.png)
 
 ##### Table
 
@@ -975,11 +975,11 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 ##### ICB Avg DTT
 
-![](Heather Scratch Space/Tableau Plots/ICB Avg sorted by 2024.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Avg%20sorted%20by%202024.png)
 
 ##### ICB Median DTT
 
-![](Heather Scratch Space/Tableau Plots/ICB Med sorted by 2024.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Med%20sorted%20by%202024.png)
 
 ##### Thing 3
 
