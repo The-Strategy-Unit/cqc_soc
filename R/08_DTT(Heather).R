@@ -877,8 +877,8 @@ get_heatmap_DTT_subgroups <- function(data) {
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
           axis.title.y = element_blank(),
-          panel.grid = element_blank())  +  # Removing grid lines for a cleaner look
-    ylim(0, NA)
+          panel.grid = element_blank())  #+  # Removing grid lines for a cleaner look
+    #ylim(0, NA)
   return(heatmap_DTT_subgroups)
 }
 
