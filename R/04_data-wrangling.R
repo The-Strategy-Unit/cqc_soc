@@ -634,6 +634,14 @@ get_honos_numbers_flowchart <- function(data){
     dplyr::filter(stage == 'spells') |>
     dplyr::pull(number)
 
+  number_any_assess <- data |>
+    dplyr::filter(stage == 'any_assessment') |>
+    dplyr::pull(number)
+
+  perc_any_assess <- data |>
+    dplyr::filter(stage == 'any_assessment') |>
+    dplyr::pull(perc)
+
   number_honos_assess <- data |>
     dplyr::filter(stage == 'honos_assessments') |>
     dplyr::pull(number)
@@ -676,19 +684,22 @@ get_honos_numbers_flowchart <- function(data){
     C [label = '@@3', color = \"#333739\"]
     D [label = '@@4', color = \"#333739\"]
     E [label = '@@5', color = \"#333739\"]
+    F [label = '@@6', color = \"#333739\"]
 
     A -> B
     B -> C
     C -> D
     D -> E
+    E -> F
 
   }
 
   [1]: paste0('Number of CYP MH spells:', '\\n', number_spells)
-  [2]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
-  [3]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
-  [4]: paste0('... at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
-  [5]: paste0('... and at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
+  [2]: paste0('Number of CYP MH spells with at least 1 score in any assessment:', '\\n', number_any_assess, ' \\\\(', perc_any_assess, '\\\\%)')
+  [3]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
+  [4]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
+  [5]: paste0('Number of CYP MH spells with a complete HONOS assessment \\n at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
+  [6]: paste0('Number of CYP MH spells with a complete HONOS assessment \\n at the start of the spell and another at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
 ")
 
   return(flowchart)
@@ -698,10 +709,22 @@ get_honos_numbers_flowchart <- function(data){
 # To get a histogram of the rates of change in honos scores:
 get_honos_histo <- function(data){
   plot <- data |>
-    ggplot2::ggplot(ggplot2::aes(rate_of_change)) +
+    dplyr::mutate(change = rate_of_change - 1) |>
+    ggplot2::ggplot(ggplot2::aes(change)) +
     ggplot2::geom_histogram(fill = "#f9bf07") +
     ggplot2::theme_minimal() +
-    ggplot2::labs(x = "Rate of change")
+    ggplot2::labs(x = "Relative change in HONOS scores",
+                  y = "count") +
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 0),
+                        colour = "black",
+                        linetype = "longdash") +
+    ggplot2::annotate("text",
+                      x = c(-0.75, 0.75),
+                      y = c(190, 190),
+                      label = c("Improvement", "Worsening"),
+                      color = "black",
+                      size = 4,
+                      fontface = "bold")
 
   return(plot)
 }
@@ -710,7 +733,37 @@ get_honos_histo <- function(data){
 get_honos_perc_worse <- function(data){
 
   perc <- data |>
-    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0)) |>
+    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0),
+                  same = ifelse(rate_of_change == 1, 1, 0),
+                  better = ifelse(rate_of_change < 1, 1, 0)) |>
     summarise(count = dplyr::n(),
-              perc_worse = sum(worse) * 100 / count)
+              perc_worse = sum(worse) * 100 / count,
+              perc_same = sum(same) * 100 / count,
+              perc_better = sum(better) * 100 / count)
+
+  return(perc)
 }
+
+# To get a scatter plot of HONOS diff against first:
+get_honos_scatter <- function(data){
+  plot <- data |>
+    dplyr::mutate(change = rate_of_change - 1) |>
+    ggplot2::ggplot(ggplot2::aes(change, first_score)) +
+    ggplot2::geom_jitter(col = "salmon") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Relative change in HONOS scores",
+                  y = "HONOS score at start of spell")+
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 0),
+                        colour = "black",
+                        linetype = "longdash") +
+    ggplot2::annotate("text",
+                      x = c(-0.75, 0.75),
+                      y = c(45, 45),
+                      label = c("Improvement", "Worsening"),
+                      color = "black",
+                      size = 4,
+                      fontface = "bold")
+
+  return(plot)
+}
+

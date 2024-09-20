@@ -637,6 +637,8 @@ list(
              get_honos_histo(cyp_honos)),
   tar_target(honos_perc_worse,
              get_honos_perc_worse(cyp_honos)),
+  tar_target(honos_scatter,
+             get_honos_scatter(cyp_honos)),
 
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
