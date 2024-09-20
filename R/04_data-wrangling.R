@@ -634,6 +634,14 @@ get_honos_numbers_flowchart <- function(data){
     dplyr::filter(stage == 'spells') |>
     dplyr::pull(number)
 
+  number_any_assess <- data |>
+    dplyr::filter(stage == 'any_assessment') |>
+    dplyr::pull(number)
+
+  perc_any_assess <- data |>
+    dplyr::filter(stage == 'any_assessment') |>
+    dplyr::pull(perc)
+
   number_honos_assess <- data |>
     dplyr::filter(stage == 'honos_assessments') |>
     dplyr::pull(number)
@@ -676,19 +684,22 @@ get_honos_numbers_flowchart <- function(data){
     C [label = '@@3', color = \"#333739\"]
     D [label = '@@4', color = \"#333739\"]
     E [label = '@@5', color = \"#333739\"]
+    F [label = '@@6', color = \"#333739\"]
 
     A -> B
     B -> C
     C -> D
     D -> E
+    E -> F
 
   }
 
   [1]: paste0('Number of CYP MH spells:', '\\n', number_spells)
-  [2]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
-  [3]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
-  [4]: paste0('... at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
-  [5]: paste0('... and at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
+  [2]: paste0('Number of CYP MH spells with at least 1 score in any assessment:', '\\n', number_any_assess, ' \\\\(', perc_any_assess, '\\\\%)')
+  [3]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
+  [4]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
+  [5]: paste0('Number of CYP MH spells with a complete HONOS assessment \\n at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
+  [6]: paste0('Number of CYP MH spells with a complete HONOS assessment \\n at the start of the spell and another at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
 ")
 
   return(flowchart)
