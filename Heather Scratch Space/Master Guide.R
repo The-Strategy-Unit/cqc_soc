@@ -13,6 +13,7 @@ library(tidyverse)
 library(targets)
 library(sf)
 library(magick)
+library(DiagrammeR)
 
 # Step 2: Sync with project
 # Open R studio --> go to main --> pull the latest --> go to my branch
@@ -28,5 +29,7 @@ tar_make()
 
 
 install.packages("magick")
+install.packages("DiagrammeR")
+
 
 

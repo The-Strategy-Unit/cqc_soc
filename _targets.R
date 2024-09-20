@@ -16,7 +16,8 @@ tar_option_set(
     "readODS",
     "patchwork",
     "PHEindicatormethods",
-    "sf"
+    "sf",
+    "stringr"
   )
 )
 
@@ -366,6 +367,18 @@ list(
     cyp_conversions,
     load_csv(mha_conversion_filepath)
   ),
+  tarchetypes::tar_file(cyp_honos_filepath,
+                        "data/cyp_honos_scores.csv"),
+  tar_target(
+    cyp_honos,
+    load_csv(cyp_honos_filepath)
+  ),
+  tarchetypes::tar_file(cyp_honos_summary_filepath,
+                        "data/cyp_honos_summary.csv"),
+  tar_target(
+    cyp_honos_summary,
+    load_csv(cyp_honos_summary_filepath)
+  ),
 
   # Summary from other extracts
   tar_target(ae_summary, get_ae_summary(data_ae)),
@@ -615,6 +628,16 @@ list(
              get_conversions_mapped(cyp_conversions)
              ),
 
+  ## HONOS ---------------------------------------------------------------------
+  tar_target(honos_flow_perc,
+             get_honos_flow_perc(cyp_honos_summary)),
+  tar_target(honos_flowchart,
+             get_honos_numbers_flowchart(honos_flow_perc)),
+  tar_target(honos_histo,
+             get_honos_histo(cyp_honos)),
+  tar_target(honos_perc_worse,
+             get_honos_perc_worse(cyp_honos)),
+
   # 05. Breakdowns -------------------------------------------------------------
   tar_target(
     data_for_breakdowns,
@@ -776,8 +799,18 @@ list(
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
   tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
 
-  # Plots for section conversions
-  tar_target(mha_conv_age, mha_conversion_bar_plot(conversion_map, age_group, "age_group", "age group")),
+  # Tables and plots for section conversions
+  tar_target(mha_conv_age_tab, mha_conversion_table(conversion_map, age_group, "age_group")),
+  tar_target(mha_conv_age_plot, mha_conversion_bar_plot(mha_conv_age_tab, age_group, "age_group", "age group")),
+
+  tar_target(mha_conv_sex_tab, mha_conversion_table(conversion_map, gender, "gender")),
+  tar_target(mha_conv_sex_plot, mha_conversion_bar_plot(mha_conv_sex_tab, gender, "gender", "gender")),
+
+  tar_target(mha_conv_eth_tab, mha_conversion_table(conversion_map, ethnic_category, "ethnic_category")),
+  tar_target(mha_conv_eth_plot, mha_conversion_bar_plot(mha_conv_eth_tab, ethnic_category, "ethnic_category", "ethnic category")),
+
+  tar_target(mha_conv_imd_tab, mha_conversion_table(conversion_map, imd_2019_decile, "imd_2019_decile")),
+  tar_target(mha_conv_imd_plot, mha_conversion_bar_plot(mha_conv_imd_tab, imd_2019_decile, "imd_2019_decile", "IMD decile(2019)")),
 
 
   ## Average attendance rate per 100000 ----------------------------------------

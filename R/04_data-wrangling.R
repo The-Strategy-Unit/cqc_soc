@@ -608,7 +608,109 @@ get_conversions_mapped <- function(tar_obj) {
                                        grepl("20-03", sections_all) ~ "Section 136 to Section 3",
                                        grepl("04-02", sections_all) ~ "Section 4 to Section 2",
                                        grepl("04-03", sections_all) ~ "Section 4 to Section 3",
-                                       grepl("03-03", sections_all) ~ "Section 3 renewal")
+                                       grepl("03-03", sections_all) ~ "Section 3 renewal"),
+           epi_count = stringr::str_count(sections_all,"-") + 1
     )
 }
 
+# HONOS ------------------------------------------------------------------------
+# To get perc of the numbers at each stage of the honos query:
+get_honos_flow_perc <- function(data) {
+
+  number_spells <- data |>
+    dplyr::filter(stage == 'spells') |>
+    dplyr::pull(number)
+
+  perc <- data |>
+    dplyr::mutate(perc = janitor::round_half_up(number * 100 / number_spells, 2))
+
+  return(perc)
+}
+
+# To get a flowchart of the numbers at each stage of the honos query:
+get_honos_numbers_flowchart <- function(data){
+
+  number_spells <- data |>
+    dplyr::filter(stage == 'spells') |>
+    dplyr::pull(number)
+
+  number_honos_assess <- data |>
+    dplyr::filter(stage == 'honos_assessments') |>
+    dplyr::pull(number)
+
+  perc_honos_assess <- data |>
+    dplyr::filter(stage == 'honos_assessments') |>
+    dplyr::pull(perc)
+
+  number_full_assess <- data |>
+    dplyr::filter(stage == 'full_assessments') |>
+    dplyr::pull(number)
+
+  perc_full_assess <- data |>
+    dplyr::filter(stage == 'full_assessments') |>
+    dplyr::pull(perc)
+
+  number_first_assess <- data |>
+    dplyr::filter(stage == 'first_assessments') |>
+    dplyr::pull(number)
+
+  perc_first_assess <- data |>
+    dplyr::filter(stage == 'first_assessments') |>
+    dplyr::pull(perc)
+
+  number_last_assess <- data |>
+    dplyr::filter(stage == 'first_and_last_assessments') |>
+    dplyr::pull(number)
+
+  perc_last_assess <- data |>
+    dplyr::filter(stage == 'first_and_last_assessments') |>
+    dplyr::pull(perc)
+
+  flowchart <- DiagrammeR::grViz("
+  digraph test {
+    graph []
+
+    node [shape = box, style = filled, fillcolor = \"#f9bf07\", color = \"#f9bf07\"]
+    A [label = '@@1', color = \"#333739\"]
+    B [label = '@@2', color = \"#333739\"]
+    C [label = '@@3', color = \"#333739\"]
+    D [label = '@@4', color = \"#333739\"]
+    E [label = '@@5', color = \"#333739\"]
+
+    A -> B
+    B -> C
+    C -> D
+    D -> E
+
+  }
+
+  [1]: paste0('Number of CYP MH spells:', '\\n', number_spells)
+  [2]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
+  [3]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
+  [4]: paste0('... at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
+  [5]: paste0('... and at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
+")
+
+  return(flowchart)
+
+}
+
+# To get a histogram of the rates of change in honos scores:
+get_honos_histo <- function(data){
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(rate_of_change)) +
+    ggplot2::geom_histogram(fill = "#f9bf07") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Rate of change")
+
+  return(plot)
+}
+
+# To get the perc of honos scores were rate of change > 1
+get_honos_perc_worse <- function(data){
+
+  perc <- data |>
+    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0)) |>
+    summarise(count = dplyr::n(),
+              perc_worse = sum(worse) * 100 / count)
+}
