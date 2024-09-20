@@ -740,4 +740,30 @@ get_honos_perc_worse <- function(data){
               perc_worse = sum(worse) * 100 / count,
               perc_same = sum(same) * 100 / count,
               perc_better = sum(better) * 100 / count)
+
+  return(perc)
 }
+
+# To get a scatter plot of HONOS diff against first:
+get_honos_scatter <- function(data){
+  plot <- data |>
+    dplyr::mutate(change = rate_of_change - 1) |>
+    ggplot2::ggplot(ggplot2::aes(change, first_score)) +
+    ggplot2::geom_jitter(col = "salmon") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Relative change in HONOS scores",
+                  y = "HONOS score at start of spell")+
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 0),
+                        colour = "black",
+                        linetype = "longdash") +
+    ggplot2::annotate("text",
+                      x = c(-0.75, 0.75),
+                      y = c(45, 45),
+                      label = c("Improvement", "Worsening"),
+                      color = "black",
+                      size = 4,
+                      fontface = "bold")
+
+  return(plot)
+}
+

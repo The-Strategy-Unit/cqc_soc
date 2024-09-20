@@ -1001,7 +1001,12 @@ Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_asses
 tar_read(honos_flowchart)
 ```
 
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Most spells had a reduction in HONOS scores (@fig-honos-histo), with `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% showing a worsening in symptoms.
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. 
+Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`%  had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`%  had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+
+::: panel-tabset
+
+##### Histogram
 
 ```{r}
 #| label: fig-honos-histo
@@ -1009,4 +1014,13 @@ The relative change in HONOS scores was calculated as the HONOS score at the end
 tar_read(honos_histo) 
 ```
 
+##### Scatterplot
+
+```{r}
+#| label: fig-honos-scatter
+#| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
+tar_read(honos_scatter)
+```
+
+:::
 
