@@ -651,35 +651,17 @@ tar_read(cyp_readmissions_perc_table) |>
 
 ### Travel distance
 
-#### Overview of metric
+The Ward Location Distance from Home variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions.
 
-The Ward Location Distance from Home variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions. Additionally, this data can be used for research studies to examine the relationship between travel distance and patient outcomes.
+#### Methodology
 
 **Definition:** This variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. It is often used to assess the accessibility of healthcare services and inform population health planning.
 
-**Purpose:**
+**Interpretation:** Lower values may indicate greater accessibility and convenience for patients. Higher values may suggest potential barriers to healthcare access, such as long travel times or transportation difficulties or may reflect centralisation of service provision.
 
--   Accessibility: Measures the convenience and proximity of healthcare facilities for patients.
+The distance to travel (DTT) for each admission was calculated as the average distance per admission and the median distance per admission. The analysis includes breakdowns by fiscal year, ICB, gender, age group, and ethnicity allowing us to observe distance-related trends. The DTT is also compared with the total number of admissions in order to understand whether increasing or decreasing demand may be a contributing factor to changes in DTT.
 
--   Population Health: Informs resource allocation and planning by understanding the distribution of healthcare services in relation to population density.
-
--   Research: Can be used to study the impact of travel distance on patient outcomes and adherence to treatment.
-
-**Interpretation:**
-
--   Lower values: Indicate greater accessibility and convenience for patients.
-
--   Higher values: Suggest potential barriers to healthcare access, such as long travel times or transportation difficulties.
-
-**Potential Use Cases:**
-
--   Patient Experience: Analyzing the relationship between ward location distance and patient satisfaction or outcomes.
-
--   Health Disparities: Identifying disparities in healthcare access based on geographic location.
-
--   Service Planning: Informing the location of new healthcare facilities or the expansion of existing services.
-
-#### **Calculation of 'Ward location distance from home'**
+**Calculation of 'Ward location distance from home'**
 
 Derived from: SITE CODE (OF TREATMENT)\
 \
@@ -687,10 +669,10 @@ NHS Digital guidance: Look up the postcode for this SiteCode in the ODS referenc
 
 **Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
 
-#### Travel distance
+#### Overview DTT
 
 ::: panel-tabset
-#### Overview
+#### Overall variation by FY
 
 ::: panel-tabset
 ##### Chart
@@ -708,9 +690,13 @@ tar_read(chart_DTT_FY)
 #| fig-cap: "Table summarizing average distance per financial year."
 tar_read(table_DTT_FY) %>% create_dt()
 ```
+
+##### Mean vs Median
+
+![](Heather Scratch Space/Tableau Plots/MM FY.png)
 :::
 
-#### Gender Variation
+#### Variation by Gender
 
 ::: panel-tabset
 ##### Chart
@@ -728,9 +714,13 @@ tar_read(chart_DTT_gender_FY)
 #| fig-cap: "Table summarizing average distance per gender and financial year."
 tar_read(DTT_gender_FY) %>% create_dt()
 ```
+
+##### Mean vs Median
+
+![](Heather Scratch Space/Tableau Plots/Gender MM FY.png)
 :::
 
-#### Age Group Variation
+#### Variation by Age Group
 
 ::: panel-tabset
 ##### Chart
@@ -748,9 +738,13 @@ tar_read(chart_DTT_age_group_FY)
 #| fig-cap: "Table summarizing average distance per age group and financial year."
 tar_read(DTT_age_group_FY) %>% create_dt()
 ```
+
+##### Mean vs Median
+
+![](Heather Scratch Space/Tableau Plots/Age MM FY.png)
 :::
 
-#### Ethnicity Variation
+#### Variation by Ethnicity
 
 ::: panel-tabset
 ##### Chart
@@ -768,9 +762,13 @@ tar_read(chart_DTT_ethnic_FY)
 #| fig-cap: "Table summarizing average distance per ethnic category and financial year."
 tar_read(DTT_ethnic_FY) %>% create_dt()
 ```
+
+##### Mean vs Median
+
+![](Heather Scratch Space/Tableau Plots/Ethnicity MM FY.png)
 :::
 
-#### Socioeconomic variation
+#### Variation by IMD
 
 ::: panel-tabset
 ##### Chart
@@ -788,13 +786,37 @@ tar_read(chart_DTT_IMD_FY)
 #| fig-cap: "Table summarizing average distance per IMD decile and financial year."
 tar_read(DTT_IMD_FY) %>% create_dt()
 ```
-:::
+
+##### Mean vs Median Deciles
+
+![](Heather Scratch Space/Tableau Plots/IMD MM FY Deciles.png)
+
+##### Mean vs Median Quintiles
+
+![](Heather Scratch Space/Tableau Plots/IMD MM FY quintiles.png)
 :::
 
-#### Travel distance by number of admissions
+#### Variation by ICB
 
 ::: panel-tabset
-#### Overview
+##### Chart
+
+Add in
+
+##### Table
+
+Add in
+
+##### Mean vs Median
+
+![](Heather Scratch Space/Tableau Plots/ICB MM FY.png)
+:::
+:::
+
+#### Average DTT alongside number of admissions
+
+::: panel-tabset
+#### Overall by FY
 
 ::: panel-tabset
 ##### Chart
