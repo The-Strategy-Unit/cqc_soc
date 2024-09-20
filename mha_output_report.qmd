@@ -75,14 +75,13 @@ tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-20
   create_dt()
 ```
 
-***NB. We need to map the correct sections to the legal status code in the data i.e. 20 = s.136.***  
+***NB. We need to map the correct sections to the legal status code in the data i.e. 20 = s.136.***
 
 #### Specific pathways of interest by population sub-group
 
 The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team.
 
 ::: panel-tabset
-
 ##### Age group
 
 ```{r}
@@ -122,7 +121,6 @@ tar_read(mha_conv_imd_plot)
 ##### ICB area
 
 Still working on this one! Also will be regrouping the ethnic categories and IMD into quantiles for ease of display.
-
 :::
 
 ### Mental Health Act Detention Spell Length of Stay
@@ -295,7 +293,7 @@ tar_read(cyp_los_plot_imd_decile)$table |>
 :::
 :::
 
-#### LOS by section of the Mental Health Act 
+#### LOS by section of the Mental Health Act
 
 As seen in @sec-conversions, some spells start under one section of the MHA and are then converted to other sections. In this section of the report, the length of stay is explored by the section of the first MHA detention in the spell.
 
@@ -918,6 +916,20 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ```
 :::
 
+#### Mean and median DTT and Number of Admissions by Gender and Age
+
+::: panel-tabset
+##### Chart
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20Chart%20Gender%20Age%20Admissions.png)
+
+##### Table
+
+```{r}
+
+```
+:::
+
 #### Table of Subgroup Rates
 
 ::: panel-tabset
@@ -937,9 +949,13 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 #### IMD by Age Group and Gender Over Time
 
 ::: panel-tabset
-##### Chart
+##### IMD over time by age and gender
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20IMD%20over%20time.png)
+
+##### IMD: Mean and median trends over time by gender
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20gender%20over%20time%20trends.png)
 
 ##### Table
 
@@ -948,6 +964,26 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 #| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
 tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
 ```
+:::
+:::
+
+#### DTT by ICBs
+
+::: panel-tabset
+#### Overview
+
+::: panel-tabset
+##### ICB Avg DTT
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Avg%20sorted%20by%202024.png)
+
+##### ICB Median DTT
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Med%20sorted%20by%202024.png)
+
+##### Thing 3
+
+##### Thing 4
 :::
 :::
 
@@ -993,7 +1029,7 @@ perc_last_assess <- honos_flow_perc |>
   dplyr::pull(perc)
 ```
 
-Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. 
+Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ```{r}
 #| label: fig-honos-flow
@@ -1008,5 +1044,3 @@ The rate of change in HONOS scores was calculated as the HONOS score at the end 
 #| fig-cap: Histogram of the rate of change in HONOS scores at the start and end of a CYP MH spell. 
 tar_read(honos_histo)
 ```
-
-
