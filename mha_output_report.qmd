@@ -84,6 +84,10 @@ The following analysis quantifies the scale of certain subset of conversions wit
 ::: panel-tabset
 ##### Age group
 
+::: panel-tabset
+
+###### Chart
+
 ```{r}
 #| label: fig-conversion_age
 #| fig-cap: Frequency of specific multi-episode pathways by age groups, 2019/20 to 2023/24.
@@ -91,7 +95,22 @@ The following analysis quantifies the scale of certain subset of conversions wit
 tar_read(mha_conv_age_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_age_tab
+
+tar_read(mha_conv_age_tab) |> 
+  create_dt()
+```
+
+:::
+
 ##### Gender
+
+::: panel-tabset
+
+###### Chart
 
 ```{r}
 #| label: fig-conversion_sex
@@ -100,7 +119,22 @@ tar_read(mha_conv_age_plot)
 tar_read(mha_conv_sex_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_sex_tab
+
+tar_read(mha_conv_sex_tab) |> 
+  create_dt()
+```
+
+:::
+
 ##### Ethnic category
+
+::: panel-tabset
+
+###### Chart
 
 ```{r}
 #| label: fig-conversion_eth
@@ -109,7 +143,22 @@ tar_read(mha_conv_sex_plot)
 tar_read(mha_conv_eth_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_eth_tab
+
+tar_read(mha_conv_eth_tab) |> 
+  create_dt()
+```
+
+:::
+
 ##### IMD decile
+
+::: panel-tabset
+
+###### Chart
 
 ```{r}
 #| label: fig-conversion_imd
@@ -118,9 +167,21 @@ tar_read(mha_conv_eth_plot)
 tar_read(mha_conv_imd_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_imd_tab
+
+tar_read(mha_conv_imd_tab) |> 
+  create_dt()
+```
+
+:::
+
 ##### ICB area
 
-Still working on this one! Also will be regrouping the ethnic categories and IMD into quantiles for ease of display.
+Still working on this one!
+
 :::
 
 ### Mental Health Act Detention Spell Length of Stay
