@@ -200,6 +200,14 @@ FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
 UNION
 
 SELECT
+	'any_assessment' AS stage,
+	COUNT(DISTINCT(der_spell_id)) AS number
+
+FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_assess
+
+UNION
+
+SELECT
 	'honos_assessments' AS stage,
 	COUNT(DISTINCT(der_spell_id)) AS number
 
