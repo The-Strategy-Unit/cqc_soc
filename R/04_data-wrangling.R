@@ -709,10 +709,22 @@ get_honos_numbers_flowchart <- function(data){
 # To get a histogram of the rates of change in honos scores:
 get_honos_histo <- function(data){
   plot <- data |>
-    ggplot2::ggplot(ggplot2::aes(rate_of_change)) +
+    dplyr::mutate(change = rate_of_change - 1) |>
+    ggplot2::ggplot(ggplot2::aes(change)) +
     ggplot2::geom_histogram(fill = "#f9bf07") +
     ggplot2::theme_minimal() +
-    ggplot2::labs(x = "Rate of change")
+    ggplot2::labs(x = "Relative change in HONOS scores",
+                  y = "count") +
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 0),
+                        colour = "black",
+                        linetype = "longdash") +
+    ggplot2::annotate("text",
+                      x = c(-0.75, 0.75),
+                      y = c(190, 190),
+                      label = c("Improvement", "Worsening"),
+                      color = "black",
+                      size = 4,
+                      fontface = "bold")
 
   return(plot)
 }
@@ -721,7 +733,11 @@ get_honos_histo <- function(data){
 get_honos_perc_worse <- function(data){
 
   perc <- data |>
-    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0)) |>
+    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0),
+                  same = ifelse(rate_of_change == 1, 1, 0),
+                  better = ifelse(rate_of_change < 1, 1, 0)) |>
     summarise(count = dplyr::n(),
-              perc_worse = sum(worse) * 100 / count)
+              perc_worse = sum(worse) * 100 / count,
+              perc_same = sum(same) * 100 / count,
+              perc_better = sum(better) * 100 / count)
 }
