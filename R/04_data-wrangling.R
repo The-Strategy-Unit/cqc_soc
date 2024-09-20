@@ -609,8 +609,25 @@ get_conversions_mapped <- function(tar_obj) {
                                        grepl("04-02", sections_all) ~ "Section 4 to Section 2",
                                        grepl("04-03", sections_all) ~ "Section 4 to Section 3",
                                        grepl("03-03", sections_all) ~ "Section 3 renewal"),
-           epi_count = stringr::str_count(sections_all,"-") + 1
+           epi_count = stringr::str_count(sections_all,"-") + 1,
+           ethnic_category = case_when(ethnic_category %in% c('A','B','C') ~ "white",
+                                       ethnic_category %in% c('D','E','F','G') ~ "mixed",
+                                       ethnic_category %in% c('H','J','K','L') ~ "asian",
+                                       ethnic_category %in% c('M','N','P') ~ "black",
+                                       ethnic_category %in% c('R','S') ~ "other",
+                                       TRUE ~ "NULL"),
+           imd_quintile = case_when(imd_2019_decile %in% c(1,2) ~ 1,
+                                    imd_2019_decile %in% c(3,4) ~ 2,
+                                    imd_2019_decile %in% c(5,6) ~ 3,
+                                    imd_2019_decile %in% c(7,8) ~ 4,
+                                    imd_2019_decile %in% c(9,10) ~ 5
+                                    )
     )
+}
+
+refine_conversions <- function(tarobj){
+
+  data <- tar_read()
 }
 
 # HONOS ------------------------------------------------------------------------

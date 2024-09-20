@@ -811,8 +811,8 @@ list(
   tar_target(mha_conv_eth_tab, mha_conversion_table(conversion_map, ethnic_category, "ethnic_category")),
   tar_target(mha_conv_eth_plot, mha_conversion_bar_plot(mha_conv_eth_tab, ethnic_category, "ethnic_category", "ethnic category")),
 
-  tar_target(mha_conv_imd_tab, mha_conversion_table(conversion_map, imd_2019_decile, "imd_2019_decile")),
-  tar_target(mha_conv_imd_plot, mha_conversion_bar_plot(mha_conv_imd_tab, imd_2019_decile, "imd_2019_decile", "IMD decile(2019)")),
+  tar_target(mha_conv_imd_tab, mha_conversion_table(conversion_map, imd_quintile, "imd_quintile")),
+  tar_target(mha_conv_imd_plot, mha_conversion_bar_plot(mha_conv_imd_tab, imd_quintile, "imd_quintile", "IMD quintile (2019)")),
 
 
   ## Average attendance rate per 100000 ----------------------------------------
