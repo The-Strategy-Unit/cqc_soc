@@ -1,5 +1,5 @@
 ---
-title: "Mental Health Act"
+title: "Analysis of Mental Health Act detentions and other admissions in Children and Young People"
 author: "Andy Hood, Anya Ferguson, Andre Bilbrough, Heather Humphreys"
 format:
   html:
@@ -42,7 +42,15 @@ source("R/quarto_formatting.R")
 
 ## Introduction
 
+The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being finalised that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
+
+The purpose therefore of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA). 
+
 ## Data and methods
+
+All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables.
+
+In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA super-spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched.
 
 ## Summary
 
@@ -52,9 +60,9 @@ source("R/quarto_formatting.R")
 
 #### Background
 
-Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be released.
+Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be discharged to self or community care.
 
-The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
+The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay and re-detention analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
 
 #### Data processing and quality
 
@@ -180,7 +188,7 @@ tar_read(mha_conv_imd_tab) |>
 
 ##### ICB area
 
-Still working on this one!
+Still working on this one! Maybe best to pick 1 or 2 key conversions (eg 136 to 2) and generate maps of the %'s.
 
 :::
 

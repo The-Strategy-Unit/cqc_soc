@@ -627,6 +627,25 @@ list(
   tar_target(conversion_map,
              get_conversions_mapped(cyp_conversions)
              ),
+  tar_target(conversion_map_cyp,
+             get_conversions_mapped(cyp_conversions) |>
+               filter(age_group != '25+')
+  ),
+
+
+  # Tables and plots for section conversions
+  tar_target(mha_conv_age_tab, mha_conversion_table(conversion_map, age_group, "age_group")),
+  tar_target(mha_conv_age_plot, mha_conversion_bar_plot(mha_conv_age_tab, age_group, "age_group", "age group")),
+
+  tar_target(mha_conv_sex_tab, mha_conversion_table(conversion_map_cyp, gender, "gender")),
+  tar_target(mha_conv_sex_plot, mha_conversion_bar_plot(mha_conv_sex_tab, gender, "gender", "gender")),
+
+  tar_target(mha_conv_eth_tab, mha_conversion_table(conversion_map_cyp, ethnic_category, "ethnic_category")),
+  tar_target(mha_conv_eth_plot, mha_conversion_bar_plot(mha_conv_eth_tab, ethnic_category, "ethnic_category", "ethnic category")),
+
+  tar_target(mha_conv_imd_tab, mha_conversion_table(conversion_map_cyp, imd_quintile, "imd_quintile")),
+  tar_target(mha_conv_imd_plot, mha_conversion_bar_plot(mha_conv_imd_tab, imd_quintile, "imd_quintile", "IMD quintile (2019)")),
+
 
   ## HONOS ---------------------------------------------------------------------
   tar_target(honos_flow_perc,
@@ -801,18 +820,6 @@ list(
   tar_target(nhs111_calls_imd, imd_plot2(imd_breakdowns$nhs111_mh_calls)),
   tar_target(cyp_redetentions_imd, imd_plot2(imd_breakdowns$cyp_redetentions)),
 
-  # Tables and plots for section conversions
-  tar_target(mha_conv_age_tab, mha_conversion_table(conversion_map, age_group, "age_group")),
-  tar_target(mha_conv_age_plot, mha_conversion_bar_plot(mha_conv_age_tab, age_group, "age_group", "age group")),
-
-  tar_target(mha_conv_sex_tab, mha_conversion_table(conversion_map, gender, "gender")),
-  tar_target(mha_conv_sex_plot, mha_conversion_bar_plot(mha_conv_sex_tab, gender, "gender", "gender")),
-
-  tar_target(mha_conv_eth_tab, mha_conversion_table(conversion_map, ethnic_category, "ethnic_category")),
-  tar_target(mha_conv_eth_plot, mha_conversion_bar_plot(mha_conv_eth_tab, ethnic_category, "ethnic_category", "ethnic category")),
-
-  tar_target(mha_conv_imd_tab, mha_conversion_table(conversion_map, imd_quintile, "imd_quintile")),
-  tar_target(mha_conv_imd_plot, mha_conversion_bar_plot(mha_conv_imd_tab, imd_quintile, "imd_quintile", "IMD quintile (2019)")),
 
 
   ## Average attendance rate per 100000 ----------------------------------------

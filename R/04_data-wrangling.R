@@ -625,11 +625,6 @@ get_conversions_mapped <- function(tar_obj) {
     )
 }
 
-refine_conversions <- function(tarobj){
-
-  data <- tar_read()
-}
-
 # HONOS ------------------------------------------------------------------------
 # To get perc of the numbers at each stage of the honos query:
 get_honos_flow_perc <- function(data) {
