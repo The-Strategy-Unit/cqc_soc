@@ -987,8 +987,8 @@ map_DTT_ICB_2023_24 <- function(layer, data) {
 
 get_table_DTT_ICB_FY_female_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", gender_desc == "female") %>%  # Filter for 2023-2024 and Female
-    mutate(icb23cd = toupper(icb23cd)) %>%  # Convert icb23cd to uppercase to match ICB23CD in icb_boundary
+    filter(fin_year == "2023-2024", gender_desc == "female") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
@@ -997,8 +997,8 @@ get_table_DTT_ICB_FY_female_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_male_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", gender_desc == "male") %>%  # Filter for 2023-2024 and Male
-    mutate(icb23cd = toupper(icb23cd)) %>%  # Convert icb23cd to uppercase to match ICB23CD in icb_boundary
+    filter(fin_year == "2023-2024", gender_desc == "male") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
     mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
@@ -1007,7 +1007,7 @@ get_table_DTT_ICB_FY_male_2023_24 <- function(data) {
 
 map_DTT_ICB_female_2023_24 <- function(layer, data) {
   merged_data <- layer %>%
-    left_join(data, by = c("ICB23CD" = "icb23cd"))  # Join using uppercase ICB codes
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
     ggplot() +
@@ -1026,7 +1026,7 @@ map_DTT_ICB_female_2023_24 <- function(layer, data) {
 
 map_DTT_ICB_male_2023_24 <- function(layer, data) {
   merged_data <- layer %>%
-    left_join(data, by = c("ICB23CD" = "icb23cd"))  # Join using uppercase ICB codes
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
     ggplot() +
