@@ -689,17 +689,9 @@ While the trending average DTT for each age group moved in opposite directions, 
 
 ##### Ethnicity
 
-Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, particularly in FY 2024/25, makes the data more susceptible to outliers.
+Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
 
--   White group: While this group maintains the largest share of admissions, it has experienced a notable drop, alongside a steady increase in travel distances.
-
--   Black group: Travel distances have risen moderately, though the group has seen a significant decrease in admissions.
-
--   Asian group: Both average and median travel distances have remained relatively stable, with only slight fluctuations, despite a sharp decline in admissions.
-
--   Mixed group: Travel distances have increased, even though the number of admissions has fallen significantly.
-
--   Other group: This group shows the largest increase in both average and median travel distances, despite the smallest number of admissions.
+Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
 
 ###### Admissions by Ethnicity
 
@@ -733,7 +725,7 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 -   Black and Other Groups: These groups have relatively low median DTT but have shown modest increases over the years.
 
-##### Key Insights by Ethnicity
+##### Overall ethnicity observations
 
 -   White Group: Admissions dropped substantially from 13,341 in 2017/18 to 10,427 in 2023/24, while average travel distances increased modestly. The median DTT increased from 11 to 12 over this period.
 
@@ -745,8 +737,6 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 -   Other Group: The Other group saw the most dramatic rise in travel distances despite the sharp drop in admissions. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
 
-Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
-
 #### IMD
 
 There is a clear trend of greater admissions among the most deprived (IMD 1) group, while the least deprived (IMD 10) group consistently travels further on average and median distances. While travel distances for both groups have increased over time, the least deprived group (IMD 10) continues to travel significantly longer distances compared to the most deprived, even though the gap in average distances has narrowed slightly over the years. This pattern underscores the relationship between socioeconomic deprivation and healthcare access, with the most deprived groups having more admissions but generally traveling shorter distances.
@@ -757,7 +747,7 @@ There is a clear trend of greater admissions among the most deprived (IMD 1) gro
 
 -   Admissions in the most deprived group (IMD 1) were consistently more than twice the number of admissions as those in the least deprived group (IMD 10) from 2017/18 to 2023/24.
 
-The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 units (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 units (IMD 10 at 30.88 vs IMD 1 at 24.45).
+The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 km (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 km (IMD 10 at 30.88 vs IMD 1 at 24.45).
 
 -   Most Deprived (IMD 1): Avg. DTT increased from 19.33 in 2017/18 to 24.45 in 2023/24, marking a 26.5% rise.
 
