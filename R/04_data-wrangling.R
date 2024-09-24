@@ -690,7 +690,12 @@ get_honos_numbers_flowchart <- function(data){
   digraph test {
     graph []
 
-    node [shape = box, style = filled, fillcolor = \"#f9bf07\", color = \"#f9bf07\"]
+    node [shape = box,
+    style = filled,
+    fillcolor = \"#f9bf07\",
+    color = \"#f9bf07\",
+    fontname = Arial]
+
     A [label = '@@1', color = \"#333739\"]
     B [label = '@@2', color = \"#333739\"]
     C [label = '@@3', color = \"#333739\"]
