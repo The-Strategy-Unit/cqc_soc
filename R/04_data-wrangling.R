@@ -693,15 +693,15 @@ get_honos_numbers_flowchart <- function(data){
     node [shape = box,
     style = filled,
     fillcolor = \"#f9bf07\",
-    color = \"#f9bf07\",
+    color = \"#333739\",
     fontname = Arial]
 
-    A [label = '@@1', color = \"#333739\"]
-    B [label = '@@2', color = \"#333739\"]
-    C [label = '@@3', color = \"#333739\"]
-    D [label = '@@4', color = \"#333739\"]
-    E [label = '@@5', color = \"#333739\"]
-    F [label = '@@6', color = \"#333739\"]
+    A [label = '@@1']
+    B [label = '@@2']
+    C [label = '@@3']
+    D [label = '@@4']
+    E [label = '@@5']
+    F [label = '@@6']
 
     A -> B
     B -> C
