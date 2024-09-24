@@ -686,14 +686,14 @@ list(
                             uec_arrival_mode,
                             age_by_icb,
                             "age_group")),
-  tar_target(cyp_age_breakdowns,
-             get_breakdowns(data_for_breakdowns[grepl("cyp",
-                                                       names(
-                                                         data_for_breakdowns))],
-                            type1_arrival_mode,
-                            uec_arrival_mode,
-                            cyp_age_by_icb,
-                            "age_group")),
+#  tar_target(cyp_age_breakdowns,
+#             get_breakdowns(data_for_breakdowns[grepl("cyp",
+#                                                       names(
+#                                                         data_for_breakdowns))],
+#                            type1_arrival_mode,
+#                            uec_arrival_mode,
+#                            cyp_age_by_icb,
+#                            "age_group")),
   tar_target(imd_breakdowns,
              get_breakdowns(data_for_breakdowns,
                             type1_arrival_mode,
@@ -785,13 +785,13 @@ list(
       ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
     )
   ),
-  tar_target(
-    cyp_age_plot,
-    purrr::map(
-      cyp_age_breakdowns,
-      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
-    )
-  ),
+#  tar_target(
+#    cyp_age_plot,
+#    purrr::map(
+#      cyp_age_breakdowns,
+#      ~ get_standard_line_for_breakdowns(., pop_by_icb, group = "age_group")
+#    )
+#  ),
   tar_target(
     imd_plot,
     purrr::map(
@@ -982,6 +982,356 @@ tar_target(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years,
 
 #Make a heatmap of the subgroups
 tar_target(heatmap_DTT_subgroups,
-           get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years))
+           get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)),
 
+## CYP versions of everything as required ##
+
+# Population by gender and icb
+tar_target(
+  cyp_gender_by_icb,
+  cyp_get_gender_totals(
+    population_2017_females,
+    population_2017_males,
+    population_2018_females,
+    population_2018_males,
+    population_2019_females,
+    population_2019_males,
+    population_2020_females,
+    population_2020_males,
+    population_2021,
+    population_2022,
+    lsoa_to_icb
+  )
+),
+
+
+# Population by lsoa
+tar_target(
+  cyp_population_by_lsoa,
+  cyp_get_population_totals(
+    population_2017_persons,
+    population_2018_persons,
+    population_2019_persons,
+    population_2020_persons,
+    population_2021,
+    population_2022
+  )
+),
+
+tar_target(
+  cyp_imd_by_icb,
+  get_imd_totals(imd_url, cyp_population_by_lsoa, lsoa_to_icb)
+),
+
+tar_target(
+  cyp_rural_by_icb,
+  get_rural_totals(rural_url, cyp_population_by_lsoa, lsoa_to_icb)
+),
+
+# Ethnicity By ICB
+
+# import and wrangle 2011 ethnicity data
+tar_target(cyp_ethnicity2011_by_icb2024, cyp_create2011ethnicities()),
+# import and wrangle 2021 ethnicity data
+tar_target(cyp_ethnicity2021_by_icb2024, cyp_create2021ethnicities()),
+# join two data sets
+tar_target(
+  cyp_ethnicity_by_icb,
+  join_ethnicity(cyp_ethnicity2011_by_icb2024, cyp_ethnicity2021_by_icb2024)
+),
+# impute ethnicity data for every year
+tar_target(
+  cyp_ethnicity_by_icb_by_year,
+  impute_annual_ethnicity(cyp_ethnicity_by_icb) |>
+    dplyr::rename(
+      ethnic_category = Ethnicity,
+      fin_year = der_financial_year,
+      count = Count
+    ) |>
+    dplyr::mutate(ethnic_category = tolower(ethnic_category))
+),
+
+
+tarchetypes::tar_file(cyp_ae_times_filepath,
+                      "data/cyp_ae_waits_icb.csv"),
+tar_target(cyp_ae_times,
+           load_csv(cyp_ae_times_filepath)),
+
+tarchetypes::tar_file(cyp_ae_diag_filepath,
+                      "data/cyp_ae_diag_icb.csv"),
+tar_target(cyp_ae_diag,
+           load_csv(cyp_ae_diag_filepath) |>
+             left_join(snomed_mh, by = c("ec_diagnosis_01" = "concept_id"))
+),
+
+tarchetypes::tar_file(cyp_ae_freq_filepath,
+                      "data/cyp_ae_freqfly_icb.csv"),
+tar_target(cyp_ae_freq,
+           load_csv(cyp_ae_freq_filepath)
+),
+
+tarchetypes::tar_file(cyp_ae_left_filepath,
+                      "data/cyp_ae_left_icb.csv"),
+tar_target(cyp_ae_left,
+           load_csv(cyp_ae_left_filepath)
+),
+
+tarchetypes::tar_file(cyp_ae_toa_filepath,
+                      "data/cyp_ae_toa_icb.csv"),
+tar_target(cyp_ae_toa,
+           load_csv(cyp_ae_toa_filepath)
+),
+
+# Full extracts
+tarchetypes::tar_file(cyp_data_ae_filepath,
+                      "data/cyp_ae_extract_full.csv"),
+tar_target(
+  cyp_data_ae,
+  load_csv(cyp_data_ae_filepath) |>
+    dplyr::rename(imd_decile = index_of_multiple_deprivation_decile) |>
+    dplyr::mutate(imd_decile = factor(imd_decile,
+                                      levels = as.character(1:10))) |>
+    # everything here is the new addition
+    mutate(age_group = ifelse(test = age_group == "18-24",
+                              yes = "18-24",
+                              no = "0-17")) |>
+    group_by(age_group, icb23cd, icb23nm,
+             imd_decile, rural_urban,
+             gender, ethnic_category,
+             ec_department_type,
+             arrival_mode, admit_decision, disch_dest, mh_snomed,
+             mhsds_flag, der_financial_year) |>
+    summarise(attends = sum(attends),
+              cost = sum(cost)) |>
+    ungroup()
+),
+
+# Summary from other extracts
+tar_target(cyp_ae_summary, get_ae_summary(cyp_data_ae)),
+tar_target(cyp_uec_summary, get_uec_summary(cyp_data_uec)),
+
+tar_target(cyp_ae_summ_transp, get_ae_summ_transp(cyp_data_ae)),
+tar_target(cyp_ae_transp_trends, get_ae_amb_trends(cyp_data_ae)),
+
+tar_target(cyp_uec_summ_transp, get_ae_summ_transp(cyp_data_uec, c("03", "04", "3", "4"))),
+tar_target(cyp_uec_transp_trends, get_ae_amb_trends(cyp_data_uec, c("03", "04", "3", "4"))),
+
+tar_target(cyp_ae_toa_summary, ae_toa_grouped(cyp_ae_toa)),
+tar_target(cyp_uec_toa_summary, ae_toa_grouped(cyp_ae_toa, c("3", "4"))),
+
+tar_target(cyp_ae_left_summary, ae_left_grouped(cyp_ae_left)),
+tar_target(cyp_uec_left_summary, ae_left_grouped(cyp_ae_left, c("3", "4"))),
+
+## Type 1 ED activity ---------------------------------------------------------
+tar_target(cyp_data_ed, get_ed_activity(cyp_data_ae)),
+
+# MH attends
+tar_target(cyp_type1_mh_attends, filter_mh_attends(cyp_data_ed)),
+tar_target(cyp_type1_perc_mh_attends, get_perc_mh_attends(cyp_data_ed)),
+tar_target(
+  cyp_type1_mh_attends_boxplot,
+  get_perc_mh_attends_boxplot(cyp_type1_perc_mh_attends, "Type 1")
+),
+tar_target(
+  cyp_type1_mh_attends_table,
+  get_icb_breakdown_table(cyp_type1_perc_mh_attends, icb_codes_names)
+),
+
+# MH known
+tar_target(cyp_type1_mh_known, filter_mh_known(cyp_data_ed)),
+tar_target(cyp_type1_perc_mh_known, get_perc_mh_known(cyp_data_ed)),
+tar_target(
+  cyp_type1_mh_known_boxplot,
+  get_perc_mh_known_boxplot(cyp_type1_perc_mh_known, "Type 1")
+),
+tar_target(
+  cyp_type1_mh_known_table,
+  get_icb_breakdown_table(cyp_type1_perc_mh_known, icb_codes_names)
+),
+
+### Arrival mode
+tar_target(cyp_type1_arrival_mode, filter_arrival_mode(cyp_data_ed)),
+tar_target(cyp_uec_arrival_mode, filter_arrival_mode(cyp_data_uec)),
+
+## UEC activity ---------------------------------------------------------------
+tar_target(cyp_data_uec, get_uec_activity(cyp_data_ae)),
+
+# MH attends
+tar_target(cyp_uec_mh_attends, filter_mh_attends(cyp_data_uec)),
+tar_target(cyp_uec_perc_mh_attends, get_perc_mh_attends(cyp_data_uec)),
+tar_target(
+  cyp_uec_mh_attends_boxplot,
+  get_perc_mh_attends_boxplot(cyp_uec_perc_mh_attends, "Type 3 and 4")
+),
+tar_target(
+  cyp_uec_mh_attends_table,
+  get_icb_breakdown_table(cyp_uec_perc_mh_attends, icb_codes_names)
+),
+
+# MH known
+tar_target(cyp_uec_mh_known, filter_mh_known(cyp_data_uec)),
+tar_target(cyp_uec_perc_mh_known, get_perc_mh_known(cyp_data_uec)),
+tar_target(
+  cyp_uec_mh_known_boxplot,
+  get_perc_mh_known_boxplot(cyp_uec_perc_mh_known, "Type 3 and 4")
+),
+tar_target(
+  cyp_uec_mh_known_table,
+  get_icb_breakdown_table(cyp_uec_perc_mh_known, icb_codes_names)
+),
+tar_target(
+  cyp_data_for_breakdowns,
+  list(
+    uec_mh_attends = cyp_uec_mh_attends,
+    uec_mh_known = cyp_uec_mh_known,
+    type1_mh_attends = cyp_type1_mh_attends,
+    type1_mh_known = cyp_type1_mh_known,
+    cyp_redetentions = cyp_redetentions
+  )
+),
+
+tar_target(cyp_gender_breakdowns,
+           get_breakdowns(cyp_data_for_breakdowns,
+                          cyp_type1_arrival_mode,
+                          cyp_uec_arrival_mode,
+                          cyp_gender_by_icb,
+                          "gender")),
+tar_target(cyp_age_breakdowns,
+           get_breakdowns(cyp_data_for_breakdowns[!grepl("redetentions",
+                                                         names(
+                                                           cyp_data_for_breakdowns))],
+                          cyp_type1_arrival_mode,
+                          cyp_uec_arrival_mode,
+                          cyp_age_by_icb,
+                          "age_group")),
+tar_target(cyp_imd_breakdowns,
+           get_breakdowns(cyp_data_for_breakdowns,
+                          cyp_type1_arrival_mode,
+                          cyp_uec_arrival_mode,
+                          cyp_imd_by_icb,
+                          "imd_decile")),
+tar_target(cyp_rural_breakdowns,
+           get_breakdowns(cyp_data_for_breakdowns[!grepl("redetentions",
+                                                         names(
+                                                           cyp_data_for_breakdowns))],
+                          cyp_type1_arrival_mode,
+                          cyp_uec_arrival_mode,
+                          cyp_rural_by_icb,
+                          "rural_urban")),
+tar_target(cyp_ethnic_breakdowns, # NHS111 data does not have ethnic category, so
+           # have excluded this from the list
+           get_breakdowns(cyp_data_for_breakdowns[!grepl("nhs111",
+                                                         names(
+                                                           cyp_data_for_breakdowns))],
+                          cyp_type1_arrival_mode,
+                          cyp_uec_arrival_mode,
+                          cyp_ethnicity_by_icb_by_year,
+                          "ethnic_category")),
+
+# 06. Plots ------------------------------------------------------------------
+## ED waiting times ----------------------------------------------------------
+tar_target(cyp_ae_times_assess, get_ed_times_assess(cyp_ae_times)),
+tar_target(cyp_ae_times_treat, get_ed_times_treat(cyp_ae_times)),
+tar_target(cyp_ae_times_conclude, get_ed_times_conclude(cyp_ae_times)),
+tar_target(cyp_ae_times_depart, get_ed_times_depart(cyp_ae_times)),
+tar_target(cyp_ae_times_table,
+           get_ae_times_table(cyp_ae_times_assess,
+                              cyp_ae_times_treat,
+                              cyp_ae_times_conclude,
+                              cyp_ae_times_depart)),
+
+tar_target(cyp_ae_times_assess_plot, ed_times_assess_plot(cyp_ae_times_assess)),
+tar_target(cyp_ae_times_treat_plot, ed_times_treat_plot(cyp_ae_times_treat)),
+tar_target(cyp_ae_times_conclude_plot, ed_times_conclude_plot(cyp_ae_times_conclude)),
+tar_target(cyp_ae_times_depart_plot, ed_times_depart_plot(cyp_ae_times_depart)),
+
+## Frequent fliers -----------------------------------------------------------
+tar_target(cyp_ae_freq_data, get_ed_freq_data(cyp_ae_freq)),
+tar_target(cyp_ae_freq_boxplot, ed_freq_boxplot(cyp_ae_freq_data)),
+tar_target(cyp_ae_freq_table,
+           get_icb_breakdown_table(cyp_ae_freq_data |>
+                                     ungroup() |>
+                                     rename(icb_code = icb23cd,
+                                            value = perc_freq),
+                                   icb_codes_names)),
+
+## Arrival mode --------------------------------------------------------------
+tar_target(cyp_ae_trans_barplot, get_ed_transp_colplot(cyp_ae_summ_transp)),
+tar_target(cyp_ae_trans_trends, get_ed_transp_trends(cyp_ae_transp_trends)),
+tar_target(cyp_uec_trans_barplot, get_ed_transp_colplot(cyp_uec_summ_transp, "UEC")),
+tar_target(cyp_uec_trans_trends, get_ed_transp_trends(cyp_uec_transp_trends, "UEC")),
+
+tar_target(cyp_ed_left_chart, ed_left_plot(cyp_ae_left_summary)),
+tar_target(cyp_uec_left_chart, ed_left_plot(cyp_uec_left_summary, "UEC")),
+
+# Overlayed bar chart for time of arrival to AE
+tar_target(cyp_ae_toa_plot, get_overlay_barchart_toa(cyp_ae_toa_summary)),
+tar_target(cyp_uec_toa_plot, get_overlay_barchart_toa(cyp_uec_toa_summary, "UEC")),
+
+## Breakdowns ----------------------------------------------------------------
+tar_target(
+  cyp_gender_plot,
+  purrr::map(
+    cyp_gender_breakdowns,
+    ~ get_standard_line_for_breakdowns(., cyp_pop_by_icb, group = "gender")
+  )
+),
+tar_target(
+  cyp_age_plot,
+  purrr::map(
+    cyp_age_breakdowns,
+    ~ get_standard_line_for_breakdowns(., cyp_pop_by_icb, group = "age_group")
+  )
+),
+tar_target(
+  cyp_imd_plot,
+  purrr::map(
+    cyp_imd_breakdowns,
+    ~ get_standard_line_for_breakdowns(., cyp_pop_by_icb, group = "imd_decile")
+  )
+),
+tar_target(
+  cyp_rural_plot,
+  purrr::map(
+    cyp_rural_breakdowns,
+    ~ get_standard_line_for_breakdowns(., cyp_pop_by_icb, group = "rural_urban")
+  )
+),
+tar_target(
+  cyp_ethnic_plot,
+  purrr::map(
+    cyp_ethnic_breakdowns,
+    ~ get_standard_line_for_breakdowns(., cyp_pop_by_icb, group = "ethnic_category")
+  )
+),
+
+# New IMD plots
+tar_target(cyp_ae_attends_imd, imd_plot2(cyp_imd_breakdowns$type1_mh_attends)),
+tar_target(cyp_uec_attends_imd, imd_plot2(cyp_imd_breakdowns$uec_mh_attends)),
+
+## Average attendance rate per 100000 ----------------------------------------
+# Type 1
+tar_target(cyp_avg_type1_mh_attends_rate,
+           get_pop_average(cyp_pop_by_icb, cyp_type1_mh_attends)),
+tar_target(cyp_avg_type1_mh_attends_rate_plot,
+           get_avg_mh_attends_rate_plot(cyp_avg_type1_mh_attends_rate)),
+
+# UEC
+tar_target(cyp_avg_uec_mh_attends_rate,
+           get_pop_average(cyp_pop_by_icb, cyp_uec_mh_attends)),
+tar_target(cyp_avg_uec_mh_attends_rate_plot,
+           get_avg_mh_attends_rate_plot(cyp_avg_uec_mh_attends_rate)),
+
+# ICB total populations
+tar_target(cyp_pop_by_icb, get_icb_pop_total(cyp_gender_by_icb)),
+tar_target(cyp_icb_rates_ed, get_icb_att_rates(cyp_data_ed, cyp_pop_by_icb)),
+tar_target(cyp_icb_rates_uec, get_icb_att_rates(cyp_data_uec, cyp_pop_by_icb)),
+
+# 23/24 mh attendance rate ED by ICB map
+tar_target(cyp_icb_ed_map_2324,
+           map_icb_allmh(icb_boundary, cyp_icb_rates_ed)),
+tar_target(cyp_icb_uec_map_2324,
+           map_icb_allmh_uec(icb_boundary, cyp_icb_rates_uec))
 )
+
+
