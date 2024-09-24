@@ -899,7 +899,7 @@ list(
 
   #Chart for Overview
   tar_target(chart_DTT_FY,
-             get_chart_DTT_FY(table_DTT_FY, custom_colours$su_colours)),
+             get_chart_DTT_FY(table_DTT_FY )), #, custom_colours$su_colours)),
 
   #Chart for gender
   tar_target(chart_DTT_gender_FY,

@@ -752,23 +752,15 @@ While the gender descrepancy has improved over time, there remains a consistent 
 
 ##### Age Group
 
-The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00  - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
+The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00 - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
 
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
 
 ##### Ethnicity
 
-Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, particularly in FY 2024/25, makes the data more susceptible to outliers.
+Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
 
--   White group: While this group maintains the largest share of admissions, it has experienced a notable drop, alongside a steady increase in travel distances.
-
--   Black group: Travel distances have risen moderately, though the group has seen a significant decrease in admissions.
-
--   Asian group: Both average and median travel distances have remained relatively stable, with only slight fluctuations, despite a sharp decline in admissions.
-
--   Mixed group: Travel distances have increased, even though the number of admissions has fallen significantly.
-
--   Other group: This group shows the largest increase in both average and median travel distances, despite the smallest number of admissions.
+Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
 
 ###### Admissions by Ethnicity
 
@@ -802,7 +794,7 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 -   Black and Other Groups: These groups have relatively low median DTT but have shown modest increases over the years.
 
-##### Key Insights by Ethnicity
+##### Overall ethnicity observations
 
 -   White Group: Admissions dropped substantially from 13,341 in 2017/18 to 10,427 in 2023/24, while average travel distances increased modestly. The median DTT increased from 11 to 12 over this period.
 
@@ -814,8 +806,6 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 -   Other Group: The Other group saw the most dramatic rise in travel distances despite the sharp drop in admissions. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
 
-Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
-
 #### IMD
 
 There is a clear trend of greater admissions among the most deprived (IMD 1) group, while the least deprived (IMD 10) group consistently travels further on average and median distances. While travel distances for both groups have increased over time, the least deprived group (IMD 10) continues to travel significantly longer distances compared to the most deprived, even though the gap in average distances has narrowed slightly over the years. This pattern underscores the relationship between socioeconomic deprivation and healthcare access, with the most deprived groups having more admissions but generally traveling shorter distances.
@@ -826,7 +816,7 @@ There is a clear trend of greater admissions among the most deprived (IMD 1) gro
 
 -   Admissions in the most deprived group (IMD 1) were consistently more than twice the number of admissions as those in the least deprived group (IMD 10) from 2017/18 to 2023/24.
 
-The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 units (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 units (IMD 10 at 30.88 vs IMD 1 at 24.45).
+The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 km (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 km (IMD 10 at 30.88 vs IMD 1 at 24.45).
 
 -   Most Deprived (IMD 1): Avg. DTT increased from 19.33 in 2017/18 to 24.45 in 2023/24, marking a 26.5% rise.
 
@@ -898,7 +888,7 @@ tar_read(table_DTT_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20FY.png)
 :::
 
 #### Variation by Gender
@@ -922,7 +912,7 @@ tar_read(DTT_gender_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Gender MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Gender%20MM%20FY.png)
 :::
 
 #### Variation by Age Group
@@ -946,7 +936,7 @@ tar_read(DTT_age_group_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Age MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Age%20MM%20FY.png)
 :::
 
 #### Variation by Ethnicity
@@ -970,7 +960,7 @@ tar_read(DTT_ethnic_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Ethnicity MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Ethnicity%20MM%20FY.png)
 :::
 
 #### Variation by IMD
@@ -994,11 +984,11 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 
 ##### Mean vs Median Deciles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected.png)
 
 ##### Mean vs Median Quintiles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected quintile.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected%20quintile.png)
 :::
 
 #### Variation by ICB
@@ -1014,7 +1004,7 @@ Add in
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/ICB MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20MM%20FY.png)
 :::
 :::
 
@@ -1178,11 +1168,11 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 ##### IMD over time by age and gender
 
-![](Heather Scratch Space/Tableau Plots/IMD by age gender time corrected avg.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20age%20gender%20time%20corrected%20avg.png)
 
 ##### IMD: Mean and median trends over time by gender
 
-![](Heather Scratch Space/Tableau Plots/IMD quintile gender corrected.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20quintile%20gender%20corrected.png)
 
 ##### Table
 
