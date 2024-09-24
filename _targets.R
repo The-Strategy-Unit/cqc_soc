@@ -973,6 +973,46 @@ tar_target(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years,
 
 #Make a heatmap of the subgroups
 tar_target(heatmap_DTT_subgroups,
-           get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years))
+           get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)),
+
+#Make ICB geo plots #############################################################
+# Target to create the new table summarizing DTT by ICB for 2023-2024
+tar_target(
+  table_DTT_ICB_FY_2023_24,
+  get_table_DTT_ICB_FY_2023_24(DTT)  # Generate the table for 2023-2024
+),
+
+# Target to generate the geographic map for 2023-2024
+tar_target(
+  dtt_icb_map_2023_24,
+  map_DTT_ICB_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_2023_24)  # Return the map plot for 2023-2024
+),
+
+# Target to create the table summarizing DTT by ICB for females (2023-2024)
+tar_target(
+  table_DTT_ICB_FY_female_2023_24,
+  get_table_DTT_ICB_FY_female_2023_24(DTT)
+),
+
+# Target to create the table summarizing DTT by ICB for males (2023-2024)
+tar_target(
+  table_DTT_ICB_FY_male_2023_24,
+  get_table_DTT_ICB_FY_male_2023_24(DTT)
+),
+
+# Target to generate the geographic map for females (2023-2024)
+tar_target(
+  dtt_icb_map_female_2023_24,
+  map_DTT_ICB_female_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_female_2023_24)
+),
+
+# Target to generate the geographic map for males (2023-2024)
+tar_target(
+  dtt_icb_map_male_2023_24,
+  map_DTT_ICB_male_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_male_2023_24)
+)
+
+
+
 
 )
