@@ -44,7 +44,7 @@ source("R/quarto_formatting.R")
 
 The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being finalised that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
 
-The purpose therefore of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA). 
+The purpose therefore of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
 
 ## Data and methods
 
@@ -93,7 +93,6 @@ The following analysis quantifies the scale of certain subset of conversions wit
 ##### Age group
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -111,13 +110,11 @@ tar_read(mha_conv_age_plot)
 tar_read(mha_conv_age_tab) |> 
   create_dt()
 ```
-
 :::
 
 ##### Gender
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -135,13 +132,11 @@ tar_read(mha_conv_sex_plot)
 tar_read(mha_conv_sex_tab) |> 
   create_dt()
 ```
-
 :::
 
 ##### Ethnic category
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -159,13 +154,11 @@ tar_read(mha_conv_eth_plot)
 tar_read(mha_conv_eth_tab) |> 
   create_dt()
 ```
-
 :::
 
 ##### IMD decile
 
 ::: panel-tabset
-
 ###### Chart
 
 ```{r}
@@ -183,13 +176,11 @@ tar_read(mha_conv_imd_plot)
 tar_read(mha_conv_imd_tab) |> 
   create_dt()
 ```
-
 :::
 
 ##### ICB area
 
 Still working on this one! Maybe best to pick 1 or 2 key conversions (eg 136 to 2) and generate maps of the %'s.
-
 :::
 
 ### Mental Health Act Detention Spell Length of Stay
@@ -752,23 +743,15 @@ While the gender descrepancy has improved over time, there remains a consistent 
 
 ##### Age Group
 
-The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00  - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
+The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00 - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
 
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
 
 ##### Ethnicity
 
-Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, particularly in FY 2024/25, makes the data more susceptible to outliers.
+Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
 
--   White group: While this group maintains the largest share of admissions, it has experienced a notable drop, alongside a steady increase in travel distances.
-
--   Black group: Travel distances have risen moderately, though the group has seen a significant decrease in admissions.
-
--   Asian group: Both average and median travel distances have remained relatively stable, with only slight fluctuations, despite a sharp decline in admissions.
-
--   Mixed group: Travel distances have increased, even though the number of admissions has fallen significantly.
-
--   Other group: This group shows the largest increase in both average and median travel distances, despite the smallest number of admissions.
+Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
 
 ###### Admissions by Ethnicity
 
@@ -802,7 +785,7 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 -   Black and Other Groups: These groups have relatively low median DTT but have shown modest increases over the years.
 
-##### Key Insights by Ethnicity
+##### General observations on ethnicity trends
 
 -   White Group: Admissions dropped substantially from 13,341 in 2017/18 to 10,427 in 2023/24, while average travel distances increased modestly. The median DTT increased from 11 to 12 over this period.
 
@@ -813,8 +796,6 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 -   Mixed Group: While admissions decreased by 67%, from 686 to 227 over the years, both average and median travel distances increased. Avg. DTT rose from 26.91 to 27.84, and Median DTT increased from 8 to 9.
 
 -   Other Group: The Other group saw the most dramatic rise in travel distances despite the sharp drop in admissions. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
-
-Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
 
 #### IMD
 
@@ -898,7 +879,7 @@ tar_read(table_DTT_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20FY.png)
 :::
 
 #### Variation by Gender
@@ -922,7 +903,7 @@ tar_read(DTT_gender_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Gender MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Gender%20MM%20FY.png)
 :::
 
 #### Variation by Age Group
@@ -946,7 +927,7 @@ tar_read(DTT_age_group_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Age MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Age%20MM%20FY.png)
 :::
 
 #### Variation by Ethnicity
@@ -970,7 +951,7 @@ tar_read(DTT_ethnic_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Ethnicity MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Ethnicity%20MM%20FY.png)
 :::
 
 #### Variation by IMD
@@ -994,11 +975,11 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 
 ##### Mean vs Median Deciles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected.png)
 
 ##### Mean vs Median Quintiles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected quintile.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected%20quintile.png)
 :::
 
 #### Variation by ICB
@@ -1014,7 +995,7 @@ Add in
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/ICB MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20MM%20FY.png)
 :::
 :::
 
@@ -1178,11 +1159,11 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 ##### IMD over time by age and gender
 
-![](Heather Scratch Space/Tableau Plots/IMD by age gender time corrected avg.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20age%20gender%20time%20corrected%20avg.png)
 
 ##### IMD: Mean and median trends over time by gender
 
-![](Heather Scratch Space/Tableau Plots/IMD quintile gender corrected.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20quintile%20gender%20corrected.png)
 
 ##### Table
 
@@ -1259,7 +1240,6 @@ perc_last_assess <- honos_flow_perc |>
 Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
-
 ##### Flowchart
 
 ```{r}
@@ -1276,14 +1256,11 @@ tar_read(honos_flowchart)
 tar_read(honos_flow_perc) |>
   create_dt()
 ```
-
 :::
 
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. 
-Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`%  had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`%  had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
 
 ::: panel-tabset
-
 ##### Histogram
 
 ```{r}
@@ -1299,6 +1276,4 @@ tar_read(honos_histo)
 #| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
 tar_read(honos_scatter)
 ```
-
 :::
-
