@@ -683,7 +683,7 @@ While the gender descrepancy has improved over time, there remains a consistent 
 
 ##### Age Group
 
-The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00  - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
+The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00 - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
 
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
 
@@ -819,7 +819,7 @@ tar_read(table_DTT_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20FY.png)
 :::
 
 #### Variation by Gender
@@ -843,7 +843,7 @@ tar_read(DTT_gender_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Gender MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Gender%20MM%20FY.png)
 :::
 
 #### Variation by Age Group
@@ -867,7 +867,7 @@ tar_read(DTT_age_group_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Age MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Age%20MM%20FY.png)
 :::
 
 #### Variation by Ethnicity
@@ -891,7 +891,7 @@ tar_read(DTT_ethnic_FY) %>% create_dt()
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Ethnicity MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Ethnicity%20MM%20FY.png)
 :::
 
 #### Variation by IMD
@@ -915,11 +915,11 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 
 ##### Mean vs Median Deciles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected.png)
 
 ##### Mean vs Median Quintiles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected quintile.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected%20quintile.png)
 :::
 
 #### Variation by ICB
@@ -935,7 +935,7 @@ Add in
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/ICB MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20MM%20FY.png)
 :::
 :::
 
@@ -1099,11 +1099,11 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 ##### IMD over time by age and gender
 
-![](Heather Scratch Space/Tableau Plots/IMD by age gender time corrected avg.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20age%20gender%20time%20corrected%20avg.png)
 
 ##### IMD: Mean and median trends over time by gender
 
-![](Heather Scratch Space/Tableau Plots/IMD quintile gender corrected.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20quintile%20gender%20corrected.png)
 
 ##### Table
 
