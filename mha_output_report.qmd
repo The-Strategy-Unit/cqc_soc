@@ -669,7 +669,143 @@ NHS Digital guidance: Look up the postcode for this SiteCode in the ODS referenc
 
 **Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
 
-#### Overview DTT
+#### DTT over time
+
+##### Overall
+
+There has been little change in the overall mean and median DTT over time. The mean increased by 1.5 km/admission (an increase of 6.1%), between 2017/18 (25.5 km/admission) and 2024/25 (27.0 km/admission). However, the median DTT remained the same at 10.0 km/admission over the same time period.
+
+##### Gender
+
+The average DTT for females only increased by 0.3% from 2017/18 to 2024/25 (29.90 - 29.98 km/admission) while the average for males increased by nearly 15% (21.2 - 24.4 km/admission). The median decreased for females from 12 to 11 km/admission while the median remained constant at 9km/admission for males over the time period.
+
+While the gender descrepancy has improved over time, there remains a consistent difference between males and females in average DTT over the time period. In 2017/18 females traveled on average 29.1% farther than males and by 2024/25 they still travelled 18.7% farther than males on average. The median DTT for females and males saw the same trend as the median DTT for females was 25.0% farther than for males in 2017/18 and 18.2% farther in 2024/25.
+
+##### Age Group
+
+The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00  - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
+
+While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
+
+##### Ethnicity
+
+Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, particularly in FY 2024/25, makes the data more susceptible to outliers.
+
+-   White group: While this group maintains the largest share of admissions, it has experienced a notable drop, alongside a steady increase in travel distances.
+
+-   Black group: Travel distances have risen moderately, though the group has seen a significant decrease in admissions.
+
+-   Asian group: Both average and median travel distances have remained relatively stable, with only slight fluctuations, despite a sharp decline in admissions.
+
+-   Mixed group: Travel distances have increased, even though the number of admissions has fallen significantly.
+
+-   Other group: This group shows the largest increase in both average and median travel distances, despite the smallest number of admissions.
+
+###### Admissions by Ethnicity
+
+-   White Group: Despite a sharp decline in admissions (from 13,341 in 2017/18 to 10,427 in 2023/24), the White group continues to have significantly more admissions than all other ethnic groups.
+
+-   Black Group: The Black group had the second highest admissions, rising to a peak in 2019/20 before stabilizing below 1,300 by 2023/24.
+
+-   Asian Group: Admissions for the Asian group increased slightly until 2019/20, but then remained stable around 1,200 by 2023/24.
+
+-   Mixed Group: Admissions fluctuated between 2017/18 and 2023/24, peaking at 981 before falling back to 892 in 2023/24.
+
+-   Other Group: The Other group consistently had the fewest admissions, with numbers gradually rising to 595 by 2023/24.
+
+###### Average Distance to Travel (Avg. DTT)
+
+-   Mixed Group: This group consistently travels the furthest, with an average DTT ranging from 26.9 in 2017/18 to 25.0 in 2023/24.
+
+-   White Group: The White group also shows high average travel distances, increasing from 25.6 in 2017/18 to 27.4 in 2023/24.
+
+-   Black Group: The Black group saw a more dramatic increase in average DTT, from 21.6 in 2017/18 to 24.7 in 2023/24.
+
+-   Asian Group: This group consistently had the lowest average DTT, remaining relatively stable between 17.4 and 19.7 over the years.
+
+-   Other Group: Average DTT for the Other group started lower but rose sharply, peaking at 24.3 in 2021/22.
+
+###### Median Distance to Travel (Median DTT)
+
+-   White and Mixed Groups: These two groups consistently have the highest median DTT, indicating that many individuals travel longer distances.
+
+-   Asian Group: The Asian group has the shortest median DTT, with a slight decline over time, reflecting shorter travel distances for most individuals.
+
+-   Black and Other Groups: These groups have relatively low median DTT but have shown modest increases over the years.
+
+##### Key Insights by Ethnicity
+
+-   White Group: Admissions dropped substantially from 13,341 in 2017/18 to 10,427 in 2023/24, while average travel distances increased modestly. The median DTT increased from 11 to 12 over this period.
+
+-   Black Group: The number of admissions decreased from 958 in 2017/18 to 391 in 2024/25. Both average and median travel distances increased during this period, with a 3% rise in Avg. DTT and a 16.7% increase in Median DTT.
+
+-   Asian Group: Despite the significant drop in admissions (from 823 in 2017/18 to 343 in 2024/25), average travel distances remained stable, with a slight decrease in median travel distance.
+
+-   Mixed Group: While admissions decreased by 67%, from 686 to 227 over the years, both average and median travel distances increased. Avg. DTT rose from 26.91 to 27.84, and Median DTT increased from 8 to 9.
+
+-   Other Group: The Other group saw the most dramatic rise in travel distances despite the sharp drop in admissions. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
+
+Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
+
+#### IMD
+
+There is a clear trend of greater admissions among the most deprived (IMD 1) group, while the least deprived (IMD 10) group consistently travels further on average and median distances. While travel distances for both groups have increased over time, the least deprived group (IMD 10) continues to travel significantly longer distances compared to the most deprived, even though the gap in average distances has narrowed slightly over the years. This pattern underscores the relationship between socioeconomic deprivation and healthcare access, with the most deprived groups having more admissions but generally traveling shorter distances.
+
+-   Most Deprived (IMD 1): Admissions started at 2,747 in 2017/18 and peaked at 3,736 in 2019/20, before dropping to 2,849 in 2023/24.
+
+-   Least Deprived (IMD 10): Admissions started at 1,215 in 2017/18 and peaked at 1,429 in 2019/20, before dropping to 970 in 2023/24.
+
+-   Admissions in the most deprived group (IMD 1) were consistently more than twice the number of admissions as those in the least deprived group (IMD 10) from 2017/18 to 2023/24.
+
+The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 units (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 units (IMD 10 at 30.88 vs IMD 1 at 24.45).
+
+-   Most Deprived (IMD 1): Avg. DTT increased from 19.33 in 2017/18 to 24.45 in 2023/24, marking a 26.5% rise.
+
+-   Least Deprived (IMD 10): Avg. DTT remained higher, starting at 29.09 in 2017/18, peaking at 33.24 in 2021/22, and settling at 30.88 in 2023/24.
+
+-   Percentage Difference: In 2017/18, the least deprived group (IMD 10) traveled 50% further on average than the most deprived group (IMD 1). In 2023/24, this difference decreased slightly, with the least deprived group traveling 26.3% further on average than the most deprived group.
+
+The median travel distance for the least deprived group (IMD 10) has consistently been more than double that of the most deprived group (IMD 1) throughout the years. In 2017/18, the least deprived group had a median DTT of 14, compared to 6 for the most deprived group, and in 2023/24, the gap persisted, with 16 for the least deprived group versus 8 for the most deprived.
+
+-   Most Deprived (IMD 1): Median DTT was relatively stable at 6-7 from 2017/18 to 2022/23, before increasing to 8 in 2023/24.
+
+-   Least Deprived (IMD 10): Median DTT started higher at 14 in 2017/18, increased to 16 in 2021/22, and remained at 16 in 2023/24.
+
+-   Percentage Difference: In 2017/18, the least deprived group (IMD 10) had a median travel distance 133% higher than the most deprived group (IMD 1). By 2023/24, this gap had narrowed slightly, with the least deprived group still traveling 100% further than the most deprived group in terms of median travel distance.
+
+#### ICBs
+
+There is considerable variation in admissions and travel distances across the ICBs, with urban areas experiencing higher admissions and shorter travel distances, and rural areas showing fewer admissions but longer travel distances. Over time, travel distances have generally increased, particularly in rural areas, suggesting growing challenges in accessing healthcare services in these regions. NHS Cornwall and the Isles of Scilly regularly shows the highest Avg. DTT across all years, reaching a high of 129 km in 2024/25. This starkly contrasts with NHS North East London, where the Avg. DTT is often below 15 km.
+
+##### **Average Distance to Travel (Avg. DTT)**:
+
+**Overall:** The average distance to travel (Avg. DTT) shows significant variability across ICBs, ranging from around 10-20 km in urban or densely populated ICBs, such as NHS North East London or NHS Birmingham and Solihull, to over 50 km in more rural or geographically dispersed areas, such as NHS Cornwall and the Isles of Scilly and NHS Devon.
+
+**Extreme Values**: NHS Cornwall and the Isles of Scilly and NHS Dorset consistently show the highest Avg. DTT values, often reaching 80-100 km, highlighting the challenges of healthcare access in remote areas. On the opposite end, ICBs like NHS North Central London and NHS North East London show very low Avg. DTT values, typically around 10 km, reflecting easy access to services within compact urban regions.
+
+**Trends Over Time**: For many ICBs, the Avg. DTT increased from 2017/18 to 2023/24, such as in NHS Norfolk and Waveney and NHS Bedfordshire Luton and Milton Keynes, indicating potentially growing distances required to access healthcare, possibly due to centralization of services or changes in care delivery models. Some ICBs, however, exhibit stable or even decreasing DTT, such as NHS Staffordshire and Stoke-on-Trent, which maintains an average DTT of around 12-13 km over time.
+
+##### **Median Distance to Travel (Median DTT)**:
+
+The median DTT is often lower than the average DTT, suggesting that most patients travel shorter distances, while a few travel very long distances, skewing the average.
+
+**Range**: Median DTT values range from 5-10 km in ICBs such as NHS North Central London and NHS North East London to around 30-40 km in areas like NHS Cornwall and the Isles of Scilly and NHS Frimley.
+
+**Trends**: Median DTT for several ICBs, including NHS Dorset and NHS Cornwall and the Isles of Scilly, shows a notable rise over time, suggesting that even for more patients, distances to healthcare are increasing. For instance, NHS Dorset has a median DTT rising from 9 km in 2017 to over 60 km in 2023/24.
+
+##### **Admissions Across ICBs (Excluding FY 2024/25)**:
+
+**Overall:** The number of admissions varies significantly across ICBs, reflecting the differences in population size and service demand. Larger ICBs such as NHS North East and North Cumbria and NHS Greater Manchester regularly show admissions in the range of 1,000+, while smaller ICBs, such as NHS Shropshire Telford and Wrekin, have admissions typically below 200 per year.
+
+**Trends:** Admissions generally increase or remain stable from 2017/18 to around 2020/21 for many ICBs, reflecting increased healthcare demand. However, fluctuations in 2021/22-2023/24 could be due to the pandemic's impact on healthcare services. Admissions for some ICBs, like NHS Cornwall and the Isles of Scilly and NHS Dorset, show a noticeable decline in later years (2021/22-2023/24), which may indicate a shift in service utilization or changes in referral pathways.
+
+##### **General Spread of Values Across ICBs**:
+
+**Urban vs. Rural Divide**: There is a clear divide between urban and rural ICBs, with rural areas requiring substantially longer travel distances for healthcare access. For example, NHS Cornwall and the Isles of Scilly, NHS Lincolnshire, and NHS Somerset show consistently higher DTT values. Urban ICBs, such as NHS London-based ICBs, have shorter travel distances, with average DTT values often under 20 km.
+
+**ICBs with High Admissions and Low DTT**: Larger urban ICBs, such as NHS North East and North Cumbria and NHS Greater Manchester, tend to have high admission numbers but lower DTT, typically around 10-20 km. This suggests that while they handle more patients, these areas have denser healthcare infrastructure, reducing the need for long-distance travel.
+
+**ICBs with Low Admissions and High DTT**: Rural ICBs, such as NHS Cornwall and the Isles of Scilly, often have low admissions but high travel distances, indicating more dispersed populations and fewer nearby healthcare facilities.
 
 ::: panel-tabset
 #### Overall variation by FY
@@ -680,7 +816,7 @@ NHS Digital guidance: Look up the postcode for this SiteCode in the ODS referenc
 ```{r}
 #| label: fig-average-distance-chart
 #| fig-cap: "Chart summarizing average distance per financial year."
-tar_read(chart_DTT_FY)
+tar_read(chart_DTT_FY) 
 ```
 
 ##### Table
@@ -789,11 +925,11 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 
 ##### Mean vs Median Deciles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY Deciles.png)
+![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected.png)
 
 ##### Mean vs Median Quintiles
 
-![](Heather Scratch Space/Tableau Plots/IMD MM FY quintiles.png)
+![](Heather Scratch Space/Tableau Plots/IMD MM FY corrected quintile.png)
 :::
 
 #### Variation by ICB
@@ -973,11 +1109,11 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 ::: panel-tabset
 ##### IMD over time by age and gender
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20IMD%20over%20time.png)
+![](Heather Scratch Space/Tableau Plots/IMD by age gender time corrected avg.png)
 
 ##### IMD: Mean and median trends over time by gender
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20gender%20over%20time%20trends.png)
+![](Heather Scratch Space/Tableau Plots/IMD quintile gender corrected.png)
 
 ##### Table
 
