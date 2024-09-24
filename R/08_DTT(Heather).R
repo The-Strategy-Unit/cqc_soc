@@ -67,7 +67,7 @@ get_chart_DTT_FY <- function(data, su_colours) {
   plot <- ggplot(data, aes(x = fin_year, y = Average_Distance, group = 1)) +
     geom_line(aes(color = "Average Distance"), linewidth = 1) +
     geom_point(aes(color = "Average Distance"), size = 1) +
-    scale_color_manual(values = su_colours["su_blue"]) +
+    scale_color_manual(values = c("Average Distance" = su_colours["su_blue"])) +
     theme_minimal() +
     labs(
       title = "Average Travel Distance Per Admission Over Time",
@@ -76,7 +76,7 @@ get_chart_DTT_FY <- function(data, su_colours) {
       y = "Average Distance (km)"
     ) +
     theme(legend.position = "none",
-      axis.text.x = element_text(angle = 45, hjust = 1))+
+          axis.text.x = element_text(angle = 45, hjust = 1)) +
     ylim(0, NA)
   return(plot)
 }
