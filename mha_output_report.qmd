@@ -102,7 +102,6 @@ The following analysis quantifies the scale of certain subset of conversions wit
 ```{r}
 #| label: fig-conversion_age
 #| fig-cap: Frequency of specific multi-episode pathways by age groups, 2019/20 to 2023/24.
-
 tar_read(mha_conv_age_plot)
 ```
 
