@@ -659,7 +659,7 @@ tar_read(cyp_redetentions_plot_imd_decile)$table |>
 
 #### Formal and Informal Mental Health Act Re-detentions
 
-The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
+The majority of MHA re-detentions are formal with less than 1% being informal or unknown.
 
 ```{r}
 tar_read(cyp_redetentions_formal_table) |>
@@ -1238,7 +1238,7 @@ perc_last_assess <- honos_flow_perc |>
   dplyr::pull(perc)
 ```
 
-Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
 ##### Flowchart
@@ -1259,7 +1259,7 @@ tar_read(honos_flow_perc) |>
 ```
 :::
 
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
 
 ::: panel-tabset
 ##### Histogram
