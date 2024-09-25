@@ -88,6 +88,123 @@ ethnicity2021_by_icb2023 <- left_join(x = LSOA2021_to_ICB, y = ethn_2021_by_lsoa
 return(ethnicity2021_by_icb2023)
 }
 
+# create cyp 2011 ethnicities by ICB ----
+cyp_create2011ethnicities <- function(){
+
+  # import ethnicity by 2011 lsoa data
+  ethn_2011_by_lsoa.data <- read.csv("data/ethnicity_by_LSOA11_data.csv") |>
+    # i think that this is dropping the welsh lsoas, but im not sure
+    dplyr::filter(grepl("E01", GeographyCode))
+
+  # import the headings for the ethnicity by 2011 lsoa data
+  # only keeping the vars i want from it as a lookup
+  ethn_2011_by_lsoa.heads <- read.csv("data/ethnicity_by_LSOA11_headings.csv")[, c(1,4)]
+
+  # next task is to rename the column headers in the ethnicity by 2011 lsoa data
+  # note that it only has names for the actual ethnicities, ignoring the LSOA name, so I'm adding that in manually to the list so that I can crudely link the two by order - I have manually checked that this works, but it is obviously janky
+  colnames(ethn_2011_by_lsoa.data) = c("LSOA11CD", ethn_2011_by_lsoa.heads$ColumnVariableDescription)
+
+
+  # drop some columns from the ethnicity by lsoa data so that everything is more manageable
+  ethn_2011_by_lsoa.data2 <- ethn_2011_by_lsoa.data %>%
+    mutate(lsoa11cd = LSOA11CD,
+           All_Ethnicities = rowSums(across(c(26, 50, 74, 98, 122, 146, 170, 194))),
+           White = rowSums(across(c(27, 51, 75, 99, 123, 147, 171, 195))),
+           Mixed = rowSums(across(c(32, 56, 80, 104, 128, 152, 176, 200))),
+           Asian = rowSums(across(c(37, 61, 85, 109, 133, 157, 181, 205))) - rowSums(across(c(41, 65, 89, 113, 137, 161, 185, 209))),
+           Black = rowSums(across(c(43, 67, 91, 115, 139, 163, 187, 211))),
+           Other = rowSums(across(c(47, 71, 95, 119, 143, 167, 191, 215))) + rowSums(across(c(41, 65, 89, 113, 137, 161, 185, 209)))) |>
+    select(530:536)
+
+  # import 2011 to ICB data lookup
+  lsoa11_to_ICB23 <- read.csv("data/LSOA2011_to_ICB2023.csv") %>%
+    janitor::clean_names()
+
+  # join lsoa to icb lookup
+  ethnicity_by_lsoa_by_icb <- inner_join(x = ethn_2011_by_lsoa.data2, y = lsoa11_to_ICB23,
+                                         by = c("lsoa11cd"))
+  # n of rows of lsoas is 32844, which is correct for n of lsoas in england during 2011
+
+  ethnicity2011_by_icb2023 <- ethnicity_by_lsoa_by_icb %>%
+    # pivot longer for ease of wrangling
+    pivot_longer(cols = c(3:7),
+                 names_to = "Ethnicity",
+                 values_to = "Count11") %>%
+    # create aggregate count of each ethnic group
+    group_by(icb23cd, icb23nm, Ethnicity) %>%
+    summarise(Count11 = sum(Count11),
+              All_Ethnicities11 = sum(All_Ethnicities)) |>
+    ungroup() |>
+    select(Ethnicity, Count11, All_Ethnicities11, icb23cd)
+
+  return(ethnicity2011_by_icb2023)
+
+}
+
+# ok, so where im up to is that the 2011 data is stripped to just be under 25s, but the 2021 data isnt broken down by age so ill need to import new data
+
+# create cyp 2021 ethnicities by ICB ----
+cyp_create2021ethnicities <- function(){
+  # import ethnicity by lsoa,  this includes welsh lsoa
+  ethn_2021_by_icb <- read_csv("data/cyp_ethnicity_2021.csv",
+                               show_col_types = FALSE) |>
+    mutate(Ethnicity = case_when(
+      `Ethnic group (20 categories)` == "Does not apply"                                                         ~ "Not Recorded",
+      `Ethnic group (20 categories)` == "Asian, Asian British or Asian Welsh: Bangladeshi"                       ~ "Asian",
+      `Ethnic group (20 categories)` == "Asian, Asian British or Asian Welsh: Chinese"                           ~ "Other",
+      `Ethnic group (20 categories)` == "Asian, Asian British or Asian Welsh: Indian"                            ~ "Asian",
+      `Ethnic group (20 categories)` == "Asian, Asian British or Asian Welsh: Pakistani"                         ~ "Asian",
+      `Ethnic group (20 categories)` == "Asian, Asian British or Asian Welsh: Other Asian"                       ~ "Asian",
+      `Ethnic group (20 categories)` == "Black, Black British, Black Welsh, Caribbean or African: African"       ~ "Black",
+      `Ethnic group (20 categories)` == "Black, Black British, Black Welsh, Caribbean or African: Caribbean"     ~ "Black",
+      `Ethnic group (20 categories)` == "Black, Black British, Black Welsh, Caribbean or African: Other Black"   ~ "Black",
+      `Ethnic group (20 categories)` == "Mixed or Multiple ethnic groups: White and Asian"                       ~ "Black",
+      `Ethnic group (20 categories)` == "Mixed or Multiple ethnic groups: White and Black African"               ~ "Mixed",
+      `Ethnic group (20 categories)` == "Mixed or Multiple ethnic groups: White and Black Caribbean"             ~ "Mixed",
+      `Ethnic group (20 categories)` == "Mixed or Multiple ethnic groups: Other Mixed or Multiple ethnic groups" ~ "Mixed",
+      `Ethnic group (20 categories)` == "White: English, Welsh, Scottish, Northern Irish or British"             ~ "White",
+      `Ethnic group (20 categories)` == "White: Irish"                                                           ~ "White",
+      `Ethnic group (20 categories)` == "White: Gypsy or Irish Traveller"                                        ~ "White",
+      `Ethnic group (20 categories)` == "White: Roma"                                                            ~ "White",
+      `Ethnic group (20 categories)` == "White: Other White"                                                     ~ "White",
+      `Ethnic group (20 categories)` == "Other ethnic group: Arab"                                               ~ "Other",
+      `Ethnic group (20 categories)` == "Other ethnic group: Any other ethnic group"    ~ "Other"
+    )) |>
+    mutate(Age = case_when(
+      `Age (7 categories)` == "Aged 4 years and under" ~ "0-24",
+      `Age (7 categories)` == "Aged 5 to 15 years"     ~ "0-24",
+      `Age (7 categories)` == "Aged 16 to 17 years"    ~ "0-24",
+      `Age (7 categories)` == "Aged 18 to 20 years"    ~ "0-24",
+      `Age (7 categories)` == "Aged 21 to 24 years"    ~ "0-24",
+      `Age (7 categories)` == "Aged 25 to 29 years"    ~ "25+",
+      `Age (7 categories)` == "Aged 30 years and over" ~ "25+"
+    )) |>
+    group_by(Ethnicity, Age, `Integrated care boards`, `Integrated care boards Code`) |>
+    summarise(Count = sum(Observation)) |>
+    ungroup() |>
+    subset(`Integrated care boards` != "Does not apply: Wales" &
+             Age != "25+") |>
+    rename(icb23cd = `Integrated care boards Code`,
+           icb23nm = `Integrated care boards`)
+
+  ethnicity2021_by_icb2023 <- ethn_2021_by_icb |>
+    pivot_wider(id_cols = c(Age, icb23cd, icb23nm),
+                names_from = Ethnicity,
+                values_from = Count) |>
+    mutate(All_Ethnicities21 = `Not Recorded` + Asian + Black + White + Mixed + Other) %>%
+    pivot_longer(cols = c(Asian, Black, Mixed, White, Other, `Not Recorded`),
+                 names_to = "Ethnicity",
+                 values_to = "Count21") |>
+    subset(Ethnicity != "Not Recorded") |>
+    mutate(icb23cd = case_when(
+      icb23nm == "NHS Surrey Heartlands Integrated Care Board" ~ "E54000063",
+      icb23nm == "NHS Sussex Integrated Care Board" ~ "E54000064",
+      .default = icb23cd
+    ))
+
+  return(ethnicity2021_by_icb2023)
+}
+
 # join datasets ----
 join_ethnicity <- function(ethnicity2011_by_icb2023 = ethnicity2011_by_icb2023,
                            ethnicity2021_by_icb2023 = ethnicity2021_by_icb2023){
