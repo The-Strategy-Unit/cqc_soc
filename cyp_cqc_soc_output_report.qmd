@@ -80,7 +80,7 @@ While the majority of these patients are known to mental health providers, a sub
 
 -   In 2023/24 there were around 5 million attendances to ED by children or young people, of which 64,000 had a primary diagnosis of mental health condition.
 -   These MH attendances cost \> £9m (not including ambulatory costs).
--   Depression and anxiety disorder attendances account for around 70% of MH attendances in younger people. Dissociative convulsions attendances makers up slightly over 7%, and psychotic disorders make up over 6%. No other categories make up more than 5% of attendances each.
+-   Depression and anxiety disorder attendances account for around 70% of MH attendances in younger people. Dissociative convulsions attendances makes up slightly over 7%, and psychotic disorders make up over 6%. No other categories make up more than 5% of attendances each.
 -   Nationally, more than 85% of children and young people presenting with MH attendances to A&E are known to mental health services. This also means that nearly 15% are not.
 -   Among children and young people, substantially more patients with MH disorders are conveyed to A&E by ambulance than those with physical ailments. Among younger patients with MH disorders, during the period covered, the proportion at its lowest is just below 30%, whereas among younger patients with physical ailments it is never higher 16%.
 -   Patients presenting with MH issues are much more likely to attend between the hours of 8pm and 6am than those with physical issues.
@@ -88,21 +88,21 @@ While the majority of these patients are known to mental health providers, a sub
 -   In 2023/24, those presenting with MH issues waited longer in the department for assessment, treatment and to discharge from A&E. The average ED 'pathway' was approximately 40 minutes longer for MH patients.
 -   There were over 800 younger patients in England attending Emergency OR Urgent care departments 5 or more times during the latest 12 month period with a primary mental health complaint.
 -   The rate of attendance in younger females is substantially higher than younger males, in every year since 2019/20. For example in 23/24, the rate in younger females was 515/100,000, whereas in younger males it was 263/100,000.
--   Consistently, the 18-24 year old group have a much rate of attendance compared to under 18s. The 18-24 year old group appears to be declining over time, although  even at its lowest in 23/24 was still 5 times the rate in the under 18s group.
--   Younger patients with MH issues from the White 'Other' ethnic categories (Chinese, Arab and other) present more frequently than other groups.
+-   Consistently, the 18-24 year old group have a much rate of attendance compared to under 18s. The 18-24 year old group's attendance rate appears to be declining over time, although even at its lowest in 23/24 was still 5 times the rate in the under 18s group.
+-   Younger patients with MH issues from the White and 'Other' ethnic categories (Chinese, Arab and other) present more frequently than other groups.
 -   There is a very clear socio-economic gradient in MH presentation rates. IMD1 (most deprived) have attendance rates over 2 times higher than IMD10 (the least deprived).
 
 ### Walk-in and UTC attendances:
 
 -   In 2023/24 there were around 2.4 million attendances to Type 3 or 4 departments, of which 6,000 had a primary diagnosis of mental health condition.
 -   These MH attendances cost £0.55m (not including ambulatory costs).
--   Depression and anxiety disorder attendances account for nearly 85% of MH attendances in younger people. Panic disorder attendances makers up slightly over 6%, and psychotic disorders and eating disorder attendances make up slightly more than 2% of attendances each.
+-   Depression and anxiety disorder attendances account for nearly 85% of MH attendances in younger people. Panic disorder attendances makes up slightly over 6%, and psychotic disorders and eating disorder attendances make up slightly more than 2% of attendances each.
 -   Typically, around 50% of these patients presenting in urgent care are known to mental health services.
 -   The overwhelming majority (90%+) of both MH and non-MH younger patients convey themselves to the urgent care departments.
 -   Younger patients presenting with MH issues are slightly more likely to attend between 7pm and 6am than those without MH issues.
 -   Fewer younger patients with MH complaints leave the department before their assessment or treatment is concluded than those with physical complaints. For example, in 23/24, for younger patients without a MH complaint the rate was 3.6%, whereas for younger patients with a MH complaint, the figure was 2.1%
 -   The rate of attendance by women is consistently substantially higher than men. For example, in 23/24 it was 44 per 100,000 amongst younger women, whereas it was 28 per 100,000 in younger men.
--   There are consistently  much higher rates of attendance in 18-24 year olds than under 18 year olds. For example among the years observed, the rate in 18-24 never dipped below 110 per 100,000, whereas in under 18 year olds the rate never exceed 20 per 100,000.
+-   There are consistently much higher rates of attendance in 18-24 year olds than under 18 year olds. For example among the years observed, the rate in 18-24 never dipped below 110 per 100,000, whereas in under 18 year olds the rate never exceed 20 per 100,000.
 -   Patients with MH issues from 'Other' ethnic categories (Chinese, Arab and other) present more frequently than other groups.
 -   Broadly, there is socio-economic gradient in MH presentation rates, with more deprived deciles having higher attendance rates than more privileged deciles, however during years most affected by the pandemic, the most deprived decile (IMD1) actually had substantially lower attendance rates than slightly less deprived deciles (such as IMD2, IMD3 and IMD4).
 
@@ -865,6 +865,6 @@ tar_read(cyp_rural_breakdowns)$uec_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
+
 :::
 
-##  {#sec-nhs111-overview}
