@@ -80,11 +80,15 @@ Of these, `r tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_yea
 For those spells containing more than 1 detention episode, the following are the most common (top ten) in CYP over time:
 
 ```{r}
-tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |> group_by(fin_year, sections_all) |> summarise(spells = sum(spells)) |> pivot_wider(names_from = fin_year, values_from = spells) |> arrange(desc(`2023-2024`)) |> head(10) |>
+tar_read(conversion_map) |> 
+  filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |>
+  group_by(fin_year, sections_all) |> 
+  summarise(spells = sum(spells)) |> 
+  pivot_wider(names_from = fin_year, values_from = spells) |> 
+  arrange(desc(`2023-2024`)) |> 
+  head(10) |>
   create_dt()
 ```
-
-***NB. We need to map the correct sections to the legal status code in the data i.e. 20 = s.136.***
 
 #### Specific pathways of interest by population sub-group
 
