@@ -581,11 +581,12 @@ get_cyp_los_by_section <- function(data, sections) {
 }
 
 # To get a percentage of spells over a specified number of days:
-get_llos_perc <- function(data, llos_cutoff){
+get_llos_perc_23_24 <- function(data, llos_cutoff){
 
   llos_perc <- data |>
+    dplyr::filter(der_financial_year == "2023/24") |>
     dplyr::mutate(llos = ifelse(los > llos_cutoff, 1, 0)) |>
-    summarise(count = dplyr::n(),
+    dplyr::summarise(count = dplyr::n(),
               perc_llos = sum(llos) * 100 / count)
 
   return(llos_perc)
@@ -595,21 +596,59 @@ get_llos_perc <- function(data, llos_cutoff){
 
 # Identify different conversion types for MHA episodes as per Helen's list
 get_conversions_mapped <- function(tar_obj) {
-
   data <- tar_obj |>
-    mutate(conversion_desc = case_when(grepl("06-05", sections_all) ~ "Section 5(4) to Section 5(2)",
-                                       grepl("19-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("20-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("19-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("20-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("05-02", sections_all) ~ "Section 5(2) to Section 2 ",
-                                       grepl("05-03", sections_all) ~ "Section 5(2) to Section 3",
-                                       grepl("20-02", sections_all) ~ "Section 136 to Section 2",
-                                       grepl("20-03", sections_all) ~ "Section 136 to Section 3",
-                                       grepl("04-02", sections_all) ~ "Section 4 to Section 2",
-                                       grepl("04-03", sections_all) ~ "Section 4 to Section 3",
-                                       grepl("03-03", sections_all) ~ "Section 3 renewal"),
-           epi_count = stringr::str_count(sections_all,"-") + 1
+    mutate(
+      sections_all = stringr::str_replace_all(
+        sections_all,
+        c(
+          "05" = "5(2)",
+          "06" = "5(4)",
+          "07" = "35",
+          "08" = "36",
+          "09" = "37 (with Section 41 restrictions)",
+          "10" = "37",
+          "12" = "38",
+          "13" = "44",
+          "14" = "46",
+          "15" = "47 (with Section with 49 restrictions)",
+          "16" = "47",
+          "17" = "48 (with Section with 49 restrictions)",
+          "18" = "48",
+          "19" = "135",
+          "20" = "136"
+        )
+      ) |>
+        stringr::str_remove_all("0"),
+      conversion_desc = case_when(
+        grepl("5\\(4\\)-5\\(2\\)", sections_all) ~ "Section 5(4) to Section 5(2)",
+        grepl("135-5\\(2\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("136-5\\(2\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("135-5\\(4\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("136-5\\(4\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("5\\(2\\)-2", sections_all) ~ "Section 5(2) to Section 2 ",
+        grepl("5\\(2\\)-3", sections_all) ~ "Section 5(2) to Section 3",
+        grepl("136-2", sections_all) ~ "Section 136 to Section 2",
+        grepl("136-3", sections_all) ~ "Section 136 to Section 3",
+        grepl("4-2", sections_all) ~ "Section 4 to Section 2",
+        grepl("4-3", sections_all) ~ "Section 4 to Section 3",
+        grepl("3-3", sections_all) ~ "Section 3 renewal"
+      ),
+      epi_count = stringr::str_count(sections_all, "-") + 1,
+      ethnic_category = case_when(
+        ethnic_category %in% c('A', 'B', 'C') ~ "white",
+        ethnic_category %in% c('D', 'E', 'F', 'G') ~ "mixed",
+        ethnic_category %in% c('H', 'J', 'K', 'L') ~ "asian",
+        ethnic_category %in% c('M', 'N', 'P') ~ "black",
+        ethnic_category %in% c('R', 'S') ~ "other",
+        TRUE ~ "NULL"
+      ),
+      imd_quintile = case_when(
+        imd_2019_decile %in% c(1, 2) ~ 1,
+        imd_2019_decile %in% c(3, 4) ~ 2,
+        imd_2019_decile %in% c(5, 6) ~ 3,
+        imd_2019_decile %in% c(7, 8) ~ 4,
+        imd_2019_decile %in% c(9, 10) ~ 5
+      )
     )
 }
 
@@ -633,6 +672,14 @@ get_honos_numbers_flowchart <- function(data){
   number_spells <- data |>
     dplyr::filter(stage == 'spells') |>
     dplyr::pull(number)
+
+  number_any_assess <- data |>
+    dplyr::filter(stage == 'any_assessment') |>
+    dplyr::pull(number)
+
+  perc_any_assess <- data |>
+    dplyr::filter(stage == 'any_assessment') |>
+    dplyr::pull(perc)
 
   number_honos_assess <- data |>
     dplyr::filter(stage == 'honos_assessments') |>
@@ -670,25 +717,33 @@ get_honos_numbers_flowchart <- function(data){
   digraph test {
     graph []
 
-    node [shape = box, style = filled, fillcolor = \"#f9bf07\", color = \"#f9bf07\"]
-    A [label = '@@1', color = \"#333739\"]
-    B [label = '@@2', color = \"#333739\"]
-    C [label = '@@3', color = \"#333739\"]
-    D [label = '@@4', color = \"#333739\"]
-    E [label = '@@5', color = \"#333739\"]
+    node [shape = box,
+    style = filled,
+    fillcolor = \"#f9bf07\",
+    color = \"#333739\",
+    fontname = Arial]
+
+    A [label = '@@1']
+    B [label = '@@2']
+    C [label = '@@3']
+    D [label = '@@4']
+    E [label = '@@5']
+    F [label = '@@6']
 
     A -> B
     B -> C
     C -> D
     D -> E
+    E -> F
 
   }
 
   [1]: paste0('Number of CYP MH spells:', '\\n', number_spells)
-  [2]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
-  [3]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
-  [4]: paste0('... at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
-  [5]: paste0('... and at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
+  [2]: paste0('Number of CYP MH spells with at least 1 score in any assessment:', '\\n', number_any_assess, ' \\\\(', perc_any_assess, '\\\\%)')
+  [3]: paste0('Number of CYP MH spells with at least 1 HONOS score:', '\\n', number_honos_assess, ' \\\\(', perc_honos_assess, '\\\\%)')
+  [4]: paste0('Number of CYP MH spells with a complete HONOS assessment:', '\\n', number_full_assess, ' \\\\(', perc_full_assess, '\\\\%)')
+  [5]: paste0('Number of CYP MH spells with a complete HONOS assessment \\n at the start of the spell:', '\\n', number_first_assess, ' \\\\(', perc_first_assess, '\\\\%)')
+  [6]: paste0('Number of CYP MH spells with a complete HONOS assessment \\n at the start of the spell and another at the end of the spell:', '\\n', number_last_assess, ' \\\\(', perc_last_assess, '\\\\%)')
 ")
 
   return(flowchart)
@@ -698,10 +753,22 @@ get_honos_numbers_flowchart <- function(data){
 # To get a histogram of the rates of change in honos scores:
 get_honos_histo <- function(data){
   plot <- data |>
-    ggplot2::ggplot(ggplot2::aes(rate_of_change)) +
+    dplyr::mutate(change = rate_of_change - 1) |>
+    ggplot2::ggplot(ggplot2::aes(change)) +
     ggplot2::geom_histogram(fill = "#f9bf07") +
     ggplot2::theme_minimal() +
-    ggplot2::labs(x = "Rate of change")
+    ggplot2::labs(x = "Relative change in HONOS scores",
+                  y = "count") +
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 0),
+                        colour = "black",
+                        linetype = "longdash") +
+    ggplot2::annotate("text",
+                      x = c(-0.75, 0.75),
+                      y = c(190, 190),
+                      label = c("Improvement", "Worsening"),
+                      color = "black",
+                      size = 4,
+                      fontface = "bold")
 
   return(plot)
 }
@@ -710,7 +777,37 @@ get_honos_histo <- function(data){
 get_honos_perc_worse <- function(data){
 
   perc <- data |>
-    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0)) |>
+    dplyr::mutate(worse = ifelse(rate_of_change > 1, 1, 0),
+                  same = ifelse(rate_of_change == 1, 1, 0),
+                  better = ifelse(rate_of_change < 1, 1, 0)) |>
     summarise(count = dplyr::n(),
-              perc_worse = sum(worse) * 100 / count)
+              perc_worse = sum(worse) * 100 / count,
+              perc_same = sum(same) * 100 / count,
+              perc_better = sum(better) * 100 / count)
+
+  return(perc)
 }
+
+# To get a scatter plot of HONOS diff against first:
+get_honos_scatter <- function(data){
+  plot <- data |>
+    dplyr::mutate(change = rate_of_change - 1) |>
+    ggplot2::ggplot(ggplot2::aes(change, first_score)) +
+    ggplot2::geom_jitter(col = "salmon") +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(x = "Relative change in HONOS scores",
+                  y = "HONOS score at start of spell")+
+    ggplot2::geom_vline(ggplot2::aes(xintercept = 0),
+                        colour = "black",
+                        linetype = "longdash") +
+    ggplot2::annotate("text",
+                      x = c(-0.75, 0.75),
+                      y = c(45, 45),
+                      label = c("Improvement", "Worsening"),
+                      color = "black",
+                      size = 4,
+                      fontface = "bold")
+
+  return(plot)
+}
+

@@ -1,5 +1,5 @@
 ---
-title: "Mental Health Act"
+title: "Analysis of Mental Health Act detentions and other admissions in Children and Young People"
 author: "Andy Hood, Anya Ferguson, Andre Bilbrough, Heather Humphreys"
 format:
   html:
@@ -38,13 +38,19 @@ library(tidyverse)
 library(scales)
 
 source("R/quarto_formatting.R")
-
-options(bitmapType = "cairo")
 ```
 
 ## Introduction
 
+The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being finalised that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
+
+The purpose therefore of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
+
 ## Data and methods
+
+All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables.
+
+In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA super-spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched.
 
 ## Summary
 
@@ -54,9 +60,9 @@ options(bitmapType = "cairo")
 
 #### Background
 
-Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be released.
+Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be discharged to self or community care.
 
-The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
+The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay and re-detention analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
 
 #### Data processing and quality
 
@@ -73,11 +79,15 @@ Of these, `r tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_yea
 For those spells containing more than 1 detention episode, the following are the most common (top ten) in CYP over time:
 
 ```{r}
-tar_read(conversion_map) |> filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |> group_by(fin_year, sections_all) |> summarise(spells = sum(spells)) |> pivot_wider(names_from = fin_year, values_from = spells) |> arrange(desc(`2023-2024`)) |> head(10) |>
+tar_read(conversion_map) |> 
+  filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |>
+  group_by(fin_year, sections_all) |> 
+  summarise(spells = sum(spells)) |> 
+  pivot_wider(names_from = fin_year, values_from = spells) |> 
+  arrange(desc(`2023-2024`)) |> 
+  head(10) |>
   create_dt()
 ```
-
-***NB. We need to map the correct sections to the legal status code in the data i.e. 20 = s.136.***
 
 #### Specific pathways of interest by population sub-group
 
@@ -86,6 +96,9 @@ The following analysis quantifies the scale of certain subset of conversions wit
 ::: panel-tabset
 ##### Age group
 
+::: panel-tabset
+###### Chart
+
 ```{r}
 #| label: fig-conversion_age
 #| fig-cap: Frequency of specific multi-episode pathways by age groups, 2019/20 to 2023/24.
@@ -93,7 +106,20 @@ The following analysis quantifies the scale of certain subset of conversions wit
 tar_read(mha_conv_age_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_age_tab
+
+tar_read(mha_conv_age_tab) |> 
+  create_dt()
+```
+:::
+
 ##### Gender
+
+::: panel-tabset
+###### Chart
 
 ```{r}
 #| label: fig-conversion_sex
@@ -102,7 +128,20 @@ tar_read(mha_conv_age_plot)
 tar_read(mha_conv_sex_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_sex_tab
+
+tar_read(mha_conv_sex_tab) |> 
+  create_dt()
+```
+:::
+
 ##### Ethnic category
+
+::: panel-tabset
+###### Chart
 
 ```{r}
 #| label: fig-conversion_eth
@@ -111,7 +150,20 @@ tar_read(mha_conv_sex_plot)
 tar_read(mha_conv_eth_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_eth_tab
+
+tar_read(mha_conv_eth_tab) |> 
+  create_dt()
+```
+:::
+
 ##### IMD decile
+
+::: panel-tabset
+###### Chart
 
 ```{r}
 #| label: fig-conversion_imd
@@ -120,9 +172,19 @@ tar_read(mha_conv_eth_plot)
 tar_read(mha_conv_imd_plot)
 ```
 
+###### Table
+
+```{r}
+#| label: fig-conversion_imd_tab
+
+tar_read(mha_conv_imd_tab) |> 
+  create_dt()
+```
+:::
+
 ##### ICB area
 
-Still working on this one! Also will be regrouping the ethnic categories and IMD into quantiles for ease of display.
+Still working on this one! Maybe best to pick 1 or 2 key conversions (eg 136 to 2) and generate maps of the %'s.
 :::
 
 ### Mental Health Act Detention Spell Length of Stay
@@ -600,7 +662,7 @@ tar_read(cyp_redetentions_plot_imd_decile)$table |>
 
 #### Formal and Informal Mental Health Act Re-detentions
 
-The majority or MHA re-detentions are formal with less than 1% being informal or unknown.
+The majority of MHA re-detentions are formal with less than 1% being informal or unknown.
 
 ```{r}
 tar_read(cyp_redetentions_formal_table) |>
@@ -1205,7 +1267,10 @@ perc_last_assess <- honos_flow_perc |>
   dplyr::pull(perc)
 ```
 
-Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+
+::: panel-tabset
+##### Flowchart
 
 ```{r}
 #| label: fig-honos-flow
@@ -1213,10 +1278,32 @@ Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_asses
 tar_read(honos_flowchart)
 ```
 
-The rate of change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell such that rates of change less than 1 indicate improvement in MH symptoms. Most spells had a reduction in HONOS scores (@fig-honos-histo), with `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% showing a worsening in symptoms.
+##### Table
+
+```{r}
+#| label: tbl-honos-flow
+#| tbl-cap: Numbers and percentages of CYP MH spells at each stage of the HONOS data extraction. 
+tar_read(honos_flow_perc) |>
+  create_dt()
+```
+:::
+
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+
+::: panel-tabset
+##### Histogram
 
 ```{r}
 #| label: fig-honos-histo
 #| fig-cap: Histogram of the rate of change in HONOS scores at the start and end of a CYP MH spell. 
-tar_read(honos_histo)
+tar_read(honos_histo) 
 ```
+
+##### Scatterplot
+
+```{r}
+#| label: fig-honos-scatter
+#| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
+tar_read(honos_scatter)
+```
+:::
