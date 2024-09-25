@@ -596,33 +596,59 @@ get_llos_perc_23_24 <- function(data, llos_cutoff){
 
 # Identify different conversion types for MHA episodes as per Helen's list
 get_conversions_mapped <- function(tar_obj) {
-
   data <- tar_obj |>
-    mutate(conversion_desc = case_when(grepl("06-05", sections_all) ~ "Section 5(4) to Section 5(2)",
-                                       grepl("19-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("20-05", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("19-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("20-06", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
-                                       grepl("05-02", sections_all) ~ "Section 5(2) to Section 2 ",
-                                       grepl("05-03", sections_all) ~ "Section 5(2) to Section 3",
-                                       grepl("20-02", sections_all) ~ "Section 136 to Section 2",
-                                       grepl("20-03", sections_all) ~ "Section 136 to Section 3",
-                                       grepl("04-02", sections_all) ~ "Section 4 to Section 2",
-                                       grepl("04-03", sections_all) ~ "Section 4 to Section 3",
-                                       grepl("03-03", sections_all) ~ "Section 3 renewal"),
-           epi_count = stringr::str_count(sections_all,"-") + 1,
-           ethnic_category = case_when(ethnic_category %in% c('A','B','C') ~ "white",
-                                       ethnic_category %in% c('D','E','F','G') ~ "mixed",
-                                       ethnic_category %in% c('H','J','K','L') ~ "asian",
-                                       ethnic_category %in% c('M','N','P') ~ "black",
-                                       ethnic_category %in% c('R','S') ~ "other",
-                                       TRUE ~ "NULL"),
-           imd_quintile = case_when(imd_2019_decile %in% c(1,2) ~ 1,
-                                    imd_2019_decile %in% c(3,4) ~ 2,
-                                    imd_2019_decile %in% c(5,6) ~ 3,
-                                    imd_2019_decile %in% c(7,8) ~ 4,
-                                    imd_2019_decile %in% c(9,10) ~ 5
-                                    )
+    mutate(
+      sections_all = stringr::str_replace_all(
+        sections_all,
+        c(
+          "05" = "5(2)",
+          "06" = "5(4)",
+          "07" = "35",
+          "08" = "36",
+          "09" = "37 (with Section 41 restrictions)",
+          "10" = "37",
+          "12" = "38",
+          "13" = "44",
+          "14" = "46",
+          "15" = "47 (with Section with 49 restrictions)",
+          "16" = "47",
+          "17" = "48 (with Section with 49 restrictions)",
+          "18" = "48",
+          "19" = "135",
+          "20" = "136"
+        )
+      ) |>
+        stringr::str_remove_all("0"),
+      conversion_desc = case_when(
+        grepl("5\\(4\\)-5\\(2\\)", sections_all) ~ "Section 5(4) to Section 5(2)",
+        grepl("135-5\\(2\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("136-5\\(2\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("135-5\\(4\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("136-5\\(4\\)", sections_all) ~ "Section 135/136 to Section 5(2)/5(4) ",
+        grepl("5\\(2\\)-2", sections_all) ~ "Section 5(2) to Section 2 ",
+        grepl("5\\(2\\)-3", sections_all) ~ "Section 5(2) to Section 3",
+        grepl("136-2", sections_all) ~ "Section 136 to Section 2",
+        grepl("136-3", sections_all) ~ "Section 136 to Section 3",
+        grepl("4-2", sections_all) ~ "Section 4 to Section 2",
+        grepl("4-3", sections_all) ~ "Section 4 to Section 3",
+        grepl("3-3", sections_all) ~ "Section 3 renewal"
+      ),
+      epi_count = stringr::str_count(sections_all, "-") + 1,
+      ethnic_category = case_when(
+        ethnic_category %in% c('A', 'B', 'C') ~ "white",
+        ethnic_category %in% c('D', 'E', 'F', 'G') ~ "mixed",
+        ethnic_category %in% c('H', 'J', 'K', 'L') ~ "asian",
+        ethnic_category %in% c('M', 'N', 'P') ~ "black",
+        ethnic_category %in% c('R', 'S') ~ "other",
+        TRUE ~ "NULL"
+      ),
+      imd_quintile = case_when(
+        imd_2019_decile %in% c(1, 2) ~ 1,
+        imd_2019_decile %in% c(3, 4) ~ 2,
+        imd_2019_decile %in% c(5, 6) ~ 3,
+        imd_2019_decile %in% c(7, 8) ~ 4,
+        imd_2019_decile %in% c(9, 10) ~ 5
+      )
     )
 }
 
