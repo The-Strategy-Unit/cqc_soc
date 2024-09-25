@@ -1210,13 +1210,13 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 
 #### Geo Maps of Average DTT Breakdowns
 
-:::::::::::: panel-tabset
+:::::::::::::::: panel-tabset
 ##### 2023-2024 FY
 
 ```{r}
 #| label: fig-icb-dtt-map-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for 2023-2024."
-tar_read(dtt_icb_map_2023_24)
+tar_read(DTT_ICB_map_FY_2023_24)
 ```
 
 ##### Gender
@@ -1228,7 +1228,7 @@ tar_read(dtt_icb_map_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-female-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for females in 2023-2024."
-tar_read(dtt_icb_map_female_2023_24)
+tar_read(DTT_ICB_map_female_2023_24)
 ```
 :::
 
@@ -1238,7 +1238,7 @@ tar_read(dtt_icb_map_female_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-male-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for males in 2023-2024."
-tar_read(dtt_icb_map_male_2023_24)
+tar_read(DTT_ICB_map_male_2023_24)
 ```
 :::
 :::::
@@ -1252,7 +1252,7 @@ tar_read(dtt_icb_map_male_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-0-17-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for 0-17 year olds in 2023-2024."
-tar_read(dtt_icb_map_0_17_2023_24)
+tar_read(DTT_ICB_map_0_17_2023_24)
 ```
 :::
 
@@ -1262,20 +1262,20 @@ tar_read(dtt_icb_map_0_17_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-18-24-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for 18-24 year olds in 2023-2024."
-tar_read(dtt_icb_map_18_24_2023_24)
+tar_read(DTT_ICB_map_18_24_2023_24)
 ```
 :::
 :::::
 
 ##### Ethnicity
 
-::: panel-tabset
+::::::::: panel-tabset
 ##### White
 
 ```{r}
 #| label: fig-icb-dtt-map-white-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for White Ethnic Group 2023-2024."
-tar_read(dtt_icb_map_white_2023_24)
+tar_read(DTT_ICB_map_white_2023_24)
 ```
 
 ##### Black
@@ -1283,7 +1283,7 @@ tar_read(dtt_icb_map_white_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-black-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for Black Ethnic Group 2023-2024."
-tar_read(dtt_icb_map_black_2023_24)
+tar_read(DTT_ICB_map_black_2023_24)
 ```
 
 ##### Asian
@@ -1291,7 +1291,7 @@ tar_read(dtt_icb_map_black_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-asian-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for Asian Ethnic Group 2023-2024."
-tar_read(dtt_icb_map_asian_2023_24)
+tar_read(DTT_ICB_map_asian_2023_24)
 ```
 
 ##### Mixed
@@ -1299,7 +1299,7 @@ tar_read(dtt_icb_map_asian_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-mixed-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for Mixed Ethnic Group 2023-2024."
-tar_read(dtt_icb_map_mixed_2023_24)
+tar_read(DTT_ICB_map_mixed_2023_24)
 ```
 
 ##### Other
@@ -1307,10 +1307,117 @@ tar_read(dtt_icb_map_mixed_2023_24)
 ```{r}
 #| label: fig-icb-dtt-map-other-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for Other Ethnic Group 2023-2024."
-tar_read(dtt_icb_map_other_2023_24)
+tar_read(DTT_ICB_map_other_2023_24)
 ```
 
-##### IMD
+##### IMD: Most vs Least Deprived
+
+::::: columns
+::: {.column width="50%"}
+##### Most Deprived
+
+```{r}
+#| label: fig-icb-dtt-map-most-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (Most Deprived) in 2023-2024."
+tar_read(DTT_ICB_map_most_2023_24)
+```
+:::
+
+::: {.column width="50%"}
+##### Least Deprived
+
+```{r}
+#| label: fig-icb-dtt-map-18-24-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (Least Deprived) in 2023-2024."
+tar_read(DTT_ICB_map_least_2023_24)
+```
+:::
+:::::
+
+##### IMD All
+
+::: panel-tabset
+##### 1
+
+```{r}
+#| label: fig-icb-dtt-map-1-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 1) 2023-2024."
+tar_read(DTT_ICB_map_1_2023_24)
+```
+
+##### 2
+
+```{r}
+#| label: fig-icb-dtt-map-2-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 2) 2023-2024."
+tar_read(DTT_ICB_map_2_2023_24)
+```
+
+##### 3
+
+```{r}
+#| label: fig-icb-dtt-map-3-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 3) 2023-2024."
+tar_read(DTT_ICB_map_3_2023_24)
+```
+
+##### 4
+
+```{r}
+#| label: fig-icb-dtt-map-4-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 4) 2023-2024."
+tar_read(DTT_ICB_map_4_2023_24)
+```
+
+##### 5
+
+```{r}
+#| label: fig-icb-dtt-map-5-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 5) 2023-2024."
+tar_read(DTT_ICB_map_5_2023_24)
+```
+
+##### 6
+
+```{r}
+#| label: fig-icb-dtt-map-6-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 6) 2023-2024."
+tar_read(DTT_ICB_map_6_2023_24)
+```
+
+##### 7
+
+```{r}
+#| label: fig-icb-dtt-map-7-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 7) 2023-2024."
+tar_read(DTT_ICB_map_7_2023_24)
+```
+
+##### 8
+
+```{r}
+#| label: fig-icb-dtt-map-8-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 8) 2023-2024."
+tar_read(DTT_ICB_map_8_2023_24)
+```
+
+##### 9
+
+```{r}
+#| label: fig-icb-dtt-map-9-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 9) 2023-2024."
+tar_read(DTT_ICB_map_9_2023_24)
+```
+
+##### 10
+
+```{r}
+#| label: fig-icb-dtt-map-10-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 10) 2023-2024."
+tar_read(DTT_ICB_map_10_2023_24)
+```
+
+
 :::
 
 ### HONOS
@@ -1371,4 +1478,5 @@ tar_read(honos_histo)
 tar_read(honos_scatter)
 ```
 :::
-::::::::::::
+:::::::::
+::::::::::::::::

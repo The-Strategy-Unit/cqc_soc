@@ -1124,131 +1124,357 @@ list(
     get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)
   ),
 
-  ## Make ICB geo plots ########################################################
-  # table for maps ICB for 2023-2024
-  tar_target(table_DTT_ICB_FY_2023_24, get_table_DTT_ICB_FY_2023_24(DTT)),
-  # Generate the table for 2023-2024),
+ #Geo maps for DTT:
 
-  # geo map 23/24
-  tar_target(
-    dtt_icb_map_2023_24,
-    map_DTT_ICB_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_2023_24)  # Return the map plot for 2023-2024
-  ),
+ # FY 2023-24 table
+ tar_target(
+   table_DTT_ICB_FY_2023_24,
+   get_table_DTT_ICB_FY_2023_24(DTT)
+ ),
 
-#gender
+ # FY 2023-24 Global min and max
+ tar_target(
+   global_min_max_FY,
+   range(table_DTT_ICB_FY_2023_24$Average_Distance, na.rm = TRUE)
+ ),
 
-  # female table
-  tar_target(
-    table_DTT_ICB_FY_female_2023_24,
-    get_table_DTT_ICB_FY_female_2023_24(DTT)
-  ),
+ # Gender-specific tables
+ tar_target(
+   table_DTT_ICB_FY_female_2023_24,
+   get_table_DTT_ICB_FY_female_2023_24(DTT)
+ ),
 
-  # male table
-  tar_target(
-    table_DTT_ICB_FY_male_2023_24,
-    get_table_DTT_ICB_FY_male_2023_24(DTT)
-  ),
+ tar_target(
+   table_DTT_ICB_FY_male_2023_24,
+   get_table_DTT_ICB_FY_male_2023_24(DTT)
+ ),
 
-  # female geo map
-  tar_target(
-    dtt_icb_map_female_2023_24,
-    map_DTT_ICB_female_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_female_2023_24)
-  ),
+ # Gender-specific Global min and max
+ tar_target(
+   global_min_max_gender,
+   range(c(table_DTT_ICB_FY_female_2023_24$Average_Distance,
+           table_DTT_ICB_FY_male_2023_24$Average_Distance), na.rm = TRUE)
+ ),
 
-  # male geo map
-  tar_target(
-    dtt_icb_map_male_2023_24,
-    map_DTT_ICB_male_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_male_2023_24)
-  ),
+ # Age group-specific tables
+ tar_target(
+   table_DTT_ICB_FY_0_17_2023_24,
+   get_table_DTT_ICB_FY_0_17_2023_24(DTT)
+ ),
 
-#age group
+ tar_target(
+   table_DTT_ICB_FY_18_24_2023_24,
+   get_table_DTT_ICB_FY_18_24_2023_24(DTT)
+ ),
 
-# 0-17 table
-tar_target(
-  table_DTT_ICB_FY_0_17_2023_24,
-  get_table_DTT_ICB_FY_0_17_2023_24(DTT)
-),
+ # Age group-specific Global min and max
+ tar_target(
+   global_min_max_age,
+   range(c(table_DTT_ICB_FY_0_17_2023_24$Average_Distance,
+           table_DTT_ICB_FY_18_24_2023_24$Average_Distance), na.rm = TRUE)
+ ),
 
-# 18-24 table
-tar_target(
-  table_DTT_ICB_FY_18_24_2023_24,
-  get_table_DTT_ICB_FY_18_24_2023_24(DTT)
-),
+ # Ethnicity-specific tables
+ tar_target(
+   table_DTT_ICB_FY_white_2023_24,
+   get_table_DTT_ICB_FY_white_2023_24(DTT)
+ ),
 
-# 0-17 geo map
-tar_target(
-  dtt_icb_map_0_17_2023_24,
-  map_DTT_ICB_0_17_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_0_17_2023_24)
-),
+ tar_target(
+   table_DTT_ICB_FY_black_2023_24,
+   get_table_DTT_ICB_FY_black_2023_24(DTT)
+ ),
 
-# 18-24 geo map
-tar_target(
-  dtt_icb_map_18_24_2023_24,
-  map_DTT_ICB_18_24_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_18_24_2023_24)
-),
+ tar_target(
+   table_DTT_ICB_FY_asian_2023_24,
+   get_table_DTT_ICB_FY_asian_2023_24(DTT)
+ ),
 
-#Ethnicity group
+ tar_target(
+   table_DTT_ICB_FY_mixed_2023_24,
+   get_table_DTT_ICB_FY_mixed_2023_24(DTT)
+ ),
 
-# white table
-tar_target(
-  table_DTT_ICB_FY_white_2023_24,
-  get_table_DTT_ICB_FY_white_2023_24(DTT)
-),
+ tar_target(
+   table_DTT_ICB_FY_other_2023_24,
+   get_table_DTT_ICB_FY_other_2023_24(DTT)
+ ),
 
-# white geo map
-tar_target(
-  dtt_icb_map_white_2023_24,
-  map_DTT_ICB_white_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_white_2023_24)
-),
+ # Ethnicity-specific Global min and max
+ tar_target(
+   global_min_max_ethnicity,
+   range(c(table_DTT_ICB_FY_white_2023_24$Average_Distance,
+           table_DTT_ICB_FY_black_2023_24$Average_Distance,
+           table_DTT_ICB_FY_asian_2023_24$Average_Distance,
+           table_DTT_ICB_FY_mixed_2023_24$Average_Distance,
+           table_DTT_ICB_FY_other_2023_24$Average_Distance), na.rm = TRUE)
+ ),
 
-# black table
-tar_target(
-  table_DTT_ICB_FY_black_2023_24,
-  get_table_DTT_ICB_FY_black_2023_24(DTT)
-),
+ # IMD-specific tables (1st and 10th decile)
+ tar_target(
+   table_DTT_ICB_FY_most_2023_24,
+   get_table_DTT_ICB_FY_most_2023_24(DTT)
+ ),
 
-# black geo map
-tar_target(
-  dtt_icb_map_black_2023_24,
-  map_DTT_ICB_black_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_black_2023_24)
-),
+ tar_target(
+   table_DTT_ICB_FY_least_2023_24,
+   get_table_DTT_ICB_FY_least_2023_24(DTT)
+ ),
 
-# asian table
-tar_target(
-  table_DTT_ICB_FY_asian_2023_24,
-  get_table_DTT_ICB_FY_asian_2023_24(DTT)
-),
+ # IMD-specific Global min and max (1st and 10th decile)
+ tar_target(
+   global_min_max_IMD_1_10,
+   range(c(table_DTT_ICB_FY_most_2023_24$Average_Distance,
+           table_DTT_ICB_FY_least_2023_24$Average_Distance), na.rm = TRUE)
+ ),
 
-# asian geo map
-tar_target(
-  dtt_icb_map_asian_2023_24,
-  map_DTT_ICB_asian_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_asian_2023_24)
-),
+ # IMD-specific tables (All deciles)
+ tar_target(
+   table_DTT_ICB_FY_1_2023_24,
+   get_table_DTT_ICB_FY_1_2023_24(DTT)
+ ),
 
-# mixed table
-tar_target(
-  table_DTT_ICB_FY_mixed_2023_24,
-  get_table_DTT_ICB_FY_mixed_2023_24(DTT)
-),
+ tar_target(
+   table_DTT_ICB_FY_2_2023_24,
+   get_table_DTT_ICB_FY_2_2023_24(DTT)
+ ),
 
-# mixed geo map
-tar_target(
-  dtt_icb_map_mixed_2023_24,
-  map_DTT_ICB_mixed_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_mixed_2023_24)
-),
+ tar_target(
+   table_DTT_ICB_FY_3_2023_24,
+   get_table_DTT_ICB_FY_3_2023_24(DTT)
+ ),
 
-# other table
-tar_target(
-  table_DTT_ICB_FY_other_2023_24,
-  get_table_DTT_ICB_FY_other_2023_24(DTT)
-),
+ tar_target(
+   table_DTT_ICB_FY_4_2023_24,
+   get_table_DTT_ICB_FY_4_2023_24(DTT)
+ ),
 
-# other geo map
-tar_target(
-  dtt_icb_map_other_2023_24,
-  map_DTT_ICB_other_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_other_2023_24)
-),
+ tar_target(
+   table_DTT_ICB_FY_5_2023_24,
+   get_table_DTT_ICB_FY_5_2023_24(DTT)
+ ),
 
+ tar_target(
+   table_DTT_ICB_FY_6_2023_24,
+   get_table_DTT_ICB_FY_6_2023_24(DTT)
+ ),
+
+ tar_target(
+   table_DTT_ICB_FY_7_2023_24,
+   get_table_DTT_ICB_FY_7_2023_24(DTT)
+ ),
+
+ tar_target(
+   table_DTT_ICB_FY_8_2023_24,
+   get_table_DTT_ICB_FY_8_2023_24(DTT)
+ ),
+
+ tar_target(
+   table_DTT_ICB_FY_9_2023_24,
+   get_table_DTT_ICB_FY_9_2023_24(DTT)
+ ),
+
+ tar_target(
+   table_DTT_ICB_FY_10_2023_24,
+   get_table_DTT_ICB_FY_10_2023_24(DTT)
+ ),
+
+ # Global min and max for all IMD decile maps
+ tar_target(
+   global_min_max_IMD_all,
+   range(c(table_DTT_ICB_FY_1_2023_24$Average_Distance,
+           table_DTT_ICB_FY_2_2023_24$Average_Distance,
+           table_DTT_ICB_FY_3_2023_24$Average_Distance,
+           table_DTT_ICB_FY_4_2023_24$Average_Distance,
+           table_DTT_ICB_FY_5_2023_24$Average_Distance,
+           table_DTT_ICB_FY_6_2023_24$Average_Distance,
+           table_DTT_ICB_FY_7_2023_24$Average_Distance,
+           table_DTT_ICB_FY_8_2023_24$Average_Distance,
+           table_DTT_ICB_FY_9_2023_24$Average_Distance,
+           table_DTT_ICB_FY_10_2023_24$Average_Distance), na.rm = TRUE)
+ ),
+
+ # FY 2023-24 map
+ tar_target(
+   DTT_ICB_map_FY_2023_24,
+   map_DTT_ICB_2023_24(layer = icb_boundary,
+                       data = table_DTT_ICB_FY_2023_24,
+                       global_min = global_min_max_FY[1],
+                       global_max = global_min_max_FY[2])
+ ),
+
+ # Gender-specific maps
+ tar_target(
+   DTT_ICB_map_female_2023_24,
+   map_DTT_ICB_female_2023_24(layer = icb_boundary,
+                              data = table_DTT_ICB_FY_female_2023_24,
+                              global_min = global_min_max_gender[1],
+                              global_max = global_min_max_gender[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_male_2023_24,
+   map_DTT_ICB_male_2023_24(layer = icb_boundary,
+                            data = table_DTT_ICB_FY_male_2023_24,
+                            global_min = global_min_max_gender[1],
+                            global_max = global_min_max_gender[2])
+ ),
+
+ # Age group-specific maps
+ tar_target(
+   DTT_ICB_map_0_17_2023_24,
+   map_DTT_ICB_0_17_2023_24(layer = icb_boundary,
+                            data = table_DTT_ICB_FY_0_17_2023_24,
+                            global_min = global_min_max_age[1],
+                            global_max = global_min_max_age[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_18_24_2023_24,
+   map_DTT_ICB_18_24_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_18_24_2023_24,
+                             global_min = global_min_max_age[1],
+                             global_max = global_min_max_age[2])
+ ),
+
+ # Ethnicity-specific maps
+ tar_target(
+   DTT_ICB_map_white_2023_24,
+   map_DTT_ICB_white_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_white_2023_24,
+                             global_min = global_min_max_ethnicity[1],
+                             global_max = global_min_max_ethnicity[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_black_2023_24,
+   map_DTT_ICB_black_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_black_2023_24,
+                             global_min = global_min_max_ethnicity[1],
+                             global_max = global_min_max_ethnicity[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_asian_2023_24,
+   map_DTT_ICB_asian_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_asian_2023_24,
+                             global_min = global_min_max_ethnicity[1],
+                             global_max = global_min_max_ethnicity[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_mixed_2023_24,
+   map_DTT_ICB_mixed_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_mixed_2023_24,
+                             global_min = global_min_max_ethnicity[1],
+                             global_max = global_min_max_ethnicity[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_other_2023_24,
+   map_DTT_ICB_other_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_other_2023_24,
+                             global_min = global_min_max_ethnicity[1],
+                             global_max = global_min_max_ethnicity[2])
+ ),
+
+ # IMD-specific maps (1st and 10th decile)
+ tar_target(
+   DTT_ICB_map_most_2023_24,
+   map_DTT_ICB_most_2023_24(layer = icb_boundary,
+                            data = table_DTT_ICB_FY_most_2023_24,
+                            global_min = global_min_max_IMD_1_10[1],
+                            global_max = global_min_max_IMD_1_10[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_least_2023_24,
+   map_DTT_ICB_least_2023_24(layer = icb_boundary,
+                             data = table_DTT_ICB_FY_least_2023_24,
+                             global_min = global_min_max_IMD_1_10[1],
+                             global_max = global_min_max_IMD_1_10[2])
+ ),
+
+ # IMD-specific maps for each decile
+ tar_target(
+   DTT_ICB_map_1_2023_24,
+   map_DTT_ICB_1_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_1_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_2_2023_24,
+   map_DTT_ICB_2_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_2_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_3_2023_24,
+   map_DTT_ICB_3_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_3_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_4_2023_24,
+   map_DTT_ICB_4_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_4_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_5_2023_24,
+   map_DTT_ICB_5_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_5_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_6_2023_24,
+   map_DTT_ICB_6_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_6_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_7_2023_24,
+   map_DTT_ICB_7_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_7_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_8_2023_24,
+   map_DTT_ICB_8_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_8_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_9_2023_24,
+   map_DTT_ICB_9_2023_24(layer = icb_boundary,
+                         data = table_DTT_ICB_FY_9_2023_24,
+                         global_min = global_min_max_IMD_all[1],
+                         global_max = global_min_max_IMD_all[2])
+ ),
+
+ tar_target(
+   DTT_ICB_map_10_2023_24,
+   map_DTT_ICB_10_2023_24(layer = icb_boundary,
+                          data = table_DTT_ICB_FY_10_2023_24,
+                          global_min = global_min_max_IMD_all[1],
+                          global_max = global_min_max_IMD_all[2])
+ ),
 
 
 
@@ -1677,3 +1903,4 @@ tar_target(
     map_icb_allmh_uec(icb_boundary, cyp_icb_rates_uec)
   )
 )
+

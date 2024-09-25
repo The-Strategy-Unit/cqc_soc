@@ -950,13 +950,19 @@ get_table_DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years <- function
   return(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)
 }
 
-
 # Make some plots of ICBs #######################################################
 
-#make a relevant table
+# Helper function to calculate global min and max for a given data table
+get_global_min_max <- function(data) {
+  global_min <- min(data$Average_Distance, na.rm = TRUE)
+  global_max <- max(data$Average_Distance, na.rm = TRUE)
+  return(list(min = global_min, max = global_max))
+}
+
+# FY-specific table and map functions for 2023-2024
 get_table_DTT_ICB_FY_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd)) %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -964,11 +970,15 @@ get_table_DTT_ICB_FY_2023_24 <- function(data) {
   return(DTT_ICB_FY)
 }
 
+map_DTT_ICB_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
 
-#Make the map
-map_DTT_ICB_2023_24 <- function(layer, data) {
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
+
 
   map <- merged_data %>%
     ggplot() +
@@ -976,20 +986,19 @@ map_DTT_ICB_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-#Gender maps
-
+# Gender-specific tables and maps for 2023-2024
 get_table_DTT_ICB_FY_female_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", gender_desc == "female") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), gender_desc == "female") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -999,7 +1008,7 @@ get_table_DTT_ICB_FY_female_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_male_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", gender_desc == "male") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), gender_desc == "male") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1007,8 +1016,13 @@ get_table_DTT_ICB_FY_male_2023_24 <- function(data) {
   return(DTT_ICB_FY)
 }
 
-map_DTT_ICB_female_2023_24 <- function(layer, data) {
+map_DTT_ICB_female_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1017,17 +1031,22 @@ map_DTT_ICB_female_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (Female)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Female, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-map_DTT_ICB_male_2023_24 <- function(layer, data) {
+map_DTT_ICB_male_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1036,20 +1055,19 @@ map_DTT_ICB_male_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (Male)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Male, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-#Age Group maps
-
+# Age group-specific tables and maps for 2023-2024
 get_table_DTT_ICB_FY_0_17_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", age_group == "0-17") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), age_group == "0-17") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1059,7 +1077,7 @@ get_table_DTT_ICB_FY_0_17_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_18_24_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", age_group == "18-24") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), age_group == "18-24") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1067,8 +1085,13 @@ get_table_DTT_ICB_FY_18_24_2023_24 <- function(data) {
   return(DTT_ICB_FY)
 }
 
-map_DTT_ICB_0_17_2023_24 <- function(layer, data) {
+map_DTT_ICB_0_17_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1077,17 +1100,22 @@ map_DTT_ICB_0_17_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (0-17)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Age 0-17, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-map_DTT_ICB_18_24_2023_24 <- function(layer, data) {
+map_DTT_ICB_18_24_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1096,20 +1124,21 @@ map_DTT_ICB_18_24_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (18-24)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Age 18-24, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
+
 
 #Ethnicity maps
 
 get_table_DTT_ICB_FY_white_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", ethnic_category == "white") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), ethnic_category == "white") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1119,7 +1148,7 @@ get_table_DTT_ICB_FY_white_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_black_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", ethnic_category == "black") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), ethnic_category == "black") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1129,7 +1158,7 @@ get_table_DTT_ICB_FY_black_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_asian_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", ethnic_category == "asian") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), ethnic_category == "asian") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1139,7 +1168,7 @@ get_table_DTT_ICB_FY_asian_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_mixed_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", ethnic_category == "mixed") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), ethnic_category == "mixed") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1149,7 +1178,7 @@ get_table_DTT_ICB_FY_mixed_2023_24 <- function(data) {
 
 get_table_DTT_ICB_FY_other_2023_24 <- function(data) {
   DTT_ICB_FY <- data %>%
-    filter(fin_year == "2023-2024", ethnic_category == "other") %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), ethnic_category == "other") %>%
     mutate(icb23cd = toupper(icb23cd)) %>%
     dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
                      .by = c(icb23cd, fin_year)) %>%
@@ -1157,8 +1186,13 @@ get_table_DTT_ICB_FY_other_2023_24 <- function(data) {
   return(DTT_ICB_FY)
 }
 
-map_DTT_ICB_white_2023_24 <- function(layer, data) {
+map_DTT_ICB_white_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1167,17 +1201,45 @@ map_DTT_ICB_white_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (white)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (White, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-map_DTT_ICB_black_2023_24 <- function(layer, data) {
+map_DTT_ICB_black_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (Black, 2023-2024)",
+         fill = "Avg Distance (km)")
+
+  return(map)
+}
+
+map_DTT_ICB_asian_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1186,17 +1248,22 @@ map_DTT_ICB_black_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (black)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Asian, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-map_DTT_ICB_asian_2023_24 <- function(layer, data) {
+map_DTT_ICB_mixed_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1205,17 +1272,22 @@ map_DTT_ICB_asian_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (asian)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Mixed, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
-map_DTT_ICB_mixed_2023_24 <- function(layer, data) {
+map_DTT_ICB_other_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1224,16 +1296,44 @@ map_DTT_ICB_mixed_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (mixed)",
-         subtitle = "Average for 2023-2024",
+    labs(title = "Average Travel Distance by ICB (Other, 2023-2024)",
          fill = "Avg Distance (km)")
 
   return(map)
 }
-map_DTT_ICB_other_2023_24 <- function(layer, data) {
+
+#IMD 1v10 Comparison maps
+
+get_table_DTT_ICB_FY_most_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "1") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+get_table_DTT_ICB_FY_least_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "10") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_most_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
   merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
     left_join(data, by = c("ICB23CD" = "icb23cd"))
 
   map <- merged_data %>%
@@ -1242,16 +1342,382 @@ map_DTT_ICB_other_2023_24 <- function(layer, data) {
     scale_fill_distiller(name = "Avg Travel Distance (km)",
                          type = "seq",
                          palette = "Blues",
-                         direction = 1) +
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
     theme_void() +
-    labs(title = "Average Travel Distance by ICB (other)",
+    labs(title = "Average Travel Distance by ICB (Most Deprived)",
          subtitle = "Average for 2023-2024",
          fill = "Avg Distance (km)")
 
   return(map)
 }
 
+map_DTT_ICB_least_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
 
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (Least Deprived)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+
+  return(map)
+}
+
+#IMD All Comparison maps
+
+get_table_DTT_ICB_FY_1_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "1") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_1_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (1)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_2_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "2") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_2_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (2)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_3_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "3") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_3_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (3)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_4_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "4") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_4_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (4)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_5_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "5") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_5_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (5)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_6_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "6") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_6_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (6)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_7_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "7") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_7_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (7)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_8_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "8") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_8_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (8)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_9_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "9") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_9_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (9)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
+
+get_table_DTT_ICB_FY_10_2023_24 <- function(data) {
+  DTT_ICB_FY <- data %>%
+    filter(fin_year == "2023-2024", icb23cd != "NULL", !is.na(icb23cd), imd_2019_decile == "10") %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    dplyr::summarise(Average_Distance = sum(total_distance) / sum(admissions),
+                     .by = c(icb23cd, fin_year)) %>%
+    mutate(Average_Distance = janitor::round_half_up(Average_Distance, 1))
+  return(DTT_ICB_FY)
+}
+
+map_DTT_ICB_10_2023_24 <- function(layer, data, global_min, global_max) {
+  data <- data %>%
+    mutate(icb23cd = toupper(icb23cd)) %>%
+    filter(icb23cd != "NULL", !is.na(icb23cd))
+
+  merged_data <- layer %>%
+    mutate(ICB23CD = toupper(ICB23CD)) %>%
+    left_join(data, by = c("ICB23CD" = "icb23cd"))
+
+  map <- merged_data %>%
+    ggplot() +
+    geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
+    scale_fill_distiller(name = "Avg Travel Distance (km)",
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         limits = c(global_min, global_max)) +
+    theme_void() +
+    labs(title = "Average Travel Distance by ICB (10)",
+         subtitle = "Average for 2023-2024",
+         fill = "Avg Distance (km)")
+  return(map)
+}
 
 
 

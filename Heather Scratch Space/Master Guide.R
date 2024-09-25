@@ -54,3 +54,10 @@ dtt_icb_codes <- table_DTT_ICB_FY_new %>%
 setdiff(icb_boundary_codes$ICB23CD, dtt_icb_codes$icb23cd)
 setdiff(dtt_icb_codes$icb23cd, icb_boundary_codes$ICB23CD)
 
+print(global_min_max_FY)
+tar_read(table_DTT_ICB_FY_2023_24)
+tar_make(global_min_max_FY)
+tar_validate()
+
+tar_read(table_DTT_ICB_FY_black_2023_24)
+DTT_ICB_map_black_2023_24
