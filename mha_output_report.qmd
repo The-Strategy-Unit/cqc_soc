@@ -1229,7 +1229,7 @@ tar_read(dtt_icb_map_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-female-2023-24
-#| fig-cap: "Map summarizing average travel distance to treatment by ICB for females in 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB for females in 2023-2024."
 tar_read(dtt_icb_map_female_2023_24)
 ```
 :::
@@ -1239,13 +1239,35 @@ tar_read(dtt_icb_map_female_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-male-2023-24
-#| fig-cap: "Map summarizing average travel distance to treatment by ICB for males in 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB for males in 2023-2024."
 tar_read(dtt_icb_map_male_2023_24)
 ```
 :::
 :::
 
 ##### Age Group
+
+::: columns
+::: {.column width="50%"}
+##### 0-17
+
+```{r}
+#| label: fig-icb-dtt-map-0-17-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB for 0-17 year olds in 2023-2024."
+tar_read(dtt_icb_map_0_17_2023_24)
+```
+:::
+
+::: {.column width="50%"}
+##### 18-24
+
+```{r}
+#| label: fig-icb-dtt-map-18-24-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB for 18-24 year olds in 2023-2024."
+tar_read(dtt_icb_map_18_24_2023_24)
+```
+:::
+:::
 
 ##### Ethnicity
 

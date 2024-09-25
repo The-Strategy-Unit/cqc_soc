@@ -1135,6 +1135,8 @@ list(
     map_DTT_ICB_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_2023_24)  # Return the map plot for 2023-2024
   ),
 
+#gender
+
   # female table
   tar_target(
     table_DTT_ICB_FY_female_2023_24,
@@ -1158,6 +1160,34 @@ list(
     dtt_icb_map_male_2023_24,
     map_DTT_ICB_male_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_male_2023_24)
   ),
+
+#age group
+
+# 0-17 table
+tar_target(
+  table_DTT_ICB_FY_0_17_2023_24,
+  get_table_DTT_ICB_FY_0_17_2023_24(DTT)
+),
+
+# 18-24 table
+tar_target(
+  table_DTT_ICB_FY_18_24_2023_24,
+  get_table_DTT_ICB_FY_18_24_2023_24(DTT)
+),
+
+# 0-17 geo map
+tar_target(
+  dtt_icb_map_0_17_2023_24,
+  map_DTT_ICB_0_17_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_0_17_2023_24)
+),
+
+# 18-24 geo map
+tar_target(
+  dtt_icb_map_18_24_2023_24,
+  map_DTT_ICB_18_24_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_18_24_2023_24)
+),
+
+
 
   # CYP versions of everything as required -----------------------------------
 
