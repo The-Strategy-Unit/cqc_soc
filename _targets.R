@@ -569,7 +569,10 @@ list(
   # LOS by section
   tar_target(cyp_los_135_136, get_cyp_los_by_section(cyp_los, c(19, 20))),
   tar_target(cyp_los_histo_135_136, get_cyp_los_histo(cyp_los_135_136)),
-  tar_target(cyp_llos_perc_135_136, get_llos_perc_23_24(cyp_los_135_136, 1)),
+  tar_target(
+    cyp_llos_perc_135_136,
+    get_llos_perc_23_24(cyp_los_135_136, 1)
+  ),
   tar_target(
     cyp_los_median_135_136,
     cyp_los_135_136 |>
@@ -1121,7 +1124,42 @@ list(
     get_heatmap_DTT_subgroups(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)
   ),
 
-  # CYP versions of everything as required -------------------------------------
+  ## Make ICB geo plots ########################################################
+  # table for maps ICB for 2023-2024
+  tar_target(table_DTT_ICB_FY_2023_24, get_table_DTT_ICB_FY_2023_24(DTT)),
+  # Generate the table for 2023-2024),
+
+  # geo map 23/24
+  tar_target(
+    dtt_icb_map_2023_24,
+    map_DTT_ICB_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_2023_24)  # Return the map plot for 2023-2024
+  ),
+
+  # female table
+  tar_target(
+    table_DTT_ICB_FY_female_2023_24,
+    get_table_DTT_ICB_FY_female_2023_24(DTT)
+  ),
+
+  # male table
+  tar_target(
+    table_DTT_ICB_FY_male_2023_24,
+    get_table_DTT_ICB_FY_male_2023_24(DTT)
+  ),
+
+  # female geo map
+  tar_target(
+    dtt_icb_map_female_2023_24,
+    map_DTT_ICB_female_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_female_2023_24)
+  ),
+
+  # male geo map
+  tar_target(
+    dtt_icb_map_male_2023_24,
+    map_DTT_ICB_male_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_male_2023_24)
+  ),
+
+  # CYP versions of everything as required -----------------------------------
 
   # Population by gender and icb
   tar_target(
