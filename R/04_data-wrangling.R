@@ -581,11 +581,12 @@ get_cyp_los_by_section <- function(data, sections) {
 }
 
 # To get a percentage of spells over a specified number of days:
-get_llos_perc <- function(data, llos_cutoff){
+get_llos_perc_23_24 <- function(data, llos_cutoff){
 
   llos_perc <- data |>
+    dplyr::filter(der_financial_year == "2023/24") |>
     dplyr::mutate(llos = ifelse(los > llos_cutoff, 1, 0)) |>
-    summarise(count = dplyr::n(),
+    dplyr::summarise(count = dplyr::n(),
               perc_llos = sum(llos) * 100 / count)
 
   return(llos_perc)

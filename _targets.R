@@ -564,12 +564,12 @@ list(
   ),
 
   # perc llos
-  tar_target(cyp_llos_perc, get_llos_perc(cyp_los, 365)),
+  tar_target(cyp_llos_perc, get_llos_perc_23_24(cyp_los, 365)),
 
   # LOS by section
   tar_target(cyp_los_135_136, get_cyp_los_by_section(cyp_los, c(19, 20))),
   tar_target(cyp_los_histo_135_136, get_cyp_los_histo(cyp_los_135_136)),
-  tar_target(cyp_llos_perc_135_136, get_llos_perc(cyp_los_135_136, 1)),
+  tar_target(cyp_llos_perc_135_136, get_llos_perc_23_24(cyp_los_135_136, 1)),
   tar_target(
     cyp_los_median_135_136,
     cyp_los_135_136 |>
@@ -590,7 +590,7 @@ list(
 
   tar_target(cyp_los_2, get_cyp_los_by_section(cyp_los, c(2))),
   tar_target(cyp_los_histo_2, get_cyp_los_histo(cyp_los_2)),
-  tar_target(cyp_llos_perc_2, get_llos_perc(cyp_los_2, 28)),
+  tar_target(cyp_llos_perc_2, get_llos_perc_23_24(cyp_los_2, 28)),
   tar_target(
     cyp_los_median_2,
     cyp_los_2 |>
@@ -611,7 +611,7 @@ list(
 
   tar_target(cyp_los_3, get_cyp_los_by_section(cyp_los, c(3))),
   tar_target(cyp_los_histo_3, get_cyp_los_histo(cyp_los_3)),
-  tar_target(cyp_llos_perc_3, get_llos_perc(cyp_los_3, 365)),
+  tar_target(cyp_llos_perc_3, get_llos_perc_23_24(cyp_los_3, 365)),
   tar_target(
     cyp_los_median_3,
     cyp_los_3 |>
