@@ -370,6 +370,7 @@ mha_conversion_table <- function(tar_obj, feature, feature_txt){
     summarise(total = n())
 
   subgroup <- tar_obj |>
+    filter(fin_year != "2018/19") |>
     group_by(!!feature, conversion_desc) |>
     summarise(sum = n()) |>
     mutate(conversion_desc = case_when(is.na(conversion_desc) ~ 'Other section pathways',
