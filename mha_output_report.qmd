@@ -38,7 +38,6 @@ library(tidyverse)
 library(scales)
 
 source("R/quarto_formatting.R")
-
 ```
 
 ## Introduction
@@ -1141,10 +1140,6 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20Chart%20Gender%20Age%20Admissions.png)
 
 ##### Table
-
-```{r}
-
-```
 :::
 
 #### Table of Subgroup Rates
@@ -1198,19 +1193,7 @@ tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_d
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Med%20sorted%20by%202024.png)
 
-##### Thing 3
-
-##### Thing 4
-:::
-:::
-
-#### DTT by ICBs
-
-::: panel-tabset
-#### Overview
-
-::: panel-tabset
-##### Chart
+##### Subgroups heat map
 
 ```{r}
 #| label: fig-ICB-heat-map
@@ -1226,6 +1209,48 @@ tar_read(heatmap_DTT_subgroups)
 tar_read(DTT_ICB_FY) %>% create_dt()
 ```
 :::
+:::
+
+#### Geo Maps of Average DTT Breakdowns
+
+::: panel-tabset
+##### 2023-2024 FY
+
+```{r}
+#| label: fig-icb-dtt-map-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB for 2023-2024."
+tar_read(dtt_icb_map_2023_24)
+```
+
+##### Gender
+
+::: columns
+::: {.column width="50%"}
+##### Female
+
+```{r}
+#| label: fig-icb-dtt-map-female-2023-24
+#| fig-cap: "Map summarizing average travel distance to treatment by ICB for females in 2023-2024."
+tar_read(dtt_icb_map_female_2023_24)
+```
+:::
+
+::: {.column width="50%"}
+##### Male
+
+```{r}
+#| label: fig-icb-dtt-map-male-2023-24
+#| fig-cap: "Map summarizing average travel distance to treatment by ICB for males in 2023-2024."
+tar_read(dtt_icb_map_male_2023_24)
+```
+:::
+:::
+
+##### Age Group
+
+##### Ethnicity
+
+##### IMD
 :::
 
 ### HONOS
