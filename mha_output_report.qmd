@@ -752,11 +752,7 @@ While the trending average DTT for each age group moved in opposite directions, 
 
 ##### Ethnicity
 
-Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
-
 Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers. Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
-
-Across all ethnic groups, there is a clear trend of decreasing admissions, especially in the White and Black cohorts. However, DTT (both average and median) have increased for most groups, with the Other Ethnicity cohort showing the most dramatic rise. This increase in DTT is particularly significant given the small number of admissions, making the data more sensitive to outliers. The Asian cohort remains the most stable in terms of DTT, while the Mixed and White cohorts consistently show higher travel distances, both in average and median terms.
 
 ###### Admissions by Ethnicity
 
