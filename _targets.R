@@ -1187,6 +1187,69 @@ tar_target(
   map_DTT_ICB_18_24_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_18_24_2023_24)
 ),
 
+#Ethnicity group
+
+# white table
+tar_target(
+  table_DTT_ICB_FY_white_2023_24,
+  get_table_DTT_ICB_FY_white_2023_24(DTT)
+),
+
+# white geo map
+tar_target(
+  dtt_icb_map_white_2023_24,
+  map_DTT_ICB_white_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_white_2023_24)
+),
+
+# black table
+tar_target(
+  table_DTT_ICB_FY_black_2023_24,
+  get_table_DTT_ICB_FY_black_2023_24(DTT)
+),
+
+# black geo map
+tar_target(
+  dtt_icb_map_black_2023_24,
+  map_DTT_ICB_black_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_black_2023_24)
+),
+
+# asian table
+tar_target(
+  table_DTT_ICB_FY_asian_2023_24,
+  get_table_DTT_ICB_FY_asian_2023_24(DTT)
+),
+
+# asian geo map
+tar_target(
+  dtt_icb_map_asian_2023_24,
+  map_DTT_ICB_asian_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_asian_2023_24)
+),
+
+# mixed table
+tar_target(
+  table_DTT_ICB_FY_mixed_2023_24,
+  get_table_DTT_ICB_FY_mixed_2023_24(DTT)
+),
+
+# mixed geo map
+tar_target(
+  dtt_icb_map_mixed_2023_24,
+  map_DTT_ICB_mixed_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_mixed_2023_24)
+),
+
+# other table
+tar_target(
+  table_DTT_ICB_FY_other_2023_24,
+  get_table_DTT_ICB_FY_other_2023_24(DTT)
+),
+
+# other geo map
+tar_target(
+  dtt_icb_map_other_2023_24,
+  map_DTT_ICB_other_2023_24(layer = icb_boundary, data = table_DTT_ICB_FY_other_2023_24)
+),
+
+
 
 
   # CYP versions of everything as required -----------------------------------
