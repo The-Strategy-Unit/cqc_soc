@@ -1,0 +1,84 @@
+---
+title: "Analysis of Mental Health Act detentions and other admissions in Children and Young People"
+author: "Andy Hood, Anya Ferguson, Andre Bilbrough, Heather Humphreys"
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    theme: cosmo
+    fig-format: svg
+    mainfont: arial
+    fontcolor: black
+    toc: true
+    toc-location: left
+    toc-title: Summary
+    toc-depth: 4
+    grid:
+      sidebar-width: 250px
+      body-width: 1050px
+      margin-width: 0px
+      gutter-width: 1.5rem
+editor: visual
+execute:
+  echo: false
+  message: false
+  warning: false
+  cache: false
+lang: en-GB
+date: last-modified
+date-format: "YYYY-MM-DD"
+title-block-banner: "#f9bf07"
+title-block-banner-color: "#333739"
+css: styles.css
+---
+
+```{r setup}
+library(targets)
+library(tidyverse)
+library(scales)
+
+source("R/quarto_formatting.R")
+```
+
+
+#### Geo Maps of Average DTT Breakdowns
+
+:::::: panel-tabset
+##### 2023-2024 FY
+
+```{r}
+#| label: fig-icb-dtt-map-2023-24
+#| fig-cap: "Map summarizing average travel distance by ICB for 2023-2024."
+tar_read(dtt_icb_map_2023_24)
+```
+
+##### Gender
+
+::::: columns
+::: {.column width="50%"}
+##### Female
+
+```{r}
+#| label: fig-icb-dtt-map-female-2023-24
+#| fig-cap: "Map summarizing average travel distance to treatment by ICB for females in 2023-2024."
+tar_read(dtt_icb_map_female_2023_24)
+```
+:::
+
+::: {.column width="50%"}
+##### Male
+
+```{r}
+#| label: fig-icb-dtt-map-male-2023-24
+#| fig-cap: "Map summarizing average travel distance to treatment by ICB for males in 2023-2024."
+tar_read(dtt_icb_map_male_2023_24)
+```
+:::
+:::::
+
+##### Age Group
+
+##### Ethnicity
+
+##### IMD
+::::::
