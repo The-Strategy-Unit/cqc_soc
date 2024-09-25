@@ -1132,10 +1132,17 @@ list(
    get_table_DTT_ICB_FY_2023_24(DTT)
  ),
 
- # FY 2023-24 Global min and max
+ # FY 2024-25 table
+ tar_target(
+   table_DTT_ICB_FY_2024_25,
+   get_table_DTT_ICB_FY_2024_25(DTT)
+ ),
+
+ # FY 2023-24 and 2024-25 Global min and max
  tar_target(
    global_min_max_FY,
-   range(table_DTT_ICB_FY_2023_24$Average_Distance, na.rm = TRUE)
+   range(c(table_DTT_ICB_FY_2023_24$Average_Distance,
+         table_DTT_ICB_FY_2024_25$Average_Distance), na.rm = TRUE)
  ),
 
  # Gender-specific tables
@@ -1299,6 +1306,15 @@ list(
    DTT_ICB_map_FY_2023_24,
    map_DTT_ICB_2023_24(layer = icb_boundary,
                        data = table_DTT_ICB_FY_2023_24,
+                       global_min = global_min_max_FY[1],
+                       global_max = global_min_max_FY[2])
+ ),
+
+ # FY 2024-25 map
+ tar_target(
+   DTT_ICB_map_FY_2024_25,
+   map_DTT_ICB_2024_25(layer = icb_boundary,
+                       data = table_DTT_ICB_FY_2024_25,
                        global_min = global_min_max_FY[1],
                        global_max = global_min_max_FY[2])
  ),

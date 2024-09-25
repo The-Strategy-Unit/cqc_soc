@@ -1211,13 +1211,29 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 #### Geo Maps of Average DTT Breakdowns
 
 :::::::::::::::: panel-tabset
-##### 2023-2024 FY
+##### FY
+
+::::: columns
+::: {.column width="50%"}
+##### 2023-24
 
 ```{r}
 #| label: fig-icb-dtt-map-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB for 2023-2024."
 tar_read(DTT_ICB_map_FY_2023_24)
 ```
+:::
+
+::: {.column width="50%"}
+##### 2024-25
+
+```{r}
+#| label: fig-icb-dtt-map-2024-25
+#| fig-cap: "Map summarizing average travel distance by ICB for 2024-2025."
+tar_read(DTT_ICB_map_FY_2024_25)
+```
+:::
+:::::
 
 ##### Gender
 
@@ -1416,8 +1432,6 @@ tar_read(DTT_ICB_map_9_2023_24)
 #| fig-cap: "Map summarizing average travel distance by ICB (IMD 10) 2023-2024."
 tar_read(DTT_ICB_map_10_2023_24)
 ```
-
-
 :::
 
 ### HONOS
