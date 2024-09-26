@@ -615,7 +615,7 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are the inverse of the patterns found for MHA detention spell length of stay (@sec-los). If certain groups of patients have shorter lengths of stay but are more likely to have a re-detention, then this may suggest that these groups are being discharged too early or without sufficient care arrangements **?????? Please help me phrase this ????????**
+The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are the inverse of the patterns found for MHA detention spell length of stay (@sec-los). If certain groups of patients have shorter lengths of stay but are more likely to have a re-detention, then this may suggest that these groups are being discharged too early or without sufficient care arrangements. **?????? Please help me phrase this fairly????????**
 
 ::: panel-tabset
 ##### Overview
@@ -1295,7 +1295,7 @@ perc_last_assess <- honos_flow_perc |>
   dplyr::pull(perc)
 ```
 
-Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells that have ended between since 1st April 2019 and 31st April 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
 ##### Flowchart
