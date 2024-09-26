@@ -644,7 +644,7 @@ list(
   # Tables and plots for section conversions
   tar_target(
     mha_conv_age_tab,
-    mha_conversion_table(conversion_map, age_group, "age_group")
+    mha_conversion_table(conversion_map, age_group)
   ),
   tar_target(
     mha_conv_age_plot,
@@ -653,7 +653,7 @@ list(
 
   tar_target(
     mha_conv_sex_tab,
-    mha_conversion_table(conversion_map_cyp, gender, "gender")
+    mha_conversion_table(conversion_map_cyp, gender)
   ),
   tar_target(
     mha_conv_sex_plot,
@@ -662,7 +662,7 @@ list(
 
   tar_target(
     mha_conv_eth_tab,
-    mha_conversion_table(conversion_map_cyp, ethnic_category, "ethnic_category")
+    mha_conversion_table(conversion_map_cyp, ethnic_category)
   ),
   tar_target(
     mha_conv_eth_plot,
@@ -676,7 +676,7 @@ list(
 
   tar_target(
     mha_conv_imd_tab,
-    mha_conversion_table(conversion_map_cyp, imd_quintile, "imd_quintile")
+    mha_conversion_table(conversion_map_cyp, imd_quintile)
   ),
   tar_target(
     mha_conv_imd_plot,

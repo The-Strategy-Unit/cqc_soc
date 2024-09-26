@@ -361,7 +361,7 @@ get_avg_mh_attends_rate_plot <- function(data){
   return(plot)
 }
 
-mha_conversion_table <- function(tar_obj, feature, feature_txt) {
+mha_conversion_table <- function(tar_obj, feature) {
   feature <- enquo(feature)
 
   table <- tar_obj |>
