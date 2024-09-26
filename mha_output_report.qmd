@@ -105,30 +105,58 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
 -   Median length of stay is lower for patients from the most deprived areas compared to all other groups.
 -   Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
 
-### Redetentions
+### Mental Health Act Re-detentions
 
 ```{r redetentions summary numbers}
 redetention_female_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
   dplyr::pull(perc) |>
-  janitor::round_half_up()
+  janitor::round_half_up(2)
 
 redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
   dplyr::pull(perc) |>
-  janitor::round_half_up()
+  janitor::round_half_up(2)
+
+
+readmissions_23_24 <- tar_read(cyp_readmissions_perc) |>
+  dplyr::filter(der_financial_year == "2022/23") |>
+  dplyr::pull(perc) |>
+  janitor::round_half_up(2)
 ```
 
--   Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
--   The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
--   The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
--   The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
--   The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
--   These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
+- Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
+- The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
+- The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
+- The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
+- The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
+- These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
+- The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
 
-### Readmissions
+### Clinical Outcomes (HONOS scores)
 
-### HONOS
+```{r honos summary numbers}
+honos_flow_perc <- tar_read(honos_flow_perc)
+
+number_spells <- honos_flow_perc |>
+  dplyr::filter(stage == 'spells') |>
+  dplyr::pull(number)
+
+perc_honos_assess <- honos_flow_perc |>
+  dplyr::filter(stage == 'honos_assessments') |>
+  dplyr::pull(perc)
+
+perc_last_assess <- honos_flow_perc |>
+  dplyr::filter(stage == 'first_and_last_assessments') |>
+  dplyr::pull(perc)
+
+honos_perc_worse <- tar_read(honos_perc_worse) |> 
+  dplyr::pull(perc_worse) |> 
+  janitor::round_half_up(2)
+```
+
+- Of all CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment.
+- For the `r perc_last_assess`% of CYP MH spells that had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell, `r honos_perc_worse`% had an increase in HONOS scores from the start to the end of the spell.
 
 ## Detailed MHA analysis
 
@@ -167,7 +195,7 @@ tar_read(conversion_map) |>
 
 #### Specific pathways of interest by population sub-group
 
-The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team.
+The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal".
 
 ::::::: panel-tabset
 ##### Age group
@@ -235,14 +263,14 @@ tar_read(mha_conv_eth_tab) |>
 ```
 :::
 
-##### IMD decile
+##### IMD quantile
 
 ::: panel-tabset
 ###### Chart
 
 ```{r}
 #| label: fig-conversion_imd
-#| fig-cap: Frequency of specific multi-episode pathways by IMD decile, 2019/20 to 2023/24.
+#| fig-cap: Frequency of specific multi-episode pathways by IMD quantile, 2019/20 to 2023/24.
 
 tar_read(mha_conv_imd_plot)
 ```
@@ -259,7 +287,33 @@ tar_read(mha_conv_imd_tab) |>
 
 ##### ICB area
 
-Still working on this one! Maybe best to pick 1 or 2 key conversions (eg 136 to 2) and generate maps of the %'s.
+::: panel-tabset
+
+###### Section 3
+
+```{r}
+#| label: fig-conversion-map-3
+#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
+tar_read(mha_conv_map_3)
+```
+
+###### Section 136 to Section 2
+
+```{r}
+#| label: fig-conversion-map-136-2
+#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
+tar_read(mha_conv_map_136_2)
+```
+
+###### Section 5(2) to Section 2
+
+```{r}
+#| label: fig-conversion-map-52-2
+#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
+tar_read(mha_conv_map_52_2)
+```
+:::
+
 :::::::
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}
@@ -781,25 +835,11 @@ tar_read(cyp_readmissions_perc_table) |>
 ```
 :::
 
-### HONOS
+### Clinical Outcomes (HONOS scores)
 
-```{r}
-honos_flow_perc <- tar_read(honos_flow_perc)
+Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales (HONOS) and the Health of Nation Outcome Scales for Children and Adolescents (HONOSCA) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
 
-number_spells <- honos_flow_perc |>
-  dplyr::filter(stage == 'spells') |>
-  dplyr::pull(number)
-
-perc_honos_assess <- honos_flow_perc |>
-  dplyr::filter(stage == 'honos_assessments') |>
-  dplyr::pull(perc)
-
-perc_last_assess <- honos_flow_perc |>
-  dplyr::filter(stage == 'first_and_last_assessments') |>
-  dplyr::pull(perc)
-```
-
-Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
 ##### Flowchart
@@ -820,7 +860,17 @@ tar_read(honos_flow_perc) |>
 ```
 :::
 
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues. The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+```{r}
+honos_perc_better <- tar_read(honos_perc_worse) |> 
+  dplyr::pull(perc_better) |> 
+  janitor::round_half_up(2)
+
+honos_perc_same <- tar_read(honos_perc_worse) |> 
+  dplyr::pull(perc_same) |> 
+  janitor::round_half_up(2)
+```
+
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues. The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r honos_perc_better`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r honos_perc_same`% had the same HONOS scores at the start and end of the spell. `r honos_perc_worse`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
 
 ::: panel-tabset
 ##### Histogram
@@ -838,6 +888,7 @@ tar_read(honos_histo)
 #| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
 tar_read(honos_scatter)
 ```
+
 :::
 
 ## Admissions and distance from home
@@ -1563,5 +1614,7 @@ tar_read(DTT_ICB_map_9_2023_24)
 tar_read(DTT_ICB_map_10_2023_24)
 ```
 :::
+
 :::::::
 ::::::::::::::::::
+
