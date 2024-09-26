@@ -764,7 +764,7 @@ get_honos_histo <- function(data){
                         linetype = "longdash") +
     ggplot2::annotate("text",
                       x = c(-0.75, 0.75),
-                      y = c(190, 190),
+                      y = c(105, 105),
                       label = c("Improvement", "Worsening"),
                       color = "black",
                       size = 4,

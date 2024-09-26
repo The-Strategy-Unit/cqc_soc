@@ -49,6 +49,8 @@ FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_assess AS assess
 INNER JOIN [NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes AS honos_codes
 	ON assess.CodedAssToolType = honos_codes.snomed_ct_cd
 
+WHERE spell_end_date BETWEEN '2019-04-01' AND '2023-03-31'
+
 ------------------------------------------------------------------------------
 
 -- Get ids and dates where a full assessment happened:
@@ -196,6 +198,9 @@ SELECT
 	COUNT(DISTINCT(der_spell_id)) AS number
 
 FROM [NHSE_Sandbox_StrategyUnit].[dbo].cqc_mha_epi_full
+
+WHERE AgeRepPeriodStart <= 25
+AND pseudo_EndDateMHActLegalStatusClass between '2019-04-01' AND '2023-03-31'
 
 UNION
 
