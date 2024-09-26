@@ -12,8 +12,9 @@ library(readr)
 library(tidyverse)
 library(targets)
 library(sf)
-library(magick)
-library(DiagrammeR)
+#library(magick)
+#library(DiagrammeR)
+library(rlang)
 
 # Step 2: Sync with project
 # Open R studio --> go to main --> pull the latest --> go to my branch
@@ -26,6 +27,9 @@ data <- tar_read(DTT)
 #Step 4:
 tar_make()
 
+knitr::opts_chunk$set(autoprint = TRUE)
+
+update.packages(ask = FALSE)
 
 
 install.packages("magick")
@@ -61,3 +65,9 @@ tar_validate()
 
 tar_read(table_DTT_ICB_FY_black_2023_24)
 DTT_ICB_map_black_2023_24
+
+
+knitr::opts_chunk$get()
+
+# List current knitr hooks
+knitr::knit_hooks$get()
