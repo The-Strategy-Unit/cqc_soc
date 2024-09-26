@@ -55,6 +55,47 @@ In order to evaluate detention 'pathways', length of stay and re-detention we co
 
 ## Summary
 
+
+### Mental Health Act Detention Spell Length of Stay
+
+```{r}
+
+los_median_23_24 <- tar_read(cyp_los_median) |>
+  dplyr::filter(der_financial_year == "2023/24") |>
+  dplyr::summarise(median = median(value)) |>
+  dplyr::pull()
+
+los_female_23_24 <- tar_read(cyp_los_plot_gender)$table |>
+  dplyr::filter(der_financial_year == "2023/24", gender == "female") |>
+  dplyr::pull(value)
+
+los_male_23_24 <- tar_read(cyp_los_plot_gender)$table |>
+  dplyr::filter(der_financial_year == "2023/24", gender == "male") |>
+  dplyr::pull(value)
+
+los_0_17_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
+  dplyr::filter(der_financial_year == "2023/24", age_group == "0-17") |>
+  dplyr::pull(value)
+
+los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
+  dplyr::filter(der_financial_year == "2023/24", age_group == "18-24") |>
+  dplyr::pull(value)
+```
+
+
+- Most lengths of Mental Health Act detention spells are up to 1 day long.
+- Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
+- Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively. 
+- Median length of stay is higher for under 18s (`r los_0_17_23_24` days) compared to 18-24 year olds (`r los_18_24_23_24` days). For the 18-24 age group, the median length of stay has increased over time.
+- Median length of stay is lower for patients in White ethnic categories compared to all other groups.
+- Median length of stay is lower for patients from the most deprived areas compared to all other groups.
+- Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
+
+
+Redetentions
+Readmissions
+Honos
+
 ## Detailed analysis
 
 ### 'Conversions' between section of the act {#sec-conversions}
@@ -217,13 +258,6 @@ tar_read(cyp_los_histo)
 tar_read(cyp_los_histo_zoomed)
 ```
 :::
-
-```{r}
-los_median_23_24 <- tar_read(cyp_los_median) |>
-  dplyr::filter(der_financial_year == "2023/24") |>
-  dplyr::summarise(median = median(value)) |>
-  dplyr::pull()
-```
 
 The median length of MHA detention spell has increased (@fig-los-mh) over time to `r los_median_23_24` days in 2023/24. This varies by ICB (@tbl-los-icb).
 
