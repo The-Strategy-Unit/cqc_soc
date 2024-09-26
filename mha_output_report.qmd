@@ -58,8 +58,7 @@ In order to evaluate detention 'pathways', length of stay and re-detention we co
 
 ### Mental Health Act Detention Spell Length of Stay
 
-```{r}
-
+```{r los summary numbers}
 los_median_23_24 <- tar_read(cyp_los_median) |>
   dplyr::filter(der_financial_year == "2023/24") |>
   dplyr::summarise(median = median(value)) |>
@@ -82,7 +81,6 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
   dplyr::pull(value)
 ```
 
-
 - Most lengths of Mental Health Act detention spells are up to 1 day long.
 - Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
 - Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively. 
@@ -91,10 +89,31 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
 - Median length of stay is lower for patients from the most deprived areas compared to all other groups.
 - Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
 
+### Redetentions
 
-Redetentions
-Readmissions
-Honos
+```{r redetentions summary numbers}
+redetention_female_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
+  dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
+  dplyr::pull(perc) |>
+  janitor::round_half_up()
+
+redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
+  dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
+  dplyr::pull(perc) |>
+  janitor::round_half_up()
+```
+
+
+- Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
+- The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
+- The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
+- The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
+- The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
+- These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
+
+### Readmissions
+
+### Honos
 
 ## Detailed analysis
 
@@ -229,7 +248,7 @@ tar_read(mha_conv_imd_tab) |>
 Still working on this one! Maybe best to pick 1 or 2 key conversions (eg 136 to 2) and generate maps of the %'s.
 :::
 
-### Mental Health Act Detention Spell Length of Stay
+### Mental Health Act Detention Spell Length of Stay {#sec-los}
 
 A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.
 
@@ -596,7 +615,7 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles.
+The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are the inverse of the patterns found for MHA detention spell length of stay (@sec-los). If certain groups of patients have shorter lengths of stay but are more likely to have a re-detention, then this may suggest that these groups are being discharged too early or without sufficient care arrangements **?????? Please help me phrase this ????????**
 
 ::: panel-tabset
 ##### Overview
