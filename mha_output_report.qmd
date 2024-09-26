@@ -37,7 +37,25 @@ library(targets)
 library(tidyverse)
 library(scales)
 
+# Reset any knitr chunk options to defaults
+knitr::opts_chunk$set()
+
+# Reset all hooks
+knitr::knit_hooks$set()
+
+# Set autoprint option so that plots are automatically printed for Heather
+knitr::opts_chunk$set(autoprint = TRUE)
+
 source("R/quarto_formatting.R")
+
+# Custom knitr hook to auto print `tar_read()` results so Heather can render
+knitr::knit_hooks$set(output = function(x, options) {
+  if (grepl("tar_read", x)) {
+    paste0("print(", x, ")")
+  } else {
+    x
+  }
+})
 ```
 
 ## Introduction
@@ -53,7 +71,6 @@ All of the analysis in this report is sourced from the Mental Health Services Da
 In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA super-spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched.
 
 ## Summary
-
 
 ### Mental Health Act Detention Spell Length of Stay
 
@@ -80,13 +97,13 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
   dplyr::pull(value)
 ```
 
-- Most lengths of Mental Health Act detention spells are up to 1 day long.
-- Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
-- Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively. 
-- Median length of stay is higher for under 18s (`r los_0_17_23_24` days) compared to 18-24 year olds (`r los_18_24_23_24` days). For the 18-24 age group, the median length of stay has increased over time.
-- Median length of stay is lower for patients in White ethnic categories compared to all other groups.
-- Median length of stay is lower for patients from the most deprived areas compared to all other groups.
-- Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
+-   Most lengths of Mental Health Act detention spells are up to 1 day long.
+-   Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
+-   Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively.
+-   Median length of stay is higher for under 18s (`r los_0_17_23_24` days) compared to 18-24 year olds (`r los_18_24_23_24` days). For the 18-24 age group, the median length of stay has increased over time.
+-   Median length of stay is lower for patients in White ethnic categories compared to all other groups.
+-   Median length of stay is lower for patients from the most deprived areas compared to all other groups.
+-   Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
 
 ### Redetentions
 
@@ -102,13 +119,12 @@ redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   janitor::round_half_up()
 ```
 
-
-- Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
-- The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
-- The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
-- The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
-- The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
-- These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
+-   Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
+-   The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
+-   These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
 
 ### Readmissions
 
@@ -1320,10 +1336,7 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 
 #### Geo Maps of Average DTT Breakdowns
 
-:::::::::::::::: panel-tabset
-
-::::::::
-
+:::::::::::::::::: panel-tabset
 ##### Fin. Year
 
 ::::: columns
@@ -1398,7 +1411,7 @@ tar_read(DTT_ICB_map_18_24_2023_24)
 
 ##### Ethnicity
 
-::::::::: panel-tabset
+::: panel-tabset
 ##### White
 
 ```{r}
@@ -1438,12 +1451,11 @@ tar_read(DTT_ICB_map_mixed_2023_24)
 #| fig-cap: "Map summarizing average travel distance by ICB for Other Ethnic Group 2023-2024."
 tar_read(DTT_ICB_map_other_2023_24)
 ```
-:::::::::
+:::
 
-##### IMD
+#### IMD
 
-:::::: panel-tabset
-
+::::::: panel-tabset
 ##### Most vs Least Deprived
 
 ::::: columns
@@ -1452,7 +1464,7 @@ tar_read(DTT_ICB_map_other_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-most-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (Most Deprived) in 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (Most Deprived) in 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_most_2023_24)
 ```
 :::
@@ -1462,7 +1474,7 @@ tar_read(DTT_ICB_map_most_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-least-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (Least Deprived) in 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (Least Deprived) in 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_least_2023_24)
 ```
 :::
@@ -1475,7 +1487,7 @@ tar_read(DTT_ICB_map_least_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-1-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 1) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 1) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_1_2023_24)
 ```
 
@@ -1483,7 +1495,7 @@ tar_read(DTT_ICB_map_1_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-2-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 2) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 2) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_2_2023_24)
 ```
 
@@ -1491,7 +1503,7 @@ tar_read(DTT_ICB_map_2_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-3-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 3) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 3) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_3_2023_24)
 ```
 
@@ -1499,7 +1511,7 @@ tar_read(DTT_ICB_map_3_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-4-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 4) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 4) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_4_2023_24)
 ```
 
@@ -1507,7 +1519,7 @@ tar_read(DTT_ICB_map_4_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-5-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 5) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 5) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_5_2023_24)
 ```
 
@@ -1515,7 +1527,7 @@ tar_read(DTT_ICB_map_5_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-6-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 6) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 6) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_6_2023_24)
 ```
 
@@ -1523,7 +1535,7 @@ tar_read(DTT_ICB_map_6_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-7-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 7) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 7) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_7_2023_24)
 ```
 
@@ -1531,7 +1543,7 @@ tar_read(DTT_ICB_map_7_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-8-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 8) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 8) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_8_2023_24)
 ```
 
@@ -1539,7 +1551,7 @@ tar_read(DTT_ICB_map_8_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-9-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 9) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 9) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_9_2023_24)
 ```
 
@@ -1547,13 +1559,9 @@ tar_read(DTT_ICB_map_9_2023_24)
 
 ```{r}
 #| label: fig-icb-dtt-map-10-2023-24
-#| fig-cap: "Map summarizing average travel distance by ICB (IMD 10) 2023-2024."
+#| fig-cap: "Map summarizing average travel distance by ICB (IMD 10) 2023-2024. Note: Grey areas have no admissions during the time period"
 tar_read(DTT_ICB_map_10_2023_24)
 ```
 :::
-
-::::::::
-
-::::::::::::::::
-
-
+:::::::
+::::::::::::::::::
