@@ -1339,7 +1339,7 @@ tar_read(DTT_ICB_map_most_2023_24)
 ##### Least Deprived
 
 ```{r}
-#| label: fig-icb-dtt-map-18-24-2023-24
+#| label: fig-icb-dtt-map-least-2023-24
 #| fig-cap: "Map summarizing average travel distance by ICB (Least Deprived) in 2023-2024."
 tar_read(DTT_ICB_map_least_2023_24)
 ```
