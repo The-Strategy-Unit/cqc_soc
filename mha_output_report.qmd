@@ -125,13 +125,13 @@ readmissions_23_24 <- tar_read(cyp_readmissions_perc) |>
   janitor::round_half_up(2)
 ```
 
-- Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
-- The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
-- The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
-- The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
-- The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
-- These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
-- The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
+-   Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
+-   The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
+-   These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
+-   The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
 
 ### Clinical Outcomes (HONOS scores)
 
@@ -155,8 +155,8 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
   janitor::round_half_up(2)
 ```
 
-- Of all CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment.
-- For the `r perc_last_assess`% of CYP MH spells that had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell, `r honos_perc_worse`% had an increase in HONOS scores from the start to the end of the spell.
+-   Of all CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment.
+-   For the `r perc_last_assess`% of CYP MH spells that had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell, `r honos_perc_worse`% had an increase in HONOS scores from the start to the end of the spell.
 
 ## Detailed MHA analysis
 
@@ -197,7 +197,7 @@ tar_read(conversion_map) |>
 
 The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal".
 
-::::::: panel-tabset
+:::::::: panel-tabset
 ##### Age group
 
 ::: panel-tabset
@@ -288,7 +288,6 @@ tar_read(mha_conv_imd_tab) |>
 ##### ICB area
 
 ::: panel-tabset
-
 ###### Section 3
 
 ```{r}
@@ -313,8 +312,7 @@ tar_read(mha_conv_map_136_2)
 tar_read(mha_conv_map_52_2)
 ```
 :::
-
-:::::::
+::::::::
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}
 
@@ -888,86 +886,49 @@ tar_read(honos_histo)
 #| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
 tar_read(honos_scatter)
 ```
-
 :::
 
-## Admissions and distance from home
+## Distance to Travel (DTT)
 
-The Ward Location Distance from Home variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions.
+The Ward Location Distance from Home metric recorded in MHSDS represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions.
 
-The data and analysis in this section relates to **all** mental health inpatient admissions and not just those associated with detention under the MHA.
+The data and analysis in this section relates to **all** mental health inpatient admissions for which Distance to Travel was recorded in the patient's records and not just those associated with detention under the MHA.
 
-#### Methodology
+### Methodology
 
 **Definition:** This variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. It is often used to assess the accessibility of healthcare services and inform population health planning.
 
 **Interpretation:** Lower values may indicate greater accessibility and convenience for patients. Higher values may suggest potential barriers to healthcare access, such as long travel times or transportation difficulties or may reflect centralisation of service provision.
 
-The distance to travel (DTT) for each admission was calculated as the average distance per admission and the median distance per admission. The analysis includes breakdowns by fiscal year, ICB, gender, age group, and ethnicity allowing us to observe distance-related trends. The DTT is also compared with the total number of admissions in order to understand whether increasing or decreasing demand may be a contributing factor to changes in DTT.
+**Calculation of 'Ward location distance from home':** The distance to travel (DTT) for each admission was calculated as the average distance per admission and the median distance per admission. The analysis includes breakdowns by fiscal year, ICB, gender, age group, and ethnicity allowing us to observe distance-related trends. The DTT is also compared with the total number of admissions in order to understand whether increasing or decreasing demand may be a contributing factor to changes in DTT.
 
-**Calculation of 'Ward location distance from home'**
+-   **Derived from:** SITE CODE (OF TREATMENT)
 
-Derived from: SITE CODE (OF TREATMENT)\
-\
-NHS Digital guidance: Look up the postcode for this SiteCode in the ODS reference data file that holds the address for organisation sites. Then identify the Northings\\Eastings for this postcode by using the ONS NHS Postcode Directory file.
+-   **NHS Digital guidance:** Look up the postcode for this SiteCode in the ODS reference data file that holds the address for organisation sites. Then identify the Northings\\Eastings for this postcode by using the ONS NHS Postcode Directory file.
 
-**Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
+-   **Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
 
-#### DTT over time
+### Discussion on Results from Analysis
 
-##### Overall
+#### **Financial Year**
 
 There has been little change in the overall mean and median DTT over time. The mean increased by 1.5 km/admission (an increase of 6.1%), between 2017/18 (25.5 km/admission) and 2024/25 (27.0 km/admission). However, the median DTT remained the same at 10.0 km/admission over the same time period.
 
-##### Gender
+#### **Gender**
 
 The average DTT for females only increased by 0.3% from 2017/18 to 2024/25 (29.90 - 29.98 km/admission) while the average for males increased by nearly 15% (21.2 - 24.4 km/admission). The median decreased for females from 12 to 11 km/admission while the median remained constant at 9km/admission for males over the time period.
 
 While the gender descrepancy has improved over time, there remains a consistent difference between males and females in average DTT over the time period. In 2017/18 females traveled on average 29.1% farther than males and by 2024/25 they still travelled 18.7% farther than males on average. The median DTT for females and males saw the same trend as the median DTT for females was 25.0% farther than for males in 2017/18 and 18.2% farther in 2024/25.
 
-##### Age Group
+#### **Age Group**
 
 The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00 - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
 
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
 
-##### Ethnicity
+#### **Ethnicity**
 
 Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers. Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
-
-###### Admissions by Ethnicity
-
--   White Group: Despite a sharp decline in admissions (from 13,341 in 2017/18 to 10,427 in 2023/24), the White group continues to have significantly more admissions than all other ethnic groups.
-
--   Black Group: The Black group had the second highest admissions, rising to a peak in 2019/20 before stabilizing below 1,300 by 2023/24.
-
--   Asian Group: Admissions for the Asian group increased slightly until 2019/20, but then remained stable around 1,200 by 2023/24.
-
--   Mixed Group: Admissions fluctuated between 2017/18 and 2023/24, peaking at 981 before falling back to 892 in 2023/24.
-
--   Other Group: The Other group consistently had the fewest admissions, with numbers gradually rising to 595 by 2023/24.
-
-###### Average Distance to Travel (Avg. DTT)
-
--   Mixed Group: This group consistently travels the furthest, with an average DTT ranging from 26.9 in 2017/18 to 25.0 in 2023/24.
-
--   White Group: The White group also shows high average travel distances, increasing from 25.6 in 2017/18 to 27.4 in 2023/24.
-
--   Black Group: The Black group saw a more dramatic increase in average DTT, from 21.6 in 2017/18 to 24.7 in 2023/24.
-
--   Asian Group: This group consistently had the lowest average DTT, remaining relatively stable between 17.4 and 19.7 over the years.
-
--   Other Group: Average DTT for the Other group started lower but rose sharply, peaking at 24.3 in 2021/22.
-
-###### Median Distance to Travel (Median DTT)
-
--   White and Mixed Groups: These two groups consistently have the highest median DTT, indicating that many individuals travel longer distances.
-
--   Asian Group: The Asian group has the shortest median DTT, with a slight decline over time, reflecting shorter travel distances for most individuals.
-
--   Black and Other Groups: These groups have relatively low median DTT but have shown modest increases over the years.
-
-##### General observations on ethnicity trends
 
 -   White Group: Admissions dropped substantially from 13,341 in 2017/18 to 10,427 in 2023/24, while average travel distances increased modestly. The median DTT increased from 11 to 12 over this period.
 
@@ -979,7 +940,39 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 -   Other Group: The Other group saw the most dramatic rise in travel distances despite the sharp drop in admissions. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
 
-#### IMD
+**Admissions by Ethnicity**
+
+-   White Group: Despite a sharp decline in admissions (from 13,341 in 2017/18 to 10,427 in 2023/24), the White group continues to have significantly more admissions than all other ethnic groups.
+
+-   Black Group: The Black group had the second highest admissions, rising to a peak in 2019/20 before stabilizing below 1,300 by 2023/24.
+
+-   Asian Group: Admissions for the Asian group increased slightly until 2019/20, but then remained stable around 1,200 by 2023/24.
+
+-   Mixed Group: Admissions fluctuated between 2017/18 and 2023/24, peaking at 981 before falling back to 892 in 2023/24.
+
+-   Other Group: The Other group consistently had the fewest admissions, with numbers gradually rising to 595 by 2023/24.
+
+**Average Distance to Travel (Avg. DTT)**
+
+-   Mixed Group: This group consistently travels the furthest, with an average DTT ranging from 26.9 in 2017/18 to 25.0 in 2023/24.
+
+-   White Group: The White group also shows high average travel distances, increasing from 25.6 in 2017/18 to 27.4 in 2023/24.
+
+-   Black Group: The Black group saw a more dramatic increase in average DTT, from 21.6 in 2017/18 to 24.7 in 2023/24.
+
+-   Asian Group: This group consistently had the lowest average DTT, remaining relatively stable between 17.4 and 19.7 over the years.
+
+-   Other Group: Average DTT for the Other group started lower but rose sharply, peaking at 24.3 in 2021/22.
+
+**Median Distance to Travel (Median DTT)**
+
+-   White and Mixed Groups: These two groups consistently have the highest median DTT, indicating that many individuals travel longer distances.
+
+-   Asian Group: The Asian group has the shortest median DTT, with a slight decline over time, reflecting shorter travel distances for most individuals.
+
+-   Black and Other Groups: These groups have relatively low median DTT but have shown modest increases over the years.
+
+#### **Index of Multiple Deprivation (IMD)**
 
 There is a clear trend of greater admissions among the most deprived (IMD 1) group, while the least deprived (IMD 10) group consistently travels further on average and median distances. While travel distances for both groups have increased over time, the least deprived group (IMD 10) continues to travel significantly longer distances compared to the most deprived, even though the gap in average distances has narrowed slightly over the years. This pattern underscores the relationship between socioeconomic deprivation and healthcare access, with the most deprived groups having more admissions but generally traveling shorter distances.
 
@@ -1005,45 +998,50 @@ The median travel distance for the least deprived group (IMD 10) has consistentl
 
 -   Percentage Difference: In 2017/18, the least deprived group (IMD 10) had a median travel distance 133% higher than the most deprived group (IMD 1). By 2023/24, this gap had narrowed slightly, with the least deprived group still traveling 100% further than the most deprived group in terms of median travel distance.
 
-#### ICBs
+#### **ICBs**
 
 There is considerable variation in admissions and travel distances across the ICBs, with urban areas experiencing higher admissions and shorter travel distances, and rural areas showing fewer admissions but longer travel distances. Over time, travel distances have generally increased, particularly in rural areas, suggesting growing challenges in accessing healthcare services in these regions. NHS Cornwall and the Isles of Scilly regularly shows the highest Avg. DTT across all years, reaching a high of 129 km in 2024/25. This starkly contrasts with NHS North East London, where the Avg. DTT is often below 15 km.
 
-##### **Average Distance to Travel (Avg. DTT)**:
+-   **Urban vs. Rural**: There is a clear divide between urban and rural ICBs, with rural areas requiring substantially longer travel distances for healthcare access. For example, NHS Cornwall and the Isles of Scilly, NHS Lincolnshire, and NHS Somerset show consistently higher DTT values. Urban ICBs, such as NHS London-based ICBs, have shorter travel distances, with average DTT values often under 20 km.
 
-**Overall:** The average distance to travel (Avg. DTT) shows significant variability across ICBs, ranging from around 10-20 km in urban or densely populated ICBs, such as NHS North East London or NHS Birmingham and Solihull, to over 50 km in more rural or geographically dispersed areas, such as NHS Cornwall and the Isles of Scilly and NHS Devon.
+-   **ICBs with High Admissions and Low DTT**: Larger urban ICBs, such as NHS North East and North Cumbria and NHS Greater Manchester, tend to have high admission numbers but lower DTT, typically around 10-20 km. This suggests that while they handle more patients, these areas have denser healthcare infrastructure, reducing the need for long-distance travel.
 
-**Extreme Values**: NHS Cornwall and the Isles of Scilly and NHS Dorset consistently show the highest Avg. DTT values, often reaching 80-100 km, highlighting the challenges of healthcare access in remote areas. On the opposite end, ICBs like NHS North Central London and NHS North East London show very low Avg. DTT values, typically around 10 km, reflecting easy access to services within compact urban regions.
+-   **ICBs with Low Admissions and High DTT**: Rural ICBs, such as NHS Cornwall and the Isles of Scilly, often have low admissions but high travel distances, indicating more dispersed populations and fewer nearby healthcare facilities.
 
-**Trends Over Time**: For many ICBs, the Avg. DTT increased from 2017/18 to 2023/24, such as in NHS Norfolk and Waveney and NHS Bedfordshire Luton and Milton Keynes, indicating potentially growing distances required to access healthcare, possibly due to centralization of services or changes in care delivery models. Some ICBs, however, exhibit stable or even decreasing DTT, such as NHS Staffordshire and Stoke-on-Trent, which maintains an average DTT of around 12-13 km over time.
+**Average Distance to Travel (Avg. DTT)**:
 
-##### **Median Distance to Travel (Median DTT)**:
+-   **Overall:** The average distance to travel (Avg. DTT) shows significant variability across ICBs, ranging from around 10-20 km in urban or densely populated ICBs, such as NHS North East London or NHS Birmingham and Solihull, to over 50 km in more rural or geographically dispersed areas, such as NHS Cornwall and the Isles of Scilly and NHS Devon.
 
-The median DTT is often lower than the average DTT, suggesting that most patients travel shorter distances, while a few travel very long distances, skewing the average.
+-   **Extreme Values**: NHS Cornwall and the Isles of Scilly and NHS Dorset consistently show the highest Avg. DTT values, often reaching 80-100 km, highlighting the challenges of healthcare access in remote areas. On the opposite end, ICBs like NHS North Central London and NHS North East London show very low Avg. DTT values, typically around 10 km, reflecting easy access to services within compact urban regions.
 
-**Range**: Median DTT values range from 5-10 km in ICBs such as NHS North Central London and NHS North East London to around 30-40 km in areas like NHS Cornwall and the Isles of Scilly and NHS Frimley.
+-   **Trends Over Time**: For many ICBs, the Avg. DTT increased from 2017/18 to 2023/24, such as in NHS Norfolk and Waveney and NHS Bedfordshire Luton and Milton Keynes, indicating potentially growing distances required to access healthcare, possibly due to centralization of services or changes in care delivery models. Some ICBs, however, exhibit stable or even decreasing DTT, such as NHS Staffordshire and Stoke-on-Trent, which maintains an average DTT of around 12-13 km over time.
 
-**Trends**: Median DTT for several ICBs, including NHS Dorset and NHS Cornwall and the Isles of Scilly, shows a notable rise over time, suggesting that even for more patients, distances to healthcare are increasing. For instance, NHS Dorset has a median DTT rising from 9 km in 2017 to over 60 km in 2023/24.
+**Median Distance to Travel (Median DTT)**:
 
-##### **Admissions Across ICBs (Excluding FY 2024/25)**:
+-   **Overall:** The median DTT is often lower than the average DTT, suggesting that most patients travel shorter distances, while a few travel very long distances, skewing the average.
 
-**Overall:** The number of admissions varies significantly across ICBs, reflecting the differences in population size and service demand. Larger ICBs such as NHS North East and North Cumbria and NHS Greater Manchester regularly show admissions in the range of 1,000+, while smaller ICBs, such as NHS Shropshire Telford and Wrekin, have admissions typically below 200 per year.
+-   **Range**: Median DTT values range from 5-10 km in ICBs such as NHS North Central London and NHS North East London to around 30-40 km in areas like NHS Cornwall and the Isles of Scilly and NHS Frimley.
 
-**Trends:** Admissions generally increase or remain stable from 2017/18 to around 2020/21 for many ICBs, reflecting increased healthcare demand. However, fluctuations in 2021/22-2023/24 could be due to the pandemic's impact on healthcare services. Admissions for some ICBs, like NHS Cornwall and the Isles of Scilly and NHS Dorset, show a noticeable decline in later years (2021/22-2023/24), which may indicate a shift in service utilization or changes in referral pathways.
+-   **Trends**: Median DTT for several ICBs, including NHS Dorset and NHS Cornwall and the Isles of Scilly, shows a notable rise over time, suggesting that even for more patients, distances to healthcare are increasing. For instance, NHS Dorset has a median DTT rising from 9 km in 2017 to over 60 km in 2023/24.
 
-##### **General Spread of Values Across ICBs**:
+**Admissions Across ICBs (Excluding FY 2024/25)**:
 
-**Urban vs. Rural Divide**: There is a clear divide between urban and rural ICBs, with rural areas requiring substantially longer travel distances for healthcare access. For example, NHS Cornwall and the Isles of Scilly, NHS Lincolnshire, and NHS Somerset show consistently higher DTT values. Urban ICBs, such as NHS London-based ICBs, have shorter travel distances, with average DTT values often under 20 km.
+-   **Overall:** The number of admissions varies significantly across ICBs, reflecting the differences in population size and service demand. Larger ICBs such as NHS North East and North Cumbria and NHS Greater Manchester regularly show admissions in the range of 1,000+, while smaller ICBs, such as NHS Shropshire Telford and Wrekin, have admissions typically below 200 per year.
 
-**ICBs with High Admissions and Low DTT**: Larger urban ICBs, such as NHS North East and North Cumbria and NHS Greater Manchester, tend to have high admission numbers but lower DTT, typically around 10-20 km. This suggests that while they handle more patients, these areas have denser healthcare infrastructure, reducing the need for long-distance travel.
+-   **Trends:** Admissions generally increase or remain stable from 2017/18 to around 2020/21 for many ICBs, reflecting increased healthcare demand. However, fluctuations in 2021/22-2023/24 could be due to the pandemic's impact on healthcare services. Admissions for some ICBs, like NHS Cornwall and the Isles of Scilly and NHS Dorset, show a noticeable decline in later years (2021/22-2023/24), which may indicate a shift in service utilization or changes in referral pathways.
 
-**ICBs with Low Admissions and High DTT**: Rural ICBs, such as NHS Cornwall and the Isles of Scilly, often have low admissions but high travel distances, indicating more dispersed populations and fewer nearby healthcare facilities.
+### Analysis Results: Graphs and Tables
 
-::::::::: panel-tabset
-#### Overall variation by FY
+#### DTT over time and by subgroups: means, medians, and total admissions
+
+::::::::::::::::::::::::::: panel-tabset
+#### Financial Year (FY)
+
+:::::: panel-tabset
+#### Line Graphs
 
 ::: panel-tabset
-##### Chart
+##### Mean
 
 ```{r}
 #| label: fig-average-distance-chart
@@ -1051,23 +1049,51 @@ The median DTT is often lower than the average DTT, suggesting that most patient
 tar_read(chart_DTT_FY) 
 ```
 
-##### Table
+##### Mean vs Median
+
+![](images/clipboard-1492561400.png)
+:::
+
+#### Line/Bar Charts
+
+::: panel-tabset
+##### Mean DTT (Line) by Total Admissions(Bars)
+
+```{r}
+#| label: fig-comparison-admissions-distance
+#| fig-cap: "Comparison of Total Admissions and Travel Distance Over Time."
+tar_read(chart_admissions_vs_distance)
+```
+:::
+
+##### Tables
+
+::: panel-tabset
+##### Mean by FY with Admissions
+
+```{r}
+#| label: fig-DTT-FY-with-admissions-table
+#| fig-cap: "Table showing average distance per admission and total admissions by financial year."
+tar_read(table_DTT_FY_with_admissions) %>% create_dt()
+```
+
+##### Mean by FY
 
 ```{r}
 #| label: fig-average-distance-fy
 #| fig-cap: "Table summarizing average distance per financial year."
 tar_read(table_DTT_FY) %>% create_dt()
 ```
-
-##### Mean vs Median
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20FY.png)
 :::
+::::::
 
-#### Variation by Gender
+#### Gender
+
+:::::: panel-tabset
+#### Line Graphs
 
 ::: panel-tabset
-##### Chart
+##### Mean
 
 ```{r}
 #| label: fig-gender-average-distance-chart
@@ -1075,23 +1101,51 @@ tar_read(table_DTT_FY) %>% create_dt()
 tar_read(chart_DTT_gender_FY)
 ```
 
-##### Table
+##### Mean vs Median
+
+![](images/clipboard-1940657192.png)
+:::
+
+#### Line/Bar Charts
+
+::: panel-tabset
+##### Mean DTT (Line) by Total Admissions(Bars)
+
+```{r}
+#| label: fig-gender-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Gender Over Time."
+tar_read(chart_DTT_gender_FY_with_admissions)
+```
+:::
+
+#### Tables
+
+::: panel-tabset
+##### Mean by FY with Admissions
+
+```{r}
+#| label: fig-gender-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender and financial year."
+tar_read(table_DTT_gender_FY_with_admissions) %>% create_dt()
+```
+
+##### Mean by FY
 
 ```{r}
 #| label: fig-gender-average-distance 
 #| fig-cap: "Table summarizing average distance per gender and financial year."
 tar_read(DTT_gender_FY) %>% create_dt()
 ```
-
-##### Mean vs Median
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Gender%20MM%20FY.png)
 :::
+::::::
 
-#### Variation by Age Group
+#### Age Group
+
+:::::: panel-tabset
+## Line Graphs
 
 ::: panel-tabset
-##### Chart
+##### Mean
 
 ```{r}
 #| label: fig-age-group-average-distance-chart
@@ -1099,23 +1153,49 @@ tar_read(DTT_gender_FY) %>% create_dt()
 tar_read(chart_DTT_age_group_FY)
 ```
 
-##### Table
+##### Mean vs Median![](images/clipboard-1348949205.png)
+:::
+
+## Line / Bar Charts
+
+::: panel-tabset
+##### Mean DTT (Line) by Total Admissions(Bars)
+
+```{r}
+#| label: fig-age-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Age Group Over Time."
+tar_read(chart_DTT_age_group_FY_with_admissions)
+```
+:::
+
+## Tables
+
+::: panel-tabset
+##### Mean by FY with Admissions
+
+```{r}
+#| label: fig-age-group-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by age group and financial year."
+tar_read(table_DTT_age_group_FY_with_admissions)%>% create_dt()
+```
+
+##### Mean by FY
 
 ```{r}
 #| label: fig-age-group-average-distance 
 #| fig-cap: "Table summarizing average distance per age group and financial year."
 tar_read(DTT_age_group_FY) %>% create_dt()
 ```
-
-##### Mean vs Median
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Age%20MM%20FY.png)
 :::
+::::::
 
-#### Variation by Ethnicity
+#### Ethnicity
+
+:::::: panel-tabset
+##### Line Graphs
 
 ::: panel-tabset
-##### Chart
+##### Mean
 
 ```{r}
 #| label: fig-ethnic-category-average-distance-chart
@@ -1123,23 +1203,51 @@ tar_read(DTT_age_group_FY) %>% create_dt()
 tar_read(chart_DTT_ethnic_FY)
 ```
 
-##### Table
+##### Mean vs Median
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Ethnicity%20MM%20FY.png)
+:::
+
+##### Line/Bar Graphs
+
+::: panel-tabset
+##### Mean DTT (Line) by Total Admissions(Bars)
+
+```{r}
+#| label: fig-ethnic-admissions-distance-chart
+#| fig-cap: "Comparison of Total Admissions and Travel Distance by Ethnicity Over Time."
+tar_read(chart_DTT_ethnic_FY_with_admissions)
+```
+:::
+
+##### Tables
+
+::: panel-tabset
+##### Mean by FY with Admissions
+
+```{r}
+#| label: fig-ethnic-category-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by ethnic category and financial year."
+tar_read(table_DTT_ethnic_FY_with_admissions)%>% create_dt()
+```
+
+##### Mean by FY
 
 ```{r}
 #| label: fig-ethnic-average-distance 
 #| fig-cap: "Table summarizing average distance per ethnic category and financial year."
 tar_read(DTT_ethnic_FY) %>% create_dt()
 ```
-
-##### Mean vs Median
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Ethnicity%20MM%20FY.png)
 :::
+::::::
 
-#### Variation by IMD
+#### IMD
+
+:::::: panel-tabset
+##### Line Graphs
 
 ::: panel-tabset
-##### Chart
+##### Mean
 
 ```{r}
 #| label: fig-IMD-average-distance-chart
@@ -1147,235 +1255,75 @@ tar_read(DTT_ethnic_FY) %>% create_dt()
 tar_read(chart_DTT_IMD_FY)
 ```
 
-##### Table
-
-```{r}
-#| label: fig-imd-average-distance 
-#| fig-cap: "Table summarizing average distance per IMD decile and financial year."
-tar_read(DTT_IMD_FY) %>% create_dt()
-```
-
-##### Mean vs Median Deciles
+##### Mean vs Median IMD (Deciles)
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected.png)
 
-##### Mean vs Median Quintiles
+##### Mean vs Median IMD (Quintiles)
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected%20quintile.png)
 :::
 
-#### Variation by ICB
+##### Line/Bar Charts
 
 ::: panel-tabset
-##### Chart
-
-Add in
-
-##### Table
-
-Add in
-
-##### Mean vs Median
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20MM%20FY.png)
-:::
-:::::::::
-
-#### Average DTT alongside number of admissions
-
-:::::::: panel-tabset
-#### Overall by FY
-
-::: panel-tabset
-##### Chart
-
-```{r}
-#| label: fig-comparison-admissions-distance
-#| fig-cap: "Comparison of Total Admissions and Travel Distance Over Time."
-tar_read(chart_admissions_vs_distance)
-```
-
-##### Table
-
-```{r}
-#| label: fig-DTT-FY-with-admissions-table
-#| fig-cap: "Table showing average distance per admission and total admissions by financial year."
-
-tar_read(table_DTT_FY_with_admissions) %>% create_dt()
-
-```
-:::
-
-#### Gender
-
-::: panel-tabset
-##### Chart
-
-```{r}
-#| label: fig-gender-admissions-distance-chart
-#| fig-cap: "Comparison of Total Admissions and Travel Distance by Gender Over Time."
-tar_read(chart_DTT_gender_FY_with_admissions)
-```
-
-##### Table
-
-```{r}
-#| label: fig-gender-average-distance-admissions
-#| fig-cap: "Table summarizing average distance and total admissions by gender and financial year."
-tar_read(table_DTT_gender_FY_with_admissions) %>% create_dt()
-```
-:::
-
-#### Age Group
-
-::: panel-tabset
-##### Chart
-
-```{r}
-#| label: fig-age-admissions-distance-chart
-#| fig-cap: "Comparison of Total Admissions and Travel Distance by Age Group Over Time."
-tar_read(chart_DTT_age_group_FY_with_admissions)
-```
-
-##### Table
-
-```{r}
-#| label: fig-age-group-average-distance-admissions
-#| fig-cap: "Table summarizing average distance and total admissions by age group and financial year."
-tar_read(table_DTT_age_group_FY_with_admissions)%>% create_dt()
-```
-:::
-
-#### Ethnicity
-
-::: panel-tabset
-##### Chart
-
-```{r}
-#| label: fig-ethnic-admissions-distance-chart
-#| fig-cap: "Comparison of Total Admissions and Travel Distance by Ethnicity Over Time."
-tar_read(chart_DTT_ethnic_FY_with_admissions)
-```
-
-##### Table
-
-```{r}
-#| label: fig-ethnic-category-average-distance-admissions
-#| fig-cap: "Table summarizing average distance and total admissions by ethnic category and financial year."
-tar_read(table_DTT_ethnic_FY_with_admissions)%>% create_dt()
-```
-:::
-
-#### IMD
-
-::: panel-tabset
-##### Chart
+##### Mean DTT (Line) by Total Admissions(Bars)
 
 ```{r}
 #| label: fig-IMD-admissions-distance-chart
 #| fig-cap: "Comparison of Total Admissions and Travel Distance by IMD Over Time."
 tar_read(chart_DTT_IMD_FY_with_admissions)
 ```
+:::
 
-##### Table
+##### Tables
+
+::: panel-tabset
+##### Mean by FY with Admissions
 
 ```{r}
 #| label: fig-IMD-average-distance-admissions
 #| fig-cap: "Table summarizing average distance and total admissions by IMD and financial year."
 tar_read(table_DTT_IMD_FY_with_admissions)%>% create_dt()
 ```
-:::
-::::::::
 
-#### Additional Analysis
-
-::::::: panel-tabset
-#### DTT and Number of Admissions by Gender and Age
-
-::: panel-tabset
-##### Chart
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Gender%20Age%20Time.png)
-
-##### Table
+##### Mean by FY (Deciles)
 
 ```{r}
-#| label: fig-gender-age-FY-average-distance-admissions
-#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, and financial year."
-tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
+#| label: fig-imd-average-distance 
+#| fig-cap: "Table summarizing average distance per IMD decile and financial year."
+tar_read(DTT_IMD_FY) %>% create_dt()
 ```
 :::
+::::::
 
-#### Mean and median DTT and Number of Admissions by Gender and Age
+#### ICB
+
+:::::: panel-tabset
+##### Boxplots
 
 ::: panel-tabset
-##### Chart
+##### Mean vs Median by FY
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20Chart%20Gender%20Age%20Admissions.png)
-
-##### Table
+Note: Each dot represents one ICB ![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20MM%20FY.png)
 :::
 
-#### Table of Subgroup Rates
+##### Heat maps
 
 ::: panel-tabset
-##### Chart
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Grid.png)
-
-##### Table
-
-```{r}
-#| label: fig-gender-age-ethnicity-IMD-5-years-average-distance-admissions
-#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
-tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
-```
-:::
-
-#### IMD by Age Group and Gender Over Time
-
-::: panel-tabset
-##### IMD over time by age and gender
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20age%20gender%20time%20corrected%20avg.png)
-
-##### IMD: Mean and median trends over time by gender
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20quintile%20gender%20corrected.png)
-
-##### Table
-
-```{r}
-#| label: fig-gender-age-IMD-FY-average-distance
-#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
-tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
-```
-:::
-:::::::
-
-#### DTT by ICBs
-
-:::: panel-tabset
-#### Overview
-
-::: panel-tabset
-##### ICB Avg DTT
+##### Mean DTT by FY
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Avg%20sorted%20by%202024.png)
 
-##### ICB Median DTT
+##### Median DTT by FY
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Med%20sorted%20by%202024.png)
+:::
 
-##### Subgroups heat map
+##### Tables
 
-```{r}
-#| label: fig-ICB-heat-map
-#| fig-cap: "Chart summarizing average distance per ICB." 
-tar_read(heatmap_DTT_subgroups)
-```
-
-##### Table
+::: panel-tabset
+##### Mean by FY
 
 ```{r}
 #| label: fig-ICB-average-distance 
@@ -1383,12 +1331,13 @@ tar_read(heatmap_DTT_subgroups)
 tar_read(DTT_ICB_FY) %>% create_dt()
 ```
 :::
-::::
+::::::
+:::::::::::::::::::::::::::
 
 #### Geographic Maps of Average DTT Breakdowns
 
 :::::::::::::::::: panel-tabset
-##### Fin. Year
+##### Financial Year (FY)
 
 ::::: columns
 ::: {.column width="50%"}
@@ -1504,7 +1453,7 @@ tar_read(DTT_ICB_map_other_2023_24)
 ```
 :::
 
-##### IMD
+##### Index of Multiple Deprivation (IMD)
 
 ::::::: panel-tabset
 ##### Most vs Least Deprived
@@ -1534,7 +1483,7 @@ tar_read(DTT_ICB_map_least_2023_24)
 ##### IMD deciles
 
 ::: panel-tabset
-##### 1
+##### Most Deprived (1)
 
 ```{r}
 #| label: fig-icb-dtt-map-1-2023-24
@@ -1606,7 +1555,7 @@ tar_read(DTT_ICB_map_8_2023_24)
 tar_read(DTT_ICB_map_9_2023_24)
 ```
 
-##### 10
+##### Least Deprived (10)
 
 ```{r}
 #| label: fig-icb-dtt-map-10-2023-24
@@ -1614,7 +1563,59 @@ tar_read(DTT_ICB_map_9_2023_24)
 tar_read(DTT_ICB_map_10_2023_24)
 ```
 :::
-
 :::::::
 ::::::::::::::::::
 
+#### Multiple subgroup splits of the data
+
+:::::: panel-tabset
+#### Gender and Age Group over time (FY)
+
+::: panel-tabset
+##### Chart
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20Chart%20Gender%20Age%20Admissions.png)
+
+##### Table
+
+```{r}
+#| label: fig-gender-age-FY-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, and financial year."
+tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
+```
+:::
+
+#### IMD trends by Gender Over Time
+
+![](images/clipboard-3644674288.png)
+
+##### IMD over time by age and gender
+
+::: panel-tabset
+![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20age%20gender%20time%20corrected%20avg.png)
+:::
+
+#### Avg DTT over 2020/21 - 2024/25 by Age, Gender, Ethnicity and IMD
+
+::: panel-tabset
+##### Heat map (Tableau version)
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Grid.png)
+
+##### Heat map (R version)
+
+```{r}
+#| label: fig-ICB-heat-map
+#| fig-cap: "Chart summarizing average distance per ICB." 
+tar_read(heatmap_DTT_subgroups)
+```
+
+##### Table
+
+```{r}
+#| label: fig-gender-age-ethnicity-IMD-5-years-average-distance-admissions
+#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
+tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
+```
+:::
+::::::
