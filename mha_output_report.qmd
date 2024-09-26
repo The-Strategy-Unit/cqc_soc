@@ -177,7 +177,7 @@ tar_read(conversion_map) |>
 
 #### Specific pathways of interest by population sub-group
 
-The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team.
+The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing an instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal".
 
 ::::::: panel-tabset
 ##### Age group

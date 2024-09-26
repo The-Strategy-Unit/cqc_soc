@@ -361,29 +361,67 @@ get_avg_mh_attends_rate_plot <- function(data){
   return(plot)
 }
 
-mha_conversion_table <- function(tar_obj, feature, feature_txt){
+mha_conversion_table <- function(tar_obj, feature, feature_txt) {
   feature <- enquo(feature)
 
-  total <- tar_obj |>
-    filter(fin_year != "2018/19") |>
-    group_by(!!feature) |>
-    summarise(total = n())
+  table <- tar_obj |>
+    dplyr::mutate(
+      SECTION_54_to_52 = ifelse(grepl("5\\(4\\)-5\\(2\\)", sections_all), 1, 0),
+      SECTION_135_136_to_5 = ifelse(
+        grepl("135-5", sections_all) |
+          grepl("136-5", sections_all),
+        1,
+        0
+      ),
+      SECTION_52_to_2 = ifelse(grepl("5\\(2\\)-2", sections_all), 1, 0),
+      SECTION_52_to_3 = ifelse(grepl("5\\(2\\)-3", sections_all), 1, 0),
+      SECTION_4_to_2 = ifelse(grepl("4-2", sections_all), 1, 0),
+      SECTION_4_to_3 = ifelse(grepl("4-3", sections_all), 1, 0),
+      SECTION_136_to_3 = ifelse(grepl("136-3", sections_all), 1, 0),
+      SECTION_136_to_2 = ifelse(grepl("136-2", sections_all), 1, 0),
+      SECTION_3_renewal = ifelse(grepl("3-3", sections_all), 1, 0)
+    ) |>
+    dplyr::summarise(
+      dplyr::across(dplyr::starts_with("SECTION_"), ~ sum(.)),
+      total = dplyr::n(),
+      .by = !!feature
+    ) |>
+    tidyr::pivot_longer(
+      cols = dplyr::starts_with("SECTION"),
+      names_to = "conversion_desc",
+      values_to = "sum"
+    ) |>
+    dplyr::mutate(conversion_desc = str_replace_all(
+      conversion_desc,
+      c(
+        "SECTION" = "Section",
+        "to" = "to Section",
+        "_" = " ",
+        "54" = "5(4)",
+        "52" = "5(2)",
+        "135 136" = "135/136"
+      )
+    )) |>
+    PHEindicatormethods::phe_proportion(
+      x = sum,
+      n = total,
+      confidence = 0.95,
+      multiplier = 100
+    ) |>
+    dplyr::select(!!feature,
+                  conversion_desc,
+                  sum,
+                  total,
+                  value,
+                  lowercl,
+                  uppercl) |>
+    dplyr::arrange(!!feature, conversion_desc)
 
-  subgroup <- tar_obj |>
-    filter(fin_year != "2018/19") |>
-    group_by(!!feature, conversion_desc) |>
-    summarise(sum = n()) |>
-    mutate(conversion_desc = case_when(is.na(conversion_desc) ~ 'Other section pathways',
-                                       TRUE ~ conversion_desc)) |>
-    left_join(total, by = feature_txt) |>
-    group_by(!!feature, conversion_desc) |>
-    PHEindicatormethods::phe_proportion(x=sum, n=total, confidence = 0.95, multiplier = 100) |>
-    select(1:7) |>
-    as.data.frame()
-
-  return(subgroup)
+  return(table)
 
 }
+
+
 mha_conversion_bar_plot <- function(tar_obj, feature, feature_txt, title_txt){
 
   feature <- enquo(feature)
