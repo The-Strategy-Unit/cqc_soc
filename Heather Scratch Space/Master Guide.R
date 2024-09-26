@@ -31,5 +31,33 @@ tar_make()
 install.packages("magick")
 install.packages("DiagrammeR")
 
+tar_load(icb_boundary)
+str(icb_boundary)
 
+tar_load(icb_boundary)
+names(icb_boundary)
 
+# Check the column names of the new DTT table
+tar_load(table_DTT_ICB_FY_new)
+names(table_DTT_ICB_FY_new)
+
+# Check unique ICB codes in icb_boundary
+icb_boundary_codes <- icb_boundary %>%
+  mutate(ICB23CD = tolower(ICB23CD)) %>%
+  distinct(ICB23CD)
+
+# Check unique ICB codes in table_DTT_ICB_FY_new
+dtt_icb_codes <- table_DTT_ICB_FY_new %>%
+  distinct(icb23cd)
+
+# Find any mismatches
+setdiff(icb_boundary_codes$ICB23CD, dtt_icb_codes$icb23cd)
+setdiff(dtt_icb_codes$icb23cd, icb_boundary_codes$ICB23CD)
+
+print(global_min_max_FY)
+tar_read(table_DTT_ICB_FY_2023_24)
+tar_make(global_min_max_FY)
+tar_validate()
+
+tar_read(table_DTT_ICB_FY_black_2023_24)
+DTT_ICB_map_black_2023_24
