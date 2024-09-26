@@ -112,9 +112,9 @@ redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
 
 ### Readmissions
 
-### Honos
+### HONOS
 
-## Detailed analysis
+## Detailed MHA analysis
 
 ### 'Conversions' between section of the act {#sec-conversions}
 
@@ -765,9 +765,70 @@ tar_read(cyp_readmissions_perc_table) |>
 ```
 :::
 
-### Travel distance
+### HONOS
+
+```{r}
+honos_flow_perc <- tar_read(honos_flow_perc)
+
+number_spells <- honos_flow_perc |>
+  dplyr::filter(stage == 'spells') |>
+  dplyr::pull(number)
+
+perc_honos_assess <- honos_flow_perc |>
+  dplyr::filter(stage == 'honos_assessments') |>
+  dplyr::pull(perc)
+
+perc_last_assess <- honos_flow_perc |>
+  dplyr::filter(stage == 'first_and_last_assessments') |>
+  dplyr::pull(perc)
+```
+
+Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+
+::: panel-tabset
+##### Flowchart
+
+```{r}
+#| label: fig-honos-flow
+#| fig-cap: Numbers and percentages of CYP MH spells with complete HONOS assessments near the start and end of the MH spell. 
+tar_read(honos_flowchart)
+```
+
+##### Table
+
+```{r}
+#| label: tbl-honos-flow
+#| tbl-cap: Numbers and percentages of CYP MH spells at each stage of the HONOS data extraction. 
+tar_read(honos_flow_perc) |>
+  create_dt()
+```
+:::
+
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues. The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+
+::: panel-tabset
+##### Histogram
+
+```{r}
+#| label: fig-honos-histo
+#| fig-cap: Histogram of the rate of change in HONOS scores at the start and end of a CYP MH spell. 
+tar_read(honos_histo) 
+```
+
+##### Scatterplot
+
+```{r}
+#| label: fig-honos-scatter
+#| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
+tar_read(honos_scatter)
+```
+:::
+
+## Admissions and distance from home
 
 The Ward Location Distance from Home variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions.
+
+The data and analysis in this section relates to **all** mental health inpatient admissions and not just those associated with detention under the MHA.
 
 #### Methodology
 
@@ -1260,7 +1321,10 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 #### Geo Maps of Average DTT Breakdowns
 
 :::::::::::::::: panel-tabset
-##### FY
+
+::::::::
+
+##### Fin. Year
 
 ::::: columns
 ::: {.column width="50%"}
@@ -1374,8 +1438,13 @@ tar_read(DTT_ICB_map_mixed_2023_24)
 #| fig-cap: "Map summarizing average travel distance by ICB for Other Ethnic Group 2023-2024."
 tar_read(DTT_ICB_map_other_2023_24)
 ```
+:::::::::
 
-##### IMD: Most vs Least Deprived
+##### IMD
+
+:::::: panel-tabset
+
+##### Most vs Least Deprived
 
 ::::: columns
 ::: {.column width="50%"}
@@ -1399,7 +1468,7 @@ tar_read(DTT_ICB_map_least_2023_24)
 :::
 :::::
 
-##### IMD All
+##### IMD deciles
 
 ::: panel-tabset
 ##### 1
@@ -1483,63 +1552,8 @@ tar_read(DTT_ICB_map_10_2023_24)
 ```
 :::
 
-### HONOS
+::::::::
 
-```{r}
-honos_flow_perc <- tar_read(honos_flow_perc)
-
-number_spells <- honos_flow_perc |>
-  dplyr::filter(stage == 'spells') |>
-  dplyr::pull(number)
-
-perc_honos_assess <- honos_flow_perc |>
-  dplyr::filter(stage == 'honos_assessments') |>
-  dplyr::pull(perc)
-
-perc_last_assess <- honos_flow_perc |>
-  dplyr::filter(stage == 'first_and_last_assessments') |>
-  dplyr::pull(perc)
-```
-
-Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
-
-::: panel-tabset
-##### Flowchart
-
-```{r}
-#| label: fig-honos-flow
-#| fig-cap: Numbers and percentages of CYP MH spells with complete HONOS assessments near the start and end of the MH spell. 
-tar_read(honos_flowchart)
-```
-
-##### Table
-
-```{r}
-#| label: tbl-honos-flow
-#| tbl-cap: Numbers and percentages of CYP MH spells at each stage of the HONOS data extraction. 
-tar_read(honos_flow_perc) |>
-  create_dt()
-```
-:::
-
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues. The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
-
-::: panel-tabset
-##### Histogram
-
-```{r}
-#| label: fig-honos-histo
-#| fig-cap: Histogram of the rate of change in HONOS scores at the start and end of a CYP MH spell. 
-tar_read(honos_histo) 
-```
-
-##### Scatterplot
-
-```{r}
-#| label: fig-honos-scatter
-#| fig-cap: Scattergram of HONOS scores at the start of a CYP MH spell and the relative change in HONOS scores. 
-tar_read(honos_scatter)
-```
-:::
-:::::::::
 ::::::::::::::::
+
+
