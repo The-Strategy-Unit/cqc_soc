@@ -245,14 +245,14 @@ tar_read(mha_conv_eth_tab) |>
 ```
 :::
 
-##### IMD decile
+##### IMD quantile
 
 ::: panel-tabset
 ###### Chart
 
 ```{r}
 #| label: fig-conversion_imd
-#| fig-cap: Frequency of specific multi-episode pathways by IMD decile, 2019/20 to 2023/24.
+#| fig-cap: Frequency of specific multi-episode pathways by IMD quantile, 2019/20 to 2023/24.
 
 tar_read(mha_conv_imd_plot)
 ```
