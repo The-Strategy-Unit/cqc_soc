@@ -983,7 +983,7 @@ map_DTT_ICB_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1019,7 +1019,7 @@ map_DTT_ICB_2024_25 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1064,7 +1064,7 @@ map_DTT_ICB_female_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1088,7 +1088,7 @@ map_DTT_ICB_male_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1133,7 +1133,7 @@ map_DTT_ICB_0_17_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1157,7 +1157,7 @@ map_DTT_ICB_18_24_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1234,7 +1234,7 @@ map_DTT_ICB_white_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1257,7 +1257,7 @@ map_DTT_ICB_black_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1281,7 +1281,7 @@ map_DTT_ICB_asian_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1305,7 +1305,7 @@ map_DTT_ICB_mixed_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1329,7 +1329,7 @@ map_DTT_ICB_other_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1375,7 +1375,7 @@ map_DTT_ICB_most_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1400,7 +1400,7 @@ map_DTT_ICB_least_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1437,7 +1437,7 @@ map_DTT_ICB_1_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1471,7 +1471,7 @@ map_DTT_ICB_2_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1505,7 +1505,7 @@ map_DTT_ICB_3_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1539,7 +1539,7 @@ map_DTT_ICB_4_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1573,7 +1573,7 @@ map_DTT_ICB_5_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1607,7 +1607,7 @@ map_DTT_ICB_6_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1641,7 +1641,7 @@ map_DTT_ICB_7_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1675,7 +1675,7 @@ map_DTT_ICB_8_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1709,7 +1709,7 @@ map_DTT_ICB_9_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
@@ -1743,7 +1743,7 @@ map_DTT_ICB_10_2023_24 <- function(layer, data, global_min, global_max) {
   map <- merged_data %>%
     ggplot() +
     geom_sf(aes(fill = Average_Distance), lwd = 0.2) +
-    scale_fill_distiller(name = "Avg Travel Distance (km)",
+    scale_fill_distiller(name = "Avg DTT (km)",
                          type = "seq",
                          palette = "Blues",
                          direction = 1,
