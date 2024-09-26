@@ -88,20 +88,24 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
 - Median length of stay is lower for patients from the most deprived areas compared to all other groups.
 - Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
 
-### Redetentions
+### Mental Health Act Re-detentions
 
 ```{r redetentions summary numbers}
 redetention_female_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
   dplyr::pull(perc) |>
-  janitor::round_half_up()
+  janitor::round_half_up(2)
 
 redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
   dplyr::pull(perc) |>
-  janitor::round_half_up()
-```
+  janitor::round_half_up(2)
 
+readmissions_23_24 <- tar_read(cyp_readmissions_perc) |>
+  dplyr::filter(der_financial_year == "2022/23") |>
+  dplyr::pull(perc) |>
+  janitor::round_half_up(2)
+```
 
 - Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
 - The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
@@ -109,8 +113,7 @@ redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
 - The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
 - The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
 - These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
-
-### Readmissions
+- The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
 
 ### Honos
 
