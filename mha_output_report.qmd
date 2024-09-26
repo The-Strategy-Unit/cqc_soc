@@ -1335,8 +1335,8 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 ::::
 
 #### Geo Maps of Average DTT Breakdowns
-
 :::::::::::::::::: panel-tabset
+
 ##### Fin. Year
 
 ::::: columns
@@ -1565,3 +1565,4 @@ tar_read(DTT_ICB_map_10_2023_24)
 :::
 :::::::
 ::::::::::::::::::
+
