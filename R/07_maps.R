@@ -64,3 +64,25 @@ map_icb_allmh_111 <- function(layer, data, year){
 
   return(map)
 }
+
+get_map_of_conversion_path <- function(layer, data, path){
+
+  map <- layer |>
+    left_join(data |>
+                dplyr::filter(conversion_desc == path),
+              by = c("ICB23CD" = "icb_code")) |>
+    ggplot() +
+    geom_sf(aes(fill = value), lwd=0.2) +
+    scale_fill_distiller(name = waiver(),
+                         type = "seq",
+                         palette = "Blues",
+                         direction = 1,
+                         aesthetics = "fill",
+                         limits = c(0, ceiling(max(data$value)))) +
+    theme_void() +
+    labs(title = glue::glue("Percentage of conversion pathways containing '{path}'"),
+         subtitle = "Completed detentions by ICB, 2018/19 to 2023/24",
+         fill = "Percentage")
+
+  return(map)
+}
