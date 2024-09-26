@@ -177,7 +177,7 @@ tar_read(conversion_map) |>
 
 #### Specific pathways of interest by population sub-group
 
-The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing an instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal".
+The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal".
 
 ::::::: panel-tabset
 ##### Age group
@@ -269,7 +269,33 @@ tar_read(mha_conv_imd_tab) |>
 
 ##### ICB area
 
-Still working on this one! Maybe best to pick 1 or 2 key conversions (eg 136 to 2) and generate maps of the %'s.
+::: panel-tabset
+
+###### Section 3
+
+```{r}
+#| label: fig-conversion-map-3
+#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
+tar_read(mha_conv_map_3)
+```
+
+###### Section 136 to Section 2
+
+```{r}
+#| label: fig-conversion-map-136-2
+#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
+tar_read(mha_conv_map_136_2)
+```
+
+###### Section 5(2) to Section 2
+
+```{r}
+#| label: fig-conversion-map-52-2
+#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
+tar_read(mha_conv_map_52_2)
+```
+:::
+
 :::::::
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}

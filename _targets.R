@@ -687,6 +687,23 @@ list(
       "IMD quintile (2019)"
     )
   ),
+  tar_target(
+    mha_conv_icb_tab,
+    mha_conversion_table(conversion_map, icb23cd) |>
+         dplyr::rename(icb_code = icb23cd)
+  ),
+  tar_target(mha_conv_map_3,
+             get_map_of_conversion_path(icb_boundary,
+                                        mha_conv_icb_tab,
+                                        "Section 3 renewal")),
+  tar_target(mha_conv_map_136_2,
+             get_map_of_conversion_path(icb_boundary,
+                                        mha_conv_icb_tab,
+                                        "Section 136 to Section 2")),
+  tar_target(mha_conv_map_52_2,
+             get_map_of_conversion_path(icb_boundary,
+                                        mha_conv_icb_tab,
+                                        "Section 5(2) to Section 2")),
 
 
   ## HONOS ---------------------------------------------------------------------
