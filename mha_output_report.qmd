@@ -1322,8 +1322,6 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 
 :::::::::::::::: panel-tabset
 
-::::::::
-
 ##### Fin. Year
 
 ::::: columns
@@ -1551,9 +1549,8 @@ tar_read(DTT_ICB_map_9_2023_24)
 tar_read(DTT_ICB_map_10_2023_24)
 ```
 :::
-
-::::::::
-
+::::::
 ::::::::::::::::
+
 
 
