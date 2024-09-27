@@ -399,7 +399,7 @@ mha_conversion_table <- function(tar_obj, feature) {
         "_" = " ",
         "54" = "5(4)",
         "52" = "5(2)",
-        "135 136" = "135/136"
+        "135 136 to Section 5" = "135/136 to Section 5(2)/5(4)"
       )
     )) |>
     PHEindicatormethods::phe_proportion(
@@ -437,9 +437,89 @@ mha_conversion_bar_plot <- function(tar_obj, feature, feature_txt, title_txt){
     coord_flip() +
     theme_minimal() +
     labs(title = "Selected conversion pathways during MHA detention spells",
-         subtitle = paste0("Completed detention by ", title_txt, ", 2018/19 to 2023/24"),
+         subtitle = paste0("Completed detention by ", title_txt, ", 2019/20 to 2023/24"),
          x= "Conversion description",
          y= "Percentage of all detention spells")
 
   return(plot)
 }
+
+
+get_number_converted_all <- function(data, section_number, group) {
+  if (grepl("\\(", section_number)) {
+    start <- paste0(stringr::str_replace_all(section_number, c("\\(" = "\\\\(", "\\)" = "\\\\)")), "-")
+  } else {
+    start <- paste0(section_number, "-")
+  }
+
+  converted <- data |>
+    dplyr::filter(stringr::str_starts(sections_all, start) |
+                    sections_all == section_number) |>
+    dplyr::mutate(first_two_sections = ifelse(
+      grepl("-", sections_all),
+      stringr::word(sections_all, 1, 2, sep = "-"),
+      sections_all
+    )) |>
+    dplyr::summarise(number = sum(spells),
+                     .by = c(first_two_sections, !!rlang::sym(group)))
+
+  return(converted)
+}
+
+get_number_converted_table <- function(data, section_number) {
+  total <- data |>
+    dplyr::summarise(total = sum(number), .by = fin_year)
+
+  summary <- data |>
+    dplyr::mutate(
+      desc = case_when(
+        first_two_sections == section_number ~ "not_converted",
+        first_two_sections == paste0(section_number, "-2") ~ "converted_to_2",
+        first_two_sections == paste0(section_number, "-3") ~ "converted_to_3",
+        .default = "converted_to_other"
+      )
+    ) |>
+    dplyr::summarise(number = sum(number), .by = c(desc, fin_year)) |>
+    dplyr::left_join(total, "fin_year") |>
+    dplyr::mutate(perc = number * 100 / total, section = section_number) |>
+    dplyr::relocate(section, fin_year)
+
+  return(summary)
+}
+
+get_number_converted_plot <- function(data, section_number) {
+  plot <- data |>
+    ggplot2::ggplot(ggplot2::aes(fin_year, perc, group = desc, col = desc)) +
+    ggplot2::geom_line() +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(
+      x = "Financial year",
+      y = "Percentage converted",
+      fill = "Type of conversion",
+      title = glue::glue("Percentage of conversions from Section {section_number}"),
+      subtitle = glue::glue(
+        "All spells starting with Section {section_number} converted to Section 2, Section 3, another Section or not converted"
+      )
+    )
+
+  return(plot)
+}
+
+get_conversions_from_section <- function(data, section_number, group = "fin_year") {
+  overall <- get_number_converted_all(data, section_number, group)
+
+  table <- get_number_converted_table(overall, section_number)
+
+  plot <- get_number_converted_plot(table, section_number)
+
+  summary <- overall |>
+    dplyr::summarise(number = sum(number), .by = first_two_sections) |>
+    dplyr::arrange(desc(number))
+
+  return(list(
+    table = table,
+    plot = plot,
+    summary = summary
+  ))
+}
+

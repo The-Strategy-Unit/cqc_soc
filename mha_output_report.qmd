@@ -184,7 +184,7 @@ For those spells containing more than 1 detention episode, the following are the
 
 ```{r}
 tar_read(conversion_map) |> 
-  filter(fin_year != '2018-2019', fin_year != '2024-2025', age_group != '25+', epi_count > 1) |>
+  filter(age_group != '25+', epi_count > 1) |>
   group_by(fin_year, sections_all) |> 
   summarise(spells = sum(spells)) |> 
   pivot_wider(names_from = fin_year, values_from = spells) |> 
@@ -285,34 +285,199 @@ tar_read(mha_conv_imd_tab) |>
 ```
 :::
 
-##### ICB area
-
-::: panel-tabset
-###### Section 3
-
-```{r}
-#| label: fig-conversion-map-3
-#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
-tar_read(mha_conv_map_3)
-```
-
-###### Section 136 to Section 2
-
-```{r}
-#| label: fig-conversion-map-136-2
-#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
-tar_read(mha_conv_map_136_2)
-```
-
-###### Section 5(2) to Section 2
-
-```{r}
-#| label: fig-conversion-map-52-2
-#| fig-cap: Percentage of pathways containing at least one section 3 renewal by ICB.
-tar_read(mha_conv_map_52_2)
-```
-:::
 ::::::::
+
+#### Conversions from MHA detentions starting under specific Sections
+
+:::panel-tabset
+
+##### Section 4
+
+:::panel-tabset
+
+###### Chart
+
+```{r}
+#| label: fig-conversion-4
+#| fig-cap: Percentage of conversions of spells starting with a MHA detention under Section 4.
+
+tar_read(mha_conv_from_4)$plot
+```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-4
+#| tbl-cap: Percentage of conversions of spells starting with a MHA detention under Section 4.
+
+tar_read(mha_conv_from_4)$table |> 
+  create_dt()
+```
+
+###### Summary
+
+```{r}
+#| label: tbl-conversion-4-summary
+#| tbl-cap: Summary of conversions from a MHA detention under Section 4 from 2019/20 to 2023/24.
+
+tar_read(mha_conv_from_4)$summary |> 
+  create_dt()
+```
+
+###### Map
+
+```{r}
+#| label: fig-conversion-4-map
+#| fig-cap: Percentage of spells starting with a MHA detention under Section 4 that were converted to either Section 2 or Section 3.
+
+tar_read(mha_conv_from_4_map) +
+  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 4 converted to Sections 2 or 3 .")
+```
+
+:::
+
+##### Section 136
+
+:::panel-tabset
+
+###### Chart
+
+```{r}
+#| label: fig-conversion-136
+#| fig-cap: Percentage of conversions of spells starting with a MHA detention under Section 136.
+
+tar_read(mha_conv_from_136)$plot
+```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-136
+#| tbl-cap: Percentage of conversions of spells starting with a MHA detention under Section 136.
+
+tar_read(mha_conv_from_136)$table |> 
+  create_dt()
+```
+
+###### Summary
+
+```{r}
+#| label: tbl-conversion-136-summary
+#| tbl-cap: Summary of conversions from a MHA detention under Section 136 from 2019/20 to 2023/24.
+
+tar_read(mha_conv_from_136)$summary |> 
+  create_dt()
+```
+
+###### Map
+
+```{r}
+#| label: fig-conversion-136-map
+#| fig-cap: Percentage of spells starting with a MHA detention under Section 136 that were converted to either Section 2 or Section 3.
+
+tar_read(mha_conv_from_136_map)
+```
+
+:::
+
+##### Section 5(2)
+
+:::panel-tabset
+
+###### Chart
+
+```{r}
+#| label: fig-conversion-52
+#| fig-cap: Percentage of conversions of spells starting with a MHA detention under Section 5(2).
+
+tar_read(mha_conv_from_52)$plot
+```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-52
+#| tbl-cap: Percentage of conversions of spells starting with a MHA detention under Section 5(2).
+
+tar_read(mha_conv_from_52)$table |> 
+  create_dt()
+```
+
+###### Summary
+
+```{r}
+#| label: tbl-conversion-52-summary
+#| tbl-cap: Summary of conversions from a MHA detention under Section 5(2) from 2019/20 to 2023/24.
+
+tar_read(mha_conv_from_52)$summary |> 
+  create_dt()
+```
+
+###### Map
+
+```{r}
+#| label: fig-conversion-52-map
+#| fig-cap: Percentage of spells starting with a MHA detention under Section 5(2) that were converted to either Section 2 or Section 3.
+
+tar_read(mha_conv_from_52_map)
+```
+
+:::
+
+##### Section 5(4)
+
+:::panel-tabset
+
+###### Chart
+
+```{r}
+#| label: fig-conversion-54
+#| fig-cap: Percentage of conversions of spells starting with a MHA detention under Section 5(4).
+
+tar_read(mha_conv_from_54)$plot
+```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-54
+#| tbl-cap: Percentage of conversions of spells starting with a MHA detention under Section 5(4).
+
+tar_read(mha_conv_from_54)$table |> 
+  create_dt()
+```
+
+###### Summary
+
+```{r}
+#| label: tbl-conversion-54-summary
+#| tbl-cap: Summary of conversions from a MHA detention under Section 5(4) from 2019/20 to 2023/24.
+
+tar_read(mha_conv_from_54)$summary |> 
+  create_dt()
+```
+
+###### Map
+
+```{r}
+#| label: fig-conversion-54-map
+#| fig-cap: Percentage of spells starting with a MHA detention under Section 5(4) that were converted to Section 2, Section 3 or Section 5(2).
+
+tar_read(mha_conv_from_54_map) +
+  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4) converted to Sections 2, 3 or 5(2).")
+```
+
+:::
+
+:::
+
+#### MHA detentions with Section 2 to Section 3 pathways
+
+```{r}
+#| label: fig-conversion-2-to-3
+#| fig-cap: Spells containing a conversion from Section 2 to Section 3.
+tar_read(mha_conf_from_2_to_3)
+```
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}
 
