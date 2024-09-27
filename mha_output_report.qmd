@@ -888,25 +888,49 @@ tar_read(honos_scatter)
 ```
 :::
 
-## Distance to Travel (DTT)
+## Distance to Travel (DTT) in Mental Health Services
 
-The Ward Location Distance from Home metric recorded in MHSDS represents the geographical distance between a patient's residential address and the ward location where they received treatment. This metric is commonly used to assess the accessibility of healthcare services and inform population health planning. By understanding the distance between a patient's home and the healthcare facility, we can gain insights into the convenience and proximity of services, identify potential barriers to healthcare access, and inform resource allocation decisions.
+The *Ward Location Distance from Home* metric in the Mental Health Services Data Set (MHSDS) represents the geographical distance between a patient’s recorded residential address and the location of the ward where they received mental health treatment. This metric is crucial for evaluating the accessibility of healthcare services and can help inform population health planning. Understanding this distance enables insight into the proximity and convenience of services for patients, identifying potential barriers to healthcare access, such as long travel distances, and guiding resource allocation decisions.
 
-The data and analysis in this section relates to **all** mental health inpatient admissions for which Distance to Travel was recorded in the patient's records and not just those associated with detention under the MHA.
+This section analyzes all mental health inpatient admissions where *Ward Location Distance from Home* was recorded, including both voluntary admissions and detentions under the Mental Health Act (MHA).
 
-### Methodology
+### Methodology for DTT Calculation
 
-**Definition:** This variable represents the geographical distance between a patient's residential address and the ward location where they received treatment. It is often used to assess the accessibility of healthcare services and inform population health planning.
+#### Definition
 
-**Interpretation:** Lower values may indicate greater accessibility and convenience for patients. Higher values may suggest potential barriers to healthcare access, such as long travel times or transportation difficulties or may reflect centralisation of service provision.
+The *Ward Location Distance from Home* variable represents the geographical distance between a patient’s residential address and the treatment ward location. It is typically used to assess healthcare service accessibility, with potential applications in planning service provision and identifying underserved areas.
 
-**Calculation of 'Ward location distance from home':** The distance to travel (DTT) for each admission was calculated as the average distance per admission and the median distance per admission. The analysis includes breakdowns by fiscal year, ICB, gender, age group, and ethnicity allowing us to observe distance-related trends. The DTT is also compared with the total number of admissions in order to understand whether increasing or decreasing demand may be a contributing factor to changes in DTT.
+#### Interpretation
 
--   **Derived from:** SITE CODE (OF TREATMENT)
+-   **Lower DTT Values**: Indicate that healthcare services are likely more accessible and convenient for the patient, suggesting proximity to mental health services.
 
--   **NHS Digital guidance:** Look up the postcode for this SiteCode in the ODS reference data file that holds the address for organisation sites. Then identify the Northings\\Eastings for this postcode by using the ONS NHS Postcode Directory file.
+-   **Higher DTT Values**: May reflect difficulties in accessing healthcare due to distance, long travel times, or transportation barriers. Higher values might also indicate centralization of services, requiring patients to travel further.
 
--   **Reference:** <https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary>
+### Address Data Challenges for the 18-24 Year-Old Cohort
+
+For younger adults, especially those attending university or college, the *Ward Location Distance from Home* variable may not accurately reflect their actual living circumstances. The data used for distance calculations is drawn from the *Personal Demographics Service (PDS)*, which stores the permanent address registered with the patient’s GP. For many students, this address remains their family home unless they update their GP records after moving into temporary university accommodation.
+
+As a result, distance calculations may overestimate travel distances for this age group if the permanent address is far from their current university residence. This discrepancy can skew analyses of healthcare access and service utilization for young adults, who might not have updated their GP with their temporary address at university​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service))​([NHS England](https://www.england.nhs.uk/long-read/personal-demographic-service-pds/)).
+
+#### Address Update Implications
+
+Since the PDS only updates a patient's address when the individual informs their GP of a change, students who fail to do so will have distances calculated based on outdated information. For those without a stable address, NHS systems use pseudo postcodes or the GP practice’s postcode for administrative purposes, which could further complicate distance-related analyses for transient populations​([nhs.uk](https://service-manual.nhs.uk/standards-and-technology/technology/personal-demographics-service-PDS))​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
+
+Considering these factors is essential when interpreting DTT data for younger populations, as the permanent address recorded in the PDS might not align with the patient’s current temporary living arrangements.
+
+### Calculation of Ward Location Distance from Home
+
+-   **Metric**: The Distance to Travel (DTT) for each admission was calculated as both the average and median distance per admission.
+
+-   **Breakdowns**: The analysis includes breakdowns by fiscal year, Integrated Care Board (ICB), gender, age group, and ethnicity. These breakdowns allow for the observation of trends and patterns in distance-related barriers to accessing mental health services.
+
+-   **Comparison**: DTT is compared to total admission numbers to assess whether changing demand impacts the travel distance required for mental health services.
+
+#### Data Source:
+
+-   **Site Code of Treatment**: The *SiteCode* used in these analyses is derived from NHS Digital’s Organisation Data Service (ODS) reference files. The relevant postcode is matched to Northings/Eastings using the Office for National Statistics (ONS) Postcode Directory file ​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
+
+For further technical information, refer to NHS Digital’s [Data Set Technical Guidance](https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary) ​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
 
 ### Discussion on Results from Analysis
 
@@ -1569,7 +1593,7 @@ tar_read(DTT_ICB_map_10_2023_24)
 #### Multiple subgroup splits of the data
 
 :::::: panel-tabset
-#### Gender and Age Group over time (FY)
+#### Gender by Age Group alongside admissions over time (FY)
 
 ::: panel-tabset
 ##### Chart
@@ -1585,7 +1609,7 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ```
 :::
 
-#### IMD trends by Gender Over Time
+#### Gender by IMD trends over time
 
 ![](images/clipboard-3644674288.png)
 
