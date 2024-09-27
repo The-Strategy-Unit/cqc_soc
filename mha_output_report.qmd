@@ -297,7 +297,6 @@ tar_read(mha_conv_imd_tab) |>
 ```{r}
 #| label: fig-conversion-4
 #| fig-cap: Percentage of conversions of spells starting with a MHA detention under Section 4.
-
 tar_read(mha_conv_from_4)$plot
 ```
 
@@ -1060,19 +1059,19 @@ The *Ward Location Distance from Home* variable represents the geographical dist
 
 -   **Higher DTT Values**: May reflect difficulties in accessing healthcare due to distance, long travel times, or transportation barriers. Higher values might also indicate centralization of services, requiring patients to travel further.
 
-### Address Data Challenges for the 18-24 Year-Old Cohort
+#### Address Data Challenges for the 18-24 Year-Old Cohort
 
 For younger adults, especially those attending university or college, the *Ward Location Distance from Home* variable may not accurately reflect their actual living circumstances. The data used for distance calculations is drawn from the *Personal Demographics Service (PDS)*, which stores the permanent address registered with the patient’s GP. For many students, this address remains their family home unless they update their GP records after moving into temporary university accommodation.
 
 As a result, distance calculations may overestimate travel distances for this age group if the permanent address is far from their current university residence. This discrepancy can skew analyses of healthcare access and service utilization for young adults, who might not have updated their GP with their temporary address at university​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service))​([NHS England](https://www.england.nhs.uk/long-read/personal-demographic-service-pds/)).
 
-#### Address Update Implications
+##### Address Update Implications
 
 Since the PDS only updates a patient's address when the individual informs their GP of a change, students who fail to do so will have distances calculated based on outdated information. For those without a stable address, NHS systems use pseudo postcodes or the GP practice’s postcode for administrative purposes, which could further complicate distance-related analyses for transient populations​([nhs.uk](https://service-manual.nhs.uk/standards-and-technology/technology/personal-demographics-service-PDS))​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
 
 Considering these factors is essential when interpreting DTT data for younger populations, as the permanent address recorded in the PDS might not align with the patient’s current temporary living arrangements.
 
-### Calculation of Ward Location Distance from Home
+#### Calculation of Ward Location Distance from Home
 
 -   **Metric**: The Distance to Travel (DTT) for each admission was calculated as both the average and median distance per admission.
 
