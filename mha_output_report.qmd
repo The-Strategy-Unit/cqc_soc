@@ -197,7 +197,7 @@ tar_read(conversion_map) |>
 
 The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal".
 
-:::::::: panel-tabset
+::::::: panel-tabset
 ##### Age group
 
 ::: panel-tabset
@@ -284,17 +284,14 @@ tar_read(mha_conv_imd_tab) |>
   create_dt()
 ```
 :::
-
-::::::::
+:::::::
 
 #### Conversions from MHA detentions starting under specific Sections
 
-:::panel-tabset
-
+::::::: panel-tabset
 ##### Section 4
 
-:::panel-tabset
-
+::: panel-tabset
 ###### Chart
 
 ```{r}
@@ -333,13 +330,11 @@ tar_read(mha_conv_from_4)$summary |>
 tar_read(mha_conv_from_4_map) +
   ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 4 converted to Sections 2 or 3 .")
 ```
-
 :::
 
 ##### Section 136
 
-:::panel-tabset
-
+::: panel-tabset
 ###### Chart
 
 ```{r}
@@ -377,13 +372,11 @@ tar_read(mha_conv_from_136)$summary |>
 
 tar_read(mha_conv_from_136_map)
 ```
-
 :::
 
 ##### Section 5(2)
 
-:::panel-tabset
-
+::: panel-tabset
 ###### Chart
 
 ```{r}
@@ -421,13 +414,11 @@ tar_read(mha_conv_from_52)$summary |>
 
 tar_read(mha_conv_from_52_map)
 ```
-
 :::
 
 ##### Section 5(4)
 
-:::panel-tabset
-
+::: panel-tabset
 ###### Chart
 
 ```{r}
@@ -466,10 +457,8 @@ tar_read(mha_conv_from_54)$summary |>
 tar_read(mha_conv_from_54_map) +
   ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4) converted to Sections 2, 3 or 5(2).")
 ```
-
 :::
-
-:::
+:::::::
 
 #### MHA detentions with Section 2 to Section 3 pathways
 
