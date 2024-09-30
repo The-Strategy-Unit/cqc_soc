@@ -350,7 +350,6 @@ tar_read(mha_conv_imd_tab) |>
 
 Sections 4, 5(2), 5(4) and 136 of the MHA are short-term detentions to allow for a MHA assessment to take place before the patient is either detained under another section of the MHA or discharged. The following analysis concerns MHA detentions starting under Sections 4, 5(2), 5(4) and 136 and the subsequent non-conversions or conversions to Section 2, Section 3 or other sections of the MHA.
 
-::::::: panel-tabset
 ##### Section 4
 
 ::: panel-tabset
@@ -382,15 +381,29 @@ tar_read(mha_conv_from_4)$summary |>
   create_dt()
 ```
 
+:::
+
+::: panel-tabset
 ###### Map
 
 ```{r}
 #| label: fig-conversion-4-map
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 4 that were converted to either Section 2 or Section 3.
 
-tar_read(mha_conv_from_4_map) +
+tar_read(mha_conv_from_4_map)$map +
   ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 4.")
 ```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-4-map
+#| tbl-cap: Percentage of spells starting with a MHA detention under Section 4 that were converted to either Section 2 or Section 3.
+
+tar_read(mha_conv_from_4_map)$table |> 
+  create_dt()
+```
+
 :::
 
 ##### Section 5(2)
@@ -425,14 +438,28 @@ tar_read(mha_conv_from_52)$summary |>
   create_dt()
 ```
 
+:::
+
+::: panel-tabset
 ###### Map
 
 ```{r}
 #| label: fig-conversion-52-map
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 5(2) that were converted to either Section 2 or Section 3.
 
-tar_read(mha_conv_from_52_map)
+tar_read(mha_conv_from_52_map)$map
 ```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-52-map
+#| tbl-cap: Percentage of spells starting with a MHA detention under Section 5(2) that were converted to either Section 2 or Section 3.
+
+tar_read(mha_conv_from_52_map)$table |> 
+  create_dt()
+```
+
 :::
 
 ##### Section 5(4)
@@ -467,15 +494,29 @@ tar_read(mha_conv_from_54)$summary |>
   create_dt()
 ```
 
+:::
+
+::: panel-tabset
 ###### Map
 
 ```{r}
 #| label: fig-conversion-54-map
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 5(4) that were converted to Section 2, Section 3 or Section 5(2).
 
-tar_read(mha_conv_from_54_map) +
+tar_read(mha_conv_from_54_map)$map +
   ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4).")
 ```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-54-map
+#| tbl-cap: Percentage of spells starting with a MHA detention under Section 5(4) that were converted to either Section 2, Section 3 or Section 5(2).
+
+tar_read(mha_conv_from_54_map)$table |> 
+  create_dt()
+```
+
 :::
 
 ##### Section 136
@@ -510,28 +551,50 @@ tar_read(mha_conv_from_136)$summary |>
   create_dt()
 ```
 
+:::
+
+::: panel-tabset
+
 ###### Map
 
 ```{r}
 #| label: fig-conversion-136-map
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 136 that were converted to either Section 2 or Section 3.
 
-tar_read(mha_conv_from_136_map)
+tar_read(mha_conv_from_136_map)$map
 ```
+
+###### Table
+
+```{r}
+#| label: tbl-conversion-136-map
+#| tbl-cap: Percentage of spells starting with a MHA detention under Section 136 that were converted to either Section 2 or Section 3.
+
+tar_read(mha_conv_from_136_map)$table |> 
+  create_dt()
+```
+
 :::
-:::::::
 
 #### MHA detentions with Section 2 to Section 3 pathways
 
 This is all MHA detention spells in 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
+::: panel-tabset
 ```{r}
 #| label: fig-conversion-2-to-3
 #| fig-cap: Spells containing a conversion from Section 2 to Section 3.
-tar_read(mha_conf_from_2_to_3)  +
-  ggplot2::labs(caption = "Grey areas for ICBs that had no spells containing a conversion from Section 2 to Sectoin 3.")
+tar_read(mha_conf_from_2_to_3)$map  +
+  ggplot2::labs(caption = "Grey areas for ICBs that had no spells containing a conversion from Section 2 to Section 3.")
 ```
 
+```{r}
+#| label: tbl-conversion-2-to-3
+#| tbl-cap: Spells containing a conversion from Section 2 to Section 3.
+tar_read(mha_conf_from_2_to_3)$table
+```
+
+:::
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}
 
