@@ -1775,11 +1775,11 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 #### Avg DTT over 2020/21 - 2024/25 by Age, Gender, Ethnicity and IMD
 
 ::: panel-tabset
-##### Heat map (Tableau version)
+##### Heat map
+
+![](Heather Scratch Space/Tableau Plots/Final Subgroup Grid.png)
 
 ![]()
-
-![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Grid.png)
 
 ##### Table
 
