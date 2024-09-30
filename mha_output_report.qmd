@@ -1755,6 +1755,8 @@ tar_read(DTT_ICB_map_10_2023_24)
 
 ![](Heather Scratch Space/Tableau Plots/Final MM Chart Gender Age.png)
 
+![](Heather Scratch Space/Tableau Plots/Final Gender Age time MM Admissions trend plot.png)
+
 ##### Table
 
 ```{r}
