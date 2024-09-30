@@ -389,7 +389,7 @@ tar_read(mha_conv_from_4)$summary |>
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 4 that were converted to either Section 2 or Section 3.
 
 tar_read(mha_conv_from_4_map) +
-  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 4 converted to Sections 2 or 3 .")
+  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 4.")
 ```
 :::
 
@@ -474,7 +474,7 @@ tar_read(mha_conv_from_54)$summary |>
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 5(4) that were converted to Section 2, Section 3 or Section 5(2).
 
 tar_read(mha_conv_from_54_map) +
-  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4) converted to Sections 2, 3 or 5(2).")
+  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4).")
 ```
 :::
 
@@ -528,8 +528,10 @@ This is all MHA detention spells in 2023/24 containing a conversion from Section
 ```{r}
 #| label: fig-conversion-2-to-3
 #| fig-cap: Spells containing a conversion from Section 2 to Section 3.
-tar_read(mha_conf_from_2_to_3)
+tar_read(mha_conf_from_2_to_3)  +
+  ggplot2::labs(caption = "Grey areas for ICBs that had no spells containing a conversion from Section 2 to Sectoin 3.")
 ```
+
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}
 
