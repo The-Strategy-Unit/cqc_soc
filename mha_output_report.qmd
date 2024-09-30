@@ -1384,7 +1384,7 @@ tar_read(chart_DTT_ethnic_FY)
 
 ##### Mean vs Median
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Ethnicity%20MM%20FY.png)
+![](Heather Scratch Space/Tableau Plots/Final Ethnicity MM FY.png)
 :::
 
 ##### Line/Bar Graphs
@@ -1436,11 +1436,11 @@ tar_read(chart_DTT_IMD_FY)
 
 ##### Mean vs Median IMD (Deciles)
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected.png)
+![](Heather Scratch Space/Tableau Plots/Final IMD MM FY decile.png)
 
 ##### Mean vs Median IMD (Quintiles)
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20MM%20FY%20corrected%20quintile.png)
+![](Heather Scratch Space/Tableau Plots/Final IMD MM FY quintiles.png)
 :::
 
 ##### Line/Bar Charts
@@ -1484,7 +1484,7 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 ::: panel-tabset
 ##### Mean vs Median by FY
 
-Note: Each dot represents one ICB ![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20MM%20FY.png)
+![](Heather Scratch Space/Tableau Plots/Final ICB MM FY.png)
 :::
 
 ##### Heat maps
@@ -1492,11 +1492,11 @@ Note: Each dot represents one ICB ![](Heather%20Scratch%20Space/Tableau%20Plots/
 ::: panel-tabset
 ##### Mean DTT by FY
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Avg%20sorted%20by%202024.png)
+![](Heather Scratch Space/Tableau Plots/Final ICB Avg.png)
 
 ##### Median DTT by FY
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/ICB%20Med%20sorted%20by%202024.png)
+![](Heather Scratch Space/Tableau Plots/Final ICB Med.png)
 :::
 
 ##### Tables
@@ -1747,13 +1747,13 @@ tar_read(DTT_ICB_map_10_2023_24)
 
 #### Multiple subgroup splits of the data
 
-:::::: panel-tabset
+::::: panel-tabset
 #### Gender by Age Group alongside admissions over time (FY)
 
 ::: panel-tabset
 ##### Chart
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/MM%20Chart%20Gender%20Age%20Admissions.png)
+![](Heather Scratch Space/Tableau Plots/Final MM Chart Gender Age.png)
 
 ##### Table
 
@@ -1766,28 +1766,20 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 
 #### Gender by IMD trends over time
 
-![](images/clipboard-3644674288.png)
+![](Heather Scratch Space/Tableau Plots/Final IMD by gender over time.png)
 
 ##### IMD over time by age and gender
 
-::: panel-tabset
-![](Heather%20Scratch%20Space/Tableau%20Plots/IMD%20by%20age%20gender%20time%20corrected%20avg.png)
-:::
+![](Heather Scratch Space/Tableau Plots/Final IMD gender age time average.png)
 
 #### Avg DTT over 2020/21 - 2024/25 by Age, Gender, Ethnicity and IMD
 
 ::: panel-tabset
 ##### Heat map (Tableau version)
 
+![]()
+
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Better%20Grid.png)
-
-##### Heat map (R version)
-
-```{r}
-#| label: fig-ICB-heat-map
-#| fig-cap: "Chart summarizing average distance per ICB." 
-tar_read(heatmap_DTT_subgroups)
-```
 
 ##### Table
 
@@ -1797,4 +1789,4 @@ tar_read(heatmap_DTT_subgroups)
 tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
 ```
 :::
-::::::
+:::::
