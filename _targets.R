@@ -639,7 +639,9 @@ list(
   tar_target(
     conversion_map_cyp,
     get_conversions_mapped(cyp_conversions) |>
-      filter(age_group != '25+')
+      filter(age_group != '25+',
+             fin_year != '2018-2019',
+             fin_year != '2024-2025')
   ),
 
 
@@ -694,48 +696,35 @@ list(
     mha_conversion_table(conversion_map, icb23cd) |>
          dplyr::rename(icb_code = icb23cd)
   ),
-  # maps
-  # tar_target(mha_conv_map_3,
-  #            get_map_of_conversion_path(icb_boundary,
-  #                                       mha_conv_icb_tab,
-  #                                       "Section 3 renewal")),
-  # tar_target(mha_conv_map_136_2,
-  #            get_map_of_conversion_path(icb_boundary,
-  #                                       mha_conv_icb_tab,
-  #                                       "Section 136 to Section 2")),
-  # tar_target(mha_conv_map_52_2,
-  #            get_map_of_conversion_path(icb_boundary,
-  #                                       mha_conv_icb_tab,
-  #                                       "Section 5(2) to Section 2")),
 
   # conversions from specific sections
   tar_target(mha_conv_from_52,
-             get_conversions_from_section(conversion_map, "5(2)")),
+             get_conversions_from_section(conversion_map_cyp, "5(2)")),
   tar_target(mha_conv_from_54,
-             get_conversions_from_section(conversion_map, "5(4)")),
+             get_conversions_from_section(conversion_map_cyp, "5(4)")),
   tar_target(mha_conv_from_4,
-             get_conversions_from_section(conversion_map, "4")),
+             get_conversions_from_section(conversion_map_cyp, "4")),
   tar_target(mha_conv_from_136,
-             get_conversions_from_section(conversion_map, "136")),
+             get_conversions_from_section(conversion_map_cyp, "136")),
 
   tar_target(mha_conv_from_52_map,
-             get_conversions_from_map(conversion_map,
+             get_conversions_from_map(conversion_map_cyp,
                                       "5(2)",
                                       icb_boundary)),
   tar_target(mha_conv_from_54_map,
-             get_conversions_from_map(conversion_map,
+             get_conversions_from_map(conversion_map_cyp,
                                       "5(4)",
                                       icb_boundary)),
   tar_target(mha_conv_from_4_map,
-             get_conversions_from_map(conversion_map,
+             get_conversions_from_map(conversion_map_cyp,
                                       "4",
                                       icb_boundary)),
   tar_target(mha_conv_from_136_map,
-             get_conversions_from_map(conversion_map,
+             get_conversions_from_map(conversion_map_cyp,
                                       "136",
                                       icb_boundary)),
   tar_target(mha_conf_from_2_to_3,
-             get_perc_map_2_to_3(conversion_map |>
+             get_perc_map_2_to_3(conversion_map_cyp |>
                                    dplyr::filter(fin_year == "2023-2024"),
                                  icb_boundary)),
 
