@@ -514,6 +514,7 @@ get_conversions_from_section <- function(data, section_number, group = "fin_year
 
   summary <- overall |>
     dplyr::summarise(number = sum(number), .by = first_two_sections) |>
+    dplyr::mutate(perc = number * 100 / sum(number)) |>
     dplyr::arrange(desc(number))
 
   return(list(
