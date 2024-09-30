@@ -124,13 +124,13 @@ get_top_path_from_section <- function(data){
 }
 ```
 
-- The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
-- The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
-- **INSERT SOMETHING HERE ABOUT SPECIFIC PATHWAYS BY GROUP**
-- The majority (`r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 4 are `r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$path`.
-- `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$perc`% of Mental Health Act Detention spells starting under Section 5(2) are `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$path`.
-- The majority (`r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 5(4) are `r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$path`.
-- The majority (`r get_top_path_from_section(tar_read(mha_conv_from_136)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 136 are `r get_top_path_from_section(tar_read(mha_conv_from_136)$summary)$path`.
+-   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
+-   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
+-   **INSERT SOMETHING HERE ABOUT SPECIFIC PATHWAYS BY GROUP**
+-   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 4 are `r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$path`.
+-   `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$perc`% of Mental Health Act Detention spells starting under Section 5(2) are `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$path`.
+-   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 5(4) are `r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$path`.
+-   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_136)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 136 are `r get_top_path_from_section(tar_read(mha_conv_from_136)$summary)$path`.
 
 ### Mental Health Act Detention Spell Length of Stay
 
@@ -477,6 +477,7 @@ tar_read(mha_conv_from_54_map) +
   ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4) converted to Sections 2, 3 or 5(2).")
 ```
 :::
+
 ##### Section 136
 
 ::: panel-tabset
@@ -518,12 +519,11 @@ tar_read(mha_conv_from_136)$summary |>
 tar_read(mha_conv_from_136_map)
 ```
 :::
-
 :::::::
 
 #### MHA detentions with Section 2 to Section 3 pathways
 
-This is all MHA detention spells in 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections. 
+This is all MHA detention spells in 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
 ```{r}
 #| label: fig-conversion-2-to-3
@@ -1448,7 +1448,7 @@ tar_read(chart_DTT_ethnic_FY)
 
 ##### Mean vs Median
 
-![](Heather Scratch Space/Tableau Plots/Final Ethnicity MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Ethnicity%20MM%20FY.png)
 :::
 
 ##### Line/Bar Graphs
@@ -1500,11 +1500,11 @@ tar_read(chart_DTT_IMD_FY)
 
 ##### Mean vs Median IMD (Deciles)
 
-![](Heather Scratch Space/Tableau Plots/Final IMD MM FY decile.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20MM%20FY%20decile.png)
 
 ##### Mean vs Median IMD (Quintiles)
 
-![](Heather Scratch Space/Tableau Plots/Final IMD MM FY quintiles.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20MM%20FY%20quintiles.png)
 :::
 
 ##### Line/Bar Charts
@@ -1548,7 +1548,7 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 ::: panel-tabset
 ##### Mean vs Median by FY
 
-![](Heather Scratch Space/Tableau Plots/Final ICB MM FY.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20ICB%20MM%20FY.png)
 :::
 
 ##### Heat maps
@@ -1556,11 +1556,11 @@ tar_read(DTT_IMD_FY) %>% create_dt()
 ::: panel-tabset
 ##### Mean DTT by FY
 
-![](Heather Scratch Space/Tableau Plots/Final ICB Avg.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20ICB%20Avg.png)
 
 ##### Median DTT by FY
 
-![](Heather Scratch Space/Tableau Plots/Final ICB Med.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20ICB%20Med.png)
 :::
 
 ##### Tables
@@ -1817,9 +1817,9 @@ tar_read(DTT_ICB_map_10_2023_24)
 ::: panel-tabset
 ##### Chart
 
-![](Heather Scratch Space/Tableau Plots/Final MM Chart Gender Age.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20MM%20Chart%20Gender%20Age.png)
 
-![](Heather Scratch Space/Tableau Plots/Final Gender Age time MM Admissions trend plot.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20time%20MM%20Admissions%20trend%20plot.png)
 
 ##### Table
 
@@ -1832,18 +1832,18 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 
 #### Gender by IMD trends over time
 
-![](Heather Scratch Space/Tableau Plots/Final IMD by gender over time.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20by%20gender%20over%20time.png)
 
 ##### IMD over time by age and gender
 
-![](Heather Scratch Space/Tableau Plots/Final IMD gender age time average.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20gender%20age%20time%20average.png)
 
 #### Avg DTT over 2020/21 - 2024/25 by Age, Gender, Ethnicity and IMD
 
 ::: panel-tabset
 ##### Heat map
 
-![](Heather Scratch Space/Tableau Plots/Final Subgroup Grid.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Subgroup%20Grid.png)
 
 ![]()
 
