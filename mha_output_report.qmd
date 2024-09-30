@@ -1783,10 +1783,6 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 
 ##### Table
 
-```{r}
-#| label: fig-gender-age-ethnicity-IMD-5-years-average-distance-admissions
-#| fig-cap: "Table summarizing average distance and total admissions by gender, age group, ethnicity, and IMD over 5 years."
-tar_read(DTT_admissions_gender_age_group_ethnicity_IMD_over_5_years)%>% create_dt()
-```
+Removed due to small numbers
 :::
 :::::
