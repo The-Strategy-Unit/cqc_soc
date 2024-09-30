@@ -728,8 +728,7 @@ list(
                                       icb_boundary,
                                       icb_codes_names)),
   tar_target(mha_conf_from_2_to_3,
-             get_perc_map_2_to_3(conversion_map_cyp |>
-                                   dplyr::filter(fin_year == "2023-2024"),
+             get_perc_map_2_to_3(conversion_map_cyp,
                                  icb_boundary,
                                  icb_codes_names)),
 

@@ -503,8 +503,7 @@ tar_read(mha_conv_from_54)$summary |>
 #| label: fig-conversion-54-map
 #| fig-cap: Percentage of spells starting with a MHA detention under Section 5(4) that were converted to Section 2, Section 3 or Section 5(2).
 
-tar_read(mha_conv_from_54_map)$map +
-  ggplot2::labs(caption = "Grey areas for ICBs that had no spells starting with Section 5(4).")
+tar_read(mha_conv_from_54_map)$map
 ```
 
 ###### Table

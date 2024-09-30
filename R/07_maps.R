@@ -70,8 +70,7 @@ map_icb_allmh_111 <- function(layer, data, year) {
 
 
 get_conversions_from_map <- function(data, section_number, layer, ref) {
-  converted <- get_number_converted_all(data |>
-                                          dplyr::filter(fin_year == "2023-2024"),
+  converted <- get_number_converted_all(data,
                                         section_number,
                                         "icb23cd")
 
@@ -104,7 +103,8 @@ get_conversions_from_map <- function(data, section_number, layer, ref) {
 
   table <- converted_to_2_or_3 |>
     dplyr::left_join(ref, by = c("icb23cd" = "icb_code")) |>
-    select(icb_name, number, total, perc)
+    select(icb_name, number, total, perc) |>
+    dplyr::arrange(desc(perc))
 
   map <- layer |>
     left_join(converted_to_2_or_3, by = c("ICB23CD" = "icb23cd")) |>
@@ -122,7 +122,7 @@ get_conversions_from_map <- function(data, section_number, layer, ref) {
       title = glue::glue(
         "Percentage of conversions from Section {section_number} to {sections}"
       ),
-      subtitle = "Completed MHA detentions by ICB in 2023/24",
+      subtitle = "Completed MHA detentions by ICB, 2019/20 to 2023/24",
       fill = "Percentage"
     )
 
