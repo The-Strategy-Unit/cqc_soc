@@ -158,7 +158,7 @@ get_perc_map_2_to_3 <- function(data, layer, ref) {
     theme_void() +
     labs(
       title = "Percentage of spells containing a conversion from Section 2 to Section 3",
-      subtitle = "Completed MHA detentions by ICB in 2023/24",
+      subtitle = "Completed MHA detentions by ICB, 2019/20 to 2023/24",
       fill = "Percentage"
     )
 
