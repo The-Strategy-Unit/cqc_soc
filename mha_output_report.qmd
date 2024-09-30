@@ -580,12 +580,17 @@ tar_read(mha_conv_from_136_map)$table |>
 This is all MHA detention spells in 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
 ::: panel-tabset
+
+##### Map
+
 ```{r}
 #| label: fig-conversion-2-to-3
 #| fig-cap: Spells containing a conversion from Section 2 to Section 3.
 tar_read(mha_conf_from_2_to_3)$map  +
   ggplot2::labs(caption = "Grey areas for ICBs that had no spells containing a conversion from Section 2 to Section 3.")
 ```
+
+##### Table
 
 ```{r}
 #| label: tbl-conversion-2-to-3
