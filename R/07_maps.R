@@ -115,7 +115,8 @@ get_conversions_from_map <- function(data, section_number, layer, ref) {
       type = "seq",
       palette = "Blues",
       direction = 1,
-      aesthetics = "fill"
+      aesthetics = "fill",
+      limits = c(0, 100)
     ) +
     theme_void() +
     labs(
@@ -153,7 +154,8 @@ get_perc_map_2_to_3 <- function(data, layer, ref) {
       type = "seq",
       palette = "Blues",
       direction = 1,
-      aesthetics = "fill"
+      aesthetics = "fill",
+      limits = c(0, 100)
     ) +
     theme_void() +
     labs(
