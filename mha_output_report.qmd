@@ -1228,7 +1228,7 @@ tar_read(chart_DTT_FY)
 
 ##### Mean vs Median
 
-![](images/clipboard-1492561400.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20MM%20FY.png)
 :::
 
 #### Line/Bar Charts
@@ -1280,7 +1280,7 @@ tar_read(chart_DTT_gender_FY)
 
 ##### Mean vs Median
 
-![](images/clipboard-1940657192.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20MM%20FY.png)
 :::
 
 #### Line/Bar Charts
@@ -1330,7 +1330,9 @@ tar_read(DTT_gender_FY) %>% create_dt()
 tar_read(chart_DTT_age_group_FY)
 ```
 
-##### Mean vs Median![](images/clipboard-1348949205.png)
+##### Mean vs Median
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20MM%20FY.png)
 :::
 
 ## Line / Bar Charts
