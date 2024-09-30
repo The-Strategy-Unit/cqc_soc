@@ -69,9 +69,8 @@ map_icb_allmh_111 <- function(layer, data, year) {
 }
 
 
-get_conversions_from_map <- function(data, section_number, layer) {
-  converted <- get_number_converted_all(data |>
-                                          dplyr::filter(fin_year == "2023-2024"),
+get_conversions_from_map <- function(data, section_number, layer, ref) {
+  converted <- get_number_converted_all(data,
                                         section_number,
                                         "icb23cd")
 
@@ -84,10 +83,7 @@ get_conversions_from_map <- function(data, section_number, layer) {
         first_two_sections == paste0(section_number, "-2") |
           first_two_sections == paste0(section_number, "-3") |
           first_two_sections == paste0(section_number, "-5(2)")
-      ) |>
-      dplyr::summarise(number = sum(number), .by = icb23cd) |>
-      dplyr::left_join(total, "icb23cd") |>
-      dplyr::mutate(perc = number * 100 / total)
+      )
 
     sections <- "Section 2, Section 3 or Section 5(2)"
   } else {
@@ -95,13 +91,20 @@ get_conversions_from_map <- function(data, section_number, layer) {
       dplyr::filter(
         first_two_sections == paste0(section_number, "-2") |
           first_two_sections == paste0(section_number, "-3")
-      ) |>
-      dplyr::summarise(number = sum(number), .by = icb23cd) |>
-      dplyr::left_join(total, "icb23cd") |>
-      dplyr::mutate(perc = number * 100 / total)
+      )
 
     sections <- "Section 2 or Section 3"
   }
+
+  converted_to_2_or_3 <- converted_to_2_or_3|>
+    dplyr::summarise(number = sum(number), .by = icb23cd) |>
+    dplyr::left_join(total, "icb23cd") |>
+    dplyr::mutate(perc = number * 100 / total)
+
+  table <- converted_to_2_or_3 |>
+    dplyr::left_join(ref, by = c("icb23cd" = "icb_code")) |>
+    select(icb_name, number, total, perc) |>
+    dplyr::arrange(desc(perc))
 
   map <- layer |>
     left_join(converted_to_2_or_3, by = c("ICB23CD" = "icb23cd")) |>
@@ -112,21 +115,22 @@ get_conversions_from_map <- function(data, section_number, layer) {
       type = "seq",
       palette = "Blues",
       direction = 1,
-      aesthetics = "fill"
+      aesthetics = "fill",
+      limits = c(0, 100)
     ) +
     theme_void() +
     labs(
       title = glue::glue(
         "Percentage of conversions from Section {section_number} to {sections}"
       ),
-      subtitle = "Completed MHA detentions by ICB in 2023/24",
+      subtitle = "Completed MHA detentions by ICB, 2019/20 to 2023/24",
       fill = "Percentage"
     )
 
-  return(map)
+  return(list(map = map, table = table))
 }
 
-get_perc_map_2_to_3 <- function(data, layer) {
+get_perc_map_2_to_3 <- function(data, layer, ref) {
 
   total <- data |>
     dplyr::summarise(total = sum(spells), .by = icb23cd)
@@ -137,6 +141,10 @@ get_perc_map_2_to_3 <- function(data, layer) {
     dplyr::left_join(total, "icb23cd") |>
     dplyr::mutate(perc = number * 100 / total)
 
+  table <- contains_2_to_3 |>
+    dplyr::left_join(ref, by = c("icb23cd" = "icb_code")) |>
+    select(icb_name, number, total, perc)
+
   map <- layer |>
     left_join(contains_2_to_3, by = c("ICB23CD" = "icb23cd")) |>
     ggplot() +
@@ -146,14 +154,15 @@ get_perc_map_2_to_3 <- function(data, layer) {
       type = "seq",
       palette = "Blues",
       direction = 1,
-      aesthetics = "fill"
+      aesthetics = "fill",
+      limits = c(0, 100)
     ) +
     theme_void() +
     labs(
       title = "Percentage of spells containing a conversion from Section 2 to Section 3",
-      subtitle = "Completed MHA detentions by ICB in 2023/24",
+      subtitle = "Completed MHA detentions by ICB, 2019/20 to 2023/24",
       fill = "Percentage"
     )
 
-  return(map)
+  return(list(map = map, table = table))
 }

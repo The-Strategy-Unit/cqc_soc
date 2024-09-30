@@ -483,6 +483,12 @@ get_number_converted_table <- function(data, section_number) {
     dplyr::left_join(total, "fin_year") |>
     dplyr::mutate(perc = number * 100 / total, section = section_number) |>
     dplyr::relocate(section, fin_year) |>
+    tidyr::complete(fin_year,
+                    desc,
+                    fill = list(section = section_number,
+                                number = 0,
+                                total = 0,
+                                perc = 0)) |>
     dplyr::arrange(fin_year, desc)
 
   return(summary)
