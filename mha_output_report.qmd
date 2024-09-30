@@ -577,7 +577,7 @@ tar_read(mha_conv_from_136_map)$table |>
 
 #### MHA detentions with Section 2 to Section 3 pathways
 
-This is all MHA detention spells in 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
+This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
 ::: panel-tabset
 
