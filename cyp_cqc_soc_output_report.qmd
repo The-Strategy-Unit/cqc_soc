@@ -42,11 +42,9 @@ source("R/quarto_formatting.R")
 
 ## Introduction
 
-The Care Quality Commission (CQC) are looking to supplement their State of Care (SOC) report with relevant additional data and analysis. The latest state of care report can be found here <https://www.cqc.org.uk/publications/major-report/state-care/2022-2023>.
+The Care Quality Commission (CQC) are looking to supplement their work on the mental health of Children and Young People (CYP) with relevant additional data and analysis. One of the key areas of interest is around perceived 'system failure' as measured by inappropriate or avoidable attendance to urgent and emergency care settings for CYP with mental health problems.
 
-One of the key areas of interest is around perceived 'system failure' as measured by inappropriate or avoidable attendance to urgent and emergency care settings for people with mental health problems, particularly in children and young people.
-
-This report investigates these cases specifically in people under the age of 25, and supplements the main report which covers all individuals.
+This report investigates the nature of these cases specifically in people under the age of 25.
 
 ## Data and methods
 
@@ -865,6 +863,4 @@ tar_read(cyp_rural_breakdowns)$uec_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
-
 :::
-
