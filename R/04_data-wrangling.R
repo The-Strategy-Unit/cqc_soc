@@ -438,7 +438,7 @@ get_perc_redetentions <- function(data, group){
     dplyr::summarise(detentions = sum(detentions),
                      attends = sum(attends),
                      .by = c(der_financial_year, !!rlang::sym(group))) |>
-    dplyr::mutate(value = attends * 100 / detentions) |>
+    dplyr::mutate(value = janitor::round_half_up(attends * 100 / detentions, 3)) |>
     dplyr::filter(!!rlang::sym(group) != "NULL")
 
   return(perc)
@@ -451,7 +451,7 @@ get_cyp_redetentions_line <- function(data){
     dplyr::summarise(detentions = sum(detentions),
                      attends = sum(attends),
                      .by = c(der_financial_year)) |>
-    dplyr::mutate(perc = attends * 100 / detentions) |>
+    dplyr::mutate(perc = janitor::round_half_up(attends * 100 / detentions, 3)) |>
     dplyr::rename(redetentions = attends)
 
   plot <- table |>
@@ -490,7 +490,7 @@ get_cyp_readmissions_perc <- function(data){
     dplyr::summarise(detentions = sum(detentions),
                      readmissions = sum(attends),
                      .by = der_financial_year) |>
-    mutate(perc = readmissions * 100 / detentions)
+    mutate(perc = janitor::round_half_up(readmissions * 100 / detentions, 3))
 
   return(wrangled)
 }

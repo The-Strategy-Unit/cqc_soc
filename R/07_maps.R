@@ -103,7 +103,8 @@ get_conversions_from_map <- function(data, section_number, layer, ref) {
 
   table <- converted_to_2_or_3 |>
     dplyr::left_join(ref, by = c("icb23cd" = "icb_code")) |>
-    dplyr::mutate(flag = ifelse(number <= 5 & number > 0 , "<=5", "")) |>
+    dplyr::mutate(flag = ifelse(number <= 5 & number > 0 , "<=5", ""),
+                  perc = janitor::round_half_up(perc, 3)) |>
     suppress_low_number_columns() |>
     dplyr::arrange(desc(perc))
 
@@ -144,7 +145,8 @@ get_perc_map_2_to_3 <- function(data, layer, ref) {
 
   table <- contains_2_to_3 |>
     dplyr::left_join(ref, by = c("icb23cd" = "icb_code")) |>
-    dplyr::mutate(flag = ifelse(number <= 5 & number > 0 , "<=5", "")) |>
+    dplyr::mutate(flag = ifelse(number <= 5 & number > 0 , "<=5", ""),
+                  perc = janitor::round_half_up(perc, 3)) |>
     suppress_low_number_columns()
 
   map <- layer |>

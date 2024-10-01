@@ -481,7 +481,8 @@ get_number_converted_table <- function(data, section_number) {
     ) |>
     dplyr::summarise(number = sum(number), .by = c(desc, fin_year)) |>
     dplyr::left_join(total, "fin_year") |>
-    dplyr::mutate(perc = number * 100 / total, section = section_number,
+    dplyr::mutate(perc = janitor::round_half_up(number * 100 / total, 3),
+                  section = section_number,
                   flag = ifelse(number <= 5 & number > 0 , "<=5", "")) |>
     suppress_low_number_columns() |>
     dplyr::relocate(section, fin_year) |>
@@ -523,7 +524,7 @@ get_conversions_from_section <- function(data, section_number, group = "fin_year
 
   summary <- overall |>
     dplyr::summarise(number = sum(number), .by = first_two_sections) |>
-    dplyr::mutate(perc = number * 100 / sum(number),
+    dplyr::mutate(perc = janitor::round_half_up(number * 100 / sum(number), 3),
                   flag = ifelse(number <= 5 & number > 0 , "<=5", "")) |>
     suppress_low_number_columns()|>
     dplyr::arrange(desc(perc))
