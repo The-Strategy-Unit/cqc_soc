@@ -606,7 +606,8 @@ tar_read(mha_conf_from_2_to_3)$map  +
 ```{r}
 #| label: tbl-conversion-2-to-3
 #| tbl-cap: Spells containing a conversion from Section 2 to Section 3.
-tar_read(mha_conf_from_2_to_3)$table
+tar_read(mha_conf_from_2_to_3)$table |>
+  create_dt()
 ```
 
 :::
