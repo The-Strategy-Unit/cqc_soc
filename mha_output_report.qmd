@@ -60,9 +60,9 @@ knitr::knit_hooks$set(output = function(x, options) {
 
 ## Introduction
 
-The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being finalised that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
+The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being published alongside this that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
 
-The purpose therefore of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
+The purpose of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
 
 ## Data and methods
 
@@ -70,31 +70,22 @@ All of the analysis in this report is sourced from the Mental Health Services Da
 
 In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA super-spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched.
 
-## Summary
+## Summary findings
 
 ### Conversions between sections of the Mental Health Act
 
 ```{r conversions summary numbers}
-number_detentions <- tar_read(conversion_map) |> 
-  filter(fin_year != '2018-2019', 
-         fin_year != '2024-2025', 
-         age_group != '25+') |> 
+number_detentions <- tar_read(conversion_map_cyp) |> 
   summarise(spells = sum(spells)) |> 
   pull(spells)
 
-number_single_episode_detentions <- tar_read(conversion_map) |>
-  filter(fin_year != '2018-2019', 
-         fin_year != '2024-2025', 
-         age_group != '25+', 
-         epi_count == 1) |> 
+number_single_episode_detentions <- tar_read(conversion_map_cyp) |>
+  filter(epi_count == 1) |> 
   summarise(spells = sum(spells)) |> 
   pull(spells)
 
-number_multi_episode_detentions <- tar_read(conversion_map) |>
-  filter(fin_year != '2018-2019', 
-         fin_year != '2024-2025', 
-         age_group != '25+', 
-         epi_count > 1) |> 
+number_multi_episode_detentions <- tar_read(conversion_map_cyp) |>
+  filter(epi_count > 1) |> 
   summarise(spells = sum(spells)) |> 
   pull(spells)
 
@@ -126,10 +117,10 @@ get_top_path_from_section <- function(data){
 
 -   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
 -   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
-- There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
-- The number of section 136 detentions appear to be reducing over time.
-- There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
-- There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
+-   There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
+-   The number of Section 136 detentions appear to be reducing over time.
+-   There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
+-   There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 4 are `r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$path`.
 -   `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$perc`% of Mental Health Act Detention spells starting under Section 5(2) are `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$path`.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 5(4) are `r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$path`.
@@ -177,7 +168,7 @@ redetention_female_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   janitor::round_half_up(2)
 
 redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
-  dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
+  dplyr::filter(der_financial_year == "2022/23", gender == "male") |>
   dplyr::pull(perc) |>
   janitor::round_half_up(2)
 
@@ -223,11 +214,11 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 
 ### Distance from home to bed (all detentions and admissions)
 
-- There has been a small increase over time in mean distance CYP are admitted from home. This is accompanied by a decreasing trend in admissions numbers suggest capacity issues.
-- The median distance however is constant over time, suggesting then an increase in mainly the furthest distances are skewing the mean.
-- The population groups most affected (in relative terms) by increased distance from home are males, those aged 18-24, those in ‘other’ minority ethnic groups and those in deprived populations.
-- Deprived populations however on average travel smaller distances due to proximity to services.
-- As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting access/capacity issues in those places and more CYP travelling out of area.
+-   There has been a small increase over time in mean distance CYP are admitted from home. This is accompanied by a decreasing trend in admissions numbers suggest capacity issues.
+-   The median distance however is constant over time, suggesting then an increase in mainly the furthest distances are skewing the mean.
+-   The population groups most affected (in relative terms) by increased distance from home are males, those aged 18-24, those in ‘other’ minority ethnic groups and those in deprived populations.
+-   Deprived populations however on average travel smaller distances due to proximity to services.
+-   As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting access/capacity issues in those places and more CYP travelling out of area.
 
 ## Detailed MHA analysis
 
@@ -361,6 +352,8 @@ tar_read(mha_conv_imd_tab) |>
 
 Sections 4, 5(2), 5(4) and 136 of the MHA are short-term detentions to allow for a MHA assessment to take place before the patient is either detained under another section of the MHA or discharged. The following analysis concerns MHA detentions starting under Sections 4, 5(2), 5(4) and 136 and the subsequent non-conversions or conversions to Section 2, Section 3 or other sections of the MHA.
 
+Please note that due to low numbers of spells for some of the analyses below, only the number of spells has been removed from the affected tables. In these cases an extra column has been added to the tables to flag where the number of spells was less than or equal to 5 to help with the interpretation of percentages, since for example a very high percentage may be due to the low number of spells.
+
 ##### Section 4
 
 ::: panel-tabset
@@ -391,7 +384,6 @@ tar_read(mha_conv_from_4)$table |>
 tar_read(mha_conv_from_4)$summary |> 
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
@@ -414,7 +406,6 @@ tar_read(mha_conv_from_4_map)$map +
 tar_read(mha_conv_from_4_map)$table |> 
   create_dt()
 ```
-
 :::
 
 ##### Section 5(2)
@@ -448,7 +439,6 @@ tar_read(mha_conv_from_52)$table |>
 tar_read(mha_conv_from_52)$summary |> 
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
@@ -470,7 +460,6 @@ tar_read(mha_conv_from_52_map)$map
 tar_read(mha_conv_from_52_map)$table |> 
   create_dt()
 ```
-
 :::
 
 ##### Section 5(4)
@@ -504,7 +493,6 @@ tar_read(mha_conv_from_54)$table |>
 tar_read(mha_conv_from_54)$summary |> 
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
@@ -526,7 +514,6 @@ tar_read(mha_conv_from_54_map)$map
 tar_read(mha_conv_from_54_map)$table |> 
   create_dt()
 ```
-
 :::
 
 ##### Section 136
@@ -560,11 +547,9 @@ tar_read(mha_conv_from_136)$table |>
 tar_read(mha_conv_from_136)$summary |> 
   create_dt()
 ```
-
 :::
 
 ::: panel-tabset
-
 ###### Map
 
 ```{r}
@@ -583,15 +568,13 @@ tar_read(mha_conv_from_136_map)$map
 tar_read(mha_conv_from_136_map)$table |> 
   create_dt()
 ```
-
 :::
 
 #### MHA detentions with Section 2 to Section 3 pathways
 
-This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
+This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
 ::: panel-tabset
-
 ##### Map
 
 ```{r}
@@ -606,9 +589,9 @@ tar_read(mha_conf_from_2_to_3)$map  +
 ```{r}
 #| label: tbl-conversion-2-to-3
 #| tbl-cap: Spells containing a conversion from Section 2 to Section 3.
-tar_read(mha_conf_from_2_to_3)$table
+tar_read(mha_conf_from_2_to_3)$table |>
+  create_dt()
 ```
-
 :::
 
 ### Mental Health Act Detention Spell Length of Stay {#sec-los}
@@ -786,7 +769,7 @@ Extreme outliers have been excluded from some of the boxplots in this section fo
 llos_perc_135_136 <- tar_read(cyp_llos_perc_135_136)
 ```
 
-There were `r llos_perc_135_136 |> dplyr::pull(count)` spells that began with a MHA detention under sections 135 or 136 in 2023/24. Of these spells `r 100 - llos_perc_135_136 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`%, were up to 1 day long.
+There were `r llos_perc_135_136 |> dplyr::pull(count)` spells that began with a MHA detention under sections 135 or 136 in 2023/24. Of these spells, `r 100 - llos_perc_135_136 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were up to 1 day long.
 
 ```{r}
 #| label: fig-los-histo_135_136
@@ -833,7 +816,7 @@ tar_read(cyp_los_median_table_135_136) |>
 llos_perc_2 <- tar_read(cyp_llos_perc_2)
 ```
 
-There were `r llos_perc_2 |> dplyr::pull(count)` spells that began with a MHA detention under section 2 in 2023/24. Of these spells `r 100 - llos_perc_2 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`%, were up to 28 days long.
+There were `r llos_perc_2 |> dplyr::pull(count)` spells that began with a MHA detention under section 2 in 2023/24. Of these spells, `r 100 - llos_perc_2 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were up to 28 days long.
 
 ```{r}
 #| label: fig-los-histo_2
@@ -1134,7 +1117,7 @@ tar_read(cyp_readmissions_perc_table) |>
 
 Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales [(HONOS)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) and the Health of Nation Outcome Scales for Children and Adolescents [(HONOSCA)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
 
-Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). Only `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
 ##### Flowchart
@@ -1165,7 +1148,9 @@ honos_perc_same <- tar_read(honos_perc_worse) |>
   janitor::round_half_up(2)
 ```
 
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues. The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r honos_perc_better`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r honos_perc_same`% had the same HONOS scores at the start and end of the spell. `r honos_perc_worse`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1.
+
+Of the CYP MH spells with full HONOS asssesments near the start and end of the spell, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
 
 ::: panel-tabset
 ##### Histogram
@@ -1235,11 +1220,15 @@ For further technical information, refer to NHS Digital’s [Data Set Technical 
 
 There has been little change in the overall mean and median DTT over time. The mean increased by 1.5 km/admission (an increase of 6.1%), between 2017/18 (25.5 km/admission) and 2024/25 (27.0 km/admission). However, the median DTT remained the same at 10.0 km/admission over the same time period.
 
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20FY.png)
+
 #### **Gender**
 
 The average DTT for females only increased by 0.3% from 2017/18 to 2024/25 (29.90 - 29.98 km/admission) while the average for males increased by nearly 15% (21.2 - 24.4 km/admission). The median decreased for females from 12 to 11 km/admission while the median remained constant at 9km/admission for males over the time period.
 
 While the gender descrepancy has improved over time, there remains a consistent difference between males and females in average DTT over the time period. In 2017/18 females traveled on average 29.1% farther than males and by 2024/25 they still travelled 18.7% farther than males on average. The median DTT for females and males saw the same trend as the median DTT for females was 25.0% farther than for males in 2017/18 and 18.2% farther in 2024/25.
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Admissions%20Table.png)
 
 #### **Age Group**
 
@@ -1247,23 +1236,27 @@ The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/
 
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
 
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20Group%20Admissions%20Table.png)
+
 #### **Ethnicity**
 
-Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers. Across all ethnic groups, admissions have decreased, while travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
+Across all ethnic groups except the white group, the total number of admissions has increased, and travel distances (both average and median) have generally increased. The Other Ethnicity cohort shows the most dramatic increase in travel distances, though the relatively small number of admissions, makes the data more susceptible to outliers.
 
--   White Group: Admissions dropped substantially from 13,341 in 2017/18 to 10,427 in 2023/24, while average travel distances increased modestly. The median DTT increased from 11 to 12 over this period.
+-   White Group: The only group to experience a decrease in total number of admissions (down by 22%), as admissions dropped from 13,341 in 2017/18 to 10,427 in 2023/24. The average travel distances increased modestly and the median DTT increased from 11 to 12 over this period.
 
--   Black Group: The number of admissions decreased from 958 in 2017/18 to 391 in 2024/25. Both average and median travel distances increased during this period, with a 3% rise in Avg. DTT and a 16.7% increase in Median DTT.
+-   Black Group: The number of admissions saw a 37% increase from 958 in 2017/18 to 1,317 in 2023/24. Both average and median travel distances increased during this period, with a 3% rise in Avg. DTT and a 16.7% increase in Median DTT.
 
--   Asian Group: Despite the significant drop in admissions (from 823 in 2017/18 to 343 in 2024/25), average travel distances remained stable, with a slight decrease in median travel distance.
+-   Asian Group: The number of admissions increased proportionally the most of any ethnic group as total admissions increased by 56% from 823 in 2017/18 to 1287 in 2024/25. The average travel distances remained stable, with a slight decrease in median travel distance.
 
--   Mixed Group: While admissions decreased by 67%, from 686 to 227 over the years, both average and median travel distances increased. Avg. DTT rose from 26.91 to 27.84, and Median DTT increased from 8 to 9.
+-   Mixed Group: The number of admissions increased by 30%, from 686 to 892 over the years and both average and median travel distances increased. Avg. DTT rose from 26.91 to 27.84, and Median DTT increased from 8 to 9.
 
--   Other Group: The Other group saw the most dramatic rise in travel distances despite the sharp drop in admissions. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
+-   Other Group: The Other group saw the most dramatic rise in travel distances and the second highest percent increase in admissions after the Asian Group. The number of admissions increased by 48% from 401 in 2017/18 to 595 in 2023/24. Avg. DTT increased by 64%, while Median DTT saw an 83% increase over this period.
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Ethnicity%20Admissions%20MM%20Percent%20Diff%20Table.png)
 
 **Admissions by Ethnicity**
 
--   White Group: Despite a sharp decline in admissions (from 13,341 in 2017/18 to 10,427 in 2023/24), the White group continues to have significantly more admissions than all other ethnic groups.
+-   White Group: Despite a 22% decline in admissions (from 13,341 in 2017/18 to 10,427 in 2023/24), the White group continues to have significantly more admissions than all other ethnic groups.
 
 -   Black Group: The Black group had the second highest admissions, rising to a peak in 2019/20 before stabilizing below 1,300 by 2023/24.
 
@@ -1297,13 +1290,15 @@ Across all ethnic groups, admissions have decreased, while travel distances (bot
 
 There is a clear trend of greater admissions among the most deprived (IMD 1) group, while the least deprived (IMD 10) group consistently travels further on average and median distances. While travel distances for both groups have increased over time, the least deprived group (IMD 10) continues to travel significantly longer distances compared to the most deprived, even though the gap in average distances has narrowed slightly over the years. This pattern underscores the relationship between socioeconomic deprivation and healthcare access, with the most deprived groups having more admissions but generally traveling shorter distances.
 
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20Admissions%20Table.png)
+
 -   Most Deprived (IMD 1): Admissions started at 2,747 in 2017/18 and peaked at 3,736 in 2019/20, before dropping to 2,849 in 2023/24.
 
 -   Least Deprived (IMD 10): Admissions started at 1,215 in 2017/18 and peaked at 1,429 in 2019/20, before dropping to 970 in 2023/24.
 
 -   Admissions in the most deprived group (IMD 1) were consistently more than twice the number of admissions as those in the least deprived group (IMD 10) from 2017/18 to 2023/24.
 
-The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 units (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 units (IMD 10 at 30.88 vs IMD 1 at 24.45). The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 km (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 km (IMD 10 at 30.88 vs IMD 1 at 24.45).
+The least deprived group (IMD 10) consistently travels much further on average compared to the most deprived group. The difference between the most and least deprived groups in 2017/18 was 9.75 km (IMD 10 at 29.09 vs IMD 1 at 19.33), and by 2023/24, the difference remained significant at 6.43 km (IMD 10 at 30.88 vs IMD 1 at 24.45).
 
 -   Most Deprived (IMD 1): Avg. DTT increased from 19.33 in 2017/18 to 24.45 in 2023/24, marking a 26.5% rise.
 
@@ -1351,6 +1346,8 @@ There is considerable variation in admissions and travel distances across the IC
 
 -   **Trends:** Admissions generally increase or remain stable from 2017/18 to around 2020/21 for many ICBs, reflecting increased healthcare demand. However, fluctuations in 2021/22-2023/24 could be due to the pandemic's impact on healthcare services. Admissions for some ICBs, like NHS Cornwall and the Isles of Scilly and NHS Dorset, show a noticeable decline in later years (2021/22-2023/24), which may indicate a shift in service utilization or changes in referral pathways.
 
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20ICB%20Admissions%20Table.png)
+
 ### Analysis Results: Graphs and Tables
 
 #### DTT over time and by subgroups: means, medians, and total admissions
@@ -1373,6 +1370,10 @@ tar_read(chart_DTT_FY)
 ##### Mean vs Median
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20MM%20FY.png)
+
+##### Percent Change from 2017/18
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20FY.png)
 :::
 
 #### Line/Bar Charts
@@ -1425,6 +1426,10 @@ tar_read(chart_DTT_gender_FY)
 ##### Mean vs Median
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20MM%20FY.png)
+
+##### Percent change from 2017/18
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20Gender.png)
 :::
 
 #### Line/Bar Charts
@@ -1477,6 +1482,10 @@ tar_read(chart_DTT_age_group_FY)
 ##### Mean vs Median
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20MM%20FY.png)
+
+##### Percent Change from 2017/18
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20Gender.png)
 :::
 
 ## Line / Bar Charts
@@ -1529,6 +1538,10 @@ tar_read(chart_DTT_ethnic_FY)
 ##### Mean vs Median
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Ethnicity%20MM%20FY.png)
+
+##### Percent change from 2017/18
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20ethnicity.png)
 :::
 
 ##### Line/Bar Graphs
@@ -1585,12 +1598,20 @@ tar_read(chart_DTT_IMD_FY)
 ##### Mean vs Median IMD (Quintiles)
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20MM%20FY%20quintiles.png)
+
+##### Percent Change from 2017/18 (IMD Decile)
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20IMD.png)
+
+##### Percent Change from 2017/18 (IMD Quintile)
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20IMD%20quintile.png)
 :::
 
 ##### Line/Bar Charts
 
 ::: panel-tabset
-##### Mean DTT (Line) by Total Admissions(Bars)
+##### Mean DTT (Line) by Total Admissions (Bars)
 
 ```{r}
 #| label: fig-IMD-admissions-distance-chart
@@ -1901,6 +1922,10 @@ tar_read(DTT_ICB_map_10_2023_24)
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20time%20MM%20Admissions%20trend%20plot.png)
 
+##### Percent change from 2017/18
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20Age%20and%20Gender.png)
+
 ##### Table
 
 ```{r}
@@ -1916,7 +1941,7 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 
 ##### IMD over time by age and gender
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20gender%20age%20time%20average.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20IMD%20MM%20FY.png)
 
 #### Avg DTT over 2020/21 - 2024/25 by Age, Gender, Ethnicity and IMD
 
@@ -1925,10 +1950,10 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Subgroup%20Grid.png)
 
-![]()
-
 ##### Table
 
 Removed due to small numbers
 :::
 :::::
+
+**Testing whether any changes to the text I make are going into the version on git**
