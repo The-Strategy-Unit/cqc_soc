@@ -63,6 +63,7 @@ get_quantiles_and_mean <- function(data) {
                      mean = mean(value),
                      .by = der_financial_year) |>
     dplyr::arrange(der_financial_year) |>
+    dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~janitor::round_half_up(., 3))) |>
     create_dt()
 
   return(table)
