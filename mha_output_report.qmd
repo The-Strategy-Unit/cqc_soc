@@ -126,7 +126,9 @@ get_top_path_from_section <- function(data){
 
 -   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
 -   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
--   **INSERT SOMETHING HERE ABOUT SPECIFIC PATHWAYS BY GROUP**
+- There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
+- There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
+- There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 4 are `r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$path`.
 -   `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$perc`% of Mental Health Act Detention spells starting under Section 5(2) are `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$path`.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 5(4) are `r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$path`.
@@ -161,7 +163,7 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
 -   Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
 -   Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively.
 -   Median length of stay is higher for under 18s (`r los_0_17_23_24` days) compared to 18-24 year olds (`r los_18_24_23_24` days). For the 18-24 age group, the median length of stay has increased over time.
--   Median length of stay is lower for patients in White ethnic categories compared to all other groups.
+-   Median length of stay is lower for white patients compared to patients from all other ethnic groups combined.
 -   Median length of stay is lower for patients from the most deprived areas compared to all other groups.
 -   Length of stay varies by the first section of the MHA that the patient is detained under. Patients first detained under section 2 and section 3 typically have lengths of stay up to 28 days and 365 days respectively. Patients first detained under sections 135 or 136, typically have lengths of stay up to 1 day long.
 
@@ -188,7 +190,7 @@ readmissions_23_24 <- tar_read(cyp_readmissions_perc) |>
 -   Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
 -   The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
 -   The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
--   The percentage of MHA detentions with a MHA redetention within 12 months is higher for compared to all other groups.
+-   The percentage of MHA detentions with a MHA redetention within 12 months is higher for white patients compared to patients from all other ethnic groups combined.
 -   The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
 -   These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
 -   The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
