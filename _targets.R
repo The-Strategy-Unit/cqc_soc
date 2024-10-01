@@ -335,7 +335,11 @@ list(
       )
   ),
   tarchetypes::tar_file(mha_conversion_filepath, "data/cyp_mha_conversions.csv"),
-  tar_target(cyp_conversions, load_csv(mha_conversion_filepath)),
+  tar_target(cyp_conversions,
+             load_csv(mha_conversion_filepath) |>
+               dplyr::mutate(gender = dplyr::case_when(gender == 1 ~ "male",
+                                                       gender == 2 ~ "female",
+                                                       .default = NULL))),
   tarchetypes::tar_file(cyp_honos_filepath, "data/cyp_honos_scores.csv"),
   tar_target(cyp_honos, load_csv(cyp_honos_filepath)),
   tarchetypes::tar_file(cyp_honos_summary_filepath, "data/cyp_honos_summary.csv"),
