@@ -60,9 +60,9 @@ knitr::knit_hooks$set(output = function(x, options) {
 
 ## Introduction
 
-The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being finalised that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
+The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being published alongside this that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
 
-The purpose therefore of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
+The purpose of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
 
 ## Data and methods
 
@@ -70,7 +70,7 @@ All of the analysis in this report is sourced from the Mental Health Services Da
 
 In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA super-spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched.
 
-## Summary
+## Summary findings
 
 ### Conversions between sections of the Mental Health Act
 
