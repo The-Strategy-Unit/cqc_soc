@@ -127,6 +127,7 @@ get_top_path_from_section <- function(data){
 -   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
 -   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
 - There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
+- The number of section 136 detentions appear to be reducing over time.
 - There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
 - There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 4 are `r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$path`.
@@ -219,6 +220,14 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 
 -   Of all CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment.
 -   For the `r perc_last_assess`% of CYP MH spells that had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell, `r honos_perc_worse`% had an increase in HONOS scores from the start to the end of the spell.
+
+### Distance from home to bed (all detentions and admissions)
+
+- There has been a small increase over time in mean distance CYP are admitted from home. This is accompanied by a decreasing trend in admissions numbers suggest capacity issues.
+- The median distance however is constant over time, suggesting then an increase in mainly the furthest distances are skewing the mean.
+- The population groups most affected (in relative terms) by increased distance from home are males, those aged 18-24, those in ‘other’ minority ethnic groups and those in deprived populations.
+- Deprived populations however on average travel smaller distances due to proximity to services.
+- As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting access/capacity issues in those places and more CYP travelling out of area.
 
 ## Detailed MHA analysis
 
@@ -1123,9 +1132,9 @@ tar_read(cyp_readmissions_perc_table) |>
 
 ### Clinical Outcomes (HONOS scores)
 
-Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales (HONOS) and the Health of Nation Outcome Scales for Children and Adolescents (HONOSCA) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
+Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales [(HONOS)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) and the Health of Nation Outcome Scales for Children and Adolescents [(HONOSCA)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
 
-Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell. Of the `r number_spells` CYP MH spells since 1st April 2018, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow) and `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
 ##### Flowchart
