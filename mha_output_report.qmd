@@ -75,26 +75,17 @@ In order to evaluate detention 'pathways', length of stay and re-detention we co
 ### Conversions between sections of the Mental Health Act
 
 ```{r conversions summary numbers}
-number_detentions <- tar_read(conversion_map) |> 
-  filter(fin_year != '2018-2019', 
-         fin_year != '2024-2025', 
-         age_group != '25+') |> 
+number_detentions <- tar_read(conversion_map_cyp) |> 
   summarise(spells = sum(spells)) |> 
   pull(spells)
 
-number_single_episode_detentions <- tar_read(conversion_map) |>
-  filter(fin_year != '2018-2019', 
-         fin_year != '2024-2025', 
-         age_group != '25+', 
-         epi_count == 1) |> 
+number_single_episode_detentions <- tar_read(conversion_map_cyp) |>
+  filter(epi_count == 1) |> 
   summarise(spells = sum(spells)) |> 
   pull(spells)
 
-number_multi_episode_detentions <- tar_read(conversion_map) |>
-  filter(fin_year != '2018-2019', 
-         fin_year != '2024-2025', 
-         age_group != '25+', 
-         epi_count > 1) |> 
+number_multi_episode_detentions <- tar_read(conversion_map_cyp) |>
+  filter(epi_count > 1) |> 
   summarise(spells = sum(spells)) |> 
   pull(spells)
 
@@ -127,7 +118,7 @@ get_top_path_from_section <- function(data){
 -   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
 -   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
 - There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
-- The number of section 136 detentions appear to be reducing over time.
+- The number of Section 136 detentions appear to be reducing over time.
 - There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
 - There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 4 are `r get_top_path_from_section(tar_read(mha_conv_from_4)$summary)$path`.
@@ -177,7 +168,7 @@ redetention_female_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
   janitor::round_half_up(2)
 
 redetention_male_23_24 <- tar_read(cyp_redetentions_plot_gender)$table |>
-  dplyr::filter(der_financial_year == "2022/23", gender == "female") |>
+  dplyr::filter(der_financial_year == "2022/23", gender == "male") |>
   dplyr::pull(perc) |>
   janitor::round_half_up(2)
 
@@ -361,7 +352,7 @@ tar_read(mha_conv_imd_tab) |>
 
 Sections 4, 5(2), 5(4) and 136 of the MHA are short-term detentions to allow for a MHA assessment to take place before the patient is either detained under another section of the MHA or discharged. The following analysis concerns MHA detentions starting under Sections 4, 5(2), 5(4) and 136 and the subsequent non-conversions or conversions to Section 2, Section 3 or other sections of the MHA.
 
-Please note that due to low numbers of spells for some of the analyses below, only the percentage is reported in tables, and not the number of spells. In these cases an extra column has been added to the tables to flag where the number of spells was less than or equal to help with the interpretation of percentages, since for example a very high percentage may be due to the low number of spells.
+Please note that due to low numbers of spells for some of the analyses below, only the number of spells has been removed from the affected tables. In these cases an extra column has been added to the tables to flag where the number of spells was less than or equal to 5 to help with the interpretation of percentages, since for example a very high percentage may be due to the low number of spells.
 
 ##### Section 4
 
@@ -590,7 +581,7 @@ tar_read(mha_conv_from_136_map)$table |>
 
 #### MHA detentions with Section 2 to Section 3 pathways
 
-This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting with under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
+This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
 ::: panel-tabset
 
@@ -789,7 +780,7 @@ Extreme outliers have been excluded from some of the boxplots in this section fo
 llos_perc_135_136 <- tar_read(cyp_llos_perc_135_136)
 ```
 
-There were `r llos_perc_135_136 |> dplyr::pull(count)` spells that began with a MHA detention under sections 135 or 136 in 2023/24. Of these spells `r 100 - llos_perc_135_136 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`%, were up to 1 day long.
+There were `r llos_perc_135_136 |> dplyr::pull(count)` spells that began with a MHA detention under sections 135 or 136 in 2023/24. Of these spells, `r 100 - llos_perc_135_136 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were up to 1 day long.
 
 ```{r}
 #| label: fig-los-histo_135_136
@@ -836,7 +827,7 @@ tar_read(cyp_los_median_table_135_136) |>
 llos_perc_2 <- tar_read(cyp_llos_perc_2)
 ```
 
-There were `r llos_perc_2 |> dplyr::pull(count)` spells that began with a MHA detention under section 2 in 2023/24. Of these spells `r 100 - llos_perc_2 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`%, were up to 28 days long.
+There were `r llos_perc_2 |> dplyr::pull(count)` spells that began with a MHA detention under section 2 in 2023/24. Of these spells, `r 100 - llos_perc_2 |> dplyr::pull(perc_llos) |> janitor::round_half_up(2)`% were up to 28 days long.
 
 ```{r}
 #| label: fig-los-histo_2
@@ -1137,7 +1128,7 @@ tar_read(cyp_readmissions_perc_table) |>
 
 Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales [(HONOS)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) and the Health of Nation Outcome Scales for Children and Adolescents [(HONOSCA)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
 
-Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
+Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). Only `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
 ::: panel-tabset
 ##### Flowchart
@@ -1168,7 +1159,9 @@ honos_perc_same <- tar_read(honos_perc_worse) |>
   janitor::round_half_up(2)
 ```
 
-The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues. The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. Of CYP MH spells, `r honos_perc_better`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r honos_perc_same`% had the same HONOS scores at the start and end of the spell. `r honos_perc_worse`% had an increase in HONOS scores suggesting a worsening of symptoms. All spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
+The relative change in HONOS scores was calculated as the HONOS score at the end of the spell divided by the HONOS score at the start of the spell minus 1. 
+
+Of the CYP MH spells with full HONOS asssesments near the start and end of the spell, `r tar_read(honos_perc_worse) |> dplyr::pull(perc_better) |> janitor::round_half_up(2)`% had a reduction in HONOS scores suggesting an improvement in symptoms (@fig-honos-histo) and `r tar_read(honos_perc_worse) |> dplyr::pull(perc_same) |> janitor::round_half_up(2)`% had the same HONOS scores at the start and end of the spell. `r tar_read(honos_perc_worse) |> dplyr::pull(perc_worse) |> janitor::round_half_up(2)`% had an increase in HONOS scores suggesting a worsening of symptoms. However all spells with a relative change greater than 1 had low scores in the first HONOS assessment (@fig-honos-scatter) which could be due to data quality issues.
 
 ::: panel-tabset
 ##### Histogram
