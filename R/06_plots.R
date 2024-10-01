@@ -481,7 +481,9 @@ get_number_converted_table <- function(data, section_number) {
     ) |>
     dplyr::summarise(number = sum(number), .by = c(desc, fin_year)) |>
     dplyr::left_join(total, "fin_year") |>
-    dplyr::mutate(perc = number * 100 / total, section = section_number) |>
+    dplyr::mutate(perc = number * 100 / total, section = section_number,
+                  flag = ifelse(number <= 5 & number > 0 , "<=5", "")) |>
+    suppress_low_number_columns() |>
     dplyr::relocate(section, fin_year) |>
     tidyr::complete(fin_year,
                     desc,
@@ -521,8 +523,10 @@ get_conversions_from_section <- function(data, section_number, group = "fin_year
 
   summary <- overall |>
     dplyr::summarise(number = sum(number), .by = first_two_sections) |>
-    dplyr::mutate(perc = number * 100 / sum(number)) |>
-    dplyr::arrange(desc(number))
+    dplyr::mutate(perc = number * 100 / sum(number),
+                  flag = ifelse(number <= 5 & number > 0 , "<=5", "")) |>
+    suppress_low_number_columns()|>
+    dplyr::arrange(desc(perc))
 
   return(list(
     table = table,
@@ -531,3 +535,19 @@ get_conversions_from_section <- function(data, section_number, group = "fin_year
   ))
 }
 
+suppress_low_number_columns <- function(data){
+
+  n <- data |>
+    dplyr::filter(flag == "<=5") |>
+    nrow()
+
+  if(n > 0){
+    data_selected <- data |>
+      dplyr::select(dplyr::any_of(c("section", "icb_name", "fin_year", "desc", "perc", "flag")))
+  } else {
+    data_selected <- data |>
+      dplyr::select(dplyr::any_of(c("section", "icb_name", "fin_year", "desc", "number", "total", "perc")))
+  }
+
+  return(data_selected)
+}

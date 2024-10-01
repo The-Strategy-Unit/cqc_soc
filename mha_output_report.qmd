@@ -361,6 +361,8 @@ tar_read(mha_conv_imd_tab) |>
 
 Sections 4, 5(2), 5(4) and 136 of the MHA are short-term detentions to allow for a MHA assessment to take place before the patient is either detained under another section of the MHA or discharged. The following analysis concerns MHA detentions starting under Sections 4, 5(2), 5(4) and 136 and the subsequent non-conversions or conversions to Section 2, Section 3 or other sections of the MHA.
 
+Please note that due to low numbers of spells for some of the analyses below, only the percentage is reported in tables, and not the number of spells. In these cases an extra column has been added to the tables to flag where the number of spells was less than or equal to help with the interpretation of percentages, since for example a very high percentage may be due to the low number of spells.
+
 ##### Section 4
 
 ::: panel-tabset
