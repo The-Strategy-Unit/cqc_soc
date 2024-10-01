@@ -544,10 +544,10 @@ suppress_low_number_columns <- function(data){
 
   if(n > 0){
     data_selected <- data |>
-      dplyr::select(dplyr::any_of(c("section", "icb_name", "fin_year", "desc", "perc", "flag")))
+      dplyr::select(dplyr::any_of(c("section", "first_two_sections", "icb_name", "fin_year", "desc", "perc", "flag")))
   } else {
     data_selected <- data |>
-      dplyr::select(dplyr::any_of(c("section", "icb_name", "fin_year", "desc", "number", "total", "perc")))
+      dplyr::select(dplyr::any_of(c("section", "first_two_sections", "icb_name", "fin_year", "desc", "number", "total", "perc")))
   }
 
   return(data_selected)
