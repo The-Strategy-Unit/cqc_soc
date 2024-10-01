@@ -246,10 +246,6 @@ prepare_admissions_distance_data <- function(data) {
       category_line = factor("Average Distance", levels = c("Average Distance"))
     )
 
-  # Debug: Print the structure of the data prepared
-  print("Data Structure after preparing factors:")
-  print(str(data_prepared))
-
   return(data_prepared)
 }
 
@@ -398,11 +394,6 @@ prepare_admissions_distance_data_gender <- function(data) {
       category_fill = factor("Total Admissions", levels = c("Total Admissions")),
       category_line = factor("Average Distance", levels = c("Average Distance"))
     )
-
-  # Debug: Print the structure of the data prepared
-  print("Data Structure after preparing factors by Gender:")
-  print(str(data_prepared))
-
   return(data_prepared)
 }
 
@@ -421,7 +412,6 @@ get_admissions_bar_plot_gender <- function(data, su_colours) {
     ) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))+
     ylim(0, NA)
-
   return(bar_plot)
 }
 
@@ -522,11 +512,6 @@ prepare_admissions_distance_data_age <- function(data) {
       category_line = factor("Average Distance", levels = c("Average Distance")),
       age_group = factor(age_group, levels = unique(age_group))  # Correct factor levels for age_group
     )
-
-  # Debug: Print the structure of the data prepared
-  print("Data Structure after preparing factors by Age Group:")
-  print(str(data_prepared))
-
   return(data_prepared)
 }
 
@@ -641,11 +626,6 @@ prepare_admissions_distance_data_ethnic <- function(data) {
       category_line = factor("Average Distance", levels = c("Average Distance")),
       ethnic_category = factor(ethnic_category, levels = unique(ethnic_category))
     )
-
-  # Debug: Print the structure of the data prepared
-  print("Data Structure after preparing factors by Ethnicity:")
-  print(str(data_prepared))
-
   return(data_prepared)
 }
 
@@ -746,11 +726,6 @@ prepare_admissions_distance_data_IMD <- function(data) {
       category_line = factor("Average Distance", levels = c("Average Distance")),
       imd_2019_decile = factor(imd_2019_decile, levels = unique(imd_2019_decile))
     )
-
-  # Debug: Print the structure of the data prepared
-  print("Data Structure after preparing factors by IMD:")
-  print(str(data_prepared))
-
   return(data_prepared)
 }
 
