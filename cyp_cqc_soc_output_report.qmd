@@ -321,7 +321,7 @@ tar_read(cyp_ae_freq_table) |>
 
 #### Percentage of all Type 1 attendances with Mental Health as primary reason/diagnosis {#sec-type1-mh-attends}
 
-@fig-type1-perc-mh suggests the median percentage of Type 1 attendances with Mental Health as the primary reason/diagnosis is comparable with pre-pandemic levels. Breakdowns by ICB are in @tbl-type1-perc and breakdowns by population demographics below.
+@fig-type1-perc-mh suggests the median percentage of Type 1 attendances with Mental Health as the primary reason/diagnosis is comparable with pre-pandemic levels. @tbl-type1-perc-summary shows the attendance rate for different percentiles across the distribution, broken down by year, from the very lowest percentile (0%) to the highest (100%) through the median (50%). Breakdowns by ICB are in @tbl-type1-perc and breakdowns by population demographics below.
 
 ::: panel-tabset
 ##### Overview
@@ -354,7 +354,7 @@ tar_read(cyp_type1_mh_attends_table) |>
 
 #### Percentage of MH Type 1 attendances known to MH services {#sec-type1-mh-known}
 
-The percentages of Mental Health Type 1 attendances where the patient is already known to MH services varies over time (@fig-type1-mh-known-boxplot) and by ICB (@tbl-type1-mh-known).
+The percentages of Mental Health Type 1 attendances where the patient is already known to MH services varies over time (@fig-type1-mh-known-boxplot), for different percentiles along the distribution of attendances (@tbl-type1-mh-known-summary), and by ICB (@tbl-type1-mh-known).
 
 ::: panel-tabset
 ##### Overview
@@ -410,7 +410,7 @@ tar_read(cyp_icb_rates_ed) |>
 ```
 :::
 
-::: panel-tabset
+::::::::: panel-tabset
 ##### Overview
 
 ::: panel-tabset
@@ -532,7 +532,7 @@ tar_read(cyp_rural_breakdowns)$type1_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
-:::
+:::::::::
 
 ## Detailed analysis - Walk-in and Urgent Care attendance {#sec-type34-overview}
 
@@ -650,7 +650,7 @@ tar_read(cyp_uec_left_summary) |>
 
 #### Percentage of all UEC attendances with MH as primary reason/diagnosis {#sec-uec-mh-attends}
 
-@fig-uec-perc-mh suggests greater percentage of Mental Health UEC attendances in 2023/24. This varies by ICB (@tbl-uec-perc) where some ICBs have consistently low or high percentages over time.
+@fig-uec-perc-mh suggests greater percentage of Mental Health UEC attendances in 2023/24. @tbl-uec-perc-summary shows the attendance rate for different percentiles across the distribution, broken down by year, from the very lowest percentile (0%) to the highest (100%) through the median (50%). This also varies by ICB (@tbl-uec-perc) where some ICBs have consistently low or high percentages over time.
 
 ::: panel-tabset
 ##### Overview
@@ -683,7 +683,7 @@ tar_read(cyp_uec_mh_attends_table) |>
 
 #### Percentage of MH UEC attendances known to MH services {#sec-uec-mh-known}
 
-@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies by ICB (@tbl-uec-mh-known).
+@fig-uec-mh-known-boxplot suggests lower percentage of Mental Health UEC attends were known in 2023/24. This again varies for different percentiles along the distribution of attendances (@tbl-type1-mh_known-summary), and by ICB (@tbl-uec-mh-known).
 
 ::: panel-tabset
 ##### Overview
@@ -739,7 +739,7 @@ tar_read(cyp_icb_rates_uec) |>
 ```
 :::
 
-::: panel-tabset
+::::::::: panel-tabset
 ##### Overview
 
 ::: panel-tabset
@@ -863,4 +863,4 @@ tar_read(cyp_rural_breakdowns)$uec_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
-:::
+:::::::::
