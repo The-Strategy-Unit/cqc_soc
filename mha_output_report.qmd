@@ -1220,8 +1220,6 @@ For further technical information, refer to NHS Digital’s [Data Set Technical 
 
 There has been little change in the overall mean and median DTT over time. The mean increased by 1.5 km/admission (an increase of 6.1%), between 2017/18 (25.5 km/admission) and 2024/25 (27.0 km/admission). However, the median DTT remained the same at 10.0 km/admission over the same time period.
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20FY.png)
-
 #### **Gender**
 
 The average DTT for females only increased by 0.3% from 2017/18 to 2024/25 (29.90 - 29.98 km/admission) while the average for males increased by nearly 15% (21.2 - 24.4 km/admission). The median decreased for females from 12 to 11 km/admission while the median remained constant at 9km/admission for males over the time period.
@@ -1237,6 +1235,8 @@ The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20Group%20Admissions%20Table.png)
+
+![](images/clipboard-4034094787.png)
 
 #### **Ethnicity**
 
@@ -1485,7 +1485,7 @@ tar_read(chart_DTT_age_group_FY)
 
 ##### Percent Change from 2017/18
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20per%20change%20Gender.png)
+![](Heather Scratch Space/Tableau Plots/Final per change Age.png)
 :::
 
 ## Line / Bar Charts
