@@ -70,7 +70,7 @@ NHS Digital publishes various data and reports on the MHA [(https://digital.nhs.
 
 All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables. As the MHSDS is a cumulative dataset with multiple submissions of the same activity data was de-duplicated taking the latest and fullest submission of data for a particular detention episode or admission.
 
-In general, whilst things have improved over time, there are persistent data quality issues with the MHSDS in terms of coverage, completion and consistency of data available for secondary analysis. Additionally, the cyber incident from 2020 still impacts on the submissions from a number of providers across the country. Submissions from independent sector providers are also thought to be affected more by data completion and data quality issues.
+In general, whilst things have improved over time, there are persistent data quality issues with submissions to the MHSDS in terms of coverage, completion and consistency of data available for secondary analysis. Additionally, the [cyber incident](https://digital.nhs.uk/data-and-information/publications/statistical/learning-disability-services-statistics/at-october-2022-mhsds-august-2022-final/data-quality---mhsds) from 2022 may still impact on the submissions from a number of providers across the country. Submissions from independent sector providers are also thought to be affected more by data completion and data quality issues.
 
 In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched. A tolerance of 1 day between previous detention end and subsequent detention start was permitted on date-matching due to high volumes of episodes of this nature, the likelihood that these episodes are connected (or should be) and to allow for lags in data systems/submissions. 
 
@@ -261,7 +261,8 @@ tar_read(conversion_map) |>
   head(10) |>
   create_dt()
 ```
-
+  
+  
 #### Specific pathways of interest by population sub-group
 
 The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal" categories.
