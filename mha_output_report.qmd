@@ -118,6 +118,7 @@ get_top_path_from_section <- function(data){
 -   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
 -   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
 -   There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
+-   Just under half of all detentions for CYP start off as short-term (sections 136, 4, 5(2) and 5(4)).
 -   The number of Section 136 detentions appear to be reducing over time.
 -   There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
 -   There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
@@ -125,6 +126,7 @@ get_top_path_from_section <- function(data){
 -   `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$perc`% of Mental Health Act Detention spells starting under Section 5(2) are `r get_top_path_from_section(tar_read(mha_conv_from_52)$summary)$path`.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 5(4) are `r get_top_path_from_section(tar_read(mha_conv_from_54)$summary)$path`.
 -   The majority (`r get_top_path_from_section(tar_read(mha_conv_from_136)$summary)$perc`%) of Mental Health Act Detention spells starting under Section 136 are `r get_top_path_from_section(tar_read(mha_conv_from_136)$summary)$path`.
+-   For detention spells starting under s.136, the conversion to other sections varies across the country from 6% (Lincolnshire) to 43% (Bristol & North Somerset).
 
 ### Mental Health Act Detention Spell Length of Stay
 
@@ -151,8 +153,9 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
   dplyr::pull(value)
 ```
 
--   Most lengths of Mental Health Act detention spells are up to 1 day long.
+-   Most lengths of Mental Health Act detention spells are up to 1 day long with another (smaller) peak at around 28 days.
 -   Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
+-   Typically only 1-2% of all CYP detention spells last longer than 1 year.
 -   Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively.
 -   Median length of stay is higher for under 18s (`r los_0_17_23_24` days) compared to 18-24 year olds (`r los_18_24_23_24` days). For the 18-24 age group, the median length of stay has increased over time.
 -   Median length of stay is lower for white patients compared to patients from all other ethnic groups combined.
@@ -179,13 +182,13 @@ readmissions_23_24 <- tar_read(cyp_readmissions_perc) |>
   janitor::round_half_up(2)
 ```
 
--   Almost half of MHA detentions had a redetention within 12 months. This varies by ICB.
+-   Almost half of MHA detentions had a redetention within 12 months and this level is fairly consistent over time. However; this varies by ICB area from 18% (Leicestershire) to 72% (Shropshire & Telford).
 -   The percentage of MHA detentions with a MHA redetention within 12 months is higher for females than males. In 2022/23, this was `r redetention_female_23_24`% for females and `r redetention_male_23_24`% for males.
 -   The percentage of MHA detentions with a MHA redetention within 12 months is higher for 18-24 year olds compared to under 18s over time.
 -   The percentage of MHA detentions with a MHA redetention within 12 months is higher for white patients compared to patients from all other ethnic groups combined.
 -   The percentage of MHA detentions with a MHA redetention within 12 months for patients from the most deprived areas compared to all other groups.
 -   These patterns are the inverse of the patterns found for the length of stay of MHA detention spells.
--   The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
+-   The percentage of MHA detentions that had a subsequent MH inpatient admission within 12 months has increased to `r readmissions_23_24`% in 2022/23.
 
 ### Clinical Outcomes (HONOS scores)
 
@@ -209,8 +212,10 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
   janitor::round_half_up(2)
 ```
 
+-   Data recording (in the MHSDS) is poor for assessment outcomes for both children and adults. HONOS is the most common assessment tool, though others are used sporadically.
 -   Of all CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment.
 -   For the `r perc_last_assess`% of CYP MH spells that had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell, `r honos_perc_worse`% had an increase in HONOS scores from the start to the end of the spell.
+-   Though numbers are small, from those that did have assessments at start and end of spell around 50% demonstrated an improvement (reduction) and 20% a deterioration (increase) in HONOS scores.
 
 ### Distance from home to bed (all detentions and admissions)
 
@@ -218,7 +223,7 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 -   The median distance however is constant over time, suggesting then an increase in mainly the furthest distances are skewing the mean.
 -   The population groups most affected (in relative terms) by increased distance from home are males, those aged 18-24, those in ‘other’ minority ethnic groups and those in deprived populations.
 -   Deprived populations however on average travel smaller distances due to proximity to services.
--   As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting access/capacity issues in those places and more CYP travelling out of area.
+-   As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting greater access/capacity challenges in those places and more CYP travelling out of area.
 
 ## Detailed MHA analysis
 
@@ -600,6 +605,8 @@ A MHA detention spell can consist of consecutive MHA detentions so the length of
 
 In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed).
 
+Across the 5 years to 2023/24, around 45% of children and young people detained started off with short-term detentions (sections 136, 4, 5(2) and 5(4)). The equivalent for adults over the same period is 30%.
+
 ```{r}
 llos_perc <- tar_read(cyp_llos_perc)
 ```
@@ -961,7 +968,12 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are the inverse of the patterns found for MHA detention spell length of stay (@sec-los). If certain groups of patients have shorter lengths of stay but are more likely to have a re-detention, then this may suggest that these groups are being discharged too early or without sufficient care arrangements. **?????? Please help me phrase this fairly????????**
+The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are generally the inverse of the patterns found for MHA detention spell length of stay (@sec-los).  
+
+If a certain group of patients have shorter lengths of stay but appear more likely to have a re-detention, then this may suggest that either:
+
+-   these groups are being discharged too early or without sufficient self or community care arrangements in place.
+-   patients in these groups are typically more complex and/or have less able support networks and advocates.
 
 :::::::: panel-tabset
 ##### Overview
@@ -1170,9 +1182,9 @@ tar_read(honos_scatter)
 ```
 :::
 
-## Distance to Travel (DTT) in Mental Health Services
+## Distance to Travel (DTT) in Mental Health inpatient Services
 
-The *Ward Location Distance from Home* metric in the Mental Health Services Data Set (MHSDS) represents the geographical distance between a patient’s recorded residential address and the location of the ward where they received mental health treatment. This metric is crucial for evaluating the accessibility of healthcare services and can help inform population health planning. Understanding this distance enables insight into the proximity and convenience of services for patients, identifying potential barriers to healthcare access, such as long travel distances, and guiding resource allocation decisions.
+The *Ward Location Distance from Home* metric in the Mental Health Services Data Set (MHSDS) represents the geographical distance between a patient’s recorded residential address and the location of the ward where they first received mental health treatment. This metric is crucial for evaluating the accessibility of healthcare services and can help inform population health planning. Understanding this distance enables insight into the proximity and convenience of services for patients, identifying potential barriers to healthcare access, such as long travel distances, and guiding resource allocation decisions.
 
 This section analyzes all mental health inpatient admissions where *Ward Location Distance from Home* was recorded, including both voluntary admissions and detentions under the Mental Health Act (MHA).
 
@@ -1186,7 +1198,7 @@ The *Ward Location Distance from Home* variable represents the geographical dist
 
 -   **Lower DTT Values**: Indicate that healthcare services are likely more accessible and convenient for the patient, suggesting proximity to mental health services.
 
--   **Higher DTT Values**: May reflect difficulties in accessing healthcare due to distance, long travel times, or transportation barriers. Higher values might also indicate centralization of services, requiring patients to travel further.
+-   **Higher DTT Values**: May reflect difficulties in accessing healthcare due to distance, long travel times, or transportation barriers. Higher values might also indicate centralization of specialist services, requiring patients to travel further.
 
 #### Address Data Challenges for the 18-24 Year-Old Cohort
 
@@ -1198,7 +1210,7 @@ As a result, distance calculations may overestimate travel distances for this ag
 
 Since the PDS only updates a patient's address when the individual informs their GP of a change, students who fail to do so will have distances calculated based on outdated information. For those without a stable address, NHS systems use pseudo postcodes or the GP practice’s postcode for administrative purposes, which could further complicate distance-related analyses for transient populations​([nhs.uk](https://service-manual.nhs.uk/standards-and-technology/technology/personal-demographics-service-PDS))​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
 
-Considering these factors is essential when interpreting DTT data for younger populations, as the permanent address recorded in the PDS might not align with the patient’s current temporary living arrangements.
+Considering these factors is essential when interpreting DTT data for younger populations, as the permanent address recorded in the PDS might not align with the patient’s 'at-the-time' living arrangements.
 
 #### Calculation of Ward Location Distance from Home
 
@@ -1206,7 +1218,7 @@ Considering these factors is essential when interpreting DTT data for younger po
 
 -   **Breakdowns**: The analysis includes breakdowns by fiscal year, Integrated Care Board (ICB), gender, age group, and ethnicity. These breakdowns allow for the observation of trends and patterns in distance-related barriers to accessing mental health services.
 
--   **Comparison**: DTT is compared to total admission numbers to assess whether changing demand impacts the travel distance required for mental health services.
+-   **Comparison**: DTT is compared to total admission numbers to assess whether changing demand might impact the travel distance required for mental health services.
 
 #### Data Source:
 
@@ -1224,7 +1236,7 @@ There has been little change in the overall mean and median DTT over time. The m
 
 The average DTT for females only increased by 0.3% from 2017/18 to 2024/25 (29.90 - 29.98 km/admission) while the average for males increased by nearly 15% (21.2 - 24.4 km/admission). The median decreased for females from 12 to 11 km/admission while the median remained constant at 9km/admission for males over the time period.
 
-While the gender descrepancy has improved over time, there remains a consistent difference between males and females in average DTT over the time period. In 2017/18 females traveled on average 29.1% farther than males and by 2024/25 they still travelled 18.7% farther than males on average. The median DTT for females and males saw the same trend as the median DTT for females was 25.0% farther than for males in 2017/18 and 18.2% farther in 2024/25.
+While the gender discrepancy has improved over time, there remains a consistent difference between males and females in average DTT over the time period. In 2017/18 females traveled on average 29.1% farther than males and by 2024/25 they still travelled 18.7% farther than males on average. The median DTT for females and males saw the same trend as the median DTT for females was 25.0% farther than for males in 2017/18 and 18.2% farther in 2024/25.
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Admissions%20Table.png)
 
@@ -1955,5 +1967,3 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 Removed due to small numbers
 :::
 :::::
-
-**Testing whether any changes to the text I make are going into the version on git**
