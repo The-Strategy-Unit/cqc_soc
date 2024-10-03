@@ -605,6 +605,8 @@ A MHA detention spell can consist of consecutive MHA detentions so the length of
 
 In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed).
 
+Across the 5 years to 2023/24, around 45% of children and young people detained started off with short-term detentions (sections 136, 4, 5(2) and 5(4)). The equivalent for adults over the same period is 30%.
+
 ```{r}
 llos_perc <- tar_read(cyp_llos_perc)
 ```
@@ -966,7 +968,12 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are the inverse of the patterns found for MHA detention spell length of stay (@sec-los). If certain groups of patients have shorter lengths of stay but are more likely to have a re-detention, then this may suggest that these groups are being discharged too early or without sufficient care arrangements. **?????? Please help me phrase this fairly????????**
+The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are generally the inverse of the patterns found for MHA detention spell length of stay (@sec-los).  
+
+If a certain group of patients have shorter lengths of stay but appear more likely to have a re-detention, then this may suggest that either:
+
+-   these groups are being discharged too early or without sufficient self or community care arrangements in place.
+-   patients in these groups are typically more complex and/or have less able support networks and advocates.
 
 :::::::: panel-tabset
 ##### Overview
