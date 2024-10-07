@@ -72,9 +72,7 @@ All of the analysis in this report is sourced from the Mental Health Services Da
 
 In general, whilst things have improved over time, there are persistent data quality issues with submissions to the MHSDS in terms of coverage, completion and consistency of data available for secondary analysis. Additionally, the [cyber incident](https://digital.nhs.uk/data-and-information/publications/statistical/learning-disability-services-statistics/at-october-2022-mhsds-august-2022-final/data-quality---mhsds) from 2022 may still impact on the submissions from a number of providers across the country. Submissions from independent sector providers are also thought to be affected more by data completion and data quality issues.
 
-In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched. A tolerance of 1 day between previous detention end and subsequent detention start was permitted on date-matching due to high volumes of episodes of this nature, the likelihood that these episodes are connected (or should be) and to allow for lags in data systems/submissions. 
-
-
+In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched. A tolerance of 1 day between previous detention end and subsequent detention start was permitted on date-matching due to high volumes of episodes of this nature, the likelihood that these episodes are connected (or should be) and to allow for lags in data systems/submissions.
 
 ## Summary findings
 
@@ -261,8 +259,7 @@ tar_read(conversion_map) |>
   head(10) |>
   create_dt()
 ```
-  
-  
+
 #### Specific pathways of interest by population sub-group
 
 The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal" categories.
@@ -1247,11 +1244,25 @@ While the gender discrepancy has improved over time, there remains a consistent 
 
 The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/25 (36.00 - 24.31 km/admission) while the average for those aged 18-24 **increased** by nearly 36.8% (20.7 - 28.3 km/admission). A similar trend was seen for the median DTT over this time period for both age groups. The median DTT decreased for those aged 0-17 from 18 to 10 km/admission while the median DTT increased for 18-24 year olds from 8 to 11 km/admission over the time period, representing a 44.4% **decrease** and a 37.5% **increase**, respectively. For 0-17 year olds, the distance to travel generally decreased significantly before leveling off. For 18-24 year olds, the average travel distance has increased over time, while the median travel distance has remained relatively stable, suggesting that the range of values may be more significantly affecting the average.
 
-While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their DTT and surpassed the DTT of the 0-17 year olds.
+While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 42.5% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 16.5% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 55.6% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their average DTT over the time period and now travel farther on average than 0-17 year olds over all.
+
+**Key Observation:**
+
+One of the most significant insights from the DTT analysis is the distinct differences in travel distances when the age cohorts are further split by gender. As shown in Figure @fig:Gender-Age-DTT-Chart, females aged 0–17 consistently travel farther than their male counterparts, and even farther than both males and females aged 18–24. Despite the sharp decline in the average distance traveled by 0–17-year-old females over the years, the gap has not yet closed as their current average rate is still higher than the average rate of males aged 0-17 or any gender age 18-24 at any point in the time period.
+
+Although both males and females in the 0–17 age group experienced a reduction of around 30% in their average distance to travel, females actually widened the relative gap compared to males. In 2017/18, females traveled 68% farther than their male peers, but this increased to 74% in 2024/25, with peaks of 91% farther in 2020/21 and 2023/24. The comparison of DTT percentages in **Figure** @fig:Percent_Gender_Age_DTT_Table highlights this trend.
+
+In contrast, the gender gap for the 18–24-year-old cohort is far less pronounced. In 2017/18, females in this age group traveled 20% farther than males. However, by 2024/25, this difference has shrunk to 5.5%, and in 2023/24, males actually traveled 2.9% farther than females for the first time.
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20Group%20Admissions%20Table.png)
 
 ![](images/clipboard-4034094787.png)
+
+![](images/clipboard-528571353.png)
+
+#### ![](images/clipboard-4064700492.png)
+
+#### ![](images/clipboard-2029450076.png)
 
 #### **Ethnicity**
 
@@ -1933,7 +1944,7 @@ tar_read(DTT_ICB_map_10_2023_24)
 ::: panel-tabset
 ##### Chart
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20MM%20Chart%20Gender%20Age.png)
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20MM%20Chart%20Gender%20Age.png){#fig:Gender-Age-DTT-Chart}
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20time%20MM%20Admissions%20trend%20plot.png)
 
@@ -1948,6 +1959,10 @@ tar_read(DTT_ICB_map_10_2023_24)
 #| fig-cap: "Table summarizing average distance and total admissions by gender, age group, and financial year."
 tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ```
+
+##### % Change Table
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20Table%20of%20splits.png){#fig:Percent_Gender_Age_DTT_Table}
 :::
 
 #### Gender by IMD trends over time
