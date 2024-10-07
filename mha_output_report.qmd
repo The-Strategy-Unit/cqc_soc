@@ -1246,13 +1246,19 @@ The average DTT for those aged 0-17 **decreased** by 32.5% from 2017/18 to 2024/
 
 While the trending average DTT for each age group moved in opposite directions, the median DTT has converged over time. Younger individuals seem to be traveling less distance compared to before, while older individuals have shown a rising trend in their travel distance over the fiscal years. While in 2017/18 the 0-17 year olds traveled 43% farther than 18-24 year olds on average, by 2024/25 the 18-24 year olds traveled 17% farther than the 0-17 year olds. This reversal was also seen in the median DTT as the 0-17 year olds traveled 56% farther than the 18-24 year olds in 2017/18 and then the 18-24 year olds travelled 10% farther than the 0-17 year olds in 2024/25. In other words, while children used to travel the farthest, they have seen a significant decease in their DTT while 18-24 year olds have increased their average DTT over the time period and now travel farther on average than 0-17 year olds over all. However, this trend does not hold when the age groups are split by gender due to gap in DTT experienced by males and females - particularly those aged 0-17.
 
-##### **Key Observation:** 
+##### **Key Observation:**
 
 One of the most significant insights from the DTT analysis is the distinct differences in travel distances when the age cohorts are further split by gender. As shown in Figure @fig:Gender-Age-DTT-Chart, females aged 0–17 consistently travel much farther than their male counterparts, and even farther than both males and females aged 18–24. Despite the sharp decline in the average distance traveled by 0–17 year old females over the years, the gap has not yet closed as their current average rate is still higher than the average rate of males aged 0-17 or in fact any gender age 18-24 at any point in the time period in the analysis.
 
 Although both males and females in the 0–17 age group experienced a reduction of around 30% in their average distance to travel, females actually widened the relative gap compared to males. In 2017/18, females traveled 68% farther than their male peers, but this increased to 74% in 2024/25, which peaked in 2020/21 and 2023/24 when females traveled 91% farther than their male peers. The comparison of DTT percentages in Figure @fig:Percent_Gender_Age_DTT_Table highlights this trend.
 
 In contrast, the gender gap for the 18–24-year-old cohort is far less pronounced. In 2017/18, females in this age group traveled 20% farther than males. However, by 2024/25, this difference has shrunk to 5.5%, and in 2023/24, males actually traveled 2.9% farther than females for the first time.
+
+When considering the total distance traveled by each subgroup over time, as shown in Figure @fig:Proportion_Total_DTT_Gender_Age, the split further emphasizes the disproportionate distance traveled by females, particularly in the younger age cohort (0–17). Over time, females have consistently accounted for a larger proportion of the total DTT for this age group. For example, in 2017/18, females in the 0–17 group made up 64% of the total distance traveled by that cohort, and this share has remained relatively high, with fluctuations between 62% and 66% through 2024/25.
+
+In contrast, the 18–24 group shows a more balanced split in total DTT between males and females. Initially, in 2017/18, females accounted for 52% of the total DTT in this age group, and while this percentage has remained fairly consistent, it has shifted slightly over time. The share of distance traveled by males has gradually increased, reaching nearly 50% by 2024/25.
+
+These results highlight the gender disparities in travel burden, particularly for younger females, who consistently travel farther distances. While the 18–24 cohort shows a more balanced split, the proportion of DTT remains uneven in the younger cohort, underscoring a need to examine the causes and implications of this disparity more closely.
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20Group%20Admissions%20Table.png)
 
@@ -1963,6 +1969,10 @@ tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ##### % Change Table
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20Table%20of%20splits.png){#fig:Percent_Gender_Age_DTT_Table}
+
+##### Proportion of Total DTT
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20DTT%20Total%20Proportion.png){#fig:Proportion_Total_DTT_Gender_Age}
 :::
 
 #### Gender by IMD trends over time
