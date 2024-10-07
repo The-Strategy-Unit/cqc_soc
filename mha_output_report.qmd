@@ -64,11 +64,17 @@ The analysis in this report was commissioned by CQC to support a special interes
 
 The purpose of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
 
+NHS Digital publishes various data and reports on the MHA [(https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-act-statistics-annual-figures)](https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-act-statistics-annual-figures). The analysis commissioned and produced for this report is either novel in it's entirety or in the cross-tabulation of characteristics used to explore a known topic to a greater degree.
+
 ## Data and methods
 
-All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables.
+All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables. As the MHSDS is a cumulative dataset with multiple submissions of the same activity data was de-duplicated taking the latest and fullest submission of data for a particular detention episode or admission.
 
-In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA super-spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched.
+In general, whilst things have improved over time, there are persistent data quality issues with submissions to the MHSDS in terms of coverage, completion and consistency of data available for secondary analysis. Additionally, the [cyber incident](https://digital.nhs.uk/data-and-information/publications/statistical/learning-disability-services-statistics/at-october-2022-mhsds-august-2022-final/data-quality---mhsds) from 2022 may still impact on the submissions from a number of providers across the country. Submissions from independent sector providers are also thought to be affected more by data completion and data quality issues.
+
+In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched. A tolerance of 1 day between previous detention end and subsequent detention start was permitted on date-matching due to high volumes of episodes of this nature, the likelihood that these episodes are connected (or should be) and to allow for lags in data systems/submissions. 
+
+
 
 ## Summary findings
 
@@ -118,7 +124,7 @@ get_top_path_from_section <- function(data){
 -   The majority (`r perc_single_episode_detentions`%) of Mental Health Act Detention spells are single episode detentions.
 -   The most common pathway during a multi-episode detention spell is being detained under Section 2 then Section 3.
 -   There are more Section 3 renewals for 0-17 year olds compared to 18-25 year olds.
--   Just under half of all detentions for CYP start off as short-term (sections 136, 4, 5(2) and 5(4)).
+-   Just under half of all detentions for CYP start off as short-term (sections 136, 4, 5(2) and 5(4)) compared to under one third for adults.
 -   The number of Section 136 detentions appear to be reducing over time.
 -   There are more conversions from Section 136 to Section 2 for males compared to females, for 18-24 year olds compared to under 18s, for black patients compared to all other ethnic groups combined and for patients from areas with low IMD quantiles compared to high quantiles.
 -   There are more conversions from Section 5(2) to Section 2 for 0-17 year olds compared to 18-25 year olds and for females compared to males.
@@ -214,8 +220,8 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 
 -   Data recording (in the MHSDS) is poor for assessment outcomes for both children and adults. HONOS is the most common assessment tool, though others are used sporadically.
 -   Of all CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment.
--   For the `r perc_last_assess`% of CYP MH spells that had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell, `r honos_perc_worse`% had an increase in HONOS scores from the start to the end of the spell.
--   Though numbers are small, from those that did have assessments at start and end of spell around 50% demonstrated an improvement (reduction) and 20% a deterioration (increase) in HONOS scores.
+-   Only `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start **and** another within 7 days of the end of the spell.
+-   Though numbers are small, from those that did have assessments at start and end of spell around 50% demonstrated an improvement (reduction) and 20% a deterioration (increase) in HONOS scores. The remainder demonstrated no change in scores.
 
 ### Distance from home to bed (all detentions and admissions)
 
@@ -234,10 +240,6 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be discharged to self or community care.
 
 The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay and re-detention analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
-
-#### Data processing and quality
-
-Basic process and caveats....
 
 #### Single and multi-episode detentions
 
@@ -259,7 +261,8 @@ tar_read(conversion_map) |>
   head(10) |>
   create_dt()
 ```
-
+  
+  
 #### Specific pathways of interest by population sub-group
 
 The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal" categories.
