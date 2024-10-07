@@ -1254,21 +1254,13 @@ Although both males and females in the 0–17 age group experienced a reduction 
 
 In contrast, the gender gap for the 18–24-year-old cohort is far less pronounced. In 2017/18, females in this age group traveled 20% farther than males. However, by 2024/25, this difference has shrunk to 5.5%, and in 2023/24, males actually traveled 2.9% farther than females for the first time.
 
-When considering the total distance traveled by each subgroup over time, as shown in Figure @fig:Proportion_Total_DTT_Gender_Age, the split further emphasizes the disproportionate distance traveled by females, particularly in the younger age cohort (0–17). Over time, females have consistently accounted for a larger proportion of the total DTT for this age group. For example, in 2017/18, females in the 0–17 group made up 64% of the total distance traveled by that cohort, and this share has remained relatively high, with fluctuations between 62% and 66% through 2024/25.
+When considering the total distance traveled by each subgroup over time, as shown in Figure @fig:Proportion_Total_DTT_Gender_Age, the split further emphasizes the disproportionate distance traveled by females, particularly in the younger age cohort (0–17). Over time, females have consistently accounted for a larger proportion of the total DTT for this age group. For example, in 2017/18, females in the 0–17 group made up 64% of the total distance traveled by that cohort, and this share has remained relatively high, with fluctuations between 62% and 66% through 2024/25. This is despite the fact that, as proportion of all admissions, females aged 0-17 contribute the least to total admissions, though the gender gap is much more narrow - see Figure @fig:Proportion_Admissions_Gender_Age_Gap.
 
 In contrast, the 18–24 group shows a more balanced split in total DTT between males and females. Initially, in 2017/18, females accounted for 52% of the total DTT in this age group, and while this percentage has remained fairly consistent, it has shifted slightly over time. The share of distance traveled by males has gradually increased, reaching nearly 50% by 2024/25.
 
 These results highlight the gender disparities in travel burden, particularly for younger females, who consistently travel farther distances. While the 18–24 cohort shows a more balanced split, the proportion of DTT remains uneven in the younger cohort, underscoring a need to examine the causes and implications of this disparity more closely.
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Age%20Group%20Admissions%20Table.png)
-
-![](images/clipboard-4034094787.png)
-
-![](images/clipboard-528571353.png)
-
-#### ![](images/clipboard-4064700492.png)
-
-#### ![](images/clipboard-2029450076.png)
+#### ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20fig%20for%20report%20age%20gender%20proportions%20avg%20DTT.png)
 
 #### **Ethnicity**
 
@@ -1966,13 +1958,17 @@ tar_read(DTT_ICB_map_10_2023_24)
 tar_read(DTT_admissions_gender_age_group_FY)%>% create_dt()
 ```
 
-##### % Change Table
+##### % Change Avg DTT Table
 
-![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20Table%20of%20splits.png){#fig:Percent_Gender_Age_DTT_Table}
+![](Heather Scratch Space/Tableau Plots/Final fig for report age gender proportions avg DTT.png){#fig:Percent_Gender_Age_DTT_Table}
 
 ##### Proportion of Total DTT
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20DTT%20Total%20Proportion.png){#fig:Proportion_Total_DTT_Gender_Age}
+
+##### Gender/Age Gap by proportion of Total Admissions
+
+![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20Gender%20Age%20Admissions%20proportions.png){#fig:Proportion_Admissions_Gender_Age_Gap}
 :::
 
 #### Gender by IMD trends over time
