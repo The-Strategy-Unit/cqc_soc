@@ -968,7 +968,7 @@ tar_read(cyp_redetentions_perc_table) |>
 ```
 :::
 
-The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are generally the inverse of the patterns found for MHA detention spell length of stay (@sec-los).  
+The percentage of MHA re-detentions is greater for females compared to males and higher for 18-24 years olds compared to under 18s. The percentage of MHA re-detentions is greater for patients from areas with the lowest IMD decile compared to all other IMD deciles. These patterns are generally the inverse of the patterns found for MHA detention spell length of stay (@sec-los).
 
 If a certain group of patients have shorter lengths of stay but appear more likely to have a re-detention, then this may suggest that either:
 
