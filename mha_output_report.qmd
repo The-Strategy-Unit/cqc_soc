@@ -58,7 +58,7 @@ knitr::knit_hooks$set(output = function(x, options) {
 })
 ```
 
-## Introduction
+## **Introduction**
 
 The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being published alongside this that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
 
@@ -66,7 +66,7 @@ The purpose of this analysis is to explore how detentions under the MHA for CYP 
 
 NHS Digital publishes various data and reports on the MHA [(https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-act-statistics-annual-figures)](https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-act-statistics-annual-figures). The analysis commissioned and produced for this report is either novel in it's entirety or in the cross-tabulation of characteristics used to explore a known topic to a greater degree.
 
-## Data and methods
+## **Data and methods**
 
 All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables. As the MHSDS is a cumulative dataset with multiple submissions of the same activity data was de-duplicated taking the latest and fullest submission of data for a particular detention episode or admission.
 
@@ -74,7 +74,7 @@ In general, whilst things have improved over time, there are persistent data qua
 
 In order to evaluate detention 'pathways', length of stay and re-detention we compiled MHA spells where all detention episodes were knitted together for individual patients where explicitly a transfer or where successive episodes were date-matched. A tolerance of 1 day between previous detention end and subsequent detention start was permitted on date-matching due to high volumes of episodes of this nature, the likelihood that these episodes are connected (or should be) and to allow for lags in data systems/submissions.
 
-## Summary findings
+## **Summary findings**
 
 ### Conversions between sections of the Mental Health Act
 
@@ -229,23 +229,23 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 -   Deprived populations however on average travel smaller distances due to proximity to services.
 -   As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting greater access/capacity challenges in those places and more CYP travelling out of area.
 
-## Detailed MHA analysis
+## **Detailed MHA analysis**
 
-### 'Conversions' between section of the act {#sec-conversions}
+### ***'Conversions' between section of the act*** {#sec-conversions}
 
-#### Background
+#### **Background**
 
 Most people who are detained under the MHA undergo an assessment within a defined period, and are then either discharged from detention or are kept on for treatment under a different section of the act. Some may have their treatment detentions renewed or switched to alternative section if not deemed safe to be discharged to self or community care.
 
 The following analysis provides a high-level summary, for patients aged under 25 in England, of the most common detention pathways. In order to undertake this analysis, 'detention spells' were constructed in sql to knit together linked detention episodes. This same data is used in our length of stay and re-detention analysis to cover the entire period a patient was detained and not just the individual episodes as recorded in the MHSDS.
 
-#### Single and multi-episode detentions
+#### **Single and multi-episode detentions**
 
 Across the 5 year period to 2023/24, there were `r number_detentions` detention spells in those aged under 25 at time of detention.
 
 Of these, `r number_single_episode_detentions` were single episode detentions whereas `r number_multi_episode_detentions` had more than one detention episodes.
 
-#### Most common 'pathways' during a detention spell
+#### **Most common 'pathways' during a detention spell**
 
 For those spells containing more than 1 detention episode, the following are the most common (top ten) in CYP over time:
 
@@ -259,10 +259,12 @@ tar_read(conversion_map) |>
   head(10) |>
   create_dt()
 ```
+  
+<br>
 
-#### Specific pathways of interest by population sub-group
+#### **Specific pathways of interest by population sub-group**
 
-The following analysis quantifies the scale of certain subset of conversions within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal" categories.
+The following analysis quantifies the scale of certain subset of conversions (pathways) within detention spells. The list of conversions was specified by the CQC team. In these plots, the percentage of detention spells containing at least one instance of the specific sequence of conversions is shown. These are not exclusive categories since a spell can have multiple conversions. For example, a spell like "5(2)-3-3" will be counted in the "Section 5(2) to Section 3" and "Section 3 renewal" categories.
 
 ::::::: panel-tabset
 ##### Age group
@@ -353,7 +355,7 @@ tar_read(mha_conv_imd_tab) |>
 :::
 :::::::
 
-#### Conversions from MHA detentions starting under specific Sections
+#### **Conversions from MHA detentions starting under specific Sections**
 
 Sections 4, 5(2), 5(4) and 136 of the MHA are short-term detentions to allow for a MHA assessment to take place before the patient is either detained under another section of the MHA or discharged. The following analysis concerns MHA detentions starting under Sections 4, 5(2), 5(4) and 136 and the subsequent non-conversions or conversions to Section 2, Section 3 or other sections of the MHA.
 
@@ -575,7 +577,7 @@ tar_read(mha_conv_from_136_map)$table |>
 ```
 :::
 
-#### MHA detentions with Section 2 to Section 3 pathways
+#### **MHA detentions with Section 2 to Section 3 pathways**
 
 This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
 
@@ -599,7 +601,7 @@ tar_read(mha_conf_from_2_to_3)$table |>
 ```
 :::
 
-### Mental Health Act Detention Spell Length of Stay {#sec-los}
+### ***Mental Health Act Detention Spell Length of Stay*** {#sec-los}
 
 A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.
 
@@ -764,7 +766,7 @@ tar_read(cyp_los_plot_imd_decile)$table |>
 :::
 ::::::::
 
-#### LOS by section of the Mental Health Act
+#### **LOS by section of the Mental Health Act**
 
 As seen in @sec-conversions, some spells start under one section of the MHA and are then converted to other sections. In this section of the report, the length of stay is explored by the section of the first MHA detention in the spell.
 
@@ -910,7 +912,7 @@ tar_read(cyp_los_median_table_3) |>
 ```
 :::
 
-### Mental Health Act Re-detentions
+### ***Mental Health Act Re-detentions***
 
 The number of Mental Health Act (MHA) re-detentions within 12 months is defined as the number of subsequent MHA detention spell discharge dates within 365 days of the first MHA detention spell discharge date in a financial year.
 
@@ -1072,7 +1074,7 @@ tar_read(cyp_redetentions_plot_imd_decile)$table |>
 :::
 ::::::::
 
-#### Formal and Informal Mental Health Act Re-detentions
+#### **Formal and Informal Mental Health Act Re-detentions**
 
 The majority of MHA re-detentions are formal with less than 1% being informal or unknown.
 
@@ -1081,7 +1083,7 @@ tar_read(cyp_redetentions_formal_table) |>
   create_dt()
 ```
 
-#### Re-admissions after a Mental Health Act detention
+#### **Re-admissions after a Mental Health Act detention**
 
 A re-admission is defined as a MH admission within 365 days of a MHA detention spell that did not start as a new MHA detention.
 
@@ -1125,7 +1127,7 @@ tar_read(cyp_readmissions_perc_table) |>
 ```
 :::
 
-### Clinical Outcomes (HONOS scores)
+### ***Clinical Outcomes (HONOS scores)***
 
 Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales [(HONOS)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) and the Health of Nation Outcome Scales for Children and Adolescents [(HONOSCA)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
 
@@ -1182,25 +1184,25 @@ tar_read(honos_scatter)
 ```
 :::
 
-## Distance to Travel (DTT) in Mental Health inpatient Services
+## **Distance to Travel (DTT) in Mental Health inpatient Services**
 
 The *Ward Location Distance from Home* metric in the Mental Health Services Data Set (MHSDS) represents the geographical distance between a patient’s recorded residential address and the location of the ward where they first received mental health treatment. This metric is crucial for evaluating the accessibility of healthcare services and can help inform population health planning. Understanding this distance enables insight into the proximity and convenience of services for patients, identifying potential barriers to healthcare access, such as long travel distances, and guiding resource allocation decisions.
 
 This section analyzes all mental health inpatient admissions where *Ward Location Distance from Home* was recorded, including both voluntary admissions and detentions under the Mental Health Act (MHA).
 
-### Methodology for DTT Calculation
+### ***Methodology for DTT Calculation***
 
-#### Definition
+#### **Definition**
 
 The *Ward Location Distance from Home* variable represents the geographical distance between a patient’s residential address and the treatment ward location. It is typically used to assess healthcare service accessibility, with potential applications in planning service provision and identifying underserved areas.
 
-#### Interpretation
+#### **Interpretation**
 
 -   **Lower DTT Values**: Indicate that healthcare services are likely more accessible and convenient for the patient, suggesting proximity to mental health services.
 
 -   **Higher DTT Values**: May reflect difficulties in accessing healthcare due to distance, long travel times, or transportation barriers. Higher values might also indicate centralization of specialist services, requiring patients to travel further.
 
-#### Address Data Challenges for the 18-24 Year-Old Cohort
+#### **Address Data Challenges for the 18-24 Year-Old Cohort**
 
 For younger adults, especially those attending university or college, the *Ward Location Distance from Home* variable may not accurately reflect their actual living circumstances. The data used for distance calculations is drawn from the *Personal Demographics Service (PDS)*, which stores the permanent address registered with the patient’s GP. For many students, this address remains their family home unless they update their GP records after moving into temporary university accommodation.
 
@@ -1212,7 +1214,7 @@ Since the PDS only updates a patient's address when the individual informs their
 
 Considering these factors is essential when interpreting DTT data for younger populations, as the permanent address recorded in the PDS might not align with the patient’s 'at-the-time' living arrangements.
 
-#### Calculation of Ward Location Distance from Home
+#### **Calculation of Ward Location Distance from Home**
 
 -   **Metric**: The Distance to Travel (DTT) for each admission was calculated as both the average and median distance per admission.
 
@@ -1220,13 +1222,13 @@ Considering these factors is essential when interpreting DTT data for younger po
 
 -   **Comparison**: DTT is compared to total admission numbers to assess whether changing demand might impact the travel distance required for mental health services.
 
-#### Data Source:
+#### **Data Source:**
 
 -   **Site Code of Treatment**: The *SiteCode* used in these analyses is derived from NHS Digital’s Organisation Data Service (ODS) reference files. The relevant postcode is matched to Northings/Eastings using the Office for National Statistics (ONS) Postcode Directory file ​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
 
 For further technical information, refer to NHS Digital’s [Data Set Technical Guidance](https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/data-set-technical-guidance/technical-glossary) ​([NHS England Digital](https://digital.nhs.uk/services/personal-demographics-service/access-data-on-the-personal-demographics-service)).
 
-### Discussion on Results from Analysis
+### ***Discussion on Results from Analysis***
 
 #### **Financial Year**
 
@@ -1372,7 +1374,7 @@ There is considerable variation in admissions and travel distances across the IC
 
 ![](Heather%20Scratch%20Space/Tableau%20Plots/Final%20ICB%20Admissions%20Table.png)
 
-### Analysis Results: Graphs and Tables
+### ***Analysis Results: Graphs and Tables***
 
 #### DTT over time and by subgroups: means, medians, and total admissions
 
@@ -1702,7 +1704,7 @@ tar_read(DTT_ICB_FY) %>% create_dt()
 ::::::
 :::::::::::::::::::::::::::
 
-#### Geographic Maps of Average DTT Breakdowns
+#### **Geographic Maps of Average DTT** Breakdowns
 
 :::::::::::::::::: panel-tabset
 ##### Financial Year (FY)
@@ -1934,7 +1936,7 @@ tar_read(DTT_ICB_map_10_2023_24)
 :::::::
 ::::::::::::::::::
 
-#### Multiple subgroup splits of the data
+#### **Multiple subgroup splits of the data**
 
 ::::: panel-tabset
 #### Gender by Age Group alongside admissions over time (FY)
