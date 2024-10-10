@@ -157,7 +157,7 @@ los_18_24_23_24 <- tar_read(cyp_los_plot_age_group)$table |>
   dplyr::pull(value)
 ```
 
--   Most lengths of Mental Health Act detention spells are up to 1 day long with another (smaller) peak at around 28 days.
+-   Most lengths of Mental Health Act detention spells are up to 1 day long with another (smaller) peak at around 28 days - aligning with expiry times specified in the various sections of the act.
 -   Median length of stay varies by ICB and has increased over time to `r los_median_23_24` days in 2023/24.
 -   Typically only 1-2% of all CYP detention spells last longer than 1 year.
 -   Over time, the median length of stay is consistently higher for males compared to females. In 2023/24, the median length of stay for males and females was `r los_male_23_24` and `r los_female_23_24` days respectively.
@@ -225,8 +225,7 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 
 -   There has been a small increase over time in mean distance CYP are admitted from home. This is accompanied by a decreasing trend in admissions numbers suggest capacity issues.
 -   The median distance however is constant over time, suggesting then an increase in mainly the furthest distances are skewing the mean.
--   The population groups most affected (in relative terms) by increased distance from home are males, those aged 18-24, those in ‘other’ minority ethnic groups and those in deprived populations.
--   Deprived populations however on average travel smaller distances due to proximity to services.
+-   The population groups most affected (in relative terms) by increased distance from home are males (though females still travel further), those aged 18-24, those in ‘other’ minority ethnic groups (though white patients typically travel slightly further) and in deprived populations (though less deprived patients tend to travel further).
 -   As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting greater access/capacity challenges in those places and more CYP travelling out of area.
 
 ## **Detailed MHA analysis**
@@ -914,7 +913,7 @@ tar_read(cyp_los_median_table_3) |>
 
 ### ***Mental Health Act Re-detentions***
 
-The number of Mental Health Act (MHA) re-detentions within 12 months is defined as the number of subsequent MHA detention spell discharge dates within 365 days of the first MHA detention spell discharge date in a financial year.
+The percentage of Mental Health Act (MHA) detentions with 1 or more re-detentions within 12 months is defined as the number of discharges from detention in any given period with at least 1 subsequent MHA detention spell admission dated within 365 days of the first spell discharge date.
 
 For example, if a patient had the following MHA detention spell discharge dates:
 
@@ -924,6 +923,11 @@ For example, if a patient had the following MHA detention spell discharge dates:
 2025-04-16\
 
 Then the number of MHA re-detentions within 12 months for the financial years 2024/25 and 2025/26 would be 2 and 1, respectively. The percentage of MHA detentions that had a re-detention within 12 months for financial years 2024/25 and 2025/26 would be 100% and 50%, respectively.
+
+Visually, for a small sample of patients this may look something like:
+<br>
+
+![](images/redet_eg.png)
 
 ```{r}
 redet <- tar_read(cyp_redetentions) |>
@@ -1085,9 +1089,9 @@ tar_read(cyp_redetentions_formal_table) |>
 
 #### **Re-admissions after a Mental Health Act detention**
 
-A re-admission is defined as a MH admission within 365 days of a MHA detention spell that did not start as a new MHA detention.
+A re-admission is defined as a MH inpatient admission within 365 days of a MHA detention spell that did not start as a new MHA detention.
 
-The percentage of MHA detentions that had a subsequent MH admission within 12 months has increased in 2022/23 compared to earlier years (@tbl-readmissions-number). This also varies by ICB (@fig-readmissions-mh).
+The percentage of MHA detentions that had 1 or more subsequent MH admission within 12 months has increased in 2022/23 compared to earlier years (@tbl-readmissions-number). This also varies by ICB (@fig-readmissions-mh).
 
 ```{r}
 #| label: tbl-readmissions-number
