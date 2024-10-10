@@ -17,7 +17,8 @@ tar_option_set(
     "patchwork",
     "PHEindicatormethods",
     "sf",
-    "stringr"
+    "stringr",
+    "magick"
   )
 )
 
@@ -1352,192 +1353,242 @@ list(
  # FY 2023-24 map
  tar_target(
    DTT_ICB_map_FY_2023_24,
-   map_DTT_ICB_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_2023_24(layer = icb_boundary,
                        data = table_DTT_ICB_FY_2023_24,
                        global_min = global_min_max_FY[1],
                        global_max = global_min_max_FY[2])
- ),
+
+    ggsave('images/maps/DTT_ICB_map_FY_2023_24.png',dpi = 192)
+   }, format = "file"
+   ),
 
  # FY 2024-25 map
  tar_target(
    DTT_ICB_map_FY_2024_25,
-   map_DTT_ICB_2024_25(layer = icb_boundary,
+   {map_DTT_ICB_2024_25(layer = icb_boundary,
                        data = table_DTT_ICB_FY_2024_25,
                        global_min = global_min_max_FY[1],
                        global_max = global_min_max_FY[2])
+
+     ggsave('images/maps/DTT_ICB_map_FY_2024_25.png',dpi = 192)
+   }, format = "file"
  ),
 
  # Gender-specific maps
  tar_target(
    DTT_ICB_map_female_2023_24,
-   map_DTT_ICB_female_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_female_2023_24(layer = icb_boundary,
                               data = table_DTT_ICB_FY_female_2023_24,
                               global_min = global_min_max_gender[1],
                               global_max = global_min_max_gender[2])
+
+     ggsave('images/maps/DTT_ICB_map_female_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_male_2023_24,
-   map_DTT_ICB_male_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_male_2023_24(layer = icb_boundary,
                             data = table_DTT_ICB_FY_male_2023_24,
                             global_min = global_min_max_gender[1],
                             global_max = global_min_max_gender[2])
- ),
+     ggsave('images/maps/DTT_ICB_map_male_2023_24.png',dpi = 192)
+   }, format = "file"
+
+     ),
 
  # Age group-specific maps
  tar_target(
    DTT_ICB_map_0_17_2023_24,
-   map_DTT_ICB_0_17_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_0_17_2023_24(layer = icb_boundary,
                             data = table_DTT_ICB_FY_0_17_2023_24,
                             global_min = global_min_max_age[1],
                             global_max = global_min_max_age[2])
+     ggsave('images/maps/DTT_ICB_map_0_17_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_18_24_2023_24,
-   map_DTT_ICB_18_24_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_18_24_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_18_24_2023_24,
                              global_min = global_min_max_age[1],
                              global_max = global_min_max_age[2])
+     ggsave('images/maps/DTT_ICB_map_18_24_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  # Ethnicity-specific maps
  tar_target(
    DTT_ICB_map_white_2023_24,
-   map_DTT_ICB_white_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_white_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_white_2023_24,
                              global_min = global_min_max_ethnicity[1],
                              global_max = global_min_max_ethnicity[2])
+     ggsave('images/maps/DTT_ICB_map_white_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_black_2023_24,
-   map_DTT_ICB_black_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_black_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_black_2023_24,
                              global_min = global_min_max_ethnicity[1],
                              global_max = global_min_max_ethnicity[2])
+     ggsave('images/maps/DTT_ICB_map_black_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_asian_2023_24,
-   map_DTT_ICB_asian_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_asian_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_asian_2023_24,
                              global_min = global_min_max_ethnicity[1],
                              global_max = global_min_max_ethnicity[2])
+     ggsave('images/maps/DTT_ICB_map_asian_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_mixed_2023_24,
-   map_DTT_ICB_mixed_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_mixed_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_mixed_2023_24,
                              global_min = global_min_max_ethnicity[1],
                              global_max = global_min_max_ethnicity[2])
+     ggsave('images/maps/DTT_ICB_map_mixed_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_other_2023_24,
-   map_DTT_ICB_other_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_other_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_other_2023_24,
                              global_min = global_min_max_ethnicity[1],
                              global_max = global_min_max_ethnicity[2])
+     ggsave('images/maps/DTT_ICB_map_other_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  # IMD-specific maps (1st and 10th decile)
  tar_target(
    DTT_ICB_map_most_2023_24,
-   map_DTT_ICB_most_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_most_2023_24(layer = icb_boundary,
                             data = table_DTT_ICB_FY_most_2023_24,
                             global_min = global_min_max_IMD_1_10[1],
                             global_max = global_min_max_IMD_1_10[2])
+     ggsave('images/maps/DTT_ICB_map_most_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_least_2023_24,
-   map_DTT_ICB_least_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_least_2023_24(layer = icb_boundary,
                              data = table_DTT_ICB_FY_least_2023_24,
                              global_min = global_min_max_IMD_1_10[1],
                              global_max = global_min_max_IMD_1_10[2])
+     ggsave('images/maps/DTT_ICB_map_least_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  # IMD-specific maps for each decile
  tar_target(
    DTT_ICB_map_1_2023_24,
-   map_DTT_ICB_1_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_1_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_1_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_1_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_2_2023_24,
-   map_DTT_ICB_2_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_2_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_2_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_2_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_3_2023_24,
-   map_DTT_ICB_3_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_3_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_3_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_3_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_4_2023_24,
-   map_DTT_ICB_4_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_4_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_4_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_4_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_5_2023_24,
-   map_DTT_ICB_5_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_5_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_5_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_5_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_6_2023_24,
-   map_DTT_ICB_6_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_6_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_6_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_6_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_7_2023_24,
-   map_DTT_ICB_7_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_7_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_7_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_7_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_8_2023_24,
-   map_DTT_ICB_8_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_8_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_8_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_8_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_9_2023_24,
-   map_DTT_ICB_9_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_9_2023_24(layer = icb_boundary,
                          data = table_DTT_ICB_FY_9_2023_24,
                          global_min = global_min_max_IMD_all[1],
                          global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_9_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
  tar_target(
    DTT_ICB_map_10_2023_24,
-   map_DTT_ICB_10_2023_24(layer = icb_boundary,
+   {map_DTT_ICB_10_2023_24(layer = icb_boundary,
                           data = table_DTT_ICB_FY_10_2023_24,
                           global_min = global_min_max_IMD_all[1],
                           global_max = global_min_max_IMD_all[2])
+     ggsave('images/maps/DTT_ICB_map_10_2023_24.png',dpi = 192)
+   }, format = "file"
  ),
 
 
