@@ -66,7 +66,7 @@ knitr::opts_chunk$set(dpi = 72)
 
 ## **Introduction**
 
-The analysis in this report was commissioned by CQC to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being published alongside this that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
+The analysis in this report was commissioned by the Care Quality Commission (CQC) to support a special interest report on the Mental Health Act (MHA) and children and young people (CYP). A separate report is being published alongside this that looks into the use of acute emergency services (ED and UCC) by CYP presenting with mental health issues.
 
 The purpose of this analysis is to explore how detentions under the MHA for CYP (covering ages 0-24) vary over time, according to population sub-groups and in different areas of the country. Of particular interest are the nature of 'conversions' between different sections of the act; of variation in whole detention length of stay; levels of re-detention; clinical outcomes (HONOS) and the distances patients are admitted to beds away from home (all admissions, not just MHA).
 
@@ -74,7 +74,7 @@ NHS Digital publishes various data and reports on the MHA [(https://digital.nhs.
 
 ## **Data and methods**
 
-All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables. As the MHSDS is a cumulative dataset with multiple submissions of the same activity data was de-duplicated taking the latest and fullest submission of data for a particular detention episode or admission.
+All of the analysis in this report is sourced from the Mental Health Services Data Set (MHSDS). Data relating to MHA detention episodes are taken from MHS401 tables and all MH inpatient admissions from MHS501/MHS502. Administrative and demographic data were linked from the MHS001 (MPI) tables. As the MHSDS is a cumulative monthly refreshed dataset with multiple submissions of the same activity data was de-duplicated taking the latest and fullest submission of data for a particular detention episode or admission.
 
 In general, whilst things have improved over time, there are persistent data quality issues with submissions to the MHSDS in terms of coverage, completion and consistency of data available for secondary analysis. Additionally, the [cyber incident](https://digital.nhs.uk/data-and-information/publications/statistical/learning-disability-services-statistics/at-october-2022-mhsds-august-2022-final/data-quality---mhsds) from 2022 may still impact on the submissions from a number of providers across the country. Submissions from independent sector providers are also thought to be affected more by data completion and data quality issues.
 
@@ -229,9 +229,10 @@ honos_perc_worse <- tar_read(honos_perc_worse) |>
 
 ### Distance from home to bed (all detentions and admissions)
 
--   There has been a small increase over time in mean distance CYP are admitted from home. This is accompanied by a decreasing trend in admissions numbers suggest capacity issues.
--   The median distance however is constant over time, suggesting then an increase in mainly the furthest distances are skewing the mean.
--   The population groups most affected (in relative terms) by increased distance from home are males (though females still travel further), those aged 18-24, those in ‘other’ minority ethnic groups (though white patients typically travel slightly further) and in deprived populations (though less deprived patients tend to travel further).
+-   There has been a small increase over time in mean distance CYP are admitted from home.
+-   The median distance however is constant over time, suggesting that an increase in mainly the furthest distances are skewing the mean.
+-   The population groups most affected (in relative terms) by increased distance from home over time are males (though females still travel much further), those aged 18-24, those in ‘other’ minority ethnic groups (though white patients typically travel slightly further) and in deprived populations (though less deprived patients tend to travel further).
+-   The difference in mean travel distances from home between younger females (31km) and males (18km) is stark.
 -   As expected, more urban ICB areas have lower average distances from inpatient beds to home than rural ICBs. The distances are increasing for rural areas however suggesting greater access/capacity challenges in those places and more CYP travelling out of area.
 
 ## **Detailed MHA analysis**
@@ -246,9 +247,9 @@ The following analysis provides a high-level summary, for patients aged under 25
 
 #### **Single and multi-episode detentions**
 
-Across the 5 year period to 2023/24, there were `r number_detentions` detention spells in those aged under 25 at time of detention.
+Across the 5 year period to 2023/24, there were `r comma(number_detentions)` detention spells in those aged under 25 at time of detention.
 
-Of these, `r number_single_episode_detentions` were single episode detentions whereas `r number_multi_episode_detentions` had more than one detention episodes.
+Of these, `r comma(number_single_episode_detentions)` were single episode detentions whereas `r comma(number_multi_episode_detentions)` had more than one detention episodes.
 
 #### **Most common 'pathways' during a detention spell**
 
@@ -259,7 +260,8 @@ tar_read(conversion_map) |>
   filter(age_group != '25+', epi_count > 1) |>
   group_by(fin_year, sections_all) |> 
   summarise(spells = sum(spells)) |> 
-  pivot_wider(names_from = fin_year, values_from = spells) |> 
+  pivot_wider(names_from = fin_year, values_from = spells) |>
+  dplyr::rename("Section Conversions" = sections_all) |> 
   arrange(desc(`2023-2024`)) |> 
   head(10) |>
   create_dt()
@@ -584,7 +586,7 @@ tar_read(mha_conv_from_136_map)$table |>
 
 #### **MHA detentions with Section 2 to Section 3 pathways**
 
-This is all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This includes detentions starting under any section of the MHA and spells with any number or pattern of sections, including renewals of sections.
+This data refers to all completed MHA detention spells between 2019/20 and 2023/24 containing a conversion from Section 2 to Section 3. This could include detentions starting under any other section of the MHA and spells with other preceding or subsequent pattern of sections, including renewals of section 3.
 
 ::: panel-tabset
 ##### Map
@@ -608,7 +610,7 @@ tar_read(mha_conf_from_2_to_3)$table |>
 
 ### ***Mental Health Act Detention Spell Length of Stay*** {#sec-los}
 
-A MHA detention spell can consist of consecutive MHA detentions so the length of stay is defined as the difference in time between the start of the first MHA detention in a spell to the spell discharge date.
+A MHA detention spell can consist of consecutive MHA detentions so the length of stay in our use-case is defined as the difference in time between the start of the first MHA detention in a series to the discharge date of the last episode in a series.
 
 In 2023/24, the distribution of MHA detention spells length of stay is right-skewed with the majority being 1 day long (@fig-los-histo). There is also a small peak in the distribution at about day 27, probably a result of detentions under section 2 of the MHA being limited to up to 28 days (@fig-los-histo-zoomed).
 
@@ -948,6 +950,7 @@ About half of MHA detentions had a re-detention within 12 months (@tbl-redetenti
 tar_read(cyp_redetentions_perc)$table |>
   create_dt()
 ```
+<br>
 
 ::: panel-tabset
 ###### Overview
@@ -1105,6 +1108,7 @@ The percentage of MHA detentions that had 1 or more subsequent MH admission with
 tar_read(cyp_readmissions_perc) |>
   create_dt()
 ```
+<br>
 
 ::: panel-tabset
 ##### Overview
@@ -1139,7 +1143,7 @@ tar_read(cyp_readmissions_perc_table) |>
 
 ### ***Clinical Outcomes (HONOS scores)***
 
-Data was not readily available on assessments of clinical outcomes. Health of Nation Outcome Scales [(HONOS)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) and the Health of Nation Outcome Scales for Children and Adolescents [(HONOSCA)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
+Data volumes in MHSDS are very low for assessments of clinical outcomes though it may be being captured and not submitted. Health of Nation Outcome Scales [(HONOS)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) and the Health of Nation Outcome Scales for Children and Adolescents [(HONOSCA)](https://www.rcpsych.ac.uk/improving-care/ccqi/health-of-nation-outcome-scales) were used since they were the most complete, however there were still low completion rates. Due to the low numbers of full assessments, breakdowns are not provided and the term HONOS is used to mean both HONOS and HONOSCA combined.
 
 Of the `r number_spells` CYP MH spells that ended between 1st April 2018 and 31st March 2023, `r perc_honos_assess`% had at least 1 full HONOS assessment (@fig-honos-flow). Only `r perc_last_assess`% of CYP MH spells had a full HONOS assessment within 7 days of the start and another within 7 days of the end of the spell.
 
