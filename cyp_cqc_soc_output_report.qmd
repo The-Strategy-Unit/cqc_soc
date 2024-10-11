@@ -1,5 +1,5 @@
 ---
-title: "Mental Health attendances in urgent and emergency care settings"
+title: "Mental Health attendances by CYP in urgent and emergency care settings"
 author: "Andy Hood, Anya Ferguson, Andre Bilbrough, Heather Humphreys"
 format:
   html:
@@ -410,7 +410,7 @@ tar_read(cyp_icb_rates_ed) |>
 ```
 :::
 
-::::::::: panel-tabset
+::: panel-tabset
 ##### Overview
 
 ::: panel-tabset
@@ -532,7 +532,7 @@ tar_read(cyp_rural_breakdowns)$type1_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
-:::::::::
+:::
 
 ## Detailed analysis - Walk-in and Urgent Care attendance {#sec-type34-overview}
 
@@ -739,7 +739,7 @@ tar_read(cyp_icb_rates_uec) |>
 ```
 :::
 
-::::::::: panel-tabset
+::: panel-tabset
 ##### Overview
 
 ::: panel-tabset
@@ -863,4 +863,4 @@ tar_read(cyp_rural_breakdowns)$uec_mh_attends |>
   get_standard_table_for_breakdowns("rural_urban")
 ```
 :::
-:::::::::
+:::
