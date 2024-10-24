@@ -65,3 +65,4 @@ data/cyp_DTT.csv
 
 # all files in the below folders
 images/maps/*
+!images/maps/.gitignore
