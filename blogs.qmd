@@ -1,0 +1,56 @@
+---
+title: "Blog(s)"
+format: html
+editor: visual
+---
+
+## Ideas
+
+State of Care:
+
+-   On the data (linking EC, UC, 111); Classifying MH in ECDS/111;
+
+-   On significant sub-groups
+
+-   On ED waiting times
+
+-   On the volume and cost trends (and variation)
+
+-   On access differences (ambulance, arrival time)
+
+-   On regular attenders
+
+-   On diagnoses (and links to services?)
+
+-   111 disposition to A&E
+
+MHA detentions:
+
+-   General intro/overview
+
+-   On the data - 'crafting spells' and impact on LoS
+
+-   Conversions from short to longer-term (and variation)
+
+-   Detention revolving door...
+
+-   Outcomes - pants data!
+
+-   Distance inequality - males and females, age group trends
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
