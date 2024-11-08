@@ -170,11 +170,8 @@ WHERE row_last_assess = 1
 
 -- Puting first and last HONOS scores per spell together:
 SELECT
-	spell_start_date,
-	spell_end_date,
-	first_assess_date,
+	ROW_NUMBER() OVER (ORDER BY first_score) AS id,
 	first_score,
-	last_assess_date,
 	last_score,
 	last_score / first_score AS rate_of_change
 
