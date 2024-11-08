@@ -41,6 +41,13 @@ MHA detentions:
 ## Running order - SOC?
 
 ### 1.    Background and making the data work
+
+-   This is State of Care
+-   This is what we did (covered)
+-   This is the data we used
+-   Here's some high-level information
+-   Trailing the next 2 blogs....
+
 ### 2.    Utilisation - key sub-group variations (ED, UCC or a comparison)
 
 PROMPT (co-pilot)
