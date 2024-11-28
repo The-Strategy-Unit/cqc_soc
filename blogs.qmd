@@ -1,7 +1,34 @@
 ---
 title: "Blog(s)"
-format: html
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    theme: cosmo
+    fig-format: svg
+    mainfont: arial
+    fontcolor: black
+    toc: true
+    toc-location: left
+    toc-title: Summary
+    toc-depth: 4
+    grid:
+      sidebar-width: 250px
+      body-width: 1050px
+      margin-width: 0px
+      gutter-width: 1.5rem
 editor: visual
+execute:
+  echo: false
+  message: false
+  warning: false
+  cache: false
+lang: en-GB
+date: last-modified
+date-format: "YYYY-MM-DD"
+title-block-banner: "#f9bf07"
+title-block-banner-color: "#333739"
+css: styles.css
 ---
 
 ## Ideas (long-list)
@@ -234,3 +261,94 @@ Financial and Logistical Burdens: Traveling long distances for care can impose s
 Conclusion
 Addressing these issues requires a multifaceted approach, including increasing local inpatient capacity, enhancing community services, and ensuring equitable distribution of resources. By tackling these challenges, we can improve access to mental health care for children and young people, ensuring they receive the support they need closer to home.
 
+## Anya's attempts
+
+### Age and ED attendances blog
+
+In our recent analysis for the Care Quality Commission (CQC), we explored the rates of attendance to A&E and UEC by the following age groups: 0-17 years, 18-21 years, 22-39 years, 40-64 years, 65-74 years and 75+ years.
+
+```{r}
+rate_attends_1821_2324 <- targets::tar_read(age_breakdowns)$type1_mh_attends |>
+  dplyr::filter(der_financial_year == "2023/24",
+                age_group == "18-21") |>
+  dplyr::pull(value) |>
+  janitor::round_half_up(2)
+```
+
+The adolescent/transitional age group, 18-21 years, consistently has the highest rates of presentation to A&E for mental health reasons (@fig-type1_attends-age). In 2023/24, `r rate_attends_1821_2324` per 100,000 18-21 year olds attended A&E for mental health reasons. Similar trends were found for UEC attendances, with 18-21 year olds having the highest rates of presentation across the years.
+
+```{r}
+#| label: fig-type1_attends-age
+#| fig-cap: Rates per 100,000 population of the number of Mental Health Type 1 attendances by age group.
+targets::tar_read(age_plot)$type1_mh_attends
+```
+
+In the CQC's 2024 [State of Care report](https://www.cqc.org.uk/publications/major-report/state-care), it's said that children and young people had a worse experience than adults for mental health care and that they faced long waiting times at all stages of care: initial assessments, diagnoses, medicines, and therapies. Statistics from the [Mental Health Foundation](https://www.mentalhealth.org.uk/explore-mental-health/statistics/people-seeking-help-diagnosed-mental-health-problems-statistics) show that 16-24 years olds were less likely to receive mental health treatment compared to other age groups.Being able to receive mental health care may lead to a worsening of their situations forcing people into crises and then requiring ED attendance.
+
+There are potentially other reasons why this transitional age group may have higher rates of ED attendance though. This is traditionally when people may face new life circumstances, making new decisions and facing new stressors: leaving home, changes in education or employment, new financial independence, and so on.
+
+The [Mental Health Foundation](https://www.mentalhealth.org.uk/explore-mental-health/statistics/stress-statistics) found that more 18-24 year olds report stress related to the pressure to succeed than other age groups. Almost half of 18-24 year olds said that they experience high stress from comparing themselves to others and only 7% said that they never feelt overwhelmed or unable to cope in the past year.
+
+Individuals in this transitional age group are also likely to be seeing their care transitioning between paediatric to adult MH teams. This transitional group needs their transition between MH teams to be more effectively managed:
+- https://www.rcpsych.ac.uk/docs/default-source/improving-care/better-mh-policy/position-statements/ps03_22.pdf?sfvrsn=23c278e0_8
+- https://www.bmj.com/content/353/bmj.i2225
+
+### Other notes
+
+The 0-17 age group is the only one where current rates are higher than in 2019/20.
+
+- transitional stage in life too - not in school, new stressor re rent, uni, work, money, (perceived loss too - wanting to be independent) loss of support groups (friends) or ...
+
+  
+  Over the past decade, the number of workers aged 16–34 years who reported that their mental health limits the type or amount of work they can do has more than quadrupled
+  - quote from: https://www.mentalhealth.org.uk/explore-mental-health/statistics/mental-health-work-statistics
+  - Based on: https://www.health.org.uk/publications/long-reads/what-we-know-about-the-uk-s-working-age-health-challenge
+
+**difference in population sub groups using emergency services for mental health reasons - Anya's thoughts**
+
+Socioeconomic variation
+
+Across all years in our analysis, there was a very clear socio-economic gradient in mental health presentation rates to emergency services. Using the Index of Multiple Deprivation (IMD), people in the most deprived areas have rates over 3 times higher than the least deprived.
+
+```{r}
+targets::tar_read(ae_attends_imd)
+```
+
+- Clear socio-economic gradient
+- 3 times higher
+- Why?
+  - Extra stressors for P in IMD1 cf IMD10
+    - IMD has financial, environmental (link to green spaces being better) components, fewer opportunities, worse health outcomes
+      - Would be interested to see rates by specific domains
+      - Contribute to incidence of MH disorders AND excerbate so more likely to crisis
+  - Number/Investment in MH services in the area
+  
+  
+**Conversion Pathways Under the Mental Health Act in England - Anya's thoughts**
+
+Under the Mental Health Act 1983, people with a mental disorder that puts themselves or others at risk can be detained, taken to hospital and treated without their agreement. There are different sections of the MHA that can be used with different rules on length of detention, but the focus of this blog is on the conversion of short-term sections outlined below:
+
+- Section 4: This is an emergency admission and lasts up to 72 hours only.
+- Section 5(2): Whilst already an in-patient in hospital for any reason, a patient may be detained by their doctor for up to 72 hours.
+- Section 5(4): Whilst already an in-patient in hospital for a mental disorder, a patient may be detained by a registered nurse for up to 6 hours.
+- Section 136: A detention by a police officer for up to 24 hours. To be detained under Section 136, the person must be in a public place and the detention starts when they are taken to a place of safety.
+
+Detentions under these sections are short to allow for a MHA assessment to be undertaken by a medical practitioner. Based on this assessment, the patient may be detained under another section of the MHA or discharged **?can patients also be admitted/treated/referred with their consent - not a detention, but also not a discharge?**
+
+In our analysis of MHA detentions between financial years 2019/20 and 2023/24, the majority of CYP detentions starting under Section 4 (66.88%) and Section 136 (74.49%) were not converted to another Section of the MHA. 
+
+A low conversion rate of short-term to long-term sections suggests that individuals did not need to be detained further - that the person did not require hospitalisation or treatment against their will. This does not necessarily mean that the use of the short-term detention was inappropriate. The detention may have been necessary as a life-saving intervention - a way to remove the person from their immediate crisis, to move them to a place of safety and to provide reassurance. The subsequent assessment by the medical practitioner may have found that the person is already receiving the support and care they need generally or that they are in agreement about future treatment, and therefore the detention could be ended rather than converted to another section of the MHA.
+
+**The Revolving Door of Mental Health Act Detentions in England - Anya's thoughts**
+
+Within 12 months, almost half of all MHA detentions of CYP in England had a re-detention and almost a quarter had a mental health related hospital admission. 
+
+The revolving door of MHA detentions suggests individuals often cycle through periods of crisis without receiving the sustained support they need. Repeated detentions can be distressing to patients and could point
+
+The revolving door of MHA detentions also places a significant burden on healthcare resources. Our previous work on [inequities in CYP MH services](https://www.strategyunitwm.nhs.uk/publications/inequities-children-and-young-peoples-mental-health-services) and the [impact of the MHA reforms](https://www.strategyunitwm.nhs.uk/publications/estimating-impact-proposed-reforms-mental-health-act-workload-psychiatrists) highlight an increasin burden on mental health services. But if the number of re-detentions and re-admissions could be reduced, this burden could be lessened. 
+
+In our analysis, we found that the percentage of CYP MHA re-detentions is greater for females compared to males, for 18-24 year olds compared to under 18s and for patients from areas with the lowest IMD decile compared to all other deciles. We also found that these groups had shorter lengths of stay for their detention spells. This could suggest that these groups are being discharged too early or without sufficient self or community care arrangements in place. 
+
+The revolving door of MHA detentions is likely due to a lack of continuous and effective mental health care. The government's [plans to reform the Mental Health Act](https://www.gov.uk/government/news/better-care-for-mental-health-patients-under-major-reforms) suggests that "Discharge processes will also be reviewed more broadly and will include a safety management plan for the patient, to keep themselves and other safe". If patients are able to access mental health care, they may be less likely to reach crises points avoiding the need for a re-detention.
+
+Mental health care needs to be prioritised to ensure all individuals receive the right support and treatments. In line with the government's shift from intervention to prevention, if routine mental health care is accessible to those that need it, we could prevent the individual being detained and re-detained.
