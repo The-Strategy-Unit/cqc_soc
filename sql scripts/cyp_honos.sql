@@ -1,4 +1,6 @@
 -- Full HONOS scores near the start and end of a MH spell
+-- First output saved as "cyp_honos_scores.csv"
+-- Second output saved as "cyp_honos_summary.csv"
 ------------------------------------------------------------------------------
 -- Setting up table for HONOS codes:
 IF OBJECT_ID('[NHSE_Sandbox_StrategyUnit].[dbo].cqc_honos_codes', 'U') IS NOT NULL

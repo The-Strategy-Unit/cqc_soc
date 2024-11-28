@@ -1,5 +1,6 @@
 -- Length of stay of a MHA detention spell
 -- Details (for example age) can change during a spell, so have summed los by spell, then joined details from end of spell on afterwards
+-- Output saved as "cyp_los.csv"
 
 DROP TABLE IF EXISTS #lengthofstay
 
