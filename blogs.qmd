@@ -287,11 +287,11 @@ In the CQC's 2024 [State of Care report](https://www.cqc.org.uk/publications/maj
 
 There are potentially other reasons why this transitional age group may have higher rates of ED attendance though. This is traditionally when people may face new life circumstances, making new decisions and facing new stressors: leaving home, changes in education or employment, new financial independence, and so on.
 
-The [Mental Health Foundation](https://www.mentalhealth.org.uk/explore-mental-health/statistics/stress-statistics) found that more 18-24 year olds report stress related to the pressure to succeed than other age groups. Almost half of 18-24 year olds said that they experience high stress from comparing themselves to others and only 7% said that they never feelt overwhelmed or unable to cope in the past year.
+The [Mental Health Foundation](https://www.mentalhealth.org.uk/explore-mental-health/statistics/stress-statistics) found that more 18-24 year olds report stress related to the pressure to succeed than other age groups. Almost half of 18-24 year olds said that they experience high stress from comparing themselves to others and only 7% said that they never felt overwhelmed or unable to cope in the past year.
 
-Individuals in this transitional age group are also likely to be seeing their care transitioning between paediatric to adult MH teams. This transitional group needs their transition between MH teams to be more effectively managed:
-- https://www.rcpsych.ac.uk/docs/default-source/improving-care/better-mh-policy/position-statements/ps03_22.pdf?sfvrsn=23c278e0_8
-- https://www.bmj.com/content/353/bmj.i2225
+Individuals in this transitional age group are also likely to be seeing their care transitioning between paediatric to adult MH teams. The [NCEPOD Inbetweeners report](https://www.ncepod.org.uk/2023transition/The%20Inbetweeners_summary%20report.pdf) found that there is no clear pathway between children's and adult's healthcare services for young people with chronic conditions. The [NHS Long-term plan](https://www.longtermplan.nhs.uk/) aims to better manage this transition in mental health care by creating a comprehensive mental health service for 0-25 year olds. On this the [Royal College of Psychiatrists](https://www.rcpsych.ac.uk/docs/default-source/improving-care/better-mh-policy/position-statements/ps03_22.pdf?sfvrsn=23c278e0_8) have outlined different ways this could be done and the challenges involved: Extending current CMHS to CYP up to 25 years old would require further investment, staffing and training, but a mixture of different models may help. Central to all of this is the development and evaluation of the transition with the young person and their carers - an overarching principle in [NICE guidelines](https://www.nice.org.uk/guidance/ng43) on managing the transition from children's to adult' health and social care services.
+
+
 
 ### Other notes
 
