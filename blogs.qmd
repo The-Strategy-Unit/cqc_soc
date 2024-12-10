@@ -31,6 +31,10 @@ title-block-banner-color: "#333739"
 css: styles.css
 ---
 
+``` {r setup}
+library(targets)
+```
+
 ## Ideas (long-list)
 
 State of Care:
@@ -67,13 +71,34 @@ MHA detentions:
 
 ## Running order - SOC?
 
-### 1.    Background and making the data work
+### 1.    State of Care overview
 
--   This is State of Care
--   This is what we did (covered)
--   This is the data we used
--   Here's some high-level information
--   Trailing the next 2 blogs....
+Each year the Care Quality Commission (CQC) produce a ['State of Care'](https://www.cqc.org.uk/publications/major-report/state-care) report for Health and Social Care in England. The report typically draws together CQC's assessment and survey data alongside other publicly and routinely available data on services and service users.
+
+For their 2023/24 update report, one of the key areas of focus was how people in mental health crisis used services. However, there were some gaps in understanding of how emergency and urgent care services were being used by those with mental health difficulties, potentially shining a light on lack of provision in specialist and community services.
+
+To support this analysis, we drew on data from the Emergency Care Dataset (ECDS) and NHS 111 data to explore the trends, patterns and variation in utilisation of these care access points. We linked patients to the Mental Health Services Dataset (MHSDS) to assess how many of the patients were known to specialist services already.
+
+For Accident & Emergency (A&E) and Urgent Care Centre (UCC) attendances we used a basket of 1,500 SNOMED codes to identify mental health presentation (primary complaint) and for NHS 111 a sub-set of mental health-related symptoms for mental health-related calls. Dementia and substance-misuse conditions were explicitly excluded.
+
+In 2023/24 there were 200k attendances to A&E with a chief complaint of mental health. There were 20k attendances to urgent care centres and 220k calls to NHS 111 services where mental health was the primary reason for contact. The direct cost of these contacts is estimated at >£36m, not including related ambulance call and conveyance costs or onward care.
+
+Our analysis suggests that:
+
+The likelihood of someone with a mental health problem contacting urgent and emergency care services varies greatly according to who they are and where they live. Females, those in adolescence, those in ‘other’ minority ethnic groups and those in deprived areas all access services at higher rates.
+
+``` {r}
+#| label: fig-type1-map
+#| fig-cap: Attendance rate by ICB per 100,000 population, Type 1 A&E. All of England, 2023/24.
+
+tar_read(cyp_icb_ed_map_2324)
+```
+
+Attendance rates to Type 1 units (emergency departments) are falling gradually over time but those to urgent treatment centres are increasing. Patients with mental health difficulties also access services differently – use ambulances more, arrive out of hours – and are also more likely to wait longer in A&E departments for assessment and treatment than those with physical health complaints.
+
+While the majority of these patients are known to mental health providers, a substantial minority are not. Typically, the most common presenting conditions are depression and anxiety though material numbers do have more severe disorders.
+
+Stay tuned for more detailed blogs on some of these findings....
 
 ### 2.    Utilisation - key sub-group variations (ED, UCC or a comparison)
 
