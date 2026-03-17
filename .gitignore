@@ -55,6 +55,12 @@ _targets/
 data/111_*
 data/ae_*
 data/cyp_*
+blogs*
+2024-08-01_questions.qmd
+CQC_100624.docx
+cyp_cqc_soc*
+mha_output*
+soc_output*
 
 # html files
 *.html
@@ -62,3 +68,4 @@ data/cyp_*
 # all files in the below folders
 images/maps/*
 !images/maps/.gitignore
+Heather Scratch Space/
