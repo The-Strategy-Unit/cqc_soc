@@ -52,13 +52,9 @@ rsconnect/
 _targets/
 
 # files
-data/111_extract_full.csv
-data/ae_extract_full.csv
-data/cyp_ae_extract_full.csv
-data/cyp_redetentions.csv
-data/cyp_readmissions.csv
-data/cyp_los.csv
-data/cyp_DTT.csv
+data/111_*
+data/ae_*
+data/cyp_*
 
 # html files
 *.html
